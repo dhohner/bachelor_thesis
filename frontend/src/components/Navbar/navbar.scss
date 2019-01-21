@@ -1,0 +1,44 @@
+@import '../../util/scss/variables';
+
+ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	border-bottom: $border-width solid $border-color-navbar;
+	background-color: $background-color-inactive;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	left: 0;
+}
+
+/* Change the link color to #111 (black) on hover */
+li.link {
+	:hover {
+		background-color: $background-color-hover;
+	}
+	float: left;
+	margin-right: 2 * $standard-margin;
+}
+
+li.account {
+	:hover {
+		background-color: $background-color-hover;
+	}
+	float: right;
+}
+
+.router-link {
+	display: block;
+	color: $link-text-color;
+	text-align: center;
+	padding: 2 * $standard-padding;
+	text-decoration: none;
+}
+
+.icon {
+	img {
+		float: left;
+		margin: $standard-margin (2 * $standard-margin) $standard-margin;
+	}
+}
