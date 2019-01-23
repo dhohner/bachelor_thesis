@@ -1,39 +1,41 @@
 <template>
-  <nav class="nav-left" aria-expanded="false">
-    <ul>
-      <li class="title">Title</li>
-      <li class="link">
-        <router-link
-          :to="{ name: 'home' }"
-          class="router-link"
-          style="margin-top: 14px"
-          >Home</router-link
-        >
-      </li>
-      <li class="link">
-        <router-link :to="{ name: 'home' }" class="router-link"
-          >Home</router-link
-        >
-      </li>
-      <li class="link">
-        <router-link :to="{ name: 'home' }" class="router-link"
-          >Home</router-link
-        >
-      </li>
-    </ul>
-  </nav>
+  <transition>
+    <nav class="nav-left" v-if="isShowing">
+      <ul>
+        <li class="title">Navigation</li>
+        <li class="link">
+          <router-link
+            :to="{ name: 'home' }"
+            class="router-link"
+            style="margin-top: 14px"
+            >Home</router-link
+          >
+        </li>
+        <li class="link">
+          <router-link :to="{ name: 'bounties' }" class="router-link"
+            >Bounties</router-link
+          >
+        </li>
+        <li class="link">
+          <router-link :to="{ name: 'about' }" class="router-link"
+            >About</router-link
+          >
+        </li>
+      </ul>
+    </nav>
+  </transition>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      isShowing: false
+    }
+  },
   mounted() {
     this.$parent.$on('toggleSidebar', () => {
-      const navbar = document.querySelector('.nav-left')
-      if (navbar.getAttribute('aria-expanded') === 'false') {
-        navbar.setAttribute('aria-expanded', 'true')
-      } else {
-        navbar.setAttribute('aria-expanded', 'false')
-      }
+      this.isShowing = !this.isShowing
     })
   }
 }

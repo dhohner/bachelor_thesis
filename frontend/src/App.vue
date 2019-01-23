@@ -19,13 +19,14 @@
 #main {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   padding-top: 45px;
-  transition: margin-left 0.5s;
+  transition: margin-left 0.3s;
 }
 </style>
 
 <script>
 import Navbar from '@/components/Navbar/navbar'
 import Sidebar from '@/components/Sidebar/sidebar'
+import * as types from '@/util/constants/types'
 
 export default {
   components: {
@@ -34,12 +35,15 @@ export default {
   },
   mounted() {
     this.$on('toggleSidebar', () => {
-      if (document.getElementById('main').style.marginLeft === '200px') {
-        document.getElementById('main').style.marginLeft = '0px'
-      } else {
+      if (document.getElementById('main').style.marginLeft !== '200px') {
         document.getElementById('main').style.marginLeft = '200px'
+      } else {
+        document.getElementById('main').style.marginLeft = '0px'
       }
     })
+  },
+  beforeCreate() {
+    this.$store.dispatch(types.INIT_CONTRACT)
   }
 }
 </script>

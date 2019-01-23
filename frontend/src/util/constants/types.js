@@ -1,1 +1,1 @@
-export const TOGGLE_SIDEBAR = 'toggleSidebar'
+export const INIT_CONTRACT = 'initializeContract'

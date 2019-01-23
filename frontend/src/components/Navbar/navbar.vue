@@ -3,19 +3,13 @@
     <li class="icon">
       <img src="@/assets/menu.svg" @click="toggleSidebar" />
     </li>
-    <li class="link">
-      <router-link :to="{ name: 'home' }" class="router-link">Home</router-link>
+    <li class="title">
+      <router-link :to="{ name: 'home' }" id="title">
+        <span id="dezentralized">decentralized</span>
+        <span id="company">Company</span>
+      </router-link>
     </li>
-    <li class="link">
-      <router-link :to="{ name: 'about' }" class="router-link"
-        >Bounties</router-link
-      >
-    </li>
-    <li class="link">
-      <router-link :to="{ name: 'about' }" class="router-link"
-        >About</router-link
-      >
-    </li>
+
     <li class="account" v-if="authenticated === true" @click="logOut">
       <router-link :to="{ name: 'about' }" class="router-link"
         >LogOut</router-link
@@ -26,11 +20,29 @@
         >LogIn</router-link
       >
     </li>
+    <li class="network" v-if="network !== null">
+      <span>{{ network }}</span>
+    </li>
+    <li class="balance" v-if="balance !== null">
+      <span>{{ balance }}</span>
+      <span id="eth">ETH</span>
+    </li>
+    <li class="has-metamask" v-if="isInjected">Connected</li>
+    <li class="has-no-metamask" v-if="!isInjected">Connected</li>
   </ul>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
+import { NETWORKS } from '@/util/constants/networks'
+
 export default {
+  computed: mapState({
+    isInjected: state => state.web3.isInjected,
+    balance: state => state.web3.balance,
+    network: state => NETWORKS[state.web3.networkID]
+  }),
   data() {
     return {
       authenticated: false

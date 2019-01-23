@@ -1,4 +1,15 @@
 @import '../../util/scss/variables';
+.v-enter-active {
+	transition: all 0.3s ease-in;
+}
+.v-leave-active {
+	transition: all 0.2s ease-out;
+}
+.v-enter,
+.v-leave-to {
+	left: 0;
+	opacity: 0;
+}
 .nav-left {
 	position: fixed;
 	display: block;
@@ -8,41 +19,35 @@
 	background-color: $background-color-inactive;
 	border-right: $border-width solid $border-color-navbar;
 
-	&[aria-expanded='true'] {
-		left: 0;
-		transition: left 0.4s ease-in;
+	ul {
+		list-style: none;
+		margin: 0;
+		position: fixed;
+		padding-top: 2 * $standard-padding;
+		padding-left: 0px;
+
+		li.title {
+			padding-bottom: 2 * $standard-padding;
+			border-bottom: $border-width solid $border-color-navbar;
+			color: $link-text-color;
+			font-weight: bold;
+			font-size: 1.5rem;
+		}
+
+		li.link {
+			:hover {
+				background-color: $background-color-hover;
+			}
+			width: $sidebar-width;
+			margin-bottom: 2 * $standard-margin;
+
+			.router-link {
+				display: block;
+				color: $link-text-color;
+				text-align: center;
+				padding: 2 * $standard-padding;
+				text-decoration: none;
+			}
+		}
 	}
-	&[aria-expanded='false'] {
-		left: $sidebar-width * (-1.1);
-		transition: left 0.4s ease-out;
-	}
-}
-
-ul {
-	list-style: none;
-	margin: 0;
-	position: fixed;
-	padding-top: 2 * $standard-padding;
-	padding-left: 0px;
-}
-
-li.title {
-	padding-bottom: 2 * $standard-padding;
-	border-bottom: $border-width solid $border-color-navbar;
-}
-
-li.link {
-	:hover {
-		background-color: $background-color-hover;
-	}
-	width: $sidebar-width;
-	margin-bottom: 2 * $standard-margin;
-}
-
-.router-link {
-	display: block;
-	color: $link-text-color;
-	text-align: center;
-	padding: 2 * $standard-padding;
-	text-decoration: none;
 }
