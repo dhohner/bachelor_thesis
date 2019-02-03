@@ -1,16 +1,15 @@
 @import '../../util/scss/variables';
 .v-enter-active {
-	transition: all 0.3s ease-in;
+	transition: opacity 0.3s ease-in;
 }
 .v-leave-active {
-	transition: all 0.2s ease-out;
+	transition: opacity 0.2s ease-out;
 }
 .v-enter,
 .v-leave-to {
-	left: 0;
 	opacity: 0;
 }
-.nav-left {
+.sidebar {
 	position: fixed;
 	display: block;
 	bottom: 0;
@@ -25,16 +24,18 @@
 		position: fixed;
 		padding-top: 2 * $standard-padding;
 		padding-left: 0px;
+		border-top: 2 * $border-width solid $border-color-navbar;
+		border-bottom: 2 * $border-width solid $border-color-navbar;
 
-		li.title {
+		.sidebar-title {
 			padding-bottom: 2 * $standard-padding;
-			border-bottom: $border-width solid $border-color-navbar;
+			border-bottom: 2 * $border-width solid $border-color-navbar;
 			color: $link-text-color;
 			font-weight: bold;
 			font-size: 1.5rem;
 		}
 
-		li.link {
+		.sidebar-item-link {
 			:hover {
 				background-color: $background-color-hover;
 			}

@@ -1,10 +1,9 @@
 <template>
   <div id="app">
-    <Sidebar />
-    <Navbar />
-    <div id="main">
-      <router-view />
-    </div>
+    <Navbar>
+      <Sidebar slot="sidebar" />
+      <router-view slot="router-view" />
+    </Navbar>
   </div>
 </template>
 
@@ -15,11 +14,6 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-#main {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  padding-top: 45px;
-  transition: margin-left 0.3s;
 }
 </style>
 
@@ -32,15 +26,6 @@ export default {
   components: {
     Navbar,
     Sidebar
-  },
-  mounted() {
-    this.$on('toggleSidebar', () => {
-      if (document.getElementById('main').style.marginLeft !== '200px') {
-        document.getElementById('main').style.marginLeft = '200px'
-      } else {
-        document.getElementById('main').style.marginLeft = '0px'
-      }
-    })
   },
   beforeCreate() {
     this.$store.dispatch(types.INIT_CONTRACT)

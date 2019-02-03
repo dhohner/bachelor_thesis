@@ -4,3 +4,12 @@
     <p>This is an About Page</p>
   </div>
 </template>
+
+<script>
+export default {
+  components: {},
+  mounted() {
+    this.$parent.$emit('hideSidebar')
+  }
+}
+</script>

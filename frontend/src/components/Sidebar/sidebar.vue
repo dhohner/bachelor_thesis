@@ -1,9 +1,9 @@
 <template>
   <transition>
-    <nav class="nav-left" v-if="isShowing">
+    <nav class="sidebar" v-if="isShowing">
       <ul>
-        <li class="title">Navigation</li>
-        <li class="link">
+        <li class="sidebar-title">Navigation</li>
+        <li class="sidebar-item-link">
           <router-link
             :to="{ name: 'home' }"
             class="router-link"
@@ -11,23 +11,28 @@
             >Home</router-link
           >
         </li>
-        <li class="link">
+        <li class="sidebar-item-link">
           <router-link :to="{ name: 'bounties' }" class="router-link"
             >Bounties</router-link
           >
         </li>
-        <li class="link">
+        <li class="sidebar-item-link">
           <router-link :to="{ name: 'about' }" class="router-link"
             >About</router-link
           >
         </li>
       </ul>
+      <SidebarOverlay slot="sidebar-open-overlay" />
     </nav>
   </transition>
 </template>
 
 <script>
+import SidebarOverlay from '@/components/Sidebar/sidebar-overlay'
 export default {
+  components: {
+    SidebarOverlay
+  },
   data() {
     return {
       isShowing: false
@@ -36,7 +41,10 @@ export default {
   mounted() {
     this.$parent.$on('toggleSidebar', () => {
       this.isShowing = !this.isShowing
-    })
+    }),
+      this.$parent.$on('hideSidebar', () => {
+        this.isShowing = false
+      })
   }
 }
 </script>

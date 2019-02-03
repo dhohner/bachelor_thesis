@@ -1,17 +1,20 @@
 @import '../../util/scss/variables';
+.router-view-slotted {
+	margin-top: 60px;
+}
 
 ul {
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	border-bottom: $border-width solid $border-color-navbar;
+	border-bottom: 2 * $border-width solid $border-color-navbar;
 	background-color: $background-color-inactive;
 	position: fixed;
 	width: 100%;
 	top: 0;
 	left: 0;
 
-	li.title {
+	.navbar-title {
 		float: left;
 		display: block;
 		margin-left: $standard-margin;
@@ -22,31 +25,31 @@ ul {
 			text-decoration: none;
 		}
 
-		#dezentralized {
+		.navbar-title-first {
 			text-transform: lowercase;
 			font-size: 1.5rem;
-			letter-spacing: 0.1px 0.1px;
+			letter-spacing: 0.0013px;
 			color: $link-text-color-faded;
 		}
 
-		#company {
+		.navbar-title-second {
 			padding-left: $standard-padding;
 			text-transform: uppercase;
 			font-size: 2rem;
-			letter-spacing: 0.1px 0.1px;
+			letter-spacing: 0.0013px;
 			color: $link-text-color;
 		}
 	}
 
-	li.account {
-		:hover {
+	.navbar-account {
+		&:hover {
 			background-color: $background-color-hover;
 		}
 		float: right;
 		font-weight: 600;
 		font-size: 1.25rem;
 
-		.router-link {
+		& .router-link {
 			display: block;
 			color: $link-text-color;
 			text-align: center;
@@ -55,7 +58,7 @@ ul {
 		}
 	}
 
-	li.has-metamask {
+	.navbar-has-metamask {
 		float: right;
 		color: green;
 		padding: 2 * $standard-padding;
@@ -63,7 +66,7 @@ ul {
 		font-weight: 500;
 	}
 
-	li.has-no-metamask {
+	.navbar-has-no-metamask {
 		float: right;
 		color: red;
 		padding: 2 * $standard-padding;
@@ -71,7 +74,7 @@ ul {
 		font-weight: 500;
 	}
 
-	li.icon {
+	.navbar-icon {
 		img {
 			float: left;
 			padding-top: 7px;
@@ -81,7 +84,7 @@ ul {
 		}
 	}
 
-	li.balance {
+	.navbar-balance {
 		float: right;
 		padding: 2 * $standard-padding;
 		font-weight: 500;
@@ -91,7 +94,7 @@ ul {
 		}
 	}
 
-	li.network {
+	.navbar-network {
 		float: right;
 		padding: 2 * $standard-padding;
 		padding-right: 4 * $standard-padding;

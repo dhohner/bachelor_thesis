@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div>
     <h1>Home</h1>
     <p>
       Lorem ipsum dolor, sit amet consectetur adipisicing elit. Commodi ad quod
@@ -20,6 +20,9 @@ export default {
       let payload = await initializeConnection()
       console.log(payload.web3.web3Instance())
     }
+  },
+  mounted() {
+    this.$parent.$emit('hideSidebar')
   }
 }
 </script>

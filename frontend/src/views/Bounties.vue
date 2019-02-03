@@ -12,6 +12,9 @@
 
 <script>
 export default {
-  components: {}
+  components: {},
+  mounted() {
+    this.$parent.$emit('hideSidebar')
+  }
 }
 </script>
