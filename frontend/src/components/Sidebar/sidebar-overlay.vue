@@ -10,7 +10,7 @@
   width: 100%; /* Full width (cover the whole page) */
   height: 100%; /* Full height (cover the whole page) */
   top: 48px;
-  left: $sidebar-width;
+  left: $sidebar-width + 1px;
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.7); /* Black background with opacity */
