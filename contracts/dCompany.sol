@@ -6,8 +6,13 @@ contract dCompany is Ownable {
     
     /// modifiers
 
-    modifier onlyMembers {
+    modifier onlyMembers() {
         require(memberID[msg.sender] != 0, "not a member");
+        _;
+    }
+
+    modifier onlyByBounty() {
+        require(validBounty[msg.sender], "not a valid bounty");
         _;
     }
 
@@ -24,11 +29,13 @@ contract dCompany is Ownable {
     Member[] members;
     mapping( address => uint256 ) memberID;
     mapping( address => address[] ) bounties;
+    mapping( address => bool ) validBounty;
 
     /// events
 
-    event MembershipChanged( address _mAddress, bool _status );
-    event NumberOfConfirmsNeededChanged( uint256 );
+    event MembershipChanged( address mAddress, bool status );
+    event NumberOfConfirmsNeededChanged( uint256 minNumOfConfirms );
+    event BountyProposalCreated(address bountyProposalAddress, address forBounty );
 
     /// constructor
 
@@ -85,5 +92,12 @@ contract dCompany is Ownable {
         }
 
         return memberID[_mAddress];
+    }
+
+    function createBountyProposal(address payable _bountyAddress )
+        external
+        onlyByBounty
+    {
+        emit BountyProposalCreated(address(this), _bountyAddress);
     }
 }

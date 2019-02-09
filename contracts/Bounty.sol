@@ -1,28 +1,39 @@
 pragma solidity ^0.5.0;
 
-contract Bounty {
+import "./StateMachine.sol";
+
+contract dCompany {
+    function createBountyProposal(address) external pure {}
+}
+
+contract Bounty is StateMachine {
+
+    modifier onlyCompany() {
+        require(msg.sender == dCompanyInstance, "needs to come from the company");
+        _;
+    }
     
     /// events
 
-    event BountySupplied( address bountyAddress );
+    event RewardSupplied( address bountyAddress );
     event BountyClaimed( address bountyAddress, address claimee );
-    event BountySolved( address bountyAddress, bytes32 hash );
+    event BountySolved( address bountyAddress, string commitHash );
     event BountyChecked( address bountyAddress, address election );
-    event BountyPaid( address bountyAddress, address paymentRecipient );
+    event RewardPaid( address bountyAddress, address paymentRecipient );
     event BountyCancelled( address bountyAddress );
     event ClaimeeChanged(address bountyAddress, address oldClaimee, address newClaimee);
 
     /// variables
 
+    address payable dCompanyInstance;
     address payable claimee;
     address payable bountyOrigin = address(0);
     
-    bytes32 public commitHash;
-    bytes32 public bountyDescription;
+    string public commitHash;
+    string public bountyDescription;
 
     bool public claimed = false;
     bool public solved = false;
-    bool checked = false;
     bool paid = false;
 
     uint256 public creationTime;
@@ -32,64 +43,86 @@ contract Bounty {
     bool private hasBounty;
     bool public cancel = false;
 
+    /// fallback
+    // prevent all payments exept those using deposit
+
+    function() external payable {
+        revert("Use Deposit instead");
+    }
+
     /// constructor
 
-    constructor( bytes32 _description, uint256 _bounty )
+    constructor(string memory _description, uint256 _bounty)
         public
     {
+        dCompanyInstance = msg.sender;
         bountyDescription = _description;
         creationTime = now;
         bounty = _bounty;
         hasBounty = false;
+
+        switchState(States.BountyCreated);
     }
 
-    /// fallback
-    // prevent all payments exept those using deposit
+    /// external
 
-    function() external payable
+    function bountyWasChecked(address _election)
+        external
+        atState(States.HashSubmitted)
     {
-        revert("Use Deposit instead");
+        switchState(States.BountyChecked);
+        emit BountyChecked(address(this), _election);
+        payClaimee();
     }
 
-    /// internal logic
+    /// public
 
-    function deposit( address payable _origin )
+    function deposit(address payable _origin)
         public
-        payable 
+        payable
+        onlyCompany
+        atState(States.BountyCreated)
     {
-        require(!hasBounty, "bounty already available");
+
         require(msg.value == bounty, "provide bounty in one payment");
-        
+        switchState(States.RewardSupplied);
         hasBounty = true;
         bountyOrigin = _origin;
 
-        emit BountySupplied(address(this));
+        emit RewardSupplied(address(this));
     }
 
-    function cancelBounty( address payable _origin )
+    function cancelBounty(address payable _origin)
         public
+        onlyCompany
+        atThreeStates(States.BountyCreated, States.RewardSupplied, States.BountyClaimed)
     {
-        if (bountyOrigin == address(0)) {
+        if (checkState(States.BountyCreated)) {
+            switchState(States.BountyDestroyed);
             emit BountyCancelled(address(this));
             selfdestruct(_origin);
         }
         else {
             require(_origin == bountyOrigin, "Only bountyOrigin can cancel");
+            switchState(States.BountyDestroyed);
             emit BountyCancelled(address(this));
             selfdestruct(bountyOrigin);
-        }  
+        }
     }
 
-    function claimBounty( address payable _origin )
+    function claimBounty(address payable _origin)
         public
+        onlyCompany
+        atTwoStates(States.RewardSupplied, States.BountyClaimed)
     {
-        require(!cancel, "Cancelled Bounties cannot be claimed");
-        if (claimed) {
+        require(_origin != bountyOrigin, "cannot be claimed by bountyOrigin");
+
+        if (checkState(States.BountyClaimed)) {
             require(now >= (claimedAt + 1 days), "Can only be reclaimed after 1 Day");
             emit ClaimeeChanged(address(this), claimee, _origin);
         }
-        require(_origin != bountyOrigin, "cannot be claimed by bountyOrigin");
-        
+
+        switchState(States.BountyClaimed);
         claimed = true;
         claimedAt = now;
         claimee = _origin;
@@ -97,17 +130,38 @@ contract Bounty {
         emit BountyClaimed(address(this), _origin);
     }
 
-    function submitHash( bytes32 _hash, address _origin )
+    function submitHash(string memory _hash, address _origin)
         public
+        onlyCompany
+        atState(States.BountyClaimed)
     {
-        require(!cancel, "Cannot Submit to canceled bounty");
-        require(!solved, "Was Solved");
         require(_origin == claimee, "Hash can only be submitted by Claimee");
-        require(_hash.length == 40, "Invalid Hash Format");
 
+        switchState(States.HashSubmitted);
         solved = true;
         commitHash = _hash;
 
         emit BountySolved( address(this), commitHash);
+    }
+
+    /// internal
+
+    /// private
+
+    function createBountyProposal()
+        private
+        view
+        atState(States.HashSubmitted)
+    {
+        dCompany(dCompanyInstance).createBountyProposal(address(this));
+    }
+
+    function payClaimee()
+        private
+        atState(States.BountyChecked)
+    {
+        switchState(States.BountyDestroyed);
+        emit RewardPaid(address(this), claimee);
+        selfdestruct(claimee);
     }
 }
