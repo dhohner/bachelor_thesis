@@ -18,17 +18,13 @@ contract StateMachine {
         _;
     }
 
-    modifier atTwoStates(States _firstState, States _secondState) {
-        require(
-            state == _firstState || state == _secondState,
-            "contract is not in either state provided"
-        );
-        _;
-    }
+    /**
+     * @dev checks if current state is in interval [_firstState, _secondState]
+     */
 
-    modifier atThreeStates(States _firstState, States _secondState, States _thirdState) {
+    modifier atStates(States _firstState, States _secondState) {
         require(
-            state == _firstState || state == _secondState || state == _thirdState,
+            uint256(state) >= uint256(_firstState) && uint256(state) <= uint256(_secondState),
             "contract is not in either state provided"
         );
         _;

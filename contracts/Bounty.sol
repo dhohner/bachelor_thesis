@@ -95,7 +95,7 @@ contract Bounty is StateMachine {
     function cancelBounty(address payable _origin)
         public
         onlyCompany
-        atThreeStates(States.BountyCreated, States.RewardSupplied, States.BountyClaimed)
+        atStates(States.BountyCreated, States.BountyClaimed)
     {
         if (checkState(States.BountyCreated)) {
             switchState(States.BountyDestroyed);
@@ -113,7 +113,7 @@ contract Bounty is StateMachine {
     function claimBounty(address payable _origin)
         public
         onlyCompany
-        atTwoStates(States.RewardSupplied, States.BountyClaimed)
+        atStates(States.RewardSupplied, States.BountyClaimed)
     {
         require(_origin != bountyOrigin, "cannot be claimed by bountyOrigin");
 
