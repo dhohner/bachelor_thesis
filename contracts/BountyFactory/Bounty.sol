@@ -2,10 +2,6 @@ pragma solidity ^0.5.0;
 
 import "./StateMachine.sol";
 
-contract dCompany {
-    function createBountyProposal(address) external pure {}
-}
-
 contract Bounty is StateMachine {
 
     modifier onlyCompany() {
@@ -82,14 +78,13 @@ contract Bounty is StateMachine {
         payable
         onlyCompany
         atState(States.BountyCreated)
-    {
-
+        returns (uint256) {
         require(msg.value == bounty, "provide bounty in one payment");
         switchState(States.RewardSupplied);
         hasBounty = true;
         bountyOrigin = _origin;
-
         emit RewardSupplied(address(this));
+        return address(this).balance;
     }
 
     function cancelBounty(address payable _origin)
@@ -133,8 +128,7 @@ contract Bounty is StateMachine {
     function submitHash(string memory _hash, address _origin)
         public
         onlyCompany
-        atState(States.BountyClaimed)
-    {
+        atState(States.BountyClaimed) {
         require(_origin == claimee, "Hash can only be submitted by Claimee");
 
         switchState(States.HashSubmitted);
@@ -142,6 +136,7 @@ contract Bounty is StateMachine {
         commitHash = _hash;
 
         emit BountySolved( address(this), commitHash);
+        createBountyProposal();
     }
 
     /// internal
@@ -152,8 +147,8 @@ contract Bounty is StateMachine {
         private
         view
         atState(States.HashSubmitted)
-    {
-        dCompany(dCompanyInstance).createBountyProposal(address(this));
+        returns (address) {
+        return msg.sender;
     }
 
     function payClaimee()

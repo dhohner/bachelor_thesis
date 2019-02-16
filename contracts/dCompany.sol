@@ -1,103 +1,76 @@
 pragma solidity ^0.5.0;
 
 import "./Ownable.sol";
+import "./BountyFactory/BountyFactory.sol";
 
 contract dCompany is Ownable {
+    /// variables
+    struct Member {
+        address memberAddress;
+        string memberName;
+    }
+
+    BountyFactory bountyFactory;
+    Member[] members;
+    mapping(address => uint256) memberId;
+    mapping(address => address[]) bounties;
+    mapping(address => bool) validAddress;
+    mapping(address => address[]) bountyProposals;
     
     /// modifiers
-
     modifier onlyMembers() {
-        require(memberID[msg.sender] != 0, "not a member");
+        require(memberId[msg.sender] != 0, "not a member");
         _;
     }
-
-    modifier onlyByBounty() {
-        require(validBounty[msg.sender], "not a valid bounty");
-        _;
-    }
-
-    /// structs
-    struct Member {
-        address mAddress;
-        string mName;
-    }
-
-    /// variables
-
-    uint256 public minNumOfConfirms = 0;
-
-    Member[] members;
-    mapping( address => uint256 ) memberID;
-    mapping( address => address[] ) bounties;
-    mapping( address => bool ) validBounty;
 
     /// events
-
-    event MembershipChanged( address mAddress, bool status );
-    event NumberOfConfirmsNeededChanged( uint256 minNumOfConfirms );
-    event BountyProposalCreated(address bountyProposalAddress, address forBounty );
+    event MembershipChanged(address mAddress, bool status);
+    event BountyProposalCreated(address bountyProposalAddress, address forBounty);
+    event NewBountyAvailable(address bountyAddress, uint256 amount);
 
     /// constructor
-
-    constructor()
-        public
-    {
-        // 'Dummy'-Member to ensure Creator is registered as a member by onlyMembers modifier
-        addMember(address(0), "Dummy");
-        addMember(msg.sender, "Creator");
+    constructor() public {
+        bountyFactory = new BountyFactory();
+        members.push(Member({
+            memberAddress: address(0),
+            memberName: "Dummy"
+        }));
+        memberId[msg.sender] = members.length;
+        members.push(Member({
+            memberAddress: msg.sender,
+            memberName: "Creator"
+        }));
     }
 
-    /// getter
+    /// fallback function
+    function() external payable {}
+    /// external functions
+    /// public functions
+    function createNewBounty(string memory description, uint256 bountyAmount) public {
+        address bountyAddress = bountyFactory.createBounty(description, bountyAmount);
+        bounties[address(this)].push(bountyAddress);
+        validAddress[bountyAddress] = true;
+        emit NewBountyAvailable(bountyAddress, bountyAmount);
+    }
 
-    function getMembersLength()
-        public
-        view
-        returns( uint256 )
-    {
+    function depositBounty(address payable _bountyAddress) public payable {
+        require(validAddress[_bountyAddress], "invalid address");
+
+        bytes memory payload = abi.encodeWithSignature("deposit(address)", msg.sender);
+        (bool success, bytes memory encodedReturn) = _bountyAddress.call.value(msg.value)(payload);
+        require(success, "deposit failed");
+
+        uint256 decodedReturn = abi.decode(encodedReturn, (uint256));
+        require(decodedReturn == msg.value, "expected return value to equal msg.value");
+    }
+
+    function getMembersLength() public view returns (uint256) {
         return members.length;
     }
 
-    function getBounties( address _user )
-        public
-        view
-        returns( address[] memory )
-    {
-        return bounties[_user];
+    function getBounties() public view returns (address[] memory) {
+        return bounties[address(this)];
     }
-
-    /// control functions
-
-    function addMember( address _mAddress, string memory _mName )
-        public
-        onlyOwner
-        returns ( uint256 )
-    {
-        uint256 mId = memberID[_mAddress];
-
-        if (mId == 0) {
-            memberID[_mAddress] = members.length;
-            mId = members.length++;
-        }
-
-        members[mId] = Member ({
-            mAddress: _mAddress,
-            mName: _mName
-        });
-
-        emit MembershipChanged(_mAddress, true);
-
-        if (minNumOfConfirms < (( members.length / 2 ) - 1 )) {
-            minNumOfConfirms += 1;
-            emit NumberOfConfirmsNeededChanged(minNumOfConfirms);
-        }
-
-        return memberID[_mAddress];
-    }
-
-    function createBountyProposal(address payable _bountyAddress )
-        external
-        onlyByBounty
-    {
-        emit BountyProposalCreated(address(this), _bountyAddress);
-    }
+    /// internal functions
+    /// private functions
 }
