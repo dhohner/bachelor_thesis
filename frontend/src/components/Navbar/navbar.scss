@@ -1,104 +1,46 @@
-@import '../../util/scss/variables';
-.router-view-slotted {
-	margin-top: 60px;
+.navbar {
+  background-color: rgba(85, 214, 170, 0.85);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 5;
+  text-align: left;
 }
 
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	border-bottom: 2 * $border-width solid $border-color-navbar;
-	background-color: $background-color-inactive;
-	position: fixed;
-	width: 100%;
-	top: 0;
-	left: 0;
+.navbar__menu-logo-image {
+  float: left;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 0.5em;
+  height: 34px;
+}
 
-	.navbar-title {
-		float: left;
-		display: block;
-		margin-left: $standard-margin;
-		margin-top: 5px;
-		font-weight: bold;
+.navbar__menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
 
-		#title {
-			text-decoration: none;
-		}
+.navbar__menu-left {
+  margin-left: 1em;
+  float: left;
+  height: 44px;
+  line-height: 44px;
+  white-space: nowrap;
+}
 
-		.navbar-title-first {
-			text-transform: lowercase;
-			font-size: 1.5rem;
-			letter-spacing: 0.0013px;
-			color: $link-text-color-faded;
-		}
+.navbar__menu-right {
+  float: right;
+  margin-right: 1em;
+  height: 44px;
+  line-height: 44px;
+  white-space: nowrap;
+}
 
-		.navbar-title-second {
-			padding-left: $standard-padding;
-			text-transform: uppercase;
-			font-size: 2rem;
-			letter-spacing: 0.0013px;
-			color: $link-text-color;
-		}
-	}
-
-	.navbar-account {
-		&:hover {
-			background-color: $background-color-hover;
-		}
-		float: right;
-		font-weight: 600;
-		font-size: 1.25rem;
-
-		& .router-link {
-			display: block;
-			color: $link-text-color;
-			text-align: center;
-			padding: 12px;
-			text-decoration: none;
-		}
-	}
-
-	.navbar-has-metamask {
-		float: right;
-		color: green;
-		padding: 2 * $standard-padding;
-		padding-right: $standard-padding;
-		font-weight: 500;
-	}
-
-	.navbar-has-no-metamask {
-		float: right;
-		color: red;
-		padding: 2 * $standard-padding;
-		padding-right: $standard-padding;
-		font-weight: 500;
-	}
-
-	.navbar-icon {
-		img {
-			float: left;
-			padding-top: 7px;
-			padding-left: 14px;
-			padding-right: 7px;
-			padding-bottom: 7px;
-		}
-	}
-
-	.navbar-balance {
-		float: right;
-		padding: 2 * $standard-padding;
-		font-weight: 500;
-
-		#eth {
-			font-weight: bold;
-		}
-	}
-
-	.navbar-network {
-		float: right;
-		padding: 2 * $standard-padding;
-		padding-right: 4 * $standard-padding;
-
-		font-weight: 500;
-	}
+.navbar__menu-left-link {
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  display: block;
 }

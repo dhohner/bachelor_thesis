@@ -1,83 +1,70 @@
 <template>
   <div>
-    <nav>
-      <ul>
-        <li class="navbar-icon">
-          <img src="@/assets/menu.svg" @click="toggleSidebar" />
+    <div class="navbar">
+      <ul class="navbar__menu">
+        <li class="navbar__menu-logo">
+          <img src="@/assets/ethereum.svg" class="navbar__menu-logo-image" />
         </li>
-        <li class="navbar-title">
-          <router-link :to="{ name: 'home' }" id="title">
-            <span class="navbar-title-first">decentralized</span>
-            <span class="navbar-title-second">Company</span>
-          </router-link>
+        <li class="navbar__menu-left navbar__menu-title">
+          <span class="navbar__menu-title-first">d</span>
+          <span class="navbar__menu-title-second">Company</span>
+        </li>
+        <li class="navbar__menu-left navbar__menu-routes">
+          <router-link :to="{ name: 'home' }" class="navbar__menu-left-link"
+            >HOME</router-link
+          >
+        </li>
+        <li class="navbar__menu-left navbar__menu-routes">
+          <router-link :to="{ name: 'about' }" class="navbar__menu-left-link"
+            >ABOUT</router-link
+          >
+        </li>
+        <li class="navbar__menu-left navbar__menu-routes" v-if="authenticated">
+          <router-link :to="{ name: 'control' }" class="navbar__menu-left-link"
+            >CONTROL</router-link
+          >
         </li>
 
-        <li
-          class="navbar-account"
-          v-if="authenticated === true"
-          @click="logOut"
-        >
-          <router-link :to="{ name: 'about' }" class="router-link"
-            >LogOut</router-link
+        <li class="navbar__menu-right">
+          <span class="navbar__menu-right-auth" v-if="!authenticated"
+            >LogIn</span
+          >
+          <span class="navbar__menu-right-auth" v-if="authenticated"
+            >LogOut</span
           >
         </li>
-        <li class="navbar-account" v-if="authenticated !== true" @click="logIn">
-          <router-link :to="{ name: 'about' }" class="router-link"
-            >LogIn</router-link
+        <li class="navbar__menu-right">
+          <span class="navbar__menu-right-network">{{ network }}</span>
+        </li>
+        <li class="navbar__menu-right">
+          <span class="navbar__menu-right-metamask-active" v-if="isInjected"
+            >Connected</span
+          >
+          <span class="navbar__menu-right-metamask-inactive" v-else
+            >Not Connected</span
           >
         </li>
-        <li class="navbar-network" v-if="network !== null">
-          <span>{{ network }}</span>
-        </li>
-        <li class="navbar-balance" v-if="balance !== null">
-          <span>{{ balance }}</span>
-          <span id="eth">ETH</span>
-        </li>
-        <li class="navbar-has-metamask" v-if="isInjected">Connected</li>
-        <li class="navbar-has-no-metamask" v-if="!isInjected">Connected</li>
       </ul>
-    </nav>
-    <div class="router-view-slotted">
-      <slot name="sidebar">
-        <slot name="sidebar-open-overlay"></slot>
-      </slot>
-      <slot name="router-view"></slot>
     </div>
+    <slot class="content" name="router-view"></slot>
   </div>
 </template>
 
 <script>
 import { mapState } from 'vuex'
-
 import { NETWORKS } from '@/util/constants/networks'
-
 export default {
   computed: mapState({
+    authenticated: state => state.authenticated,
     isInjected: state => state.web3.isInjected,
-    balance: state => state.web3.balance,
-    network: state => NETWORKS[state.web3.networkID]
+    network: state => NETWORKS[state.web3.networkId]
   }),
   data() {
-    return {
-      authenticated: false
-    }
-  },
-  methods: {
-    toggleSidebar() {
-      this.$emit('toggleSidebar')
-    },
-    logIn() {
-      console.log('login')
-      this.authenticated = true
-    },
-    logOut() {
-      console.log('logout')
-      this.authenticated = false
-    }
+    return {}
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/components/Navbar/navbar.scss';
 </style>

@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import state from '@/store/state'
-import mutations from '@/store/mutations'
-import actions from '@/store/actions'
+import { state } from './state'
+import { actions } from './actions'
+import { mutations } from './mutations'
 
 Vue.use(Vuex)
 

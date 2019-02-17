@@ -1,15 +1,5 @@
 <template>
   <div class="about">
-    <h1>About</h1>
-    <p>This is an About Page</p>
+    <h1>This is an about page</h1>
   </div>
 </template>
-
-<script>
-export default {
-  components: {},
-  mounted() {
-    this.$parent.$emit('hideSidebar')
-  }
-}
-</script>
