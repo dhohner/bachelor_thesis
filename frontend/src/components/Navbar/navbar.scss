@@ -21,14 +21,13 @@
   margin-top: 5px;
   margin-bottom: 5px;
   margin-left: 1em;
-  margin-right: 1em;
   height: 34px;
 }
 
 .navbar__menu-left {
   float: left;
-  height: 44px;
-  line-height: 44px;
+  height: $navbar-height;
+  line-height: $navbar-height;
   white-space: nowrap;
   font-size: 1.2rem;
 }
@@ -36,15 +35,16 @@
 .navbar__menu-right {
   float: right;
   margin-right: 1em;
-  height: 44px;
-  line-height: 44px;
+  height: $navbar-height;
+  line-height: $navbar-height;
   white-space: nowrap;
   font-size: 1.2rem;
 }
 
 .navbar__menu-title {
+  margin-left: 0.5em;
   margin-right: 2em;
-  font-weight: 800;
+  font-weight: 8000;
 }
 
 .navbar__menu-title-first {
@@ -60,29 +60,25 @@
   color: $link-text-color-darkened;
 }
 
-.navbar__menu-left-link {
+.navbar__menu-left--link {
   text-decoration: none;
   text-transform: uppercase;
-  color: $link-text-color;
-  padding-top: 7px;
-  padding-left: 7px;
-  padding-right: 7px;
-  padding-bottom: 7px;
+  color: $link-text-color-darkened;
+  font-weight: 600;
+  padding: $padding-standard;
 }
 
-.navbar__menu-left-link:hover {
+.navbar__menu-left--link:hover {
   background-color: $navbar-hover-color;
 }
 
 .navbar__menu-right-auth {
   text-decoration: none;
   cursor: pointer;
-  color: $link-text-color;
+  color: $link-text-color-darkened;
+  font-weight: 600;
   margin-left: 1em;
-  padding-top: 7px;
-  padding-left: 7px;
-  padding-right: 7px;
-  padding-bottom: 7px;
+  padding: $padding-standard;
 }
 
 .navbar__menu-right-auth:hover {
@@ -90,13 +86,16 @@
 }
 
 .navbar__menu-right-network {
-  font-weight: 500;
+  color: $link-text-color-darkened;
+  font-weight: 600;
 }
 
 .navbar__menu-right-metamask-active {
   color: green;
+  font-weight: 600;
 }
 
 .navbar__menu-right-metamask-inactive {
   color: red;
+  font-weight: 600;
 }

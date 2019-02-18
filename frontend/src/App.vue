@@ -21,15 +21,5 @@ export default {
 </script>
 
 <style lang="scss">
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Lucida Sans Unicode';
-  font-weight: 400;
-  margin-top: 44px;
-}
+@import './util/constants/main';
 </style>

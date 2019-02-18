@@ -1,0 +1,12 @@
+@import '../../../util/constants/variables';
+
+.bountyProposal__title {
+    margin-top: .5em;
+    color: $link-text-color-darkened;
+    font-weight: 800;
+    font-size: 2rem;
+}
+
+.button--createBounty {
+    width: 200px;
+}
