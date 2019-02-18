@@ -34,15 +34,15 @@
           >
         </li>
         <li class="navbar__menu-right">
-          <span class="navbar__menu-right-network">{{ network }}</span>
-        </li>
-        <li class="navbar__menu-right">
           <span class="navbar__menu-right-metamask-active" v-if="isInjected"
             >Connected</span
           >
-          <span class="navbar__menu-right-metamask-inactive" v-else
-            >Not Connected</span
+          <span class="navbar__menu-right-metamask-inactive" v-if="!isInjected"
+            >Connected</span
           >
+        </li>
+        <li class="navbar__menu-right">
+          <span class="navbar__menu-right-network">{{ network }}</span>
         </li>
       </ul>
     </div>

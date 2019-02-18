@@ -1,19 +1,13 @@
+@import '../../util/constants/variables';
+
 .navbar {
-  background-color: rgba(85, 214, 170, 0.85);
+  background-color: $navbar-background-color;
+  border-bottom: $border-width solid $border-color;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 5;
   text-align: left;
-}
-
-.navbar__menu-logo-image {
-  float: left;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  margin-left: 0.5em;
-  height: 34px;
 }
 
 .navbar__menu {
@@ -22,12 +16,21 @@
   list-style: none;
 }
 
-.navbar__menu-left {
+.navbar__menu-logo-image {
+  float: left;
+  margin-top: 5px;
+  margin-bottom: 5px;
   margin-left: 1em;
+  margin-right: 1em;
+  height: 34px;
+}
+
+.navbar__menu-left {
   float: left;
   height: 44px;
   line-height: 44px;
   white-space: nowrap;
+  font-size: 1.2rem;
 }
 
 .navbar__menu-right {
@@ -36,11 +39,64 @@
   height: 44px;
   line-height: 44px;
   white-space: nowrap;
+  font-size: 1.2rem;
+}
+
+.navbar__menu-title {
+  margin-right: 2em;
+  font-weight: 800;
+}
+
+.navbar__menu-title-first {
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  color: $link-text-color;
+}
+
+.navbar__menu-title-second {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.7rem;
+  color: $link-text-color-darkened;
 }
 
 .navbar__menu-left-link {
   text-decoration: none;
-  font-size: 1.2rem;
   text-transform: uppercase;
-  display: block;
+  color: $link-text-color;
+  padding-top: 7px;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-bottom: 7px;
+}
+
+.navbar__menu-left-link:hover {
+  background-color: $navbar-hover-color;
+}
+
+.navbar__menu-right-auth {
+  text-decoration: none;
+  cursor: pointer;
+  color: $link-text-color;
+  margin-left: 1em;
+  padding-top: 7px;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-bottom: 7px;
+}
+
+.navbar__menu-right-auth:hover {
+  background-color: $navbar-hover-color;
+}
+
+.navbar__menu-right-network {
+  font-weight: 500;
+}
+
+.navbar__menu-right-metamask-active {
+  color: green;
+}
+
+.navbar__menu-right-metamask-inactive {
+  color: red;
 }

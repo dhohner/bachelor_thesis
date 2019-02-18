@@ -1,9 +1,8 @@
 export const state = {
   web3: {
     isInjected: null,
-    networkId: 1,
+    networkId: null,
     coinbase: null,
-    balance: null,
     web3Instance: null
   },
   authenticated: true

@@ -8,10 +8,14 @@
 
 <script>
 import Navbar from '@/components/Navbar/Navbar'
+import * as types from '@/util/constants/types'
 export default {
   name: 'app',
   components: {
     Navbar
+  },
+  beforeCreate() {
+    this.$store.dispatch(types.INIT_CONNECTION)
   }
 }
 </script>
@@ -26,7 +30,6 @@ export default {
 body {
   font-family: 'Lucida Sans Unicode';
   font-weight: 400;
-  padding: 0;
   margin-top: 44px;
 }
 </style>
