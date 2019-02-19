@@ -43,7 +43,7 @@
 .createBounty__inputfield {
     padding: 0.7em;
     background-color: $navbar-hover-color;
-    border: 2px solid $border-color;
+    border: 2px solid rgba($color: $border-color, $alpha: 0.3);
 }
   
 .createBounty__label--description {
@@ -75,6 +75,6 @@
 }
 
 .createBounty__buttons {
-    margin-top: 2em;
+    margin-top: 3em;
 }
 
