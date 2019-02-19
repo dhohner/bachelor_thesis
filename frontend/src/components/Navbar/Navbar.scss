@@ -1,0 +1,101 @@
+@import '../../util/scss/variables';
+
+.navbar {
+  background-color: $navbar-background-color;
+  border-bottom: $border-width solid $border-color;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.navbar__menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar__menu-logo-image {
+  float: left;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 1em;
+  height: 34px;
+}
+
+.navbar__menu-left {
+  float: left;
+  height: $navbar-height;
+  line-height: $navbar-height;
+  white-space: nowrap;
+  font-size: 1.2rem;
+}
+
+.navbar__menu-right {
+  float: right;
+  margin-right: 1em;
+  height: $navbar-height;
+  line-height: $navbar-height;
+  white-space: nowrap;
+  font-size: 1.2rem;
+}
+
+.navbar__menu-title {
+  margin-left: 0.5em;
+  margin-right: 2em;
+  font-weight: 8000;
+}
+
+.navbar__menu-title-first {
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+  color: $link-text-color;
+}
+
+.navbar__menu-title-second {
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 1.7rem;
+  color: $link-text-color-darkened;
+}
+
+.navbar__menu-left--link {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: $link-text-color-darkened;
+  font-weight: 600;
+  padding: $padding-standard;
+}
+
+.navbar__menu-left--link:hover {
+  background-color: $navbar-hover-color;
+}
+
+.navbar__menu-right-auth {
+  text-decoration: none;
+  cursor: pointer;
+  color: $link-text-color-darkened;
+  font-weight: 600;
+  margin-left: 1em;
+  padding: $padding-standard;
+}
+
+.navbar__menu-right-auth:hover {
+  background-color: $navbar-hover-color;
+}
+
+.navbar__menu-right-network {
+  color: $link-text-color-darkened;
+  font-weight: 600;
+}
+
+.navbar__menu-right-metamask-active {
+  color: green;
+  font-weight: 600;
+}
+
+.navbar__menu-right-metamask-inactive {
+  color: red;
+  font-weight: 600;
+}
