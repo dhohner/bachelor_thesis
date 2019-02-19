@@ -1,4 +1,4 @@
-@import '../../../util/constants/variables';
+@import '../../../util/scss/variables';
 
 .createBounty__mask {
   position: fixed;
@@ -7,10 +7,9 @@
   top: 25%;
   width: 40%;
   height: 450px;
-  background-color: white;
+  background-color: $navbar-hover-color;
   border: 2px solid $border-color;
   border-radius: 2px;
-  transition: opacity .3s ease;
 }
 
 .createBounty__overlay {
@@ -32,12 +31,9 @@
   font-size: 2rem;
 }
 
-.createBounty__input-center {
-  position: relative;
-  transform: translateY(15%);
-}
-
 .createBounty__input {
+    position: relative;
+    transform: translateY(15%);
     display: grid;
     grid-template-columns: 20% 30% 30% 20%;
     grid-template-rows: 1fr 1fr 10px 1fr 1fr;
@@ -46,6 +42,7 @@
   
 .createBounty__inputfield {
     padding: 0.7em;
+    background-color: $navbar-hover-color;
     border: 2px solid $border-color;
 }
   
@@ -53,8 +50,8 @@
     grid-column: 2 / 4;
     grid-row: 1;
     color: $link-text-color;
-    font-size: 1.3rem;
-    font-weight: 400;
+    font-size: 1.4rem;
+    font-weight: 600;
 }
   
 .createBounty__input--description {
@@ -67,8 +64,8 @@
     grid-column: 2 / 4;
     grid-row: 4;
     color: $link-text-color;
-    font-size: 1.3rem;
-    font-weight: 400;
+    font-size: 1.4rem;
+    font-weight: 600;
 }
   
 .createBounty__input--bounty {
@@ -78,6 +75,6 @@
 }
 
 .createBounty__buttons {
-    margin-top: 1em;
+    margin-top: 2em;
 }
 

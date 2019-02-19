@@ -30,7 +30,18 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../util/constants/variables';
+@import '../util/scss/variables';
+
+.v-enter-active {
+  transition: opacity 0.2s ease-in;
+}
+.v-leave-active {
+  transition: opacity 0.3s ease-out;
+}
+.v-enter,
+.v-leave-to {
+  opacity: 0;
+}
 
 .bountyControl {
   text-align: center;
@@ -38,8 +49,8 @@ export default {
 
 .bountyControl--title {
   font-weight: 800;
-  font-size: 2.5rem;
-  color: $link-text-color;
+  font-size: 2.8rem;
+  color: $link-text-color-darkened;
 }
 
 .button--controlSwitch {
