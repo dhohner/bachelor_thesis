@@ -1,6 +1,6 @@
 @import '../../../util/scss/variables';
 
-.bountyProposal__title {
+.bounties__title {
     margin-top: .5em;
     color: $link-text-color-darkened;
     font-weight: 800;
@@ -8,6 +8,6 @@
     text-decoration: underline;
 }
 
-.button--createBounty {
-    width: 200px;
+.button--claim {
+    width: 100px;
 }

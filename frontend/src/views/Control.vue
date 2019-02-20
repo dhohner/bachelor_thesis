@@ -51,19 +51,6 @@ export default {
   font-weight: 800;
   font-size: 2.8rem;
   color: $link-text-color-darkened;
-}
-
-.button--controlSwitch {
-  width: 200px;
-  padding: 0;
-  box-shadow: none;
-  background-color: white;
-  border: 2px solid $navbar-background-color;
-}
-
-.bountyControl--subtitle {
-  font-weight: 600;
-  color: $link-text-color;
-  font-size: 1.7rem;
+  margin-bottom: 0.2em;
 }
 </style>
