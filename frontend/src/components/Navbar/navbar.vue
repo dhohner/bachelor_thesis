@@ -14,14 +14,14 @@
             >Home</router-link
           >
         </li>
-        <li class="navbar__menu-left navbar__menu-routes">
-          <router-link :to="{ name: 'about' }" class="navbar__menu-left--link"
-            >About</router-link
-          >
-        </li>
         <li class="navbar__menu-left navbar__menu-routes" v-if="authenticated">
           <router-link :to="{ name: 'control' }" class="navbar__menu-left--link"
             >Control</router-link
+          >
+        </li>
+        <li class="navbar__menu-left navbar__menu-routes">
+          <router-link :to="{ name: 'about' }" class="navbar__menu-left--link"
+            >About</router-link
           >
         </li>
 
