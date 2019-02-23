@@ -7,6 +7,7 @@
   top: 0;
   left: 0;
   width: 100%;
+  height: $navbar-height;
   text-align: left;
 }
 
@@ -44,7 +45,7 @@
 .navbar__menu-title {
   margin-left: 0.5em;
   margin-right: 2em;
-  font-weight: 8000;
+  font-weight: 800;
 }
 
 .navbar__menu-title-first {
@@ -65,7 +66,7 @@
   text-transform: uppercase;
   color: $link-text-color-darkened;
   font-weight: 600;
-  padding: $padding-standard;
+  padding: 1.5 * $padding-standard;
 }
 
 .navbar__menu-left--link:hover {
