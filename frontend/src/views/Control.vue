@@ -2,6 +2,7 @@
   <div class="bountyControl">
     <div class="bountyControl--title">dCompany Control</div>
     <hr class="separator" />
+    <hr class="separator" />
     <BountyProposals @openProposalForm="createProposal_active = true">
       <transition>
         <CreateBounty

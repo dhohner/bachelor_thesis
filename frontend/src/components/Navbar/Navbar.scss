@@ -21,7 +21,7 @@
   float: left;
   margin-top: 5px;
   margin-bottom: 5px;
-  margin-left: 1em;
+  margin-left: 10px;
   height: 34px;
 }
 
@@ -30,26 +30,26 @@
   height: $navbar-height;
   line-height: $navbar-height;
   white-space: nowrap;
-  font-size: 1.2rem;
+  font-size: 20px;
 }
 
 .navbar__menu-right {
   float: right;
-  margin-right: 1em;
+  margin-right: 10px;
   height: $navbar-height;
   line-height: $navbar-height;
   white-space: nowrap;
-  font-size: 1.2rem;
+  font-size: 20px;
 }
 
 .navbar__menu-title {
-  margin-left: 0.5em;
-  margin-right: 2em;
+  margin-left: 5px;
+  margin-right: 20px;
   font-weight: 800;
 }
 
 .navbar__menu-title-first {
-  font-size: 1.3rem;
+  font-size: 20px;
   letter-spacing: 2px;
   color: $link-text-color;
 }
@@ -57,7 +57,7 @@
 .navbar__menu-title-second {
   text-transform: uppercase;
   letter-spacing: 1px;
-  font-size: 1.7rem;
+  font-size: 26px;
   color: $link-text-color-darkened;
 }
 
@@ -65,8 +65,8 @@
   text-decoration: none;
   text-transform: uppercase;
   color: $link-text-color-darkened;
-  font-weight: 600;
-  padding: 1.5 * $padding-standard;
+  margin: 0;
+  padding: $padding-standard;
 }
 
 .navbar__menu-left--link:hover {
@@ -77,8 +77,7 @@
   text-decoration: none;
   cursor: pointer;
   color: $link-text-color-darkened;
-  font-weight: 600;
-  margin-left: 1em;
+  margin-left: 10px;
   padding: $padding-standard;
 }
 
@@ -88,7 +87,6 @@
 
 .navbar__menu-right-network {
   color: $link-text-color-darkened;
-  font-weight: 600;
 }
 
 .navbar__menu-right-metamask-active {

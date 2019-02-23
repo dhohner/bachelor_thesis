@@ -2,6 +2,7 @@
   <div class="bounties">
     <div class="bounties--title">dCompany Landing Page</div>
     <hr class="separator" />
+    <hr class="separator" />
     <Bounties />
   </div>
 </template>
