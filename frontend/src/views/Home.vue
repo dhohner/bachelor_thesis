@@ -24,7 +24,7 @@ export default {
 }
 
 .bounties--title {
-  font-weight: 800;
+  font-weight: 600;
   font-size: 2.8rem;
   color: $link-text-color-darkened;
   margin-bottom: 0.2em;

@@ -1,19 +1,23 @@
 @import './variables';
 
-* {
-  margin: 0;
-  padding: 0;
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  font-family: 'Lucida Sans Unicode', Arial;
-  font-weight: 400;
+  margin: 0;
   margin-top: 55px;
+  font-family: 'Arial Narrow Bold', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
   background-color: $navbar-hover-color;
 }
 
 .separator {
   color: $navbar-background-color;
+  margin: 0;
 }
 
 .button {

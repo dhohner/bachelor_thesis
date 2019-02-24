@@ -5,6 +5,7 @@
       <div class="createBounty__container">
         <h1 class="createBounty__title">Create Bounty</h1>
         <hr class="separator" />
+        <hr class="separator" />
         <div class="createBounty__input">
           <label
             for="createBounty__input--description"

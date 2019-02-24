@@ -27,7 +27,7 @@
 
 .createBounty__title {
   color: $link-text-color-darkened;
-  font-weight: 800;
+  font-weight: 600;
   font-size: 2rem;
 }
 
@@ -51,7 +51,7 @@
     grid-row: 1;
     color: $link-text-color;
     font-size: 1.4rem;
-    font-weight: 600;
+    font-weight: 500;
 }
   
 .createBounty__input--description {
@@ -65,7 +65,7 @@
     grid-row: 4;
     color: $link-text-color;
     font-size: 1.4rem;
-    font-weight: 600;
+    font-weight: 500;
 }
   
 .createBounty__input--bounty {
