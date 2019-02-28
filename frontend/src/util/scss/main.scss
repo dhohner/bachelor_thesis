@@ -9,7 +9,7 @@ html {
 body {
   margin: 0;
   margin-top: 55px;
-  font-family: 'Arial Narrow Bold', sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 16px;
   line-height: 1.5;
   background-color: $navbar-hover-color;
@@ -21,21 +21,21 @@ body {
 }
 
 .button {
-    all: unset;
-    display: inline-block;
-    margin-top: 25px;
-    margin-right: 0.5em;
-    margin-bottom: 25px;
-    margin-left: 0.5em;
-    padding: .5em 1.25em;
-    width: 70px;
-    cursor: pointer;
-    background: $navbar-background-color;
-    color: $link-text-color-darkened;
-    border: 1px solid rgba($color: $border-color, $alpha: 0.3);
-    border-radius: 2px;
-    box-shadow: 0 0px 12px -6px rgba($color: #000000, $alpha: 0.3);
-    font-weight: 600;
+  all: unset;
+  display: inline-block;
+  margin-top: 25px;
+  margin-right: 0.5em;
+  margin-bottom: 25px;
+  margin-left: 0.5em;
+  padding: 0.5em 1.25em;
+  width: 70px;
+  cursor: pointer;
+  background: $navbar-background-color;
+  color: $link-text-color-darkened;
+  border: 1px solid rgba($color: $border-color, $alpha: 0.3);
+  border-radius: 2px;
+  box-shadow: 0 0px 12px -6px rgba($color: #000000, $alpha: 0.3);
+  font-weight: 600;
 }
 
 .button--table {
@@ -94,7 +94,7 @@ body {
 }
 
 .table__row:first-of-type .table__data {
-  border-top: none;  
+  border-top: none;
 }
 
 .table__row:last-of-type .table__data {
