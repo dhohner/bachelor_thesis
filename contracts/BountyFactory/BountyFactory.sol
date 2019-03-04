@@ -1,18 +1,29 @@
 pragma solidity ^0.5.0;
 
-import "./Bounty.sol";
 import "./BountyProposal.sol";
 
-contract BountyFactory {
-    function createBounty(
-        string memory _description,
-        uint256 _bounty
-    )   public
-        returns (address) {
-        return address(new Bounty(_description, _bounty));
+contract ProposalFactory {
+    function() external payable {
+        revert("ProposalFactory does not accept payments");
     }
 
-    function creatBountyProposal() public returns (address) {
-        return address(new BountyProposal());
+    /**
+     * @notice creates a new member proposal
+     * @param _bountyAddress address of the bounty to validate
+     * @param _minimumNumberOfVotes the minimum number of votes needed to execute the proposal
+     * @param _majorityMargin the percentage of positive votes needed for proposal to pass
+     */
+    function newProposal(
+        address _bountyAddress,
+        uint256 _minimumNumberOfVotes,
+        uint256 _majorityMargin
+    ) external returns (address proposal) {
+        proposal = address(
+            new BountyProposal(
+                _bountyAddress,
+                _minimumNumberOfVotes,
+                _majorityMargin
+            )
+        );
     }
 }
