@@ -3,6 +3,8 @@ pragma solidity ^0.5.0;
 import "./BountyProposal.sol";
 
 contract ProposalFactory {
+    address private proposal;
+
     function() external payable {
         revert("ProposalFactory does not accept payments");
     }
@@ -17,13 +19,15 @@ contract ProposalFactory {
         address _bountyAddress,
         uint256 _minimumNumberOfVotes,
         uint256 _majorityMargin
-    ) external returns (address proposal) {
+    ) external returns (address) {
         proposal = address(
             new BountyProposal(
                 _bountyAddress,
                 _minimumNumberOfVotes,
-                _majorityMargin
+                _majorityMargin,
+                msg.sender
             )
         );
+        return proposal;
     }
 }

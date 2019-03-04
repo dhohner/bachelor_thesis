@@ -4,9 +4,14 @@ import "./Ownable.sol";
 
 contract Company is Ownable {
     address private bountyFactory;
+
     mapping(address => uint256) private memberId;
+    mapping(address => bool) private validProposals;
+    mapping(address => bool) private validBounty;
     address[] public members;
+    address[] private bounties;
     address[] private proposals;
+
     uint256 public minimumNumberOfVotes = 1;
     uint256 public majorityMargin = 50;
 
@@ -15,11 +20,10 @@ contract Company is Ownable {
         _;
     }
 
-    event ProposalCreated(address proposalAddress, string proposalType);
+    event ProposalCreated(address proposalAddress);
     event Voted(address proposalAddress, bool stance, address from);
     event ProposalExecuted(address executedProposal);
     event MembershipChanged(address memberAddress, bool memberStatus);
-    event Test(bool propPassed, bool propExecuted);
 
     constructor(address _bountyFactoryAddress) public {
         members.push(address(0));
@@ -30,31 +34,29 @@ contract Company is Ownable {
 
     /**
      * @notice creates a proposal contract to change membership status for the member
-     * @param _memberAddress the address of the member
-     * @param _adding true if member is to be added false otherwise
+     * @param _bountyAddress the address of the solved bounty to validate
      * @dev only callable by registered members
      */
     function createBountyProposal(address _bountyAddress) public onlyMembers {
         // validate input
+        // require(validBounty[_bountyAddress], "invalid input");
 
-        // prepare payload for function call - no spaces between parameters
+        // prepare payload: bytes4 representation of the hashed function signature - no spaces between parameters
         bytes memory payload = abi.encodeWithSignature(
             "newProposal(address,uint256,uint256)",
             _bountyAddress, minimumNumberOfVotes, majorityMargin
         );
-
-        // execute function call
+        // execute and get encoded return value of function call
         (bool success, bytes memory encodedReturnValue) = bountyFactory.call(payload);
-
         // check if function call was successful
-        require(success, "member proposal failed");
-
+        require(success, "creation of bounty proposal failed");
         // decode return value to get the address of the created proposal
         address proposal = abi.decode(encodedReturnValue, (address));
 
-        // add created proposal to management structure and set correct proposal type
+        // add created proposal to management structure and update proposal as valid
         proposals.push(proposal);
-        emit ProposalCreated(proposal, "memberProposal");
+        validProposals[proposal] = true;
+        emit ProposalCreated(proposal);
     }
 
     /**
@@ -65,24 +67,23 @@ contract Company is Ownable {
      */
     function vote(bool _stance, address _proposalAddress) public onlyMembers {
         // validate input
+        require(validProposals[_proposalAddress], "invalid proposal input");
 
-        // vote for proposal at _proposalAddress
+        /// vote for proposal at _proposalAddress
+        // prepare payload: bytes4 representation of the hashed function signature
         bytes memory payload = abi.encodeWithSignature("vote(bool,address)", _stance, msg.sender);
+        // execute and get encoded return value of function call
         (bool success, bytes memory encodedReturnValue) = _proposalAddress.call(payload);
-
         // check if voting was successfull
         require(success, "voting failed");
-
-        // lock voting user
         emit Voted(_proposalAddress, _stance, msg.sender);
-
-        // decode return values to check if proposal passed
+        // decode return values to check if proposal was executed and if proposal passed
         (bool proposalPassed, bool proposalExecuted) = abi.decode(encodedReturnValue, (bool, bool));
-        emit ProposalExecuted(_proposalAddress);
 
         // handle return values of voting call
         if (proposalExecuted) {
-            emit Test(proposalPassed, proposalExecuted);
+            emit ProposalExecuted(_proposalAddress);
+            handleVoteReturn(_proposalAddress, proposalPassed);
         }
     }
 
@@ -132,30 +133,85 @@ contract Company is Ownable {
     }
 
     /**
-     * @dev returns all saved proposals
+     * @notice returns all saved proposals
+     * @return all currently openProposals
      */
     function getProposals() public view returns (address[] memory) {
         return proposals;
     }
 
     /**
-     * @dev returns the number of current members
+     * @notice returns all saved bounties
+     * @return all currently open bounties
      */
-    function getMembersLength() public view returns (uint256) {
+    function getBounties() public view returns (address[] memory) {
+        return bounties;
+    }
+
+    /**
+     * @notice returns the number of current members - only callable by members
+     * @return length of the members array
+     */
+    function getMembersLength() public view onlyMembers returns (uint256) {
         return members.length;
     }
 
     /**
-     * @notice removes the lendingRequest from the management structures
-     * @param _request the lendingRequest that will be removed
+     * @notice updates the internal state of the bounty the proposal was for
+     * @param _proposalAddress the address of the proposal that was used to validate the bounty solution
+     * @param _proposalPassed true if the bounty soultion could be verified - false otherwise
      */
-    function removeRequest(address _request) private {
-        // remove _request from the management contract
+
+    function handleVoteReturn(address _proposalAddress, bool _proposalPassed) private {
+        // validate input
+        require(validProposals[_proposalAddress], "invalid proposal input");
+
+        /// get the address of the bounty the proposal was for
+        // prepare payload: bytes4 representation of the hashed function signature
+        bytes memory payload = abi.encodeWithSignature("bountyAddress()");
+        // execute and get encoded return value of function call
+        (bool success, bytes memory encodedReturn) = _proposalAddress.call(payload);
+        // validate if function call was successful
+        require(success, "get bounty address failed");
+
+        // decode return value of function call
+        address bountyAddress = abi.decode(encodedReturn, (address));
+
+        // trigger unlock of funds for freelancer
+        if(_proposalPassed) {
+            emit ProposalExecuted(bountyAddress);
+            // TODO: unlock funds for freelancer and trigger event to let freelancer know he/she can withdraw funds now
+            // TODO: withdraw function that kills bounty after funds were withdrawn and removes bounty from openBounties
+        }
+        // unlock proposal for other freelancers
+        if(!_proposalPassed) {
+            emit ProposalExecuted(bountyAddress);
+            // TODO: unlock bounty for other freelancers and reset internal state of bounty
+        }
+
+        /// call selfdestruct for proposal validating the bounty
+        // prepare payload: bytes4 representation of the hashed function signature
+        payload = abi.encodeWithSignature("kill()");
+        // execute function call and ignore return value
+        (success, ) = _proposalAddress.call(payload);
+        // validate if function call was successful
+        require(success, "deletion of proposal contract failed");
+    }
+
+    /**
+     * @notice removes the proposal from the management structures
+     * @param _proposal the proposal that will be removed
+     */
+    function removeProposal(address _proposal) private {
+        // validate input
+        require(validProposals[_proposal], "invalid input");
+
+        // remove _proposal from the management contract
         for(uint256 i = 0; i < proposals.length; i++) {
-            // get index of _request in proposals array
-            address currentRequest = proposals[i];
-            if(currentRequest == _request) {
-                // move _request to the end of the array
+            // get index of _proposal in proposals array
+            address currentProposal = proposals[i];
+            if(currentProposal == _proposal) {
+                // move _proposal to the end of the array
                 for(uint256 j = i; j < proposals.length - 1; j++) {
                     proposals[j] = proposals[j + 1];
                 }
@@ -164,5 +220,7 @@ contract Company is Ownable {
                 break;
             }
         }
+        // mark proposal as invalid
+        validProposals[_proposal] = false;
     }
 }
