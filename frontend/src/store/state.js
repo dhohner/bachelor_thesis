@@ -5,5 +5,6 @@ export const state = {
     coinbase: null,
     web3Instance: null
   },
-  authenticated: true
+  authenticated: false,
+  companyContract: null
 }

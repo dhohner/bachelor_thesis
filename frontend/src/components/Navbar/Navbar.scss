@@ -81,6 +81,12 @@
   padding: 1.6 * $padding-standard;
 }
 
+.navbar__menu-right--link {
+  text-decoration: none;
+  cursor: pointer;
+  color: $link-text-color-darkened;
+}
+
 .navbar__menu-right-auth:hover {
   background-color: $navbar-hover-color;
 }

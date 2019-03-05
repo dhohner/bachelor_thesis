@@ -26,12 +26,21 @@
         </li>
 
         <li class="navbar__menu-right">
-          <span class="navbar__menu-right-auth" v-if="!authenticated"
+          <span
+            class="navbar__menu-right-auth"
+            v-if="!authenticated"
+            @click="login"
             >LogIn</span
           >
-          <span class="navbar__menu-right-auth" v-if="authenticated"
-            >LogOut</span
+          <span
+            class="navbar__menu-right-auth"
+            v-if="authenticated"
+            @click="logout"
           >
+            <router-link :to="{ name: 'home' }" class="navbar__menu-right--link"
+              >LogOut</router-link
+            >
+          </span>
         </li>
         <li class="navbar__menu-right">
           <span class="navbar__menu-right-metamask-active" v-if="isInjected"
@@ -53,6 +62,8 @@
 <script>
 import { mapState } from 'vuex'
 import { NETWORKS } from '@/util/constants/networks'
+import { AUTHENTICATE, LOGOUT } from '@/util/constants/types'
+
 export default {
   computed: mapState({
     authenticated: state => state.authenticated,
@@ -61,6 +72,14 @@ export default {
   }),
   data() {
     return {}
+  },
+  methods: {
+    login() {
+      this.$store.dispatch(AUTHENTICATE)
+    },
+    logout() {
+      this.$store.dispatch(LOGOUT)
+    }
   }
 }
 </script>

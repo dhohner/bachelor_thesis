@@ -4,6 +4,7 @@ import "./BountyProposal.sol";
 import "./Bounty.sol";
 
 contract BountyFactory {
+    address private factoryReturn;
 
     function() external payable {
         revert("ProposalFactory does not accept payments");
@@ -15,8 +16,9 @@ contract BountyFactory {
      * @param _issue projects issue id the bounty is for
      * @return address of the generated bounty
      */
-    function create(uint256 _amount, uint256 _issue) external returns (address bounty) {
-        bounty = address(new Bounty(_amount, _issue, msg.sender));
+    function create(uint256 _amount, uint256 _issue) external returns (address) {
+        factoryReturn = address(new Bounty(_amount, _issue, msg.sender));
+        return factoryReturn;
     }
     /**
      * @notice creates a new bounty proposal
@@ -29,8 +31,8 @@ contract BountyFactory {
         address _bountyAddress,
         uint256 _minimumNumberOfVotes,
         uint256 _majorityMargin
-    ) external returns (address bountyProposal) {
-        bountyProposal = address(
+    ) external returns (address) {
+        factoryReturn = address(
             new BountyProposal(
                 _bountyAddress,
                 _minimumNumberOfVotes,
@@ -38,5 +40,6 @@ contract BountyFactory {
                 msg.sender
             )
         );
+        return factoryReturn;
     }
 }

@@ -12,12 +12,33 @@
     </div>
     <hr class="separator" />
     <div class="bountyProposal__management">
+      <div class="bountyProposal__title">Bounty Proposal TEST</div>
+      <div class="createProposal__input">
+        <label
+          for="createProposal__input--address"
+          class="createProposal__label createProposal__label--address"
+          >Address:</label
+        >
+        <input
+          type="text"
+          class="createProposal__inputfield createProposal__inputfield--address"
+          id="createProposal__input--address"
+          v-model="address"
+        />
+      </div>
+      <div class="button button--proposals" @click="createProposal">
+        Create Proposal
+      </div>
+      <div class="button button--proposals" @click="getProposals">
+        Get Open Proposals
+      </div>
+      <hr class="separator" />
       <div class="bountyProposal__title">Open Bounty Solutions</div>
       <table class="table" v-if="proposals.length !== 0">
         <thead>
           <tr>
-            <th class="table__head">Author</th>
-            <th class="table__head">Description</th>
+            <th class="table__head">Bounty Address</th>
+            <th class="table__head">Commit ID</th>
             <th class="table__head">Vote</th>
           </tr>
         </thead>
@@ -27,10 +48,10 @@
             <td class="table__data">{{ p.description }}</td>
             <td class="table__data table__data--vote">
               <div v-on:click="vote(p.id, true)" class="button button--table">
-                Agree
+                Valid
               </div>
               <div v-on:click="vote(p.id, false)" class="button button--table">
-                Disagree
+                Invalid
               </div>
             </td>
           </tr>
@@ -54,32 +75,40 @@
 export default {
   data() {
     return {
-      proposals: [
-        {
-          author: 'owner',
-          description: 'test',
-          id: 0,
-          agrees: false
-        },
-        {
-          author: 'owner',
-          description: 'test',
-          id: 0,
-          agrees: false
-        },
-        {
-          author: 'owner',
-          description: 'test',
-          id: 0,
-          agrees: false
-        }
-      ]
+      address: null,
+      proposals: []
     }
   },
   methods: {
     vote(id, agree) {
       console.log('vote for id: ' + id)
       console.log('vote with stance: ' + agree)
+    },
+    async createProposal() {
+      if (this.address === null) {
+        console.log('provide an address')
+      }
+      await this.$store.state
+        .companyContract()
+        .methods.createBountyProposal(this.address)
+        .send({ from: this.$store.state.web3.coinbase })
+    },
+    async getProposals() {
+      console.log('getting proposals')
+      let proposals = await this.$store.state
+        .companyContract()
+        .methods.getProposals()
+        .call()
+
+      for (let i = 0; i < proposals.length; i++) {
+        let data = {
+          author: proposals[i],
+          description: 'd34db3a' + i,
+          id: i,
+          agrees: false
+        }
+        this.proposals.push(data)
+      }
     }
   }
 }

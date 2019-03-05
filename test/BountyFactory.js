@@ -10,6 +10,7 @@ contract("BountyFactory", accounts => {
 
     it("can create a bounty", async () => {
         console.log(bounty)
+        await bountyFactory.create(5, 1);
     })
 
     it("can create a bounty proposal", async () => {

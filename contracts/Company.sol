@@ -5,7 +5,7 @@ import "./Ownable.sol";
 contract Company is Ownable {
     address private bountyFactory;
 
-    mapping(address => uint256) private memberId;
+    mapping(address => uint256) public memberId;
     mapping(address => bool) private validProposals;
     mapping(address => bool) private validBounty;
     address[] public members;
@@ -43,7 +43,7 @@ contract Company is Ownable {
 
         // prepare payload: bytes4 representation of the hashed function signature - no spaces between parameters
         bytes memory payload = abi.encodeWithSignature(
-            "newProposal(address,uint256,uint256)",
+            "create(address,uint256,uint256)",
             _bountyAddress, minimumNumberOfVotes, majorityMargin
         );
         // execute and get encoded return value of function call
