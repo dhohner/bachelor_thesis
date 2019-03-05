@@ -1,0 +1,320 @@
+{
+    "contracts": {
+        "company": {
+            "abi": [
+                {
+                    "constant": true,
+                    "inputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "members",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function",
+                    "signature": "0x5daf08ca"
+                },
+                {
+                    "constant": false,
+                    "inputs": [],
+                    "name": "renounceOwnership",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "signature": "0x715018a6"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "owner",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function",
+                    "signature": "0x8da5cb5b"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "isOwner",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "bool"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function",
+                    "signature": "0x8f32d59b"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "majorityMargin",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function",
+                    "signature": "0xaa02a90f"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "newOwner",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "transferOwnership",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "signature": "0xf2fde38b"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "minimumNumberOfVotes",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function",
+                    "signature": "0xfd173bc0"
+                },
+                {
+                    "inputs": [
+                        {
+                            "name": "_bountyFactoryAddress",
+                            "type": "address"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "constructor",
+                    "signature": "constructor"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "name": "proposalAddress",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "ProposalCreated",
+                    "type": "event",
+                    "signature": "0x488fccde177d9377f35d8d9a4f0b3462fcc7cdb926a00d3d99630ef1d672a2cd"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "name": "proposalAddress",
+                            "type": "address"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "stance",
+                            "type": "bool"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "from",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "Voted",
+                    "type": "event",
+                    "signature": "0x3290ac74a63ac05fa877c0908e32c354e22acb464ada4cdec4d3c0c49a965a9f"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "name": "executedProposal",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "ProposalExecuted",
+                    "type": "event",
+                    "signature": "0x077e00e56e5d36ae097a95cb003427416253dd9bb4491393d3eb4cf8f63fd41e"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": false,
+                            "name": "memberAddress",
+                            "type": "address"
+                        },
+                        {
+                            "indexed": false,
+                            "name": "memberStatus",
+                            "type": "bool"
+                        }
+                    ],
+                    "name": "MembershipChanged",
+                    "type": "event",
+                    "signature": "0x27b022af4a8347100c7a041ce5ccf8e14d644ff05de696315196faae8cd50c9b"
+                },
+                {
+                    "anonymous": false,
+                    "inputs": [
+                        {
+                            "indexed": true,
+                            "name": "previousOwner",
+                            "type": "address"
+                        },
+                        {
+                            "indexed": true,
+                            "name": "newOwner",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "OwnershipTransferred",
+                    "type": "event",
+                    "signature": "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_bountyAddress",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "createBountyProposal",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "signature": "0xcd6c8135"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_stance",
+                            "type": "bool"
+                        },
+                        {
+                            "name": "_proposalAddress",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "vote",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "signature": "0x633dfc70"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_memberAddress",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "addMember",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "signature": "0xca6d56dc"
+                },
+                {
+                    "constant": false,
+                    "inputs": [
+                        {
+                            "name": "_memberAddress",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "removeMember",
+                    "outputs": [],
+                    "payable": false,
+                    "stateMutability": "nonpayable",
+                    "type": "function",
+                    "signature": "0x0b1ca49a"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "getProposals",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address[]"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function",
+                    "signature": "0x62564c48"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "getBounties",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "address[]"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function",
+                    "signature": "0x0cf0ac1d"
+                },
+                {
+                    "constant": true,
+                    "inputs": [],
+                    "name": "getMembersLength",
+                    "outputs": [
+                        {
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "payable": false,
+                    "stateMutability": "view",
+                    "type": "function",
+                    "signature": "0xfc53c821"
+                }
+            ],
+            "address": "0xde12fd17598563ABaAa089Dcf86Ad9888eaE075b"
+        }
+    }
+}
