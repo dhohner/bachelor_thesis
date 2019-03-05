@@ -12,6 +12,10 @@ contract BountyProposal {
     bool public proposalPassed = false;
     bool public proposalExecuted = false;
 
+    function() external payable {
+        revert("proposals do not accept ether");
+    }
+
     constructor(
         address _bountyAddress,
         uint256 _minimumNumberOfVotes,
