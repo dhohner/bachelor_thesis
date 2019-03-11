@@ -81,9 +81,8 @@ contract Bounty {
      * @notice allows the claimee to provide a solution for the bounty
      * @param _solution the commit id for the solution
      * @param _origin the address of the freelancer - should be equal to claimee
-     * @return true if solutionCommit is not an empty string - false otherwise
      */
-    function provideSolution(string calldata _solution, address _origin) external returns (bool) {
+    function provideSolution(string calldata _solution, address _origin) external {
         // check input and internal state
         require(checkState(States.BountyClaimed), "bounty is in wrong state (provideSolution)");
         require(msg.sender == company, "invalid caller");
@@ -93,8 +92,6 @@ contract Bounty {
         // update internal state
         state = States.SolutionProvided;
         solutionCommit = _solution;
-
-        return (bytes(solutionCommit).length == 7) ? true : false;
     }
 
     /**
