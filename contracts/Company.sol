@@ -1,8 +1,6 @@
 pragma solidity ^0.5.0;
 
-import "./Ownable.sol";
-
-contract Company is Ownable {
+contract Company {
     address private bountyFactory;
 
     mapping(address => uint256) public memberId;
@@ -28,6 +26,8 @@ contract Company is Ownable {
     event ProposalCreated(address proposalAddress);
     event Voted(address proposalAddress, bool stance, address from);
     event ProposalExecuted(address executedProposal);
+    event RewardAvailable(address bountyAddress);
+    event RewardTransfered(address bountyAddress);
     event MembershipChanged(address memberAddress, bool memberStatus);
 
     constructor(address _bountyFactoryAddress) public {
@@ -185,6 +185,25 @@ contract Company is Ownable {
     }
 
     /**
+     * @notice transfers the reward of the bounty to the freelancer
+     * @param _bountyAddress the address of the bounty to withdraw from
+     */
+    function withdraw(address _bountyAddress) public {
+        // validate input
+        require(validBounty[_bountyAddress], "invalid bounty address");
+
+        /// withdraw the reward of the bounty
+        // prepare payload: bytes4 representation of the hashed function signature
+        bytes memory payload = abi.encodeWithSignature("transferReward()");
+        // execute and get encoded return value of function call
+        (bool success, ) = _bountyAddress.call(payload);
+        // check if transfer was successfull
+        require(success, "could not transfer the reward");
+        removeBounty(_bountyAddress);
+        emit RewardTransfered(_bountyAddress);
+    }
+
+    /**
      * @notice tries to cancel the Bounty provided
      * @param _bountyAddress the address of the bounty to cancel
      * @dev only callable by company members
@@ -238,7 +257,7 @@ contract Company is Ownable {
      * @dev adds the member at the specified address to current members
      * @param _memberAddress the address of the member to add
      */
-    function addMember(address _memberAddress) public onlyOwner {
+    function addMember(address _memberAddress) public onlyMembers {
         // validate input
         require(_memberAddress != address(0), "invalid address");
         require(memberId[_memberAddress] == 0, "already a member");
@@ -257,7 +276,7 @@ contract Company is Ownable {
      * @dev removes the member at the specified address from current members
      * @param _memberAddress the address of the member to remove
      */
-    function removeMember(address _memberAddress) public onlyOwner {
+    function removeMember(address _memberAddress) public onlyMembers {
         // validate input
         uint256 mId = memberId[_memberAddress];
         require(mId != 0, "the member you want to remove does not exist");
@@ -353,15 +372,57 @@ contract Company is Ownable {
 
         // trigger unlock of funds for freelancer
         if(_proposalPassed) {
-            emit ProposalExecuted(bountyAddress);
-            // TODO: unlock funds for freelancer and trigger event to let freelancer know he/she can withdraw funds now
-            // TODO: withdraw function that kills bounty after funds were withdrawn and removes bounty from openBounties
+            /// mark solution as valid and mark reward as available
+            // prepare payload: bytes4 representation of the hashed function signature
+            payload = abi.encodeWithSignature("markSolutionAsValid()");
+            // execute
+            (success, ) = bountyAddress.call(payload);
+            // validate if function call was successfull
+            require(success, "unlocking of reward failed");
+
+            /// get current bounty state
+            // prepare payload: bytes4 representation of the hashed function signature
+            payload = abi.encodeWithSignature("state()");
+            // execute and get encoded return value of function call
+            (success, encodedReturn) = bountyAddress.call(payload);
+            // check if getter call was successfull
+            require(success, "could not get bounty state");
+            // decode return value to get bounty state
+            uint256 state = abi.decode(encodedReturn, (uint256));
+            
+            // validate bounty state
+            if (state == 4) {
+                emit RewardAvailable(bountyAddress);
+            } else {
+                revert("unlocking of funds failed");
+            }
+        } else {
+            /// mark solution as invalid and reset claimee
+            // prepare payload: bytes4 representation of the hashed function signature
+            payload = abi.encodeWithSignature("resetClaimee()");
+            // execute
+            (success, ) = bountyAddress.call(payload);
+            // validate if function call was successfull
+            require(success, "reset of claimee failed");
+
+            /// get current bounty state
+            // prepare payload: bytes4 representation of the hashed function signature
+            payload = abi.encodeWithSignature("state()");
+            // execute and get encoded return value of function call
+            (success, encodedReturn) = bountyAddress.call(payload);
+            // check if getter call was successfull
+            require(success, "could not get bounty state");
+            // decode return value to get bounty state
+            uint256 state = abi.decode(encodedReturn, (uint256));
+            
+            // validate bounty state
+            if (state == 1) {
+                emit BountyProvided(bountyAddress);
+            } else {
+                revert("reset of claimee failed");
+            }
         }
-        // unlock proposal for other freelancers
-        if(!_proposalPassed) {
-            emit ProposalExecuted(bountyAddress);
-            // TODO: unlock bounty for other freelancers and reset internal state of bounty
-        }
+        
 
         /// call selfdestruct for proposal validating the bounty
         // prepare payload: bytes4 representation of the hashed function signature
@@ -370,6 +431,8 @@ contract Company is Ownable {
         (success, ) = _proposalAddress.call(payload);
         // validate if function call was successful
         require(success, "deletion of proposal contract failed");
+        // remove proposal from management structures
+        removeProposal(_proposalAddress);
     }
 
     /**

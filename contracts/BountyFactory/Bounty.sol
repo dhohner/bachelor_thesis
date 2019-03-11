@@ -15,6 +15,7 @@ contract Bounty {
 
     States public state;
     uint256 public bountyAmount;
+    uint256 public maximumAmount = 10 ether;
     uint256 public companyIssue;
     string public solutionCommit;
     uint256 private withdrawalAmount;
@@ -39,6 +40,7 @@ contract Bounty {
         require(checkState(States.BountyCreated), "bounty is in wrong state (deposit)");
         require(msg.sender == company, "invalid caller");
         require(bountyOrigin == address(0), "bountyOrigin already known");
+        require(msg.value <= maximumAmount, "storage is limited to 10 ETH");
         require(msg.value == bountyAmount, "provide the whole bounty");
 
         // update internal state
@@ -113,9 +115,8 @@ contract Bounty {
 
     /**
      * @notice solution was validated -> mark funds as available to withdraw
-     * @return true if funds are available - false otherwise
      */
-    function markSolutionAsValid() external returns (bool) {
+    function markSolutionAsValid() external {
         // check input and internal state
         require(checkState(States.SolutionProvided), "bounty is in wrong state (markSolutionAsValid)");
         require(msg.sender == company, "invalid caller");
@@ -123,8 +124,6 @@ contract Bounty {
         // update internal state
         state = States.SolutionReviewed;
         withdrawalAmount = address(this).balance;
-
-        return address(this).balance == withdrawalAmount ? true : false;
     }
 
     /**
