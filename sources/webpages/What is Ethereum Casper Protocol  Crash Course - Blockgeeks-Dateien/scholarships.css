@@ -1,0 +1,774 @@
+.scholarships-page {
+    font-family: SegoeUI;
+}
+
+.title-h3 {
+    font-family: SegoeUI;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 1.33;
+    color: #000000;
+}
+
+.scholarships-page * {
+    box-sizing: border-box;
+}
+
+.scholarships-page .gform_confirmation_message {
+    width: 100%;
+    margin: 45px auto 0;
+    border-radius: 0;
+    padding: 60px 0 50px;
+    font-family: SegoeUI;
+    font-size: 24px;
+    line-height: 1.33;
+    text-align: center;
+    color: #ffffff;
+    position: relative;
+    background: #24b2fa;
+}
+
+.scholarships-page .gform_confirmation_message .success-text {
+    color: #ffffff;
+    font-size: 32px;
+    width: 100%;
+}
+
+.scholarships-page p {
+    color: rgba(16, 25, 35, 0.6);
+}
+
+.scholarships-page .business-top {
+    background: #f2f5f7;
+    height: 400px;
+}
+
+.sponsor-name {
+    margin-bottom: 5px;
+}
+
+.scholarships-page .business-top-wrap {
+    background: none;
+}
+
+.scholarships-page .business-top:before {
+    display: block;
+    content: '';
+    background: url(../img/solar-right.png) no-repeat;
+    width: 219px;
+    height: 169px;
+    background-size: cover;
+    right: 65px;
+    top: 64px;
+    position: absolute;
+}
+
+.scholarships-page .business-top:after {
+    display: block;
+    content: '';
+    background: url(../img/solar-left.png) no-repeat;
+    width: 216px;
+    height: 159px;
+    background-size: cover;
+    left: 65px;
+    top: 64px;
+    position: absolute;
+}
+
+.scholarships-page  .business-top .page-title {
+    padding-top: 65px;
+    max-width: 100%;
+    font-family: SegoeUI;
+    font-size: 32px;
+    font-weight: 400;
+    text-align: center;
+    color: #000000;
+}
+
+.scholarships-page .business-page-desc {
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+    max-width: 571px;
+    margin: 25px auto 25px auto;
+}
+
+.scholarships-page .wrap {
+    width: auto;
+    max-width: 1115px;
+}
+
+.why-should__block1 {
+    vertical-align: top;
+    display: inline-block;
+    width: calc(50% - 151px);
+    margin-right: 145px;
+}
+
+.why-should__block2 {
+    vertical-align: top;
+    display: inline-block;
+    width: 50%;
+}
+
+.why-should__block1 .block-title {
+    font-family: SegoeUI;
+    font-size: 48px;
+    line-height: 1.1;
+    font-weight: 400;
+    color: #000000;
+    padding-right: 70px;
+    text-align: left;
+    margin-bottom: 30px;
+}
+.block-title.t-line{
+    padding-bottom:20px;
+    margin-bottom:20px;
+    position:relative;
+}
+.block-title.t-line:before{
+    content:"";
+    display:block;
+    position:absolute;
+    left:50%;
+    bottom:0;
+    border-top:3px solid #24b2fa;
+    width:48px;
+    margin-left:-24px;
+}
+.why-should {
+    padding-top: 70px;
+}
+
+.scholar-stats {
+    margin: 100px 0 0;
+}
+
+.scholar-stats__list {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+.scholar-stats__list .scholar-stats__list-item {
+    vertical-align: top;
+    display: inline-block;
+    width: 275px;
+    height: 275px;
+    text-align: center;
+    padding-top: 75px;
+    background: url(../img/polygon-copy.svg) no-repeat;
+    background-size: cover;
+    margin-left: -5px;
+}
+
+.scholar-stats__list .scholar-stats__list-item__button {
+    padding-top: 111px;
+}
+
+.scholar-stats__list .scholar-stats__list-item span {
+    display: block;
+    margin: 0 auto;
+}
+
+.scholar-stats__list-text1 {
+    font-family: SegoeUI;
+    font-size: 64px;
+    font-weight: 400;
+    text-align: center;
+    color: #000000;
+}
+
+.scholar-stats__list-text2 {
+    color: rgba(16, 25, 35, 0.6);
+    font-size: 16px;
+}
+
+.sponsor .why-should__block1 {
+    text-align: center;
+    margin-right: 0;
+    margin-left: 105px;
+}
+
+.sponsor .block-title {
+    margin-bottom: 47px;
+}
+
+.why-should.sponsor {
+    padding-top: 60px;
+}
+
+.sponsor .sponsor-img {
+    margin-bottom: 40px;
+}
+
+.sponsor .quote {
+    margin: 14px 0 10px;
+}
+
+.normative.why-should {
+    padding-top: 85px;
+    padding-bottom: 100px;
+}
+
+.normative.why-should .why-should__block1 {
+    margin-right: 100px;
+    width: calc(50% - 106px);
+}
+.text-center{
+    text-align:center;
+}
+.d-none{
+    display:none;
+}
+.mt-1{
+    margin-top: .25rem!important;
+}
+.mb-1{
+    margin-bottom: .25rem!important;
+}
+.mt-2{
+    margin-top: .5rem!important;
+}
+.mb-2{
+    margin-bottom: .5rem!important;
+}
+.mt-3{
+    margin-top: 1rem!important;
+}
+.mb-3{
+    margin-bottom: 1rem!important;
+}
+.mt-4{
+    margin-top: 1.5rem!important;
+}
+.mb-4{
+    margin-bottom: 1.5rem!important;
+}
+.mt-5{
+    margin-top: 3rem!important;
+}
+.mb-5{
+    margin-bottom: 3rem!important;
+}
+.pt-5{
+    padding-top:5em;
+}
+.pb-5{
+    padding-bottom:5em;
+}
+.row-flex{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.row-flex > div{
+    width:100%;
+    max-width: 100%;
+    padding:0 15px;
+}
+@media (min-width: 992px) {
+    .row-flex > div{
+        -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+        -webkit-box-flex: 1;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+    }
+    .row-flex > div.col-auto{
+        -ms-flex: 0 0 auto;
+        flex: 0 0 auto;
+        width: auto;
+        max-width: none;
+    }
+    .dir-rew-lg{
+        flex-direction: row-reverse;
+    }
+    text-left-lg{
+        text-align:left;
+    }
+    .d-lg-block{
+        display:block;
+    }
+    .d-lg-none{
+        display:none;
+    }
+}
+@media (max-width: 992px) {
+
+}
+.ul-blue{
+    margin-left:20px;
+    list-style:none;
+}
+.ul-blue > li{
+    position:relative;
+}
+.ul-blue > li:before{
+    content:"";
+    position:absolute;
+    display:block;
+    width:7px;
+    height:7px;
+    top:8px;
+    left:-20px;
+    border-radius:50%;
+    background:rgba(36, 178, 250, 1);
+}
+.testimonial__div{
+    padding:48px;
+    background:#f2f5f7;
+}
+.testimonials__profile{
+    text-align:center;
+}
+.testimonials__img{
+    width:150px;
+    height:150px;
+    display:table;
+    margin:0 auto;
+    border-radius: 50%;
+    background-position: center center;
+    background-size:cover;
+    margin-bottom:10px;
+}
+.testimonials__text{
+    font-size:16px;
+    line-height:26px;
+    color:#717a82;
+}
+.testimonials__t-name{
+    font-size:20px;
+    line-height:30px;
+    font-family: SegoeUI;
+    font-weight:bold;
+}
+.testimonials__t-y{
+    font-size:16px;
+    line-height:26px;
+    color:#717a82;
+    padding-bottom:10px;
+}
+.scholar-stats-mob {
+    display: none;
+}
+
+.why-should__block2 .block-title {
+    display: none;
+}
+
+.why-should.sponsor .why-should__block2 .sponsor-img {
+    display: none;
+}
+
+.why-should__block1.why-should__block1-mob {
+    display: none;
+}
+
+.pum .gform_wrapper .gform_footer input.button {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.57;
+    text-align: center;
+    color: #000;
+    border-radius: 56px;
+    padding: 17px 40px;
+    background: #2ecc71;
+    letter-spacing: 0.5px;
+    background: linear-gradient(to right, #ffdf5b, #ffb946);
+    cursor: pointer;
+}
+
+.pum .gform_footer {
+    text-align: center;
+}
+
+.pum .gform_title {
+    display: none;
+}
+
+.fields-group-wrap__scholar_main .fields-group-wrap__block-title {
+    text-align: center;
+    font-family: SegoeUI;
+    font-size: 32px;
+    font-weight: 400;
+    color: #101923;
+    margin-bottom: 30px;
+}
+
+.pum .gform_wrapper .gform_footer input.button:hover {
+    background: linear-gradient(to right, #ffb333, #ffb333);
+}
+
+.pum .fields-group-wrap {
+    background: none !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    width: auto !important;
+}
+
+.fields-group-wrap__scholar_main {
+    margin: 0 0 30px 0 !important;
+}
+
+.fields-group-wrap__address {
+    margin: 0 0 30px 0 !important;
+}
+
+.pum-content + .pum-close,
+.pum-theme-sampl .pum-content + .pum-close,
+.pum-theme-simple .pum-content + .pum-close {
+    outline: none !important;
+    width: 16px !important;
+    height: 16px !important;
+    background: url(../img/close.svg) no-repeat !important;
+    background-size: contain !important;
+    font-size: 0 !important;
+    right: 16px !important;
+    top: 16px !important;
+    box-shadow: none !important;
+}
+
+.fields-group-wrap__scholar_main .gform_fields > .first-name {
+    width: calc(50% - 22px);
+    margin-right: 20px;
+}
+
+.fields-group-wrap__scholar_main .gform_fields > .last-name {
+    width: calc(50% - 2px);
+    margin-right: 0;
+}
+
+.fields-group-wrap__address li.address {
+    width: 100%;
+}
+
+.fields-group-wrap__address li.address .ginput_container_address>span {
+    display: inline-block;
+    width: calc(50% - 22px);
+    margin-right: 20px;
+}
+
+.fields-group-wrap__address li.address .ginput_container_address>.address_line_2 {
+    display: inline-block;
+    width: 100%;
+    margin-right: 0;
+}
+
+.fields-group-wrap__address li.address .ginput_container_address .address_state {
+    margin-right: 0;
+    width: calc(50% - 2px);
+}
+
+.fields-group-wrap__address li.address .ginput_container_address .address_country .material-title {
+    display: none;
+}
+
+.fields-group-wrap__address li.address .ginput_container_address .address_zip {
+    width: calc(50% - 22px);
+    margin-right: 20px;
+}
+
+.fields-group-wrap__address li.address .ginput_container_address .address_country {
+    width: calc(50% - 2px);
+    margin-right: 0;
+}
+
+.fields-group-wrap__address li.address .ginput_container_address .address_country ul.radio {
+    height: 250px;
+    overflow-y: scroll;
+}
+
+.fields-group-wrap__tell>ul .textarea-text {
+    margin-bottom: 20px;
+}
+
+.textarea-text label {
+    color: #5b5b5b !important;
+}
+
+.material .material-select ul {
+    box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.16), 0 0 1px 0 rgba(0, 0, 0, 0.16) !important;
+}
+
+.textarea-text .material-input textarea {
+    border: 1px solid #d3d3d3;
+    resize: none;
+    color: #5b5b5b !important;
+    padding: 7px;
+}
+
+.textarea-text .material-input {
+    padding-top: 15px !important;
+}
+
+.textarea-text .material-input>label {
+    color: #717A82 !important;
+    top: 27px;
+    left: 10px;
+    line-height: 1.1!important;
+    font-size: 16px;
+    transition: 55s ease all!important;
+    -moz-transition: 55s ease all!important;
+    -webkit-transition: 55s ease all!important;
+}
+
+.validation_error {
+    display: none;
+}
+
+.material .address_country .material-select >label {
+    height: 42px;
+    text-align: left;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.success-message {
+    text-align: center;
+}
+
+.success-text {
+    margin: 20px 0;
+    display: inline-block;
+    font-family: SegoeUI;
+    font-size: 32px;
+    font-weight: 400;
+    text-align: center;
+    color: #101923;
+}
+
+.pum-success .pum-container {
+    max-width: 556px !important;
+    transform: translateX(-50%)!important;
+    left: 50%!important;
+    margin-left: 0 !important;
+}
+
+.pum-success .pum-close.popmake-close {
+    display: none !important;
+}
+
+.success-img {
+    width: 408px;
+    height: 132px;
+    background: url(../img/smile.png) no-repeat;
+    background-size: cover;
+    display: inline-block;
+}
+
+/*<img class="gform_ajax_spinner" src="http://blockgeeks/wp-content/themes/blockgeeks/img/preloader-black.gif">*/
+/*
+img.gform_ajax_spinner {
+    max-width: 30px!important;
+    margin-left: 10px!important;
+    position: relative;
+    top: 8px;
+}
+*/
+
+@media (max-width: 1200px) {
+    .scholarships-page .business-top:after {
+        background-size: 80%;
+        left: 10px;
+    }
+
+    .scholarships-page .business-top:before {
+        right: -20px;
+        background-size: 80%;
+    }
+}
+
+@media (max-width: 992px) {
+    .scholar-stats {
+        margin: 35px 0 0;
+    }
+
+    .why-should__block1 {
+        display: none;
+    }
+
+    .why-should__block2 .block-title {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .why-should__block1.why-should__block1-mob {
+        display: block;
+        margin-bottom: 20px;
+    }
+
+    .scholarships-page .business-top {
+        background: none;
+        height: auto;
+    }
+
+    .scholarships-page .business-top__circle {
+        height: auto;
+        background: none;
+        float: none;
+        width: auto;
+        position: static;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .scholarships-page .business-button__top {
+        position: static;
+        transform: none;
+    }
+
+    .scholarships-page .business-top:after {
+        display: inline-block;
+        background: url(../img/solar-mobile.png) no-repeat;
+        width: 290px!important;
+        height: 160px!important;
+        background-size: cover!important;
+        left: 50%!important;
+        top: 20px!important;
+        margin-left: -145px;
+    }
+
+    .why-should__block1 {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        margin-bottom: 30px;
+    }
+
+    .why-should__block2 {
+        width: 100% !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        text-align: center;
+    }
+
+    .scholarships-page  div.sw-pinit {
+        width: 100%;
+        display: block;
+        margin: 0 auto 20px;
+    }
+
+    .scholarships-page img {
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .scholarships-page {
+        padding: 0 15px;
+    }
+
+    .scholarships-page  .business-top .page-title {
+        padding-top: 200px;
+        line-height: 1.33;
+        font-size: 24px;
+    }
+
+    .why-should__block1 .block-title {
+        font-size: 24px;
+        padding-right: 0;
+        font-weight: 400;
+        text-align: center;
+    }
+
+    .scholar-stats-mob {
+        display: block;
+    }
+
+    .scholar-stats-desk {
+        display: none;
+    }
+
+    .scholar-stats.scholar-stats-mob .scholar-stats__list {
+        vertical-align: top;
+        margin: 0 auto;
+        display: block;
+        width: 290px;
+        height: 290px;
+        text-align: center;
+        padding-top: 30px;
+        background: url(../img/polygon-copy.svg) no-repeat;
+        background-size: cover;
+        margin-bottom: 25px;
+    }
+
+    .scholar-stats.scholar-stats-mob .scholar-stats__list-item {
+        vertical-align: top;
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        padding-top: 0;
+        background: none;
+        margin-left: 0;
+    }
+
+    .scholar-stats.scholar-stats-mob .scholar-stats__list-item:first-child {
+        width: 100%;
+    }
+
+    .scholar-stats__list-text1 {
+        font-size: 48px;
+    }
+
+    .scholar-stats__list-text2 {
+        font-size: 14px;
+    }
+
+    .scholar-stats-mob .wrap {
+        text-align: center;
+    }
+
+    .why-should.sponsor .why-should__block1 {
+        display: block;
+    }
+
+    .why-should.sponsor .why-should__block1 .sponsor-img {
+        display: none;
+    }
+
+    .why-should.sponsor .why-should__block2 .sponsor-img {
+        display: inline-block;
+        margin-bottom: 20px;
+    }
+
+    .why-should.sponsor {
+        text-align: center;
+    }
+
+    .normative.why-should {
+        padding-top: 30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .pum-container, .pum-theme-sampl .pum-container {
+        padding: 10px !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: calc(100% - 20px) !important;
+        position: relative !important;
+        margin: 10px 10px 0 !important;
+    }
+
+    .admin-bar .pum-container, .pum-theme-sampl .pum-container {
+        margin: 60px 10px 0 !important;
+    }
+
+    .fields-group-wrap__address li.address .ginput_container_address>span {
+        width: 100% !important;
+    }
+
+    .fields-group-wrap__scholar_main .fields-group-wrap__block-title {
+        margin-bottom: 15px;
+        margin-top: 25px;
+    }
+
+    .scholarships-page .gform_wrapper {
+        margin: 0 -15px !important;
+    }
+}

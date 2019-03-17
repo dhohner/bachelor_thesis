@@ -1,0 +1,81 @@
+HCF.EE.on('webtrekk.ready', function() {
+    function getCookie(c_name) {
+        if (document.cookie.length > 0) {
+            c_start = document.cookie.indexOf(c_name + "=");
+            if (c_start != -1) {
+                c_start = c_start + c_name.length + 1;
+                c_end = document.cookie.indexOf(";", c_start);
+                if (c_end == -1) {
+                    c_end = document.cookie.length;
+                }
+                return decodeURIComponent(document.cookie.substring(c_start, c_end));
+            }
+        }
+        return "";
+    }
+
+    if( GLOBAL.REGLAYER === true && window.isTestAutomation!==true) {
+        
+        var CampaignName = 'lenovo';
+        var CookieName = 'bottomLayer'+CampaignName;
+        var WebtrekkAction = 'BottomLayer-'+CampaignName;
+
+        var cookieValue = getCookie(CookieName);
+        
+        
+        function showPushModal (){
+                    var pushCookie = getCookie('pushModal');
+                    var showModal = false;
+                    if(pushCookie == 'close'){
+                        showModal = false;
+                    }else if (context.tech.hasLocalStorage) {
+                        var pageimpression = localStorage.getItem('pageimpression');
+                        if(pageimpression === 'NaN' || pageimpression == 1) {
+                            showModal = false;
+                        }else{
+                            showModal = true;
+                        }
+                    }else{
+                        showModal = false;
+                    }
+                    return showModal;
+        }
+        
+        var currentUrl = window.location.href;
+        
+        console.log('showPushModal: '+showPushModal())
+
+        if(cookieValue !== 'close' &&  !showPushModal() && typeof hcf_userconfig !== 'undefined' && hcf_userconfig.cgi_contentaccess === 'ALLOWED' && hcf_userconfig.logged === false && !context.website.isPrint) {
+            if(currentUrl.search("e2e") > 0) {
+                var prefix = 'e2e-';
+            }else{
+                var prefix = '';
+            }
+            currentUrl = encodeURIComponent(currentUrl);
+
+            //window['optimizely'] = window['optimizely'] || [];
+
+            //window.optimizely.push(["activate", 10447613556]);
+
+            var element = '<div class="vhb-registerlayer vhb-registerlayer--onlyimage"><div class="vhb-registerlayer--close"></div><a href="https://auswahl.handelsblatt.com/hb-lenovo-kampagne-bottom-layer/"><img src="https://www.handelsblatt.com/images/registerlayer_app/21172500/formatOriginal.jpg"></div>';
+
+            $('body').append(element);
+
+            window.wt.sendinfo({linkId: 'Digitalpasslayer',  customClickParameter:{4:'BottomLayer'}});
+
+            $('.vhb-registerlayer').on('click', '', function() {
+                //window.optimizely.push(['trackEvent', 'reg-layer-clicked']);
+                window.wt.sendinfo({linkId: 'Aktionstracking', customClickParameter: {12: WebtrekkAction}});
+            })
+
+            $('.vhb-registerlayer').on('click', '.vhb-registerlayer--close', function () {
+                var date = Math.round((new Date()).getTime() / 1000) + 604800;
+
+                document.cookie = CookieName+"=close; max-age="+date+"";
+                $('.vhb-registerlayer').addClass('vhb-registerlayer--hidden');
+                window.wt.sendinfo({linkId: 'Schliessen_Button',  customClickParameter:{5:'BottomLayer-schliessen'}});
+                //window.optimizely.push(["trackEvent", "reg-layer-closed"]);
+            });
+        }
+    }
+});

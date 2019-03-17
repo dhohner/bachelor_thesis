@@ -1,0 +1,12 @@
+/*!
+* Themerella
+*
+* (c) Copyright themerella.com
+*
+* @version 1.0.0
+* @author  Themerella
+*/
+
+
+
+!function(a){'use strict';'function'!=typeof a.matches&&(a.matches=a.msMatchesSelector||a.mozMatchesSelector||a.webkitMatchesSelector||function(a){for(var b=this,c=(b.document||b.ownerDocument).querySelectorAll(a),d=0;c[d]&&c[d]!==b;)++d;return Boolean(c[d])}),'function'!=typeof a.closest&&(a.closest=function(a){for(var b=this;b&&1===b.nodeType;){if(b.matches(a))return b;b=b.parentNode}return null})}(window.Element.prototype);var RellaProgressiveAspectRatio=function(){if(this.progressiveImage=document.querySelectorAll('.progressive__img'),void 0!==this.progressiveImage&&null!==this.progressiveImage)return this};RellaProgressiveAspectRatio.prototype={init:function(){'use strict';return this.setDom(),this.setAspectRatio(),this},setDom:function(){'use strict';return Array.prototype.forEach.call(this.progressiveImage,function(a,b){if(!a.parentNode.matches('.aspect-ratio-fill')){var c=document.createElement('div'),d=document.createElement('div'),e=a.parentNode;d.classList.add('aspect-ratio-container'),c.classList.add('aspect-ratio-fill'),d.appendChild(c),e.insertBefore(d,e.childNodes[0]),c.appendChild(a)}}),this},calculateFillHeight:function(a,b,c){'use strict';return{height:c*(b/a)}},setAspectRatio:function(){'use strict';var a=this;return Array.prototype.forEach.call(this.progressiveImage,function(b,c){function d(){return k}function e(c){k=void 0!==j&&null!==j||void 0!==i&&null!==i?a.calculateFillHeight(parseInt(j,10),parseInt(i,10),parseInt(b.offsetWidth,10)):a.calculateFillHeight(parseInt(b.naturalWidth,10),parseInt(b.naturalHeight,10),parseInt(g.offsetWidth,10))}var f,g=b.parentNode,h=g.parentNode,i=b.getAttribute('height'),j=b.getAttribute('width'),k=a.calculateFillHeight(parseInt(b.naturalWidth,10),parseInt(b.naturalHeight,10),parseInt(b.offsetWidth,10));e(),void 0!==j&&null!==j||void 0!==i&&null!==i?(f=i/j*100,h.style.maxWidth=j+'px',h.style.maxHeight=i+'px'):f=b.naturalHeight/b.naturalWidth*100,g.style.paddingBottom=f+'%',g.classList.add('padding-added'),b.setAttribute('data-offsetheight',d().height),window.addEventListener('resize',function(){void 0!==j&&null!==j||void 0!==i&&null!==i?(f=i/j*100,h.style.maxWidth=j+'px',h.style.maxHeight=i+'px'):f=b.naturalHeight/b.naturalWidth*100,g.style.paddingBottom=f+'%',g.classList.add('padding-added'),b.setAttribute('data-offsetheight',d().height),e()})}),this}},document.addEventListener('DOMContentLoaded',function(){(new RellaProgressiveAspectRatio).init()},!1);

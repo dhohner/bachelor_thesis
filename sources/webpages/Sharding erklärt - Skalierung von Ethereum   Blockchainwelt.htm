@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="de-DE" prefix="og: http://ogp.me/ns#">
+<head>
+	<meta charset="UTF-8">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="profile" href="http://gmpg.org/xfn/11">
+	<title>Sharding erklärt - Skalierung von Ethereum | Blockchainwelt</title>
+
+<!-- This site is optimized with the Yoast SEO plugin v9.7 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Die Technologie, bekannt als Sharding, versucht, die Daten der Ethereum-Blockkette in überschaubare Teile aufzuteilen ➞ Wo liegen die Vorteile von Sharding?"/>
+<link rel="canonical" href="https://blockchainwelt.de/ethereum-sharding-skalierung/" />
+<link rel="publisher" href="https://plus.google.com/+Blockchainwelt"/>
+<meta property="og:locale" content="de_DE" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Sharding erklärt - Skalierung von Ethereum | Blockchainwelt" />
+<meta property="og:description" content="Die Technologie, bekannt als Sharding, versucht, die Daten der Ethereum-Blockkette in überschaubare Teile aufzuteilen ➞ Wo liegen die Vorteile von Sharding?" />
+<meta property="og:url" content="https://blockchainwelt.de/ethereum-sharding-skalierung/" />
+<meta property="og:site_name" content="Blockchainwelt" />
+<meta property="article:publisher" content="https://www.facebook.com/blockchainwelt/" />
+<meta property="article:tag" content="Ethereum" />
+<meta property="article:tag" content="Technologie" />
+<meta property="article:section" content="Wissen" />
+<meta property="article:published_time" content="2019-02-03T08:37:14+00:00" />
+<meta property="article:modified_time" content="2019-02-20T15:46:49+00:00" />
+<meta property="og:updated_time" content="2019-02-20T15:46:49+00:00" />
+<meta property="og:image" content="https://blockchainwelt.de/wp-content/uploads/2017/12/ethereum-blockchain-ether-coin.jpg" />
+<meta property="og:image:secure_url" content="https://blockchainwelt.de/wp-content/uploads/2017/12/ethereum-blockchain-ether-coin.jpg" />
+<meta property="og:image:width" content="620" />
+<meta property="og:image:height" content="348" />
+<meta property="og:image:alt" content="Ethereum - Ether Coin" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="Die Technologie, bekannt als Sharding, versucht, die Daten der Ethereum-Blockkette in überschaubare Teile aufzuteilen ➞ Wo liegen die Vorteile von Sharding?" />
+<meta name="twitter:title" content="Sharding erklärt - Skalierung von Ethereum | Blockchainwelt" />
+<meta name="twitter:site" content="@blockchainwelt" />
+<meta name="twitter:image" content="https://blockchainwelt.de/wp-content/uploads/2017/12/ethereum-blockchain-ether-coin.jpg" />
+<meta name="twitter:creator" content="@blockchainwelt" />
+<script type='application/ld+json'>{"@context":"https://schema.org","@type":"Organization","url":"https://blockchainwelt.de/","sameAs":["https://www.facebook.com/blockchainwelt/","https://www.linkedin.com/in/blockchainwelt/","https://plus.google.com/+Blockchainwelt","https://www.youtube.com/c/blockchainwelt","https://twitter.com/blockchainwelt"],"@id":"https://blockchainwelt.de/#organization","name":"Blockchainwelt","logo":"https://blockchainwelt.de/wp-content/uploads/2017/11/blockchainwelt-metro-icon.png"}</script>
+<script type='application/ld+json'>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"item":{"@id":"https://blockchainwelt.de/","name":"Startseite"}},{"@type":"ListItem","position":2,"item":{"@id":"https://blockchainwelt.de/ethereum-sharding-skalierung/","name":"Sharding erkl\u00e4rt &#8211; Skalierung von Ethereum"}}]}</script>
+<!-- / Yoast SEO plugin. -->
+
+<link rel="amphtml" href="https://blockchainwelt.de/ethereum-sharding-skalierung/amp/" /><link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Blockchainwelt &raquo; Feed" href="https://blockchainwelt.de/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Blockchainwelt &raquo; Kommentar-Feed" href="https://blockchainwelt.de/comments/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11.2.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11.2.0\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/blockchainwelt.de\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.1"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='https://blockchainwelt.de/wp-includes/css/dist/block-library/style.min.css?ver=5.1' type='text/css' media='all' />
+<link rel='stylesheet' id='saswp-style-css'  href='https://blockchainwelt.de/wp-content/plugins/schema-and-structured-data-for-wp/admin_section/css/saswp-style.css?ver=1.2' type='text/css' media='all' />
+<link rel='stylesheet' id='toc-screen-css'  href='https://blockchainwelt.de/wp-content/plugins/table-of-contents-plus/screen.min.css?ver=1509' type='text/css' media='all' />
+<link rel='stylesheet' id='zeen-style-css'  href='https://blockchainwelt.de/wp-content/themes/zeen/assets/css/style.min.css?ver=1.5' type='text/css' media='all' />
+<style id='zeen-style-inline-css' type='text/css'>
+.content-bg, .article-layout-skin-1.title-cut-bl .hero-wrap .meta:before, .article-layout-skin-1.title-cut-bc .hero-wrap .meta:before, .standard-archive .page-header { background: #ffffff;}.site-inner { background-color: #fff; }.widget-title { font-size:12px;}.fontfam-1 {
+		font-family: 'Playfair Display', sans-serif!important;
+		letter-spacing: 0em;	}.body-f1, .quotes-f1 blockquote, .quotes-f1 q, .by-f1 .byline, .sub-f1 .subtitle, .wh-f1 .widget-title, .headings-f1 h1, .headings-f1 .price, .headings-f1 h2, .headings-f1 h3, .headings-f1 h4, .headings-f1 h5, .headings-f1 h6, .font-1 {font-family: 'Playfair Display', sans-serif;letter-spacing: 0em;font-weight: 700;}.fontfam-2 { font-family: 'Open Sans', sans-serif!important;
+		letter-spacing: 0em;	}input[type=submit], button, .tipi-button,.button,.body-f2, .quotes-f2 blockquote, .quotes-f2 q, .by-f2 .byline, .sub-f2 .subtitle, .wh-f2 .widget-title, .headings-f2 h1, .headings-f2 h2, .headings-f2 h3, .headings-f2 h4, .headings-f2 h5, .headings-f2 h6, .font-2 {font-family: 'Open Sans', sans-serif;letter-spacing: 0em;font-weight: 400;}.fontfam-3 { font-family: 'Montserrat', sans-serif!important;
+		letter-spacing: 0em;	}.body-f3, .quotes-f3 blockquote, .quotes-f3 q, .by-f3 .byline, .sub-f3 .subtitle, .wh-f3 .widget-title, .headings-f3 h1, .headings-f3 h2, .headings-f3 h3, .headings-f3 h4, .headings-f3 h5, .headings-f3 h6, .font-3 {font-family: 'Montserrat', sans-serif;letter-spacing: 0em;font-weight: 400;}.tipi-row, .tipi-builder-on .contents-wrap > p { max-width: 1230px ; }.current-date { color: #f8d92f }.global-accent-border { border-color: #f7d40e; }.trending-accent-border { border-color: #f7d40e; }.trending-accent-bg { border-color: #f7d40e; }.tipi-button.block-loader, .wpcf7-submit { background: #18181e; }.global-accent-bg, .icon-base-2:hover { background-color: #f7d40e; }.global-accent-text, .mm-submenu-2 .mm-51 .menu-wrap > .sub-menu > li > a { color: #f7d40e; }body { color:#000000;}.excerpt { color:#444;}.read-more-wrap { color:#767676;}blockquote:not(.comment-excerpt) { color:#111;}.byline, .byline a { color:#888;}.preview-classic .meta .title, .preview-thumbnail .meta .title { color:#111;}h1, h2, h3, h4, h5, h6, .block-title { color:#111;}.sidebar-widget  .widget-title { color:#111!important;}.link-color-wrap a { color: #000000; }.copyright { color: #555; }.link-color-wrap a:hover { color: #000; }body {font-size: 16px;line-height:1.6666666666667; }.main-navigation .horizontal-menu, .main-navigation .menu-item {font-weight: 700;}.secondary-wrap .horizontal-menu, .secondary-wrap .menu-item {font-weight: 700;}.footer-lower-area, .footer-lower-area .menu-item {font-weight: 700;}.widget-title {font-weight: 700!important;}.entry-title{ text-transform: none; }.block-wrap-slider .title-wrap .title{ text-transform: none; }.block-wrap-grid .title-wrap .title, .tile-design-4 .meta .title-wrap .title{ text-transform: none; }.block-wrap-classic .title-wrap .title{ text-transform: none; }.block-title{ text-transform: none; }.meta .excerpt .read-more{ text-transform: uppercase; }.block-subtitle{ text-transform: none; }.byline{ text-transform: none; }.widget-title{ text-transform: none; }.main-navigation{ text-transform: uppercase; }.secondary-wrap{ text-transform: uppercase; }.footer-lower-area .menu-item{ text-transform: uppercase; }.single-content .entry-content h1, .single-content .entry-content h2, .single-content .entry-content h3, .single-content .entry-content h4, .single-content .entry-content h5, .single-content .entry-content h6, .bbp__thread__title{ text-transform: none; }.mm-submenu-2 .mm-11 .menu-wrap > *, .mm-submenu-2 .mm-31 .menu-wrap > *, .mm-submenu-2 .mm-21 .menu-wrap > * { border-top: 3px solid transparent; }.separation-border { margin-bottom: 30px; }.block-wrap-classic .inf-spacer + .block:not(.block-62) { margin-top: 30px; }.block-title-wrap-style .block-title:after, .block-title-wrap-style .block-title:before { border-top: 1px #eee solid;}.separation-border-v { background: #eee;}.separation-border-v { height: calc( 100% -  30px - 1px); }@media only screen and (max-width: 480px) {.separation-border { margin-bottom: 30px;}}.sidebar-wrap .sidebar { padding-right: 30px; padding-left: 30px; padding-top:0px; padding-bottom:0px; }.sidebar-left .sidebar-wrap .sidebar { padding-right: 30px; padding-left: 30px; }@media only screen and (min-width: 481px) {.split-1:not(.preview-thumbnail) .mask {
+		-webkit-flex: 0 0 calc( 50% - 15px);
+		-ms-flex: 0 0 calc( 50% - 15px);
+		flex: 0 0 calc( 50% - 15px);
+		width: calc( 50% - 15px);
+	}.split-1.preview-1:not(.article-window):not(.preview-thumbnail) .mask { padding-bottom:32%; }}@media only screen and (min-width: 768px) {.hero-meta.tipi-m-typo .title { font-size: 44px; }.hero-meta.tipi-m-typo .subtitle { font-size: 22px; }.title-contrast .hero-wrap { height: calc( 100vh - 50px ); }.tipi-xs-typo .title  { font-size: 15px; }.tipi-s-typo .title, .ppl-s-3 .tipi-s-typo .title, .preview-1 .title, .preview-21 .title  { font-size: 24px;}.sub-menu a:not(.tipi-button) { font-size: 12px;}.footer-widget-wrap { border-right:1px #333333 solid ; }.footer-widget-wrap .widget_search form, .footer-widget-wrap select { border-color:#333333; }.footer-widget-wrap .zeen-widget { border-bottom:1px #333333 solid ; }.footer-widget-wrap .zeen-widget .preview-thumbnail { border-bottom-color: #333333;}.footer-widget-wrap {
+		padding-top: 25px;
+		padding-bottom: 25px;
+	}.secondary-wrap .menu-padding, .secondary-wrap .ul-padding > li > a {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}}@media only screen and (min-width: 1020px) {h1 { font-size: 50px; }h2 { font-size: 40px; }h3 { font-size: 30px; }h4 { font-size: 20px; }h5 { font-size: 16px; }.block-title, .page-title { font-size:40px;}}@media only screen and (min-width: 1240px) {.align-fs .contents-wrap .video-wrap, .align-fs-center .aligncenter.size-full, .align-fs-center .wp-caption.aligncenter .size-full, .align-fs-center .tiled-gallery { width: 1170px; }.align-fs .contents-wrap .video-wrap { height: 658px; }.has-bg .align-fs .contents-wrap .video-wrap, .has-bg .align-fs-center .aligncenter.size-full, .has-bg .align-fs-center .wp-caption.aligncenter .size-full, .has-bg .align-fs-center .tiled-gallery { width: 1230px; }.has-bg .align-fs .contents-wrap .video-wrap { height: 691px; }.align-pull .alignleft.size-thumbnail, .align-pull .alignright.size-thumbnail { width: 100px; }.align-pull .alignleft.wp-caption, .align-pull .alignright.wp-caption { width: 100px!important; }.align-pull .alignleft.size-thumbnail, .align-pull .alignleft.wp-caption { margin-left: -50px; }.align-pull .alignright.size-thumbnail, .align-pull .alignright.wp-caption { margin-right: -50px; }.align-pull .alignleft.size-medium, .align-pull .alignright.size-medium { width: 300px; }.align-pull .alignleft.wp-caption, .align-pull .alignright.wp-caption { width: 300px!important; }.align-pull .alignleft.size-medium, .align-pull .alignleft.wp-caption { margin-left: -150px; }.align-pull .alignright.size-medium, .align-pull .alignright.wp-caption { margin-right: -150px; }.align-pull .alignleft.size-large, .align-pull .alignright.size-large { width: 300px; }.align-pull .alignleft.wp-caption, .align-pull .alignright.wp-caption { width: 300px!important; }.align-pull .alignleft.size-large, .align-pull .alignleft.wp-caption { margin-left: -150px; }.align-pull .alignright.size-large, .align-pull .alignright.wp-caption { margin-right: -150px; }.align-pull .alignleft.size-full { margin-left: -150px; }.align-pull .alignright.size-full { margin-right: -150px; }body { font-size: 17px; }}.byline { font-size: 12px; }.site-header a { color: #111; }.site-skin-3.content-subscribe, .site-skin-3.content-subscribe .subtitle, .site-skin-3.content-subscribe input, .site-skin-3.content-subscribe h2 { color: #fff; } .site-skin-3.content-subscribe input[type="email"] { border-color: #fff; }.footer-widget-wrap .widget_search form { border-color:#333; }.sidebar-wrap .sidebar { border:1px #ddd solid ; }.content-area .zeen-widget { border: 0 #ddd solid ; border-width: 0 0 1px 0; }.content-area .zeen-widget { padding:30px 0px 30px; }.grid-image-1 .mask-overlay { background-color: #1a1d1e ; }.with-fi.preview-grid,.with-fi.preview-grid .byline,.with-fi.preview-grid .subtitle, .with-fi.preview-grid a { color: #fff; }.with-fi.preview-grid:hover, .with-fi.preview-grid:hover .byline,.with-fi.preview-grid:hover .subtitle, .with-fi.preview-grid:hover a { color: #fff; }.preview-grid .mask-overlay { opacity: 0.2 ; }.preview-grid:hover .mask-overlay { opacity: 0.8 ; }.slider-image-1 .mask-overlay { background-color: #1a1d1e ; }.with-fi.preview-slider,.with-fi.preview-slider .byline,.with-fi.preview-slider .subtitle, .with-fi.preview-slider a { color: #fff; }.with-fi.preview-slider:hover, .with-fi.preview-slider:hover .byline,.with-fi.preview-slider:hover .subtitle, .with-fi.preview-slider:hover a { color: #fff; }.preview-slider .mask-overlay { opacity: 0.2 ; }.preview-slider:hover .mask-overlay { opacity: 0.8 ; }.site-footer .footer-widget-bg-area { background-image: linear-gradient(130deg, #f8d92f 0%, #f8d92f 80%);  }.site-footer .footer-widget-bg-area .background { background-image: none; opacity: 1; }.site-footer .footer-widget-bg-area .block-skin-0 .tipi-arrow { color:#000000; border-color:#000000; }.site-footer .footer-widget-bg-area .block-skin-0 .tipi-arrow i:after{ background:#000000; }.site-footer .footer-widget-bg-area,.site-footer .footer-widget-bg-area .byline,.site-footer .footer-widget-bg-area a,.site-footer .footer-widget-bg-area h3,.site-footer .footer-widget-bg-area .widget-title { color:#000000; }.site-footer .footer-widget-bg-area .tipi-spin.tipi-row-inner-style:before { border-color:#000000; }.footer-navigation { font-size: 11px;  }.main-navigation { font-size: 12px;  color: #1e1e1e; }.main-navigation .horizontal-menu>li>a { padding-left: 12px; padding-right: 12px; }.main-navigation-border { border-bottom:3px #f8d92f solid ; }.main-navigation-border .drop-search { border-top:3px #f8d92f solid ; }#progress {bottom: 0;height: 3px; }.sticky-menu-2:not(.active) #progress  { bottom: -3px;  }#progress { background-color: #f7d40e; }.main-navigation-border { border-top: 1px #eee solid ; }.main-navigation .horizontal-menu .drop, .main-navigation .horizontal-menu > li > a {
+		padding-top: 15px;
+		padding-bottom: 15px;
+	}.secondary-wrap, .secondary-wrap a { font-size: 11px; color: #f8d92f; }.secondary-wrap li a, .secondary-icons li a { padding-left: 7px; padding-right: 7px; }.mc4wp-form-fields input[type=submit], .mc4wp-form-fields button, #subscribe-submit input[type=submit], .subscribe-wrap input[type=submit] {color: #6b6b6b;background-image: linear-gradient(130deg,  0%, #000000 80%);}.site-mob-header .header-padding {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}.site-header .header-padding {
+		padding-top:30px;
+		padding-bottom:30px;
+	}.footer-upper-area {
+		padding-top: 50px;
+		padding-bottom: 50px;
+	}.footer-lower-area {
+		padding-top: 25px;
+		padding-bottom: 25px;
+	}
+</style>
+<link rel='stylesheet' id='zeen-fonts-css'  href='https://fonts.googleapis.com/css?family=Playfair+Display%3A700%2Citalic%2C400%7COpen+Sans%3A400%2C700%7CMontserrat%3A400%2C700&#038;ver=5.1#038;subset=latin' type='text/css' media='all' />
+<link rel='stylesheet' id='cookieconsent-css'  href='https://blockchainwelt.de/wp-content/plugins/ga-germanized/assets/css/cookieconsent.css?ver=3.0.3' type='text/css' media='all' />
+<link rel='stylesheet' id='mc4wp-form-themes-css'  href='https://blockchainwelt.de/wp-content/plugins/mailchimp-for-wp/assets/css/form-themes.min.css?ver=4.3.3' type='text/css' media='all' />
+<script type='text/javascript' src='https://blockchainwelt.de/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<!--[if IE]>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/themes/zeen/assets/js/ie.js?ver=1.5'></script>
+<![endif]-->
+<!--[if lt IE 10]>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/themes/zeen/assets/js/ie9.js?ver=1.5'></script>
+<![endif]-->
+<link rel='https://api.w.org/' href='https://blockchainwelt.de/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://blockchainwelt.de/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://blockchainwelt.de/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 5.1" />
+<link rel='shortlink' href='https://blockchainwelt.de/?p=2358' />
+<link rel="alternate" type="application/json+oembed" href="https://blockchainwelt.de/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fblockchainwelt.de%2Fethereum-sharding-skalierung%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://blockchainwelt.de/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fblockchainwelt.de%2Fethereum-sharding-skalierung%2F&#038;format=xml" />
+<!-- Schema & Structured Data For WP v1.2 - -->
+<script type="application/ld+json">
+[{"@context":"http:\/\/schema.org","@type":"WebSite","id":"#website","url":"https:\/\/blockchainwelt.de","name":"Blockchainwelt","potentialAction":{"@type":"SearchAction","target":"https:\/\/blockchainwelt.de\/?s={search_term_string}","query-input":"required name=search_term_string"}},
+
+{"@context":"http:\/\/schema.org","@type":"Organization","name":"Blockchainwelt","url":"https:\/\/blockchainwelt.de","sameAs":[["https:\/\/www.facebook.com\/blockchainwelt\/"],["https:\/\/twitter.com\/blockchainwelt"]],"logo":{"@type":"ImageObject","url":"https:\/\/blockchainwelt.de\/wp-content\/uploads\/2018\/02\/blockchainwelt-logo-web.png","width":"377","height":"224"}}]
+</script>
+
+<style type="text/css">div#toc_container {background: #ffffff;border: 1px solid #000000;}div#toc_container p.toc_title {color: #000000;}div#toc_container p.toc_title a,div#toc_container ul.toc_list a {color: #000000;}div#toc_container p.toc_title a:hover,div#toc_container ul.toc_list a:hover {color: #000000;}div#toc_container p.toc_title a:hover,div#toc_container ul.toc_list a:hover {color: #000000;}</style><script async src="https://www.googletagmanager.com/gtag/js?id=UA-98790660-1"></script><script>
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());gtag('config', 'UA-98790660-1', {"anonymize_ip":true,"allow_display_features":false,"link_attribution":false});</script>	<meta property="og:title" content="Sharding erklärt &#8211; Skalierung von Ethereum">
+	<meta property="og:description" content="Blockchain Technologie">
+	<meta property="og:image" content="https://blockchainwelt.de/wp-content/uploads/2017/12/ethereum-blockchain-ether-coin-620x348.jpg">
+	<meta property="og:url" content="https://blockchainwelt.de/ethereum-sharding-skalierung/">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta property="og:site_name" content="Blockchainwelt">
+	<meta property="og:type" content="website">
+	<link rel="icon" href="https://blockchainwelt.de/wp-content/uploads/2019/02/cropped-Blockchainwelt-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://blockchainwelt.de/wp-content/uploads/2019/02/cropped-Blockchainwelt-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon-precomposed" href="https://blockchainwelt.de/wp-content/uploads/2019/02/cropped-Blockchainwelt-180x180.png" />
+<meta name="msapplication-TileImage" content="https://blockchainwelt.de/wp-content/uploads/2019/02/cropped-Blockchainwelt-270x270.png" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-98790660-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-98790660-1');
+</script>		<style type="text/css" id="wp-custom-css">
+			.entry-content-wrap p a{
+    text-decoration:underline;
+}		</style>
+		</head>
+<body class="post-template-default single single-post postid-2358 single-format-standard headings-f1 body-f2 sub-f1 quotes-f1 by-f2 wh-f2 sm-u13 block-titles-big mob-fi-tall skin-light site-mob-menu-a-1 site-mob-menu-4 mm-submenu-1 main-menu-logo-1 body-header-style-2 body-hero-m byline-font-2">
+	<div id="page" class="site">
+		<header id="mobhead" class="site-header-block site-mob-header tipi-m-0 site-mob-header-2 site-mob-menu-4 sticky-menu-1 sticky-top site-skin-2 site-img-1"><div class="bg-area stickyable header-padding tipi-row tipi-vertical-c">
+	<div class="logo-main-wrap logo-mob-wrap tipi-vertical-c">
+		<div class="logo logo-mobile"><a href="https://blockchainwelt.de"><img src="https://blockchainwelt.de/wp-content/uploads/2019/02/blockchainwelt-logo-mobile-canvas.png" alt="Mobile Blockchainwelt Logo"></a></div>	</div>
+	<ul class="menu-right-2x tipi-vertical-c">
+		<li class="menu-icon menu-icon-style-1 menu-icon-search"><a href="#" class="tipi-i-search modal-tr tipi-tip tipi-tip-move" data-title="Suche" data-type="search"></a></li>
+		
+	
+			
+		
+			<li class="menu-icon menu-icon-mobile-slide"><a href="#" class="mob-tr-open" data-target="slide-menu"><i class="tipi-i-menu-mob" aria-hidden="true"></i></a></li>
+	
+		</ul>
+	<div class="background"></div></div>
+</header><!-- .site-mob-header --><div id="mob-line" class="tipi-m-0"></div>		<div class="site-inner">
+			<div id="secondary-wrap" class="secondary-wrap tipi-xs-0 clearfix font-3 mm-ani-1 secondary-menu-skin-2 secondary-menu-width-1"><div class="menu-bg-area"><div class="menu-content-wrap clearfix tipi-vertical-c tipi-row"><ul class="horizontal-menu menu-icons ul-padding tipi-flex-r secondary-icons">		<li class="menu-icon menu-icon-subscribe"><a href="#" class="modal-tr" data-type="subscribe"><i class="tipi-i-mail"></i><span class="font-3">Abonnieren</span></a></li>
+	<li  class="menu-icon menu-icon-style-1 menu-icon-fb"><a href="http://www.facebook.com/blockchainwelt" data-title="Facebook" class="tipi-i-facebook tipi-tip tipi-tip-move" rel="noopener" target="_blank"></a></li><li  class="menu-icon menu-icon-style-1 menu-icon-tw"><a href="http://www.twitter.com/blockchainwelt" data-title="Twitter" class="tipi-i-twitter tipi-tip tipi-tip-move" rel="noopener" target="_blank"></a></li><li  class="menu-icon menu-icon-style-1 menu-icon-linkedin"><a href="http://www.linkedin.com/company/blockchainwelt/about/" data-title="Linkedin" class="tipi-i-linkedin tipi-tip tipi-tip-move" rel="noopener" target="_blank"></a></li><li  class="menu-icon menu-icon-style-1 menu-icon-rss"><a href="https://blockchainwelt.de/feed/" data-title="RSS" class="tipi-i-rss tipi-tip tipi-tip-move" rel="noopener" target="_blank"></a></li>
+		
+	
+	</ul></div></div></div><header id="masthead" class="site-header-block site-header clearfix site-header-2 header-width-3 header-skin-1 site-img-1 mm-ani-1 mm-skin-2 main-menu-skin-1 main-menu-width-3 main-menu-bar-color-1 logo-only-when-stuck tipi-row main-menu-c"><div class="bg-area">
+	<div class="tipi-flex-lcr logo-main-wrap header-padding tipi-flex-eq-height logo-main-wrap-center">
+		<div class="logo-main-wrap header-padding tipi-vertical-c logo-main-wrap-l"><div class="logo logo-main logo-fallback"><a href="https://blockchainwelt.de">Blockchainwelt</a></div></div>			</div>
+	<div class="background"></div></div>
+</header><!-- .site-header --><div id="header-line"></div><nav id="site-navigation" class="main-navigation main-navigation-1 tipi-xs-0 clearfix logo-only-when-stuck tipi-row main-menu-skin-1 main-menu-width-1 main-menu-bar-color-1 mm-skin-2 mm-submenu-1 mm-ani-1 main-menu-c sticky-menu sticky-menu-1 sticky-top">	<div class="main-navigation-border menu-bg-area">
+		<div class="nav-grid clearfix tipi-row">
+			<div class="tipi-flex sticky-part sticky-p1">
+				<div class="logo-menu-wrap logo-menu-wrap-placeholder"></div>				<ul id="menu-main-menu" class="menu-main-menu horizontal-menu tipi-flex font-3">
+					<li id="menu-item-120" class="menu-item menu-item-type-taxonomy menu-item-object-category dropper drop-it mm-art mm-wrap-11 mm-wrap mm-color mm-sb-left menu-item-120"><a href="https://blockchainwelt.de/news/" data-ppp="3" data-tid="9"  data-term="category">News</a><div class="menu mm-11 tipi-row" data-mm="11"><div class="menu-wrap menu-wrap-more-10 tipi-flex"><div id="block-wrap-120" class="block-wrap block-wrap-61 block-css-120 block-wrap-classic elements-design-1 block-skin-0 filter-wrap-2 block-col-self tipi-box tipi-row ppl-m-3 ppl-s-3 clearfix" data-id="120"><div class="tipi-row-inner-style clearfix"><div class="tipi-row-inner-box contents"><div class="block-title-wrap module-block-title clearfix  block-title-1 with-load-more"><div class="block-title-area clearfix"><div class="block-title font-1">News</div><div class="block-subtitle font-1"><p><a href="https://blockchainwelt.de">Blockchain</a> News und alle wichtigen Informationen aus dem Bereich der Blockchain Technologie ➞ News zu Bitcoin, <a href="https://blockchainwelt.de/ethereum/">Ethereum</a>, <a href="https://blockchainwelt.de/kryptowaehrungen/">Kryptowährungen</a>, Smart Contracts, StartUps, Dapps, Wallet, ICO</p>
+</div></div><div class="filters tipi-flex font-2"><div class="load-more-wrap load-more-size-2 load-more-wrap-2">		<span data-id="120" class="tipi-arrow tipi-arrow-s tipi-arrow-l block-loader block-more block-more-1 no-more" data-dir="1"><i class="tipi-i-angle-left" aria-hidden="true"></i></span>
+		<span data-id="120" class="tipi-arrow tipi-arrow-s tipi-arrow-r block-loader block-more block-more-2" data-dir="2"><i class="tipi-i-angle-right" aria-hidden="true"></i></span>
+		</div></div></div><div class="block block-61 tipi-flex preview-review-bot meta-overlay-0"><article class="tipi-xs-12 elements-location-1 clearfix with-fi ani-base tipi-s-typo stack-1 stack-design-1 separation-border-style loop-0 preview-classic preview-61 img-ani-1 elements-design-1 post-9567 post type-post status-publish format-standard has-post-thumbnail hentry category-news tag-blockchain-anwendungen"><div class="preview-mini-wrap clearfix"><div class="mask"><a href="https://blockchainwelt.de/us-amerikanisches-ooc-blockchain-konsortium-oel-gasindustrie/" class="mask-img"><img width="370" height="247" src="https://blockchainwelt.de/wp-content/uploads/2019/03/ooc-blockchain-consortium-logo-370x247.png" class="attachment-zeen-370-247 size-zeen-370-247 wp-post-image" alt="Offshore Operators Committee (OOC)" /></a></div><div class="meta"><div class="title-wrap"><h3 class="title"><a href="https://blockchainwelt.de/us-amerikanisches-ooc-blockchain-konsortium-oel-gasindustrie/">Amerikanisches OOC Blockchain-Konsortium für die Öl- und Gasindustrie</a></h3></div></div></div></article><article class="tipi-xs-12 elements-location-1 clearfix with-fi ani-base tipi-s-typo stack-1 stack-design-1 separation-border-style loop-1 preview-classic preview-61 img-ani-1 elements-design-1 post-9540 post type-post status-publish format-standard has-post-thumbnail hentry category-news tag-blockchain-anwendungen"><div class="preview-mini-wrap clearfix"><div class="mask"><a href="https://blockchainwelt.de/swiss-blockchain-hackathon-mit-pwc-und-amazon-web-services/" class="mask-img"><img width="370" height="247" src="https://blockchainwelt.de/wp-content/uploads/2019/03/swiss-blockchain-hackathon-370x247.jpg" class="attachment-zeen-370-247 size-zeen-370-247 wp-post-image" alt="Swiss Blockchain Hackathon" srcset="https://blockchainwelt.de/wp-content/uploads/2019/03/swiss-blockchain-hackathon-370x247.jpg 370w, https://blockchainwelt.de/wp-content/uploads/2019/03/swiss-blockchain-hackathon-300x200.jpg 300w, https://blockchainwelt.de/wp-content/uploads/2019/03/swiss-blockchain-hackathon.jpg 620w, https://blockchainwelt.de/wp-content/uploads/2019/03/swiss-blockchain-hackathon-293x195.jpg 293w" sizes="(max-width: 370px) 100vw, 370px" /></a></div><div class="meta"><div class="title-wrap"><h3 class="title"><a href="https://blockchainwelt.de/swiss-blockchain-hackathon-mit-pwc-und-amazon-web-services/">Swiss Blockchain Hackathon mit PwC und Amazon Web Services</a></h3></div></div></div></article><article class="tipi-xs-12 elements-location-1 clearfix with-fi ani-base tipi-s-typo stack-1 stack-design-1 separation-border-style loop-2 preview-classic preview-61 img-ani-1 elements-design-1 post-7246 post type-post status-publish format-standard has-post-thumbnail hentry category-news tag-ethereum"><div class="preview-mini-wrap clearfix"><div class="mask"><a href="https://blockchainwelt.de/ethereum-constantinople-hard-fork-kommt-mitte-januar-2019/" class="mask-img"><img width="365" height="247" src="https://blockchainwelt.de/wp-content/uploads/2018/12/ethereum-blockchain-app-platform-logo.png" class="attachment-zeen-370-247 size-zeen-370-247 wp-post-image" alt="Ethereum Blockchain Logo" srcset="https://blockchainwelt.de/wp-content/uploads/2018/12/ethereum-blockchain-app-platform-logo.png 620w, https://blockchainwelt.de/wp-content/uploads/2018/12/ethereum-blockchain-app-platform-logo-300x203.png 300w" sizes="(max-width: 365px) 100vw, 365px" /></a></div><div class="meta"><div class="title-wrap"><h3 class="title"><a href="https://blockchainwelt.de/ethereum-constantinople-hard-fork-kommt-mitte-januar-2019/">Ethereum | Constantinople Hard Fork am 1. März 2019 erfolgreich</a></h3></div></div></div></article></div></div></div></div></div></div></li>
+<li id="menu-item-1431" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent dropper drop-it mm-art mm-wrap-11 mm-wrap mm-color mm-sb-left menu-item-1431"><a href="https://blockchainwelt.de/wissen/" data-ppp="3" data-tid="1"  data-term="category">Wissen</a><div class="menu mm-11 tipi-row" data-mm="11"><div class="menu-wrap menu-wrap-more-10 tipi-flex"><div id="block-wrap-1431" class="block-wrap block-wrap-61 block-css-1431 block-wrap-classic elements-design-1 block-skin-0 filter-wrap-2 block-col-self tipi-box tipi-row ppl-m-3 ppl-s-3 clearfix" data-id="1431"><div class="tipi-row-inner-style clearfix"><div class="tipi-row-inner-box contents"><div class="block-title-wrap module-block-title clearfix  block-title-1 with-load-more"><div class="block-title-area clearfix"><div class="block-title font-1">Wissen</div><div class="block-subtitle font-1"><p>Wissensartikel zum Thema Blockchain ➞ <a href="https://blockchainwelt.de/blockchain-was-ist-das/">Was ist eine Blockchain?</a> ➞ <a href="https://blockchainwelt.de/ethereum-blockchain-was-ist-das/">Was ist das Ethereum? </a>➞ <a href="https://blockchainwelt.de/bitcoin-was-ist-das/">Was ist Bitcoin?</a> ➞ <a href="https://blockchainwelt.de/kryptowaehrungen/">Was ist eine Kryptowährung?</a> ➞ Was sind <a href="https://blockchainwelt.de/smart-contracts-vertrag-blockchain/">Smart Contracts</a>, <a href="https://blockchainwelt.de/initial-coin-offering-ico-zukunft-finanzierung/">Initial Coin Offering (ICO)</a> und <a href="https://blockchainwelt.de/dapp-dezentralisierte-app-dapps/">Dapps</a></p>
+</div></div><div class="filters tipi-flex font-2"><div class="load-more-wrap load-more-size-2 load-more-wrap-2">		<span data-id="1431" class="tipi-arrow tipi-arrow-s tipi-arrow-l block-loader block-more block-more-1 no-more" data-dir="1"><i class="tipi-i-angle-left" aria-hidden="true"></i></span>
+		<span data-id="1431" class="tipi-arrow tipi-arrow-s tipi-arrow-r block-loader block-more block-more-2" data-dir="2"><i class="tipi-i-angle-right" aria-hidden="true"></i></span>
+		</div></div></div><div class="block block-61 tipi-flex preview-review-bot meta-overlay-0"><article class="tipi-xs-12 elements-location-1 clearfix with-fi ani-base tipi-s-typo stack-1 stack-design-1 separation-border-style loop-0 preview-classic preview-61 img-ani-1 elements-design-1 post-9578 post type-post status-publish format-standard has-post-thumbnail hentry category-wissen tag-blockchain-anwendungen tag-logistik"><div class="preview-mini-wrap clearfix"><div class="mask"><a href="https://blockchainwelt.de/circular-supply-chain-mastercard-amazon-accenture/" class="mask-img"><img width="370" height="247" src="https://blockchainwelt.de/wp-content/uploads/2019/03/accenture-circular-supply-chain-accenture-abbildung-370x247.png" class="attachment-zeen-370-247 size-zeen-370-247 wp-post-image" alt="Accenture Circular Supply Chain PDF" /></a></div><div class="meta"><div class="title-wrap"><h3 class="title"><a href="https://blockchainwelt.de/circular-supply-chain-mastercard-amazon-accenture/">Circular Supply Chain von Mastercard, Amazon und Accenture</a></h3></div></div></div></article><article class="tipi-xs-12 elements-location-1 clearfix with-fi ani-base tipi-s-typo stack-1 stack-design-1 separation-border-style loop-1 preview-classic preview-61 img-ani-1 elements-design-1 post-9142 post type-post status-publish format-standard has-post-thumbnail hentry category-wissen tag-blockchain-anwendungen tag-fintech tag-kryptowaehrungen"><div class="preview-mini-wrap clearfix"><div class="mask"><a href="https://blockchainwelt.de/jpm-coin-contract-intelligence-jp-morgan/" class="mask-img"><img width="370" height="247" src="https://blockchainwelt.de/wp-content/uploads/2019/02/jpmorgan-logo-370x247.png" class="attachment-zeen-370-247 size-zeen-370-247 wp-post-image" alt="JP Morgan Schriftzug" /></a></div><div class="meta"><div class="title-wrap"><h3 class="title"><a href="https://blockchainwelt.de/jpm-coin-contract-intelligence-jp-morgan/">JPM Coin von JPMorgan für den digitalen Zahlungverkehr</a></h3></div></div></div></article><article class="tipi-xs-12 elements-location-1 clearfix with-fi ani-base tipi-s-typo stack-1 stack-design-1 separation-border-style loop-2 preview-classic preview-61 img-ani-1 elements-design-1 post-9116 post type-post status-publish format-standard has-post-thumbnail hentry category-wissen tag-dapp tag-ethereum tag-blockchain-wallet"><div class="preview-mini-wrap clearfix"><div class="mask"><a href="https://blockchainwelt.de/metamask-ethereum-wallet/" class="mask-img"><img width="370" height="247" src="https://blockchainwelt.de/wp-content/uploads/2019/02/metamask-ethereum-online-wallet-logo-370x247.png" class="attachment-zeen-370-247 size-zeen-370-247 wp-post-image" alt="MetaMask Ethereum Online-Wallet Logo" /></a></div><div class="meta"><div class="title-wrap"><h3 class="title"><a href="https://blockchainwelt.de/metamask-ethereum-wallet/">MetaMask &#8211; Einfacher Einstieg in die Ethereum Blockchain</a></h3></div></div></div></article></div></div></div></div></div></div></li>
+<li id="menu-item-6836" class="menu-item menu-item-type-post_type menu-item-object-page dropper drop-it mm-art mm-wrap-2 mm-wrap menu-item-6836"><a href="https://blockchainwelt.de/ethereum/">Ethereum</a></li>
+<li id="menu-item-7136" class="menu-item menu-item-type-post_type menu-item-object-page dropper drop-it mm-art mm-wrap-2 mm-wrap menu-item-7136"><a href="https://blockchainwelt.de/bitcoin/">Bitcoin</a></li>
+<li id="menu-item-8611" class="menu-item menu-item-type-post_type menu-item-object-page dropper drop-it mm-art mm-wrap-2 mm-wrap menu-item-8611"><a href="https://blockchainwelt.de/kryptowaehrungen/">Krypto</a></li>
+<li id="menu-item-149" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropper drop-it mm-art mm-wrap-2 mm-wrap menu-item-149"><a>Welten</a><div class="menu mm-2 tipi-row" data-mm="2"><div class="menu-wrap menu-wrap-minus-10">
+<ul class="sub-menu">
+	<li id="menu-item-379" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper drop-it menu-item-379"><a href="https://blockchainwelt.de/tag/blockchain-anwendungen/" class="block-more block-mm-changer block-mm-init block-changer" data-title="Blockchain Anwendungen" data-url="https://blockchainwelt.de/tag/blockchain-anwendungen/" data-subtitle="Alle Informationen zu aktuellen &lt;a href=&quot;https://blockchainwelt.de/&quot;&gt;Blockchain&lt;/a&gt; Anwendungen ➞ Die Technologie der Zukunft ➞ Möglichkeiten und Chancen für Unternehmen" data-count="428" data-tid="14"  data-term="post_tag">Blockchain Anwendungen</a></li>
+	<li id="menu-item-1278" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper drop-it menu-item-1278"><a href="https://blockchainwelt.de/tag/dapp/" class="block-more block-mm-changer block-mm-init block-changer" data-title="Dapp" data-url="https://blockchainwelt.de/tag/dapp/" data-subtitle="&lt;a href=&quot;https://blockchainwelt.de/dapp-dezentralisierte-app-dapps/&quot;&gt;DApp&lt;/a&gt; ist eine Abkürzung für eine dezentrale Anwendung oder App ➞ Hier finden Sie alle Informationen und News über Dapps und Ihre Möglichkeiten ✓ &lt;a href=&quot;https://blockchainwelt.de/ethereum/&quot;&gt;Ethereum&lt;/a&gt;, &lt;a href=&quot;https://blockchainwelt.de/neo-smart-economy-smart-contracts-ethereum/&quot;&gt;Neo&lt;/a&gt;, &lt;a href=&quot;https://blockchainwelt.de/cardano-ada-blockchain-ethereum-und-neo-killer/&quot;&gt;Cardano&lt;/a&gt; und vieles mehr" data-count="55" data-tid="21"  data-term="post_tag">Dapp</a></li>
+	<li id="menu-item-2579" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper drop-it menu-item-2579"><a href="https://blockchainwelt.de/tag/energiewirtschaft/" class="block-more block-mm-changer block-mm-init block-changer" data-title="Energiewirtschaft" data-url="https://blockchainwelt.de/tag/energiewirtschaft/" data-subtitle="Unternehmen der Energiewirtschaft entwickeln mit Einsatz der Blockchain-Technologie neue Business-Modelle ➞ In diesem Bereich entstehen immer mehr StartUps mit innovativen Lösungen." data-count="30" data-tid="24"  data-term="post_tag">Energiewirtschaft</a></li>
+	<li id="menu-item-2086" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper drop-it menu-item-2086"><a href="https://blockchainwelt.de/tag/fintech/" class="block-more block-mm-changer block-mm-init block-changer" data-title="FinTech/Banken" data-url="https://blockchainwelt.de/tag/fintech/" data-subtitle="FinTech (Finanztechnologie - Banken) Unternehmen entwickeln neue technologische Finanzinnovationen ➞ Gerade im Bereich FinTech-Blockchain entstehen immer mehr StartUps mit innovativen Lösungen." data-count="91" data-tid="23"  data-term="post_tag">FinTech/Banken</a></li>
+	<li id="menu-item-381" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper drop-it menu-item-381"><a href="https://blockchainwelt.de/tag/ico/" class="block-more block-mm-changer block-mm-init block-changer" data-title="ICO" data-url="https://blockchainwelt.de/tag/ico/" data-subtitle="Alle Informationen zum Thema ICO (&lt;a href=&quot;https://blockchainwelt.de/initial-coin-offering-ico-zukunft-finanzierung/&quot;&gt;Initial Coin Offering&lt;/a&gt;) ➞ Es handelt sich um eine Art Crowdfunding als Finanzierungsmodell für &lt;a href=&quot;https://blockchainwelt.de/kryptowaehrungen/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Kryptowährungen&lt;/a&gt;." data-count="43" data-tid="12"  data-term="post_tag">ICO</a></li>
+	<li id="menu-item-2587" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper drop-it menu-item-2587"><a href="https://blockchainwelt.de/tag/logistik/" class="block-more block-mm-changer block-mm-init block-changer" data-title="Logistik" data-url="https://blockchainwelt.de/tag/logistik/" data-subtitle="Logistik Unternehmen entwickeln mit Einsatz der Blockchain-Technologie neue Business-Modelle ➞ In diesem Bereich entstehen immer mehr StartUps mit innovativen Lösungen." data-count="44" data-tid="25"  data-term="post_tag">Logistik</a></li>
+	<li id="menu-item-8392" class="menu-item menu-item-type-post_type menu-item-object-post dropper drop-it menu-item-8392"><a href="https://blockchainwelt.de/ripple/">Ripple (XRP)</a></li>
+	<li id="menu-item-382" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper drop-it menu-item-382"><a href="https://blockchainwelt.de/tag/smart-contracts/" class="block-more block-mm-changer block-mm-init block-changer" data-title="Smart Contracts" data-url="https://blockchainwelt.de/tag/smart-contracts/" data-subtitle="Alle Informationen zu &lt;a href=&quot;https://blockchainwelt.de/smart-contracts-vertrag-blockchain/&quot;&gt;Smart Contracts&lt;/a&gt; ➞ Digitale Vertragsabschlüsse, die automatisch mithilfe der &lt;a href=&quot;https://blockchainwelt.de/&quot;&gt;Blockchain&lt;/a&gt; durchgeführt werden ➞ &lt;a href=&quot;https://blockchainwelt.de/ethereum/&quot;&gt;Ethereum&lt;/a&gt; + &lt;a href=&quot;https://blockchainwelt.de/neo-smart-economy-smart-contracts-ethereum/&quot;&gt;NEO&lt;/a&gt; + &lt;a href=&quot;https://blockchainwelt.de/cardano-ada-blockchain-ethereum-und-neo-killer/&quot;&gt;Cardano&lt;/a&gt;" data-count="113" data-tid="13"  data-term="post_tag">Smart Contracts</a></li>
+	<li id="menu-item-154" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper drop-it menu-item-154"><a href="https://blockchainwelt.de/tag/blockchain-startups/" class="block-more block-mm-changer block-mm-init block-changer" data-title="StartUps" data-url="https://blockchainwelt.de/tag/blockchain-startups/" data-subtitle="Alle Informationen zu Blockchain-StartUps ➞ Die &lt;a href=&quot;https://blockchainwelt.de/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Blockchain-Technologie&lt;/a&gt; durchdringt die gesamte Unternehmenswelt und wird diese massiv verändern." data-count="150" data-tid="10"  data-term="post_tag">StartUps</a></li>
+	<li id="menu-item-721" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper drop-it menu-item-721"><a href="https://blockchainwelt.de/tag/blockchain-technologie/" class="block-more block-mm-changer block-mm-init block-changer" data-title="Technologie" data-url="https://blockchainwelt.de/tag/blockchain-technologie/" data-subtitle="Alle Informationen zum Thema &lt;a href=&quot;https://blockchainwelt.de/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Blockchain-Technologie&lt;/a&gt; ➞ Diese neue Technologie durchdringt die gesamte Unternehmens- und Lebenswelt und wird diese für immer verändern ➞ Technische Informationen" data-count="152" data-tid="15"  data-term="post_tag">Technologie</a></li>
+	<li id="menu-item-1073" class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper drop-it menu-item-1073"><a href="https://blockchainwelt.de/tag/blockchain-wallet/" class="block-more block-mm-changer block-mm-init block-changer" data-title="Wallet" data-url="https://blockchainwelt.de/tag/blockchain-wallet/" data-subtitle="Bei einer &lt;a href=&quot;https://blockchainwelt.de/blockchain-wallet-was-ist-das/&quot;&gt;Blockchain Wallet&lt;/a&gt; handelt es sich um eine Art digitales Bankkonto, das den Nutzern erlaubt Transaktionen untereinander zu tätigen ➞ Es wird zwischen einer Online-Wallet und einer Hardware-Wallet unterschieden. Online-Wallets sind die einfachste, aber nicht die sicherste Variante. Die bekannteste Online-Wallet erhalten Sie auf &lt;a href=&quot;https://blockchainwelt.de/blockchain-com-wallet-fuer-bitcoin-ethereum/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;blockchain.com&lt;/a&gt;" data-count="16" data-tid="16"  data-term="post_tag">Wallet</a></li>
+</ul><!-- ul end --></div><!-- div1 end --></div><!-- div2 end -->
+</li>
+				</ul>
+				<ul class="horizontal-menu font-3 menu-icons tipi-flex-eq-height">
+										<li class="menu-icon menu-icon-style-2 menu-icon-search"><a href="#" class="tipi-i-search modal-tr" data-title="Suche" data-type="search"></a></li>
+		
+	
+					</ul>
+			</div>
+			<div id="sticky-p2" class="sticky-part sticky-p2"><div class="sticky-p2-inner tipi-vertical-c"><div class="title-wrap"><span class="pre-title reading">Wird gerade gelesen</span><div class="title" id="sticky-title">Sharding erklärt &#8211; Skalierung von Ethereum</div></div><div id="sticky-p2-share" class="share-it tipi-vertical-c"><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblockchainwelt.de%2Fethereum-sharding-skalierung%2F" class=" share-button share-button-fb" data-title="Teilen" target="_blank"><span class="share-button-content tipi-vertical-c"><i class="tipi-i-facebook"></i><span class="social-tip font-base font-1">Teilen</span></span></a><a href="https://twitter.com/intent/tweet?text=Sharding%20erkl%C3%A4rt%20%26%238211%3B%20Skalierung%20von%20Ethereum%20-%20https%3A%2F%2Fblockchainwelt.de%2Fethereum-sharding-skalierung%2F" class=" share-button share-button-tw" data-title="Tweet" target="_blank"><span class="share-button-content tipi-vertical-c"><i class="tipi-i-twitter"></i><span class="social-tip font-base font-1">Tweet</span></span></a></div></div></div>		</div>
+			</div>
+</nav><!-- .main-navigation -->
+			<div id="content" class="site-content clearfix">
+			<div id="primary" class="content-area">
+
+	<div class="post-wrap clearfix article-layout-skin-1 title-beneath hero-m sidebar-on sidebar-right hero-fi-off post-2358 post type-post status-publish format-standard has-post-thumbnail hentry category-wissen tag-ethereum tag-blockchain-technologie">
+				<div class="single-content contents-wrap tipi-row content-bg clearfix article-layout-1">
+			<div class="tipi-cols clearfix">
+			<main class="site-main tipi-xs-12 main-block-wrap block-wrap tipi-l-8 tipi-col clearfix">
+		<article>
+				<div class="breadcrumbs-wrap breadcrumbs-sz-m">
+		<div class="breadcrumbs">
+											<div class="crumb">
+									<a href="https://blockchainwelt.de">
+									<span>Startseite</span>
+									</a>
+								</div>
+										<i class="tipi-i-chevron-right"></i>				<div class="crumb">
+									<a href="https://blockchainwelt.de/wissen/">
+									<span>Wissen</span>
+									</a>
+								</div>
+								</div>
+	</div>
+<div class="meta-wrap hero-meta tipi-m-typo elements-design-1 clearfix"><div class="meta "><div class="byline byline-2"><span class="byline-part author"><a class="url fn n" href="https://blockchainwelt.de/author/kai-schiller/">Kai Schiller</a></span><span class="byline-part separator">&middot;</span><span class="byline-part date"><time class="entry-date published dateCreated" datetime="2019-02-03T09:37:14+01:00">3. Februar 2019</time></span></div><div class="title-wrap"><h1 class="entry-title title">Sharding erklärt &#8211; Skalierung von Ethereum</h1></div></div></div><!-- .meta-wrap -->			<div class="entry-content-wrap clearfix">
+																					<div class="entry-content body-color clearfix link-color-wrap">
+																										
+<p>Der Ethereum-Gründer Vitalik Buterin teilte in einer <a href="https://www.reddit.com/r/ethereum/comments/8g1q55/vitalik_teases_sharding_release_on_twitter/" target="_blank" rel="noopener">Reddit-Mitteilung</a> mit: &#8220;<strong>Sharding</strong> is coming&#8221;. Es gibt ein Problem, das sowohl Bitcoin als auch Ethereum geplagt hat: <strong>Skalierbarkeit</strong>. Bitcoin hat dieses Problem durch die Aktivierung von <a href="https://blockchainwelt.de/segwit-segregated-witness/">Segwit</a> und die harte Gabelung in Bitcoin Cash gelöst und natürlich durch das&nbsp;<a href="https://blockchainwelt.de/bitcoin-lightning-network/">Bitcoin-Lightning-Network</a>. Ethereum versucht jedoch, dieses Problem auf andere Weise zu lösen &#8211; mit Sharding.</p>
+
+
+
+<div class="wp-block-image size-large wp-image-777"><figure class="aligncenter"><img  title="" src="https://blockchainwelt.de/wp-content/uploads/2017/12/ethereum-blockchain-ether-coin-620x348.jpg"  alt="ethereum-blockchain-ether-coin-620x348 Sharding erklärt - Skalierung von Ethereum"  class="wp-image-777" srcset="https://blockchainwelt.de/wp-content/uploads/2017/12/ethereum-blockchain-ether-coin.jpg 620w, https://blockchainwelt.de/wp-content/uploads/2017/12/ethereum-blockchain-ether-coin-300x168.jpg 300w" sizes="(max-width: 620px) 100vw, 620px" /><figcaption>Ethereum &#8211; Ether Coin</figcaption></figure></div>
+
+
+
+<div id="toc_container" class="no_bullets"><p class="toc_title">Inhalt</p><ul class="toc_list"><li><a href="#Das_Problem_der_Skalierbarkeit_8211_Wozu_Sharding"><span class="toc_number toc_depth_1">1</span> Das Problem der Skalierbarkeit &#8211; Wozu Sharding ?</a></li><li><a href="#Triviale_aber_fehlerhafte_Wege_um_das_Problem_zu_loesen"><span class="toc_number toc_depth_1">2</span> Triviale, aber fehlerhafte Wege, um das Problem zu lösen</a></li><li><a href="#Ethereum_Sharding_8211_Wie_koennte_ein_Grunddesign_einer_gesplitterten_Blockkette_aussehen"><span class="toc_number toc_depth_1">3</span> Ethereum Sharding &#8211; Wie könnte ein Grunddesign einer gesplitterten Blockkette aussehen?</a></li></ul></div>
+<h2><span id="Das_Problem_der_Skalierbarkeit_8211_Wozu_Sharding">Das Problem der Skalierbarkeit &#8211; Wozu Sharding ?</span></h2>
+
+
+
+<p><a href="https://blockchainwelt.de/ethereum/">Ethereum</a> nähert sich dem Einsatz neuer Technologien, die eine Skalierung des Netzwerks ermöglichen würden. Die Technologie, bekannt als Sharding, versucht, die Daten der Ethereum-Blockkette in überschaubare Teile aufzuteilen. Ethereum steht unter Druck, mit der steigenden Popularität der Plattform Schritt zu halten, was zu langsameren Transaktionszeiten und hohen Bearbeitungsgebühren geführt hat (siehe <a href="https://blockchainwelt.de/ethereum-roadmap-zum-internet-3-0/">Ethereum Roadmap</a>).</p>
+
+
+
+<p>Derzeit speichert jeder Knoten in allen Blockchain-Protokollen alle Zustände (Kontostände, Vertragscode und Speicher, etc.) und verarbeitet alle Transaktionen. Dies bietet ein hohes Maß an Sicherheit, schränkt aber die Skalierbarkeit stark ein: Eine <a href="https://blockchainwelt.de/">Blockchain</a> kann nicht mehr Transaktionen verarbeiten als ein einzelner Knoten. Deshalb ist Bitcoin auf 3-7 Transaktionen pro Sekunde, Ethereum auf 7-15, etc. beschränkt. Dies wirft jedoch eine Frage auf: Gibt es Möglichkeiten, einen neuen Mechanismus zu erstellen, bei dem nur eine kleine Teilmenge von Knoten jede Transaktion überprüft?</p>
+
+
+
+<figure class="wp-block-embed-youtube wp-block-embed is-type-video is-provider-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+<iframe width="1200" height="675" src="https://www.youtube.com/embed/4upppuW7lGE?feature=oembed" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div><figcaption><strong>Video</strong>: Introduction to Sharding</figcaption></figure>
+
+
+
+<h2><span id="Triviale_aber_fehlerhafte_Wege_um_das_Problem_zu_loesen">Triviale, aber fehlerhafte Wege, um das Problem zu lösen</span></h2>
+
+
+
+<p>Es gibt <strong>drei Hauptkategorien</strong> von &#8220;einfachen Lösungen&#8221;:</p>
+
+
+
+<p>Die <strong>erste</strong> besteht darin, einfach auf die Skalierung einzelner Blockketten zu verzichten und stattdessen davon auszugehen, dass die Benutzer viele verschiedene &#8220;<a href="https://blockchainwelt.de/altcoin-definition-und-uebersicht/">Altcoins</a>&#8221; verwenden werden. Dies erhöht den Durchsatz erheblich, geht aber zu Lasten der Sicherheit: Eine Erhöhung des Durchsatzes um den Faktor N bei dieser Methode führt zwangsläufig zu einer Verringerung der Sicherheit um den gleichen Faktor.</p>
+
+
+
+<p>Die <strong>zweite</strong> Möglichkeit ist, einfach die Blockgröße zu erhöhen. Das kann funktionieren und kann in manchen Situationen durchaus das richtige Rezept sein, da Blockgrößen eher durch die Politik als durch realistische technische Überlegungen eingeschränkt werden können. Doch unabhängig davon, wie man im Einzelfall denkt, hat ein solcher Ansatz unweigerlich seine Grenzen: Wenn man zu weit geht, dann werden Knoten, die auf Consumer-Hardware laufen, ausfallen, das Netzwerk wird sich ausschließlich auf eine sehr kleine Anzahl von Supercomputern verlassen, die den Blockchain betreiben, was zu einem großen Zentralisierungsrisiko führen kann.</p>
+
+
+
+<p>Die <strong>dritte</strong> Möglichkeit ist &#8220;<em>Merge Mining</em>&#8220;, eine Technik, bei der es viele Ketten gibt, aber alle Ketten die gleiche Miningkraft haben. Derzeit erhält <a href="https://blockchainwelt.de/namecoin-nmc-dezentralisiert-das-dns-system/">Namecoin</a> einen großen Teil seiner Sicherheit durch die Bitcoin-Blockkette. Wenn alle Miner teilnehmen, kann dies theoretisch den Durchsatz um den Faktor N erhöhen, ohne die Sicherheit zu gefährden. Dies hat aber auch das Problem, dass es die Rechen- und Speicherlast jedes Miners um den Faktor N erhöht, und so ist diese Lösung in der Tat einfach eine heimliche Form der Blockgrößenzunahme.</p>
+
+
+
+<div class="wp-block-image size-large wp-image-2365"><figure class="aligncenter"><img  title="" src="https://blockchainwelt.de/wp-content/uploads/2018/03/ethereum-sharding-skalierung-roadmap-620x445.jpeg"  alt="ethereum-sharding-skalierung-roadmap-620x445 Sharding erklärt - Skalierung von Ethereum"  class="wp-image-2365" srcset="https://blockchainwelt.de/wp-content/uploads/2018/03/ethereum-sharding-skalierung-roadmap.jpeg 620w, https://blockchainwelt.de/wp-content/uploads/2018/03/ethereum-sharding-skalierung-roadmap-300x215.jpeg 300w, https://blockchainwelt.de/wp-content/uploads/2018/03/ethereum-sharding-skalierung-roadmap-585x420.jpeg 585w" sizes="(max-width: 620px) 100vw, 620px" /><figcaption>Ethereum Sharding (Skalierung) &#8211; Roadmap</figcaption></figure></div>
+
+
+
+<h2><span id="Ethereum_Sharding_8211_Wie_koennte_ein_Grunddesign_einer_gesplitterten_Blockkette_aussehen">Ethereum Sharding &#8211; Wie könnte ein Grunddesign einer gesplitterten Blockkette aussehen?</span></h2>
+
+
+
+<p>Ein klügerer Ansatz ist das <strong>Ethereum-Sharding</strong>, bei dem Nutzer den gesamten Zustand des Netzwerks in eine Reihe von Partitionen, sogenannte <strong>Shards</strong>, aufteilen, die ein eigenes, unabhängiges Stück Transaktionsgeschichte enthalten. In diesem System würden bestimmte Knoten Transaktionen nur für bestimmte Shards verarbeiten, so dass der Durchsatz von Transaktionen, die insgesamt über alle Shards hinweg verarbeitet werden, viel höher ist, als wenn ein einziger Shard die gesamte Arbeit erledigt, wie es die Hauptkette jetzt tut.</p>
+
+
+
+<p>Beim Sharding gibt es Knoten, die Kollatoren genannt werden, die Transaktionen auf Shard k akzeptieren (je nach Protokoll wählen die Kollatoren entweder welches k oder werden zufällig mit einigen k belegt) und Kollationen erstellen. Ein <a href="https://blockchainwelt.de/was-ist-ein-block/">Block</a> muss dann für jeden Shard einen Kollationskopf enthalten. Ein Block ist beim Ethereum-Sharding gültig, wenn Folgendes gilt:</p>
+
+
+
+<ol><li>Die in jeder Sortierung angegebene Wurzel stimmt mit der aktuellen Zustandswurzel des zugehörigen Shards überein</li><li>Alle Transaktionen in allen Sortierungen sind gültig</li><li>Die in der Sortierung angegebene Post-State-Wurzel entspricht dem Ergebnis der Ausführung der Transaktionen in der Sortierung über dem angegebenen Vorzustand</li><li>Die Kollation wird von mindestens zwei Dritteln der für diesen Splitter registrierten Kollatoren unterzeichnet</li></ol>
+
+
+
+<p>Beim Ethereum-Sharding gibt es nun <strong>mehrere &#8220;Ebenen&#8221; von Knoten</strong>, die in einem solchen System existieren können:</p>
+
+
+
+<ul><li><strong>Super-Full Node</strong> &#8211; verarbeitet alle Transaktionen in allen Sortierungen und behält den vollen Status für alle Shards bei</li><li><strong>Top-Level-Knoten</strong> &#8211; verarbeitet alle Top-Level-Blöcke, aber verarbeitet oder versucht nicht, die Transaktionen in jeder Sortierung herunterzuladen</li><li><strong>Single-Shard-Knoten</strong> &#8211; fungiert als oberster Knoten, verarbeitet aber auch alle Transaktionen und behält den vollen Status für einen bestimmten Shard bei</li><li><strong>Light Node</strong> &#8211; lädt und verifiziert nur die Block-Header der Top-Level-Blöcke; verarbeitet keine Collation-Header oder Transaktionen, es sei denn, es muss ein bestimmter Eintrag im Zustand eines bestimmten Shards gelesen werden; in diesem Fall lädt es den <a href="https://blockchainwelt.de/merkle-tree-basis-von-blockchain-und-hash-trees/">Merkle-Zweig</a> in den neuesten Collation-Header für diesen Shard und lädt von dort den Merkle-Nachweis des gewünschten Wertes im Zustand herunter</li></ul>
+									</div><!-- .entry-content -->
+							</div><!-- .entry-content -->
+
+			<footer class="entry-footer">
+				<div class="post-tags clearfix"><a href="https://blockchainwelt.de/tag/ethereum/" rel="tag">Ethereum</a><a href="https://blockchainwelt.de/tag/blockchain-technologie/" rel="tag">Technologie</a></div><div class="share-it share-it-11 share-it-icons share-it-count-0 share-it-after"><div class="title">Teilen</div><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblockchainwelt.de%2Fethereum-sharding-skalierung%2F" class="tipi-tip tipi-tip-move share-button share-button-fb" data-title="Teilen" target="_blank"><span class="share-button-content tipi-vertical-c"><i class="tipi-i-facebook"></i></span></a><a href="https://twitter.com/intent/tweet?text=Sharding%20erkl%C3%A4rt%20%26%238211%3B%20Skalierung%20von%20Ethereum%20-%20https%3A%2F%2Fblockchainwelt.de%2Fethereum-sharding-skalierung%2F" class="tipi-tip tipi-tip-move share-button share-button-tw" data-title="Tweet" target="_blank"><span class="share-button-content tipi-vertical-c"><i class="tipi-i-twitter"></i></span></a><a href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Fblockchainwelt.de%2Fethereum-sharding-skalierung%2F" class="tipi-tip tipi-tip-move share-button share-button-li" data-title="Teilen" target="_blank"><span class="share-button-content tipi-vertical-c"><i class="tipi-i-linkedin"></i></span></a><a href="mailto:?body=https%3A%2F%2Fblockchainwelt.de%2Fethereum-sharding-skalierung%2F" class="tipi-tip tipi-tip-move share-button share-button-em" data-title="E-Mail" target="_blank"><span class="share-button-content tipi-vertical-c"><i class="tipi-i-mail"></i></span></a><a href="whatsapp://send?text=Sharding erklärt &#8211; Skalierung von Ethereum – https%3A%2F%2Fblockchainwelt.de%2Fethereum-sharding-skalierung%2F" class="tipi-tip tipi-tip-move tipi-xl-0 share-button share-button-wa" data-title="Teilen" target="_blank"><span class="share-button-content tipi-vertical-c"><i class="tipi-i-whatsapp"></i></span></a></div><div class="related-posts-wrap clearfix"><div id="block-wrap-28446" class="block-wrap block-wrap-29 block-css-28446 block-wrap-classic elements-design-1 block-skin-0 filter-wrap-2 tipi-box ppl-m-4 ppl-s-2 clearfix" data-id="28446"><div class="tipi-row-inner-style clearfix"><div class="tipi-row-inner-box contents"><div class="block-title-wrap module-block-title clearfix  block-title-wrap-style block-title-1 with-load-more"><div class="block-title-area clearfix"><div class="block-title font-1">Ähnlich</div></div><div class="filters tipi-flex font-2"><div class="load-more-wrap load-more-size-2 load-more-wrap-2">		<span data-id="28446" class="tipi-arrow tipi-arrow-s tipi-arrow-l block-loader block-more block-more-1 no-more" data-dir="1"><i class="tipi-i-angle-left" aria-hidden="true"></i></span>
+		<span data-id="28446" class="tipi-arrow tipi-arrow-s tipi-arrow-r block-loader block-more block-more-2" data-dir="2"><i class="tipi-i-angle-right" aria-hidden="true"></i></span>
+		</div></div></div><div class="block block-29 tipi-flex meta-overlay-0"><article class="tipi-xs-12 elements-location-1 clearfix with-fi ani-base article-ani article-ani-1 tipi-s-typo stack-1 stack-design-1 separation-border loop-0 preview-classic preview-29 img-ani-1 elements-design-1 post-9578 post type-post status-publish format-standard has-post-thumbnail hentry category-wissen tag-blockchain-anwendungen tag-logistik"><div class="preview-mini-wrap clearfix"><div class="mask"><a href="https://blockchainwelt.de/circular-supply-chain-mastercard-amazon-accenture/" class="mask-img"><img width="293" height="293" src="https://blockchainwelt.de/wp-content/uploads/2019/03/accenture-circular-supply-chain-accenture-abbildung-293x293.png" class="attachment-zeen-293-293 size-zeen-293-293 wp-post-image" alt="Accenture Circular Supply Chain PDF" srcset="https://blockchainwelt.de/wp-content/uploads/2019/03/accenture-circular-supply-chain-accenture-abbildung-293x293.png 293w, https://blockchainwelt.de/wp-content/uploads/2019/03/accenture-circular-supply-chain-accenture-abbildung-100x100.png 100w, https://blockchainwelt.de/wp-content/uploads/2019/03/accenture-circular-supply-chain-accenture-abbildung-390x390.png 390w" sizes="(max-width: 293px) 100vw, 293px" /></a></div><div class="meta"><div class="byline byline-2 byline-cats-design-1"><div class="byline-part cats"><a href="https://blockchainwelt.de/wissen/" class="cat">Wissen</a></div></div><div class="title-wrap"><h3 class="title"><a href="https://blockchainwelt.de/circular-supply-chain-mastercard-amazon-accenture/">Circular Supply Chain von Mastercard, Amazon und Accenture</a></h3></div></div></div></article><article class="tipi-xs-12 elements-location-1 clearfix with-fi ani-base article-ani article-ani-1 tipi-s-typo stack-1 stack-design-1 separation-border loop-1 preview-classic preview-29 img-ani-1 elements-design-1 post-9142 post type-post status-publish format-standard has-post-thumbnail hentry category-wissen tag-blockchain-anwendungen tag-fintech tag-kryptowaehrungen"><div class="preview-mini-wrap clearfix"><div class="mask"><a href="https://blockchainwelt.de/jpm-coin-contract-intelligence-jp-morgan/" class="mask-img"><img width="293" height="293" src="https://blockchainwelt.de/wp-content/uploads/2019/02/jpmorgan-logo-293x293.png" class="attachment-zeen-293-293 size-zeen-293-293 wp-post-image" alt="JP Morgan Schriftzug" srcset="https://blockchainwelt.de/wp-content/uploads/2019/02/jpmorgan-logo-293x293.png 293w, https://blockchainwelt.de/wp-content/uploads/2019/02/jpmorgan-logo-100x100.png 100w" sizes="(max-width: 293px) 100vw, 293px" /></a></div><div class="meta"><div class="byline byline-2 byline-cats-design-1"><div class="byline-part cats"><a href="https://blockchainwelt.de/wissen/" class="cat">Wissen</a></div></div><div class="title-wrap"><h3 class="title"><a href="https://blockchainwelt.de/jpm-coin-contract-intelligence-jp-morgan/">JPM Coin von JPMorgan für den digitalen Zahlungverkehr</a></h3></div></div></div></article><article class="tipi-xs-12 elements-location-1 clearfix with-fi ani-base article-ani article-ani-1 tipi-s-typo stack-1 stack-design-1 separation-border loop-2 preview-classic preview-29 img-ani-1 elements-design-1 post-9116 post type-post status-publish format-standard has-post-thumbnail hentry category-wissen tag-dapp tag-ethereum tag-blockchain-wallet"><div class="preview-mini-wrap clearfix"><div class="mask"><a href="https://blockchainwelt.de/metamask-ethereum-wallet/" class="mask-img"><img width="293" height="293" src="https://blockchainwelt.de/wp-content/uploads/2019/02/metamask-ethereum-online-wallet-logo-293x293.png" class="attachment-zeen-293-293 size-zeen-293-293 wp-post-image" alt="MetaMask Ethereum Online-Wallet Logo" srcset="https://blockchainwelt.de/wp-content/uploads/2019/02/metamask-ethereum-online-wallet-logo-293x293.png 293w, https://blockchainwelt.de/wp-content/uploads/2019/02/metamask-ethereum-online-wallet-logo-100x100.png 100w, https://blockchainwelt.de/wp-content/uploads/2019/02/metamask-ethereum-online-wallet-logo-390x390.png 390w" sizes="(max-width: 293px) 100vw, 293px" /></a></div><div class="meta"><div class="byline byline-2 byline-cats-design-1"><div class="byline-part cats"><a href="https://blockchainwelt.de/wissen/" class="cat">Wissen</a></div></div><div class="title-wrap"><h3 class="title"><a href="https://blockchainwelt.de/metamask-ethereum-wallet/">MetaMask &#8211; Einfacher Einstieg in die Ethereum Blockchain</a></h3></div></div></div></article><article class="tipi-xs-12 elements-location-1 clearfix with-fi ani-base article-ani article-ani-1 tipi-s-typo stack-1 stack-design-1 separation-border loop-3 preview-classic preview-29 img-ani-1 elements-design-1 post-4031 post type-post status-publish format-standard has-post-thumbnail hentry category-wissen tag-fintech tag-ico tag-smart-contracts tag-blockchain-technologie"><div class="preview-mini-wrap clearfix"><div class="mask"><a href="https://blockchainwelt.de/security-token-offering-sto-wird-ico-ersetzen/" class="mask-img"><img width="293" height="181" src="https://blockchainwelt.de/wp-content/uploads/2018/05/polymath-network-logo.png" class="attachment-zeen-293-293 size-zeen-293-293 wp-post-image" alt="Polymath - Security Token Offering (STO)" srcset="https://blockchainwelt.de/wp-content/uploads/2018/05/polymath-network-logo.png 620w, https://blockchainwelt.de/wp-content/uploads/2018/05/polymath-network-logo-300x185.png 300w, https://blockchainwelt.de/wp-content/uploads/2018/05/polymath-network-logo-356x220.png 356w" sizes="(max-width: 293px) 100vw, 293px" /></a></div><div class="meta"><div class="byline byline-2 byline-cats-design-1"><div class="byline-part cats"><a href="https://blockchainwelt.de/wissen/" class="cat">Wissen</a></div></div><div class="title-wrap"><h3 class="title"><a href="https://blockchainwelt.de/security-token-offering-sto-wird-ico-ersetzen/">Security Token Offering (STO) wird ICO ersetzen</a></h3></div></div></div></article></div></div></div></div></div>			</footer><!-- .entry-footer -->
+		</article><!-- #post-x -->
+	</main><!-- .site-main -->
+	
+<div class="block clearfix sidebar-wrap sticky-sb-on tipi-xs-12 tipi-l-4 tipi-col tipi-xs-0">
+	<aside class="sidebar widget-area bg-area site-img-1 sb-skin-1 widgets-title-skin-4 widgets-skin-4">
+		<div class="background"></div>
+		<div id="zeen_stylish_posts-3" class="sidebar-widget zeen-widget clearfix zeen_stylish_posts"><div class="zeen-stylish-posts-wrap rounded-img"><div id="block-wrap-66306" class="block-wrap block-wrap-23 block-css-66306 block-wrap-classic elements-design-1 block-ani block-skin-0 filter-wrap-2 block-col-self tipi-box block-wrap-thumbnail clearfix" data-id="66306"><div class="tipi-row-inner-style clearfix"><div class="tipi-row-inner-box contents"><div class="block-title-wrap module-block-title clearfix  block-title-1 with-load-more only-filters"><div class="filters tipi-flex font-2"><div class="load-more-wrap load-more-size-1 load-more-wrap-2">		<span data-id="66306" class="tipi-arrow tipi-arrow-s tipi-arrow-l block-loader block-more block-more-1 no-more" data-dir="1"><i class="tipi-i-angle-left" aria-hidden="true"></i></span>
+		<span data-id="66306" class="tipi-arrow tipi-arrow-s tipi-arrow-r block-loader block-more block-more-2" data-dir="2"><i class="tipi-i-angle-right" aria-hidden="true"></i></span>
+		</div></div></div><div class="block block-23 clearfix meta-overlay-0"><article class="tipi-xs-12 clearfix with-fi ani-base tipi-xs-typo split-1 split-design-1 loop-0 preview-thumbnail preview-23 elements-design-1 post-9578 post type-post status-publish format-standard has-post-thumbnail hentry category-wissen tag-blockchain-anwendungen tag-logistik"><div class="preview-mini-wrap clearfix"><div class="mask"><a href="https://blockchainwelt.de/circular-supply-chain-mastercard-amazon-accenture/" class="mask-img"><img width="100" height="100" src="https://blockchainwelt.de/wp-content/uploads/2019/03/accenture-circular-supply-chain-accenture-abbildung-100x100.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Accenture Circular Supply Chain PDF" srcset="https://blockchainwelt.de/wp-content/uploads/2019/03/accenture-circular-supply-chain-accenture-abbildung-100x100.png 100w, https://blockchainwelt.de/wp-content/uploads/2019/03/accenture-circular-supply-chain-accenture-abbildung-293x293.png 293w, https://blockchainwelt.de/wp-content/uploads/2019/03/accenture-circular-supply-chain-accenture-abbildung-390x390.png 390w" sizes="(max-width: 100px) 100vw, 100px" /></a></div><div class="meta"><div class="title-wrap"><h3 class="title"><a href="https://blockchainwelt.de/circular-supply-chain-mastercard-amazon-accenture/">Circular Supply Chain von Mastercard, Amazon und Accenture</a></h3></div></div></div></article><article class="tipi-xs-12 clearfix with-fi ani-base tipi-xs-typo split-1 split-design-1 loop-1 preview-thumbnail preview-23 elements-design-1 post-9567 post type-post status-publish format-standard has-post-thumbnail hentry category-news tag-blockchain-anwendungen"><div class="preview-mini-wrap clearfix"><div class="mask"><a href="https://blockchainwelt.de/us-amerikanisches-ooc-blockchain-konsortium-oel-gasindustrie/" class="mask-img"><img width="100" height="100" src="https://blockchainwelt.de/wp-content/uploads/2019/03/ooc-blockchain-consortium-logo-100x100.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Offshore Operators Committee (OOC)" srcset="https://blockchainwelt.de/wp-content/uploads/2019/03/ooc-blockchain-consortium-logo-100x100.png 100w, https://blockchainwelt.de/wp-content/uploads/2019/03/ooc-blockchain-consortium-logo-293x293.png 293w, https://blockchainwelt.de/wp-content/uploads/2019/03/ooc-blockchain-consortium-logo-390x390.png 390w" sizes="(max-width: 100px) 100vw, 100px" /></a></div><div class="meta"><div class="title-wrap"><h3 class="title"><a href="https://blockchainwelt.de/us-amerikanisches-ooc-blockchain-konsortium-oel-gasindustrie/">Amerikanisches OOC Blockchain-Konsortium für die Öl- und Gasindustrie</a></h3></div></div></div></article><article class="tipi-xs-12 clearfix with-fi ani-base tipi-xs-typo split-1 split-design-1 loop-2 preview-thumbnail preview-23 elements-design-1 post-9540 post type-post status-publish format-standard has-post-thumbnail hentry category-news tag-blockchain-anwendungen"><div class="preview-mini-wrap clearfix"><div class="mask"><a href="https://blockchainwelt.de/swiss-blockchain-hackathon-mit-pwc-und-amazon-web-services/" class="mask-img"><img width="100" height="100" src="https://blockchainwelt.de/wp-content/uploads/2019/03/swiss-blockchain-hackathon-100x100.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Swiss Blockchain Hackathon" srcset="https://blockchainwelt.de/wp-content/uploads/2019/03/swiss-blockchain-hackathon-100x100.jpg 100w, https://blockchainwelt.de/wp-content/uploads/2019/03/swiss-blockchain-hackathon-293x293.jpg 293w, https://blockchainwelt.de/wp-content/uploads/2019/03/swiss-blockchain-hackathon-390x390.jpg 390w" sizes="(max-width: 100px) 100vw, 100px" /></a></div><div class="meta"><div class="title-wrap"><h3 class="title"><a href="https://blockchainwelt.de/swiss-blockchain-hackathon-mit-pwc-und-amazon-web-services/">Swiss Blockchain Hackathon mit PwC und Amazon Web Services</a></h3></div></div></div></article><article class="tipi-xs-12 clearfix with-fi ani-base tipi-xs-typo split-1 split-design-1 loop-3 preview-thumbnail preview-23 elements-design-1 post-7246 post type-post status-publish format-standard has-post-thumbnail hentry category-news tag-ethereum"><div class="preview-mini-wrap clearfix"><div class="mask"><a href="https://blockchainwelt.de/ethereum-constantinople-hard-fork-kommt-mitte-januar-2019/" class="mask-img"><img width="100" height="100" src="https://blockchainwelt.de/wp-content/uploads/2018/12/ethereum-blockchain-app-platform-logo-150x150.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Ethereum Blockchain Logo" /></a></div><div class="meta"><div class="title-wrap"><h3 class="title"><a href="https://blockchainwelt.de/ethereum-constantinople-hard-fork-kommt-mitte-januar-2019/">Ethereum | Constantinople Hard Fork am 1. März 2019 erfolgreich</a></h3></div></div></div></article><article class="tipi-xs-12 clearfix with-fi ani-base tipi-xs-typo split-1 split-design-1 loop-4 preview-thumbnail preview-23 elements-design-1 post-9519 post type-post status-publish format-standard has-post-thumbnail hentry category-news tag-blockchain-anwendungen"><div class="preview-mini-wrap clearfix"><div class="mask"><a href="https://blockchainwelt.de/fujitsu-sony-starten-blockchain-kursunterlagen-und-prufungsdaten/" class="mask-img"><img width="100" height="100" src="https://blockchainwelt.de/wp-content/uploads/2019/02/sony-make-believe-logo-100x100.png" class="attachment-thumbnail size-thumbnail wp-post-image" alt="Sony - make.believe - Logo" srcset="https://blockchainwelt.de/wp-content/uploads/2019/02/sony-make-believe-logo-100x100.png 100w, https://blockchainwelt.de/wp-content/uploads/2019/02/sony-make-believe-logo-293x293.png 293w, https://blockchainwelt.de/wp-content/uploads/2019/02/sony-make-believe-logo-390x390.png 390w" sizes="(max-width: 100px) 100vw, 100px" /></a></div><div class="meta"><div class="title-wrap"><h3 class="title"><a href="https://blockchainwelt.de/fujitsu-sony-starten-blockchain-kursunterlagen-und-prufungsdaten/">Fujitsu und Sony starten Blockchain für Kursunterlagen und Prüfungsdaten</a></h3></div></div></div></article><article class="tipi-xs-12 clearfix with-fi ani-base tipi-xs-typo split-1 split-design-1 loop-5 preview-thumbnail preview-23 elements-design-1 post-9330 post type-post status-publish format-standard has-post-thumbnail hentry category-news tag-blockchain-anwendungen"><div class="preview-mini-wrap clearfix"><div class="mask"><a href="https://blockchainwelt.de/kpmg-studie-blockchain-wird-geschaftsmodelle-veraendern/" class="mask-img"><img width="100" height="100" src="https://blockchainwelt.de/wp-content/uploads/2018/12/kpmg-gebaeude-london-150x150.jpg" class="attachment-thumbnail size-thumbnail wp-post-image" alt="KPMG Gebäude London" /></a></div><div class="meta"><div class="title-wrap"><h3 class="title"><a href="https://blockchainwelt.de/kpmg-studie-blockchain-wird-geschaftsmodelle-veraendern/">KPMG-Studie | Blockchain wird Geschäftsmodelle verändern</a></h3></div></div></div></article></div></div></div></div></div></div><div id="tag_cloud-3" class="sidebar-widget zeen-widget clearfix widget_tag_cloud"><h3 class="widget-title title">Schlagwörter</h3><div class="tagcloud"><a href="https://blockchainwelt.de/tag/bitcoin/" class="tag-cloud-link tag-link-4 tag-link-position-1" style="font-size: 1em;">Bitcoin</a>
+<a href="https://blockchainwelt.de/tag/blockchain-anwendungen/" class="tag-cloud-link tag-link-14 tag-link-position-2" style="font-size: 1em;">Blockchain Anwendungen</a>
+<a href="https://blockchainwelt.de/tag/dapp/" class="tag-cloud-link tag-link-21 tag-link-position-3" style="font-size: 1em;">Dapp</a>
+<a href="https://blockchainwelt.de/tag/energiewirtschaft/" class="tag-cloud-link tag-link-24 tag-link-position-4" style="font-size: 1em;">Energiewirtschaft</a>
+<a href="https://blockchainwelt.de/tag/ethereum/" class="tag-cloud-link tag-link-6 tag-link-position-5" style="font-size: 1em;">Ethereum</a>
+<a href="https://blockchainwelt.de/tag/fintech/" class="tag-cloud-link tag-link-23 tag-link-position-6" style="font-size: 1em;">FinTech/Banken</a>
+<a href="https://blockchainwelt.de/tag/hyperledger/" class="tag-cloud-link tag-link-46 tag-link-position-7" style="font-size: 1em;">Hyperledger</a>
+<a href="https://blockchainwelt.de/tag/ico/" class="tag-cloud-link tag-link-12 tag-link-position-8" style="font-size: 1em;">ICO</a>
+<a href="https://blockchainwelt.de/tag/iota/" class="tag-cloud-link tag-link-44 tag-link-position-9" style="font-size: 1em;">IOTA</a>
+<a href="https://blockchainwelt.de/tag/kryptowaehrungen/" class="tag-cloud-link tag-link-26 tag-link-position-10" style="font-size: 1em;">Kryptowährungen</a>
+<a href="https://blockchainwelt.de/tag/logistik/" class="tag-cloud-link tag-link-25 tag-link-position-11" style="font-size: 1em;">Logistik</a>
+<a href="https://blockchainwelt.de/tag/ripple/" class="tag-cloud-link tag-link-45 tag-link-position-12" style="font-size: 1em;">Ripple</a>
+<a href="https://blockchainwelt.de/tag/smart-contracts/" class="tag-cloud-link tag-link-13 tag-link-position-13" style="font-size: 1em;">Smart Contracts</a>
+<a href="https://blockchainwelt.de/tag/blockchain-startups/" class="tag-cloud-link tag-link-10 tag-link-position-14" style="font-size: 1em;">StartUps</a>
+<a href="https://blockchainwelt.de/tag/blockchain-technologie/" class="tag-cloud-link tag-link-15 tag-link-position-15" style="font-size: 1em;">Technologie</a>
+<a href="https://blockchainwelt.de/tag/blockchain-wallet/" class="tag-cloud-link tag-link-16 tag-link-position-16" style="font-size: 1em;">Wallet</a></div>
+</div><div id="custom_html-4" class="widget_text sidebar-widget zeen-widget clearfix widget_custom_html"><div class="textwidget custom-html-widget"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Blockchainwelt - Widget -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-1667093225191784"
+     data-ad-slot="7917692666"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div></div>	</aside><!-- .sidebar -->
+</div>
+
+		</div><!-- .tipi-cols -->
+		</div><!-- .tipi-row -->
+
+	</div><!-- .post-wrap -->
+	
+</div><!-- .content-area -->
+		</div><!-- .site-content -->
+				<footer id="colophon" class="site-footer site-footer-1 site-img-1 widget-area-borders-1 footer-fs  widget-title-default clearfix">
+			<div class="bg-area">
+				<div class="bg-area-inner">
+										<div class="footer-widget-area footer-widget-bg-area footer-widgets tipi-xs-12 clearfix footer-widget-area-1 footer-widgets-skin-3 site-img-1">
+	<div class="footer-widget-bg-area-inner tipi-flex tipi-row ">
+					<div class="tipi-xs-12 footer-widget-wrap footer-widget-wrap-1 clearfix">
+				<aside class="sidebar widget-area">
+					<div id="text-3" class="footer-widget zeen-widget clearfix widget_text">			<div class="textwidget"><p><strong><a href="https://blockchainwelt.de/datenschutz/" target="_blank" rel="noopener">Datenschutz</a> | <a href="https://blockchainwelt.de/impressum/" target="_blank" rel="noopener">Impressum</a></strong></p>
+</div>
+		</div>				</aside><!-- .sidebar .widget-area -->
+			</div>
+									</div><!-- .footer-widget-area -->
+	<div class="background"></div></div><!-- .footer-widget-area -->
+<div class="footer-lower-area footer-area clearfix site-skin-2">
+	<div class="tipi-row">
+					<ul class="horizontal-menu font-2 menu-icons">
+				<li class="menu-icon menu-icon-subscribe"><a href="#" class="modal-tr" data-type="subscribe"><i class="tipi-i-mail"></i><span class="font-3">Abonnieren</span></a></li>
+	<li  class="menu-icon menu-icon-style-1 menu-icon-fb"><a href="http://www.facebook.com/blockchainwelt" data-title="Facebook" class="tipi-i-facebook tipi-tip tipi-tip-move" rel="noopener" target="_blank"></a></li><li  class="menu-icon menu-icon-style-1 menu-icon-tw"><a href="http://www.twitter.com/blockchainwelt" data-title="Twitter" class="tipi-i-twitter tipi-tip tipi-tip-move" rel="noopener" target="_blank"></a></li><li  class="menu-icon menu-icon-style-1 menu-icon-linkedin"><a href="http://www.linkedin.com/company/blockchainwelt/about/" data-title="Linkedin" class="tipi-i-linkedin tipi-tip tipi-tip-move" rel="noopener" target="_blank"></a></li><li  class="menu-icon menu-icon-style-1 menu-icon-rss"><a href="https://blockchainwelt.de/feed/" data-title="RSS" class="tipi-i-rss tipi-tip tipi-tip-move" rel="noopener" target="_blank"></a></li>
+		
+	
+		</ul>
+							<div class="to-top to-top-2 font-2"><a href="#" id="to-top" class="tipi-arrow tipi-arrow-m tipi-arrow-t"><i class="tipi-i-angle-up"></i></a></div>
+					</div>
+</div>
+					<div class="background"></div>				</div>
+			</div>
+		</footer><!-- .site-footer -->
+				
+	</div><!-- .site-inner -->
+
+</div><!-- .site -->
+<div id="mob-menu-wrap" class="mob-menu-wrap mobile-navigation-dd tipi-m-0 site-skin-2 site-img-1">
+	<div class="bg-area">
+		<a href="#" class="mob-tr-close tipi-close-icon"><i class="tipi-i-close" aria-hidden="true"></i></a>
+		<div class="content-wrap">
+			<div class="content">
+								<nav class="mobile-navigation mobile-navigation-1"><ul id="menu-mobile" class="menu-mobile vertical-menu font-s"><li class="menu-item menu-item-type-taxonomy menu-item-object-category dropper standard-drop mm-art mm-wrap-11 mm-wrap mm-color mm-sb-left menu-item-120"><a href="https://blockchainwelt.de/news/">News</a></li>
+<li class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent dropper standard-drop mm-art mm-wrap-11 mm-wrap mm-color mm-sb-left menu-item-1431"><a href="https://blockchainwelt.de/wissen/">Wissen</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page dropper standard-drop mm-art mm-wrap-2 mm-wrap menu-item-6836"><a href="https://blockchainwelt.de/ethereum/">Ethereum</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page dropper standard-drop mm-art mm-wrap-2 mm-wrap menu-item-7136"><a href="https://blockchainwelt.de/bitcoin/">Bitcoin</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page dropper standard-drop mm-art mm-wrap-2 mm-wrap menu-item-8611"><a href="https://blockchainwelt.de/kryptowaehrungen/">Krypto</a></li>
+<li class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children dropper standard-drop mm-art mm-wrap-2 mm-wrap menu-item-149"><a>Welten</a>
+<ul class="sub-menu">
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper standard-drop menu-item-379"><a href="https://blockchainwelt.de/tag/blockchain-anwendungen/">Blockchain Anwendungen</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper standard-drop menu-item-1278"><a href="https://blockchainwelt.de/tag/dapp/">Dapp</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper standard-drop menu-item-2579"><a href="https://blockchainwelt.de/tag/energiewirtschaft/">Energiewirtschaft</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper standard-drop menu-item-2086"><a href="https://blockchainwelt.de/tag/fintech/">FinTech/Banken</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper standard-drop menu-item-381"><a href="https://blockchainwelt.de/tag/ico/">ICO</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper standard-drop menu-item-2587"><a href="https://blockchainwelt.de/tag/logistik/">Logistik</a></li>
+	<li class="menu-item menu-item-type-post_type menu-item-object-post dropper standard-drop menu-item-8392"><a href="https://blockchainwelt.de/ripple/">Ripple (XRP)</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper standard-drop menu-item-382"><a href="https://blockchainwelt.de/tag/smart-contracts/">Smart Contracts</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper standard-drop menu-item-154"><a href="https://blockchainwelt.de/tag/blockchain-startups/">StartUps</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper standard-drop menu-item-721"><a href="https://blockchainwelt.de/tag/blockchain-technologie/">Technologie</a></li>
+	<li class="menu-item menu-item-type-taxonomy menu-item-object-post_tag dropper standard-drop menu-item-1073"><a href="https://blockchainwelt.de/tag/blockchain-wallet/">Wallet</a></li>
+</ul>
+</li>
+</ul></nav><!-- .mobile-navigation -->				<ul class="menu-icons horizontal-menu">
+							<li class="menu-icon menu-icon-subscribe"><a href="#" class="modal-tr" data-type="subscribe"><i class="tipi-i-mail"></i><span class="font-3">Abonnieren</span></a></li>
+	<li  class="menu-icon menu-icon-style-1 menu-icon-fb"><a href="http://www.facebook.com/blockchainwelt" data-title="Facebook" class="tipi-i-facebook tipi-tip tipi-tip-move" rel="noopener" target="_blank"></a></li><li  class="menu-icon menu-icon-style-1 menu-icon-tw"><a href="http://www.twitter.com/blockchainwelt" data-title="Twitter" class="tipi-i-twitter tipi-tip tipi-tip-move" rel="noopener" target="_blank"></a></li><li  class="menu-icon menu-icon-style-1 menu-icon-rss"><a href="https://blockchainwelt.de/feed/" data-title="RSS" class="tipi-i-rss tipi-tip tipi-tip-move" rel="noopener" target="_blank"></a></li><li class="menu-icon menu-icon-style-1 menu-icon-search"><a href="#" class="tipi-i-search modal-tr tipi-tip tipi-tip-move" data-title="Suche" data-type="search"></a></li>
+		
+	
+					</ul>
+			</div>
+		</div>
+		<div class="background"></div>	</div>
+</div>
+<div id="modal" class="modal-wrap inactive">
+	<span class="tipi-overlay tipi-overlay-modal"></span>
+	<div class="content tipi-vertical-c tipi-row">
+		<div class="content-search search-form-wrap content-block">
+			<form method="get" class="search tipi-flex" action="https://blockchainwelt.de/">
+	<input type="search" class="search-field font-b" placeholder="Suche" value="" name="s" autocomplete="off">
+	<button class="tipi-i-search-thin search-submit" type="submit" value=""></button>
+</form>
+			<div class="search-hints">
+				<span class="search-hint">Start typing to see results or hit ESC to close</span>
+				<div class="suggestions-wrap font-2"><a href="https://blockchainwelt.de/tag/blockchain-anwendungen/" class="tag-cloud-link tag-link-14 tag-link-position-1" style="font-size: 12px;">Blockchain Anwendungen</a>
+<a href="https://blockchainwelt.de/tag/blockchain-technologie/" class="tag-cloud-link tag-link-15 tag-link-position-2" style="font-size: 12px;">Technologie</a>
+<a href="https://blockchainwelt.de/tag/blockchain-startups/" class="tag-cloud-link tag-link-10 tag-link-position-3" style="font-size: 12px;">StartUps</a>
+<a href="https://blockchainwelt.de/tag/ethereum/" class="tag-cloud-link tag-link-6 tag-link-position-4" style="font-size: 12px;">Ethereum</a>
+<a href="https://blockchainwelt.de/tag/kryptowaehrungen/" class="tag-cloud-link tag-link-26 tag-link-position-5" style="font-size: 12px;">Kryptowährungen</a></div>			</div>
+			<div class="content-found-wrap"><div class="content-found"></div><div class="button-wrap"><a class="search-all-results button-arrow-r button-arrow tipi-button" href="#"><span class="button-title">See all results</span><i class="tipi-i-arrow-right"></i></a></div></div>		</div>
+
+			<div class="content-subscribe content-subscribe-style content-subscribe-2 site-skin-2 site-img-1  content-block subscribe-wrap">
+		<div class="tipi-modal-bg bg-area clearfix">
+			<div class="content-subscribe-inner">
+						<div class="subscribe-titles">
+										<h2 class="title">Blockchain Newsletter</h2>
+												</div>
+						<div class="subscribe-form">
+									<script>(function() {
+	if (!window.mc4wp) {
+		window.mc4wp = {
+			listeners: [],
+			forms    : {
+				on: function (event, callback) {
+					window.mc4wp.listeners.push({
+						event   : event,
+						callback: callback
+					});
+				}
+			}
+		}
+	}
+})();
+</script><!-- Mailchimp for WordPress v4.3.3 - https://wordpress.org/plugins/mailchimp-for-wp/ --><form id="mc4wp-form-1" class="mc4wp-form mc4wp-form-608 mc4wp-form-theme mc4wp-form-theme-blue" method="post" data-id="608" data-name="Newsletter" ><div class="mc4wp-form-fields"><p>
+    <label>E-Mail-Adresse</label>
+    <input type="email" name="EMAIL" required="">
+</p>
+
+<button type="submit" class="button-arrow-r button-arrow">
+  <span class="button-title">Abonnieren</span><i class="tipi-i-arrow-right"></i>
+</button>
+<a href="https://blockchainwelt.de/datenschutz" target="_blank">*Datenschutzerklärung lesen
+  
+</div><label style="display: none !important;">Leave this field empty if you're human: <input type="text" name="_mc4wp_honeypot" value="" tabindex="-1" autocomplete="off" /></label><input type="hidden" name="_mc4wp_timestamp" value="1551695290" /><input type="hidden" name="_mc4wp_form_id" value="608" /><input type="hidden" name="_mc4wp_form_element_id" value="mc4wp-form-1" /><div class="mc4wp-response"></div></form><!-- / Mailchimp for WordPress Plugin -->				
+			</div>
+		</div>
+		<div class="background"></div></div></div>		<div class="content-lwa content-block site-img-1 site-skin-2">
+					Login with ajax is not installed (or active). To use this feature, please install it. Alternatively remove this icon from this location in Zeen &gt; Theme Options.		 		</div>
+
+		<div class="content-custom content-block">
+		</div>
+	</div>
+	<a href="#" class="close tipi-x-wrap tipi-x-outer"><i class="tipi-i-close"></i></a>
+
+</div>
+<span id="tipi-overlay" class="tipi-overlay tipi-overlay-base tipi-overlay-dark"><a href="#" class="close tipi-x-wrap"><i class="tipi-i-close"></i></a></span>
+<div id="mob-bot-share" class="mob-bot-share tipi-m-0 mob-bot-share-2">
+	<div class="share-buttons">
+		<a href="https://twitter.com/intent/tweet?text=Sharding%20erkl%C3%A4rt%20%26%238211%3B%20Skalierung%20von%20Ethereum%20-%20https%3A%2F%2Fblockchainwelt.de%2Fethereum-sharding-skalierung%2F" class="tipi-tip tipi-tip-move share-button share-button-tw" data-title="Tweet" target="_blank"><span class="share-button-content tipi-vertical-c"><i class="tipi-i-twitter"></i></span></a><a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fblockchainwelt.de%2Fethereum-sharding-skalierung%2F" class="tipi-tip tipi-tip-move share-button share-button-fb" data-title="Teilen" target="_blank"><span class="share-button-content tipi-vertical-c"><i class="tipi-i-facebook"></i></span></a><a href="whatsapp://send?text=Sharding erklärt &#8211; Skalierung von Ethereum – https%3A%2F%2Fblockchainwelt.de%2Fethereum-sharding-skalierung%2F" class="tipi-tip tipi-tip-move tipi-xl-0 share-button share-button-wa" data-title="Teilen" target="_blank"><span class="share-button-content tipi-vertical-c"><i class="tipi-i-whatsapp"></i></span></a>	</div>
+</div>
+<script type="application/ld+json">{"@context": "http://schema.org",
+	"@type": "WebPage",
+	"name": "Blockchainwelt",
+	"description": "Blockchain Technologie",
+	"url": "https://blockchainwelt.de/","datePublished": "2019-02-03T09:37:14+01:00","dateCreated": "2019-02-03T09:37:14+01:00","dateModified": "2019-02-20T16:46:49+01:00","sameAs": ["https://facebook.com/blockchainwelt","https://twitter.com/blockchainwelt"],"potentialAction": {
+	"@type": "SearchAction",
+	"target": "https://blockchainwelt.de/?s=&#123;search_term&#125;",
+	"query-input": "required name=search_term"},"breadcrumb":{ "@type": "BreadcrumbList","itemListElement": [{"@type": "ListItem",	"position": 1, "item": {
+				"@id": "https://blockchainwelt.de",
+				"name": "Startseite"
+				}
+				},{"@type": "ListItem",	"position": 2, "item": {
+				"@id": "https://blockchainwelt.de/wissen/",
+				"name": "Wissen"
+				}
+				}]}}</script><script>(function() {function addEventListener(element,event,handler) {
+	if(element.addEventListener) {
+		element.addEventListener(event,handler, false);
+	} else if(element.attachEvent){
+		element.attachEvent('on'+event,handler);
+	}
+}function maybePrefixUrlField() {
+	if(this.value.trim() !== '' && this.value.indexOf('http') !== 0) {
+		this.value = "http://" + this.value;
+	}
+}
+
+var urlFields = document.querySelectorAll('.mc4wp-form input[type="url"]');
+if( urlFields && urlFields.length > 0 ) {
+	for( var j=0; j < urlFields.length; j++ ) {
+		addEventListener(urlFields[j],'blur',maybePrefixUrlField);
+	}
+}/* test if browser supports date fields */
+var testInput = document.createElement('input');
+testInput.setAttribute('type', 'date');
+if( testInput.type !== 'date') {
+
+	/* add placeholder & pattern to all date fields */
+	var dateFields = document.querySelectorAll('.mc4wp-form input[type="date"]');
+	for(var i=0; i<dateFields.length; i++) {
+		if(!dateFields[i].placeholder) {
+			dateFields[i].placeholder = 'YYYY-MM-DD';
+		}
+		if(!dateFields[i].pattern) {
+			dateFields[i].pattern = '[0-9]{4}-(0[1-9]|1[012])-(0[1-9]|1[0-9]|2[0-9]|3[01])';
+		}
+	}
+}
+
+})();</script><style id='zeen-mm-style-inline-css' type='text/css'>
+
+			.main-menu-bar-color-1 .menu-main-menu .mm-color.menu-item-120.active:hover > a,
+			.main-menu-bar-color-1.mm-ani-0 .menu-main-menu .mm-color.menu-item-120:hover > a,
+			.main-menu-bar-color-1 .menu-main-menu .current-menu-item.menu-item-120 > a { background: #f7d40e; }.main-navigation .mm-color.menu-item-120 .sub-menu { background: #f7d40e;}
+
+			.main-menu-bar-color-1 .menu-main-menu .mm-color.menu-item-1431.active:hover > a,
+			.main-menu-bar-color-1.mm-ani-0 .menu-main-menu .mm-color.menu-item-1431:hover > a,
+			.main-menu-bar-color-1 .menu-main-menu .current-menu-item.menu-item-1431 > a { background: #f7d40e; }.main-navigation .mm-color.menu-item-1431 .sub-menu { background: #f7d40e;}
+
+			.main-menu-bar-color-1 .menu-main-menu .mm-color.menu-item-6836.active:hover > a,
+			.main-menu-bar-color-1.mm-ani-0 .menu-main-menu .mm-color.menu-item-6836:hover > a,
+			.main-menu-bar-color-1 .menu-main-menu .current-menu-item.menu-item-6836 > a { background: #f7d40e; }.main-navigation .mm-color.menu-item-6836 .sub-menu { background: #f7d40e;}
+
+			.main-menu-bar-color-1 .menu-main-menu .mm-color.menu-item-7136.active:hover > a,
+			.main-menu-bar-color-1.mm-ani-0 .menu-main-menu .mm-color.menu-item-7136:hover > a,
+			.main-menu-bar-color-1 .menu-main-menu .current-menu-item.menu-item-7136 > a { background: #f7d40e; }.main-navigation .mm-color.menu-item-7136 .sub-menu { background: #f7d40e;}
+
+			.main-menu-bar-color-1 .menu-main-menu .mm-color.menu-item-8611.active:hover > a,
+			.main-menu-bar-color-1.mm-ani-0 .menu-main-menu .mm-color.menu-item-8611:hover > a,
+			.main-menu-bar-color-1 .menu-main-menu .current-menu-item.menu-item-8611 > a { background: #f7d40e; }.main-navigation .mm-color.menu-item-8611 .sub-menu { background: #f7d40e;}
+
+			.main-menu-bar-color-1 .menu-main-menu .mm-color.menu-item-149.active:hover > a,
+			.main-menu-bar-color-1.mm-ani-0 .menu-main-menu .mm-color.menu-item-149:hover > a,
+			.main-menu-bar-color-1 .menu-main-menu .current-menu-item.menu-item-149 > a { background: #f7d40e; }.main-navigation .mm-color.menu-item-149 .sub-menu { background: #f7d40e;}
+</style>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var tocplus = {"smooth_scroll":"1","smooth_scroll_offset":"100"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/plugins/table-of-contents-plus/front.min.js?ver=1509'></script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/themes/zeen/assets/js/gsap/TweenLite.min.js?ver=1.20.5'></script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/themes/zeen/assets/js/gsap/CSSPlugin.min.js?ver=1.20.5'></script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/themes/zeen/assets/js/gsap/ScrollToPlugin.min.js?ver=1.20.5'></script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/themes/zeen/assets/js/cookie.min.js?ver=2.1.3'></script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/themes/zeen/assets/js/flickity.pkgd.min.js?ver=2.1.2'></script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/themes/zeen/assets/js/flickity-full-screen.min.js?ver=1.0.1'></script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/themes/zeen/assets/js/hoverIntent.min.js?ver=1.9.0'></script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-includes/js/masonry.min.js?ver=3.3.2'></script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/themes/zeen/assets/js/obs.min.js?ver=1.0.0'></script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/themes/zeen/assets/js/scrollmagic.min.js?ver=2.0.5'></script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/themes/zeen/assets/js/sticky-kit.min.js?ver=2.2.3'></script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/themes/zeen/assets/js/swipebox.min.js?ver=1.4.4'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var zeenJS = {"root":"https:\/\/blockchainwelt.de\/wp-json\/codetipi-zeen\/v1\/","nonce":"d8d5b8e588","qry":{"page":0,"name":"ethereum-sharding-skalierung","error":"","m":"","p":0,"post_parent":"","subpost":"","subpost_id":"","attachment":"","attachment_id":0,"static":"","pagename":"","page_id":0,"second":"","minute":"","hour":"","day":0,"monthnum":0,"year":0,"w":0,"category_name":"","tag":"","cat":"","tag_id":"","author":"","author_name":"","feed":"","tb":"","paged":0,"meta_key":"","meta_value":"","preview":"","s":"","sentence":"","title":"","fields":"","menu_order":"","embed":"","category__in":[],"category__not_in":[],"category__and":[],"post__in":[],"post__not_in":[],"post_name__in":[],"tag__in":[],"tag__not_in":[],"tag__and":[],"tag_slug__in":[],"tag_slug__and":[],"post_parent__in":[],"post_parent__not_in":[],"author__in":[],"author__not_in":[],"ignore_sticky_posts":false,"suppress_filters":false,"cache_results":true,"update_post_term_cache":true,"lazy_load_term_meta":true,"update_post_meta_cache":true,"post_type":"","posts_per_page":16,"nopaging":false,"comments_per_page":"50","no_found_rows":false,"order":"DESC"},"args":{"sDelay":5000,"subL":false,"lazy":true,"iconSorter":"<i class=\"tipi-i-chevron-down\"><\/i>","iplComs":false,"heroFade":0.075,"iplMob":true,"fbComs":false,"lightbox":true,"disqus":false,"subCookie":true,"pluginsUrl":"https:\/\/blockchainwelt.de\/wp-content\/plugins","frontpage":false,"ipl":[]},"i18n":{"embedError":"Es gab ein Problem mit Ihrem Einbettungscode. Bitte beachten Sie die Unterlagen zur Hilfe.","loadMore":"Mehr laden","noMore":"Keine weiteren Inhalte"}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/themes/zeen/assets/js/functions.min.js?ver=1.5'></script>
+<script type='text/javascript'>
+	var zeen_120 = {
+		id: 120,
+		next: 2,
+		prev: 0,
+		target: 0,
+		mnp: 0,
+		preview: 61,
+		counter: 0,
+		counter_class: "",
+		excerpt_off: 1,
+		excerpt_length: 12,
+		excerpt_full: 0,
+		img_shape: 0,
+		byline_off: 1,
+		ppp: 3,
+		args: {"cat":"9","post_type":{"post":"post","page":"page"},"posts_per_page":"3","ignore_sticky_posts":1}	};
+	
+	var zeen_1431 = {
+		id: 1431,
+		next: 2,
+		prev: 0,
+		target: 0,
+		mnp: 0,
+		preview: 61,
+		counter: 0,
+		counter_class: "",
+		excerpt_off: 1,
+		excerpt_length: 12,
+		excerpt_full: 0,
+		img_shape: 0,
+		byline_off: 1,
+		ppp: 3,
+		args: {"cat":"1","post_type":{"post":"post","page":"page"},"posts_per_page":"3","ignore_sticky_posts":1}	};
+	
+	var zeen_28446 = {
+		id: 28446,
+		next: 2,
+		prev: 0,
+		target: 0,
+		mnp: 0,
+		preview: 29,
+		counter: 0,
+		counter_class: "",
+		excerpt_off: 1,
+		excerpt_length: 12,
+		excerpt_full: 0,
+		img_shape: 0,
+		byline_off: 0,
+		ppp: 4,
+		args: {"post__not_in":[2358],"posts_per_page":4,"post_type":"post","cat":"1,"}	};
+	
+	var zeen_66306 = {
+		id: 66306,
+		next: 2,
+		prev: 0,
+		target: 0,
+		mnp: 0,
+		preview: 23,
+		counter: 0,
+		counter_class: "",
+		excerpt_off: 1,
+		excerpt_length: 12,
+		excerpt_full: 0,
+		img_shape: 0,
+		byline_off: 1,
+		ppp: 6,
+		args: {"posts_per_page":6,"tag__in":[],"cat":[],"orderby":"trending","trending":{"name":"styling-posts-all-time66306","max":6,"num":2}}	};
+	
+</script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/plugins/ga-germanized/assets/js/cookieconsent.js?ver=3.0.3'></script>
+<script type='text/javascript'>
+try { window.addEventListener("load", function(){window.cookieconsent.initialise({"palette":{"popup":{"background":"#edeff5","text":"#838391"},"button":{"background":"#4b81e8","text":"#ffffff"}},"theme":"block","position":"bottom","static":false,"content":{"message":"Cookies helfen uns bei der Bereitstellung unserer Inhalte und Dienste. Durch die weitere Nutzung der Webseite stimmen Sie der Verwendung von Cookies zu.","dismiss":"Okay!","allow":"Cookies erlauben","deny":"Cookies ablehnen","link":false,"href":"https:\/\/cookiesandyou.com\/"},"type":false,"revokable":false,"revokeBtn":"<div class=\"\" style=\"display: none !important;\"><\/div>","onStatusChange":function(){}})}); } catch(err) { console.error(err.message); }
+</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var gaoptoutSettings = {"ua":"UA-98790660-1","disabled":"Der Google Analytics Opt-out Cookie wurde gesetzt!"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/plugins/ga-germanized/assets/js/gaoptout.js?ver=1.5.0'></script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-includes/js/wp-embed.min.js?ver=5.1'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var mc4wp_forms_config = [];
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/plugins/mailchimp-for-wp/assets/js/forms-api.min.js?ver=4.3.3'></script>
+<!--[if lte IE 9]>
+<script type='text/javascript' src='https://blockchainwelt.de/wp-content/plugins/mailchimp-for-wp/assets/js/third-party/placeholders.min.js?ver=4.3.3'></script>
+<![endif]-->
+</body>
+</html>

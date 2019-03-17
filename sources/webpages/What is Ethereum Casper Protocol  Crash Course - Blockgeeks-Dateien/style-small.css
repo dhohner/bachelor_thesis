@@ -1,0 +1,52 @@
+/* media under 400 px */
+
+
+@media (max-width: 380px) {
+  .community .learn-more .guides .guide .guide-img {
+    width: 100%;
+  }
+
+  .community .help-support .under-numbers .support-text .inner-text {
+    /*width: 100%;*/
+    /* padding-left: 75px; */
+  }
+
+  .community .learn-more .guides {
+    margin: 0 5%;
+  }
+
+  .community .help-support .under-numbers .support-images img {
+    -webkit-transform: scale(0.5);
+    transform: scale(0.5);
+    transform-origin: left;
+  }
+
+  .community .help-support .under-numbers .support-images .support-images-2 {
+    left: 40px;
+  }
+
+  .community .help-support .under-numbers .support-images .support-images-3 {
+    left: 80px;
+  }
+
+  .community .help-support .under-numbers .support-images .support-images-4 {
+    left: 120px;
+  }
+
+  .community .help-support .under-numbers .support-images .support-images-5 {
+    left: 160px;
+  }
+
+  .community .help-support .under-numbers .support-images .support-images-wrapper {
+    width: 250px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+}
+
+@media (max-width: 374px) {
+  .widget .widget-ads-block h2 {
+    font-size: 20px;
+  }
+}

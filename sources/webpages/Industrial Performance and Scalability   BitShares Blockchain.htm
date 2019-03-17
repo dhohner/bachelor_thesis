@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="An overview of how BitShares achieves incredible confirmation rates and can scale in a manner capable of supporting a global transactional network in near real-time.">
+    <meta name="keywords" content="bitshares, performance, scalability, industrial, blockchain">
+
+    <title>Industrial Performance and Scalability | BitShares Blockchain</title>
+	<base href="/">
+    <!-- Styles -->
+    <link href="../assets/css/core.min.css" rel="stylesheet">
+    <link href="../assets/css/thesaas.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+	<link rel="stylesheet" href="../assets/css/popup.css">
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+    <link rel="icon" href="../assets/img/favicon.ico">
+
+    <!--  Open Graph Tags -->
+    <meta property="og:title" content="Industrial Performance and Scalability | BitShares Blockchain">
+    <meta property="og:description" content="An overview of how BitShares achieves incredible confirmation rates and can scale in a manner capable of supporting a global transactional network in near real-time.">
+    <meta property="og:image" content="../assets/img/og-img.jpg">
+    <meta property="og:url" content="https://bitshares.org/">
+    <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+  <div canvas="container">
+    <!-- Topbar Navigation Bar Begins-->
+    <nav class="topbar topbar-inverse topbar-expand-md topbar-sticky">
+	<div class="container container_bar">
+		<div class="topbar-left">
+			<a class="topbar-brand" href="/">
+			<img alt="BitShares" class="logo-default" src="assets/img/logo.svg" width="150" height="52">
+			<img alt="BitShares" class="logo-inverse" src="assets/img/logo.svg" width="150" height="52">
+			</a></div>
+		<div class="topbar-right">
+			<ul class="topbar-nav nav nav-toggle-click">
+				<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">About <i class="fa fa-caret-down"></i></a>
+				<div class="nav-submenu">
+					<div class="nav-item">
+						<a class="nav-link" href="#">Development
+						<i class="fa fa-caret-right"></i></a>
+						<div class="nav-submenu">
+							<a class="nav-link" target="_blank" href="http://dev.bitshares.works">Dev Integration Guide</a>
+							<a class="nav-link" target="_blank" href="https://bitshares.org/doxygen/">Doxygen</a>
+							<a class="nav-link" target="_blank" href="https://github.com/bitshares" >GitHub</a>
+						</div>
+					</div>
+
+					<div class="nav-item">
+						<a class="nav-link" href="#">Native dApps<i class="fa fa-caret-right"></i></a>
+						<div class="nav-submenu">
+							<a class="nav-link" target="_blank"href="https://wallet.bitshares.org" >BitShares DEX</a>
+						</div>
+					</div>
+
+					<a class="nav-link" target="_blank" href="http://how.bitshares.works">Documentation</a>
+				</div>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">Technology<i class="fa fa-caret-down"></i></a>
+				<div class="nav-submenu">
+					<a class="nav-link" href="technology/decentralized-asset-exchange">Decentralized Asset Exchange</a>
+					<a class="nav-link" href="technology/delegated-proof-of-stake-consensus">DPoS Consensus</a>
+					<a class="nav-link" href="technology/dynamic-account-permissions">Dynamic Account Permissions</a>
+					<a class="nav-link" href="technology/named-accounts">Named Accounts</a>
+					<a class="nav-link" href="technology/industrial-performance-scalability">Performance and Scalability</a>
+					<a class="nav-link" href="technology/price-stable-cryptocurrencies">Price-Stable-Cryptocurrencies</a>
+					<a class="nav-link" href="technology/recurring-scheduled-payments">Recurring & Scheduled Payments</a>
+					<a class="nav-link" href="technology/referral-rewards-program">Referral Rewards Program</a>
+					<a class="nav-link" href="technology/stakeholder-approved-funding">Stakeholder Approved Funding</a>
+					<a class="nav-link" href="technology/user-issued-assets">User-Issued Assets</a>
+				</div>
+				</li>
+				<li class="nav-item"><a class="nav-link" target="_blank" href="https://github.com/bitshares-foundation/bitshares.foundation/blob/master/download/articles/BitSharesBlockchain.pdf">Whitepaper</a></li>
+				<li class="nav-item"><a class="nav-link" href="download">Download</a></li>
+				<li class="nav-item"><a class="nav-link" href="contact">Contact</a></li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+<!-- bitshares.org - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129197857-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-129197857-1');
+</script>
+
+    <!-- Top Navigation Bar Ends-->
+
+    <!-- Header -->
+    <header class="header header-inverse inner-headers">
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-12 col-lg-8 offset-lg-2">
+            <h1>Industrial Performance and Scalability</h1>
+            <p class="fs-18 opacity-70">Graphene is capable of 100,000 TPS when we pay for the network to go with it</p>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- END Header -->
+    <!-- Main container -->
+    <main class="main-content">
+		<section class="section no-show-btn pt-0 pb-0 cmc_div">
+			<!-- MARKET CAP & PRICE -->
+			<div class="price_mc">
+			<div class="mc_data">
+				<div class="mc_bts_price">BTS Price:</div><div class="coinmarketcap-currency-wig" data-currency="bitshares" data-base="USD" data-secondary="BTC" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="false" data-stats="USD" data-statsticker="true"></div>
+			
+				<div class="mc_bts_mc">Market Cap:</div><div class="coinmarketcap-currency-widget" data-currency="bitshares" data-base="USD" data-secondary="BTC" data-ticker="true" data-rank="false" data-marketcap="true" data-volume="false" data-stats="USD" data-statsticker="true"></div>
+			
+				<div class="mc_bts_24">Volume (24h):</div><div class="coinmarketcap-currency-widget" data-currency="bitshares" data-base="USD" data-secondary="BTC" data-ticker="true" data-rank="false" data-marketcap="false" data-volume="true" data-stats="USD" data-statsticker="true"></div>
+			</div>
+			</div>
+			<!-- MARKET CAP & PRICE -->
+		</section>
+      <section class="section section-x">
+        <div class="container">
+          <p>Blockchains must have high performance and scalability in order to deliver the speed required of cryptocurrency and smart contracts. BitShares is designed from the ground up to process more transactions every second than VISA and MasterCard combined. With Delegated Proof of Stake, the BitShares network can confirm transactions in an average of just 1 second, limited only by the speed of light.</p>
+		  <br />
+		  <h2>Overview</h2>
+      <p>To achieve industry-leading performance, BitShares borrowed lessons from the <a href="http://martinfowler.com/articles/lmax.html" target="_blank">LMAX Exchange</a>, which is capable of processing 6 million transactions per second. These were the key lesson points:</p>
+			<ol class="ml-50">
+				<li>Keep everything in memory.</li>
+				<li>Keep the core business logic in a single thread.</li>
+				<li>Keep cryptographic operations (hashes and signatures) out of the core business logic.</li>
+				<li>Divide validation into state-dependent and state-independent checks.</li>
+				<li>Use an object-oriented data model.</li>
+			</ol>
+		 <p>By following these simple rules, BitShares is able to process 100,000 transactions per second without any significant effort devoted to optimization. Future optimizations are expected to bring the performance of BitShares to levels similar to LMAX.</p>
+		 <p>It should be noted that the scalability and performance achieved by BitShares is dependent upon having a compatible transaction protocol. It would be impossible to achieve the same level of scalability and performance with the Core Business Logic running in a virtual machine, performing cryptographic operations and references on all objects with hash identifiers. Performance of a single CPU core is a scalability bottleneck in single-threaded blockchains. BitShares is designed to get the most out of this single thread of execution.</p>
+			<br />
+	<h2 id="background">Background</h2>
+		 <p>A blockchain is a global ledger that orders transactions. Each transaction deterministically modifies a shared global state at a specified timestamp, and the order in which transactions get processed can change the validity of other transactions. For example, you cannot withdraw money from your bank until your paycheck clears. It is impossible to know whether a transaction is valid, before all prior transactions that impact a particular account have been processed.</p>
+		 <p>In theory, transactions for two unrelated accounts could process at the same time, if they do not share any common dependency. In practice, the cost of identifying which transactions are independent of each other on a ledger empowered by smart contracts with arbitrary conditions is intractable. The only way to be sure that two transactions are truly independent, is by maintaining completely separate ledgers and then periodically transferring value between them. An analogy could be the performance trade-offs in the design of Non-Uniform Memory Access (NUMA) vs Uniform Memory Access.</p>
+		 <p>In practice, Uniform Memory Access is much easier and lower cost for developers to design for. NUMA architecture is usually adopted last resort, on supercomputers or giant clusters.</p>
+		 <p>The computer industry has grown to realize that increases in scalability and performance through parallelism are nowhere near as easy as the early days. In the past all that was necessary was to increase the clock speed of the CPU. It is for this reason that CPU designers pushed the single-threaded performance to the limits, before attempting multi-threaded approaches. When multi-threading is not enough, then, and only then, is cluster computing considered an option.</p>
+	 	 <p>Many in the cryptocurrency industry have attempted to solve the scalability issue by immediately moving to a “cluster” solution. BitShares was designed to fully exploit what is technologically possible on a single core of a single computer.</p>
+
+		<br />
+	<h4 id="lmax-disruptor">The LMAX Disruptor</h4>
+		 <p>The LMAX Disruptor provides a case study on high scalability and performance architecture, showing what is achievable within a single execution thread. LMAX is a retail trading platform that aims to be the fastest exchange in the world, and they have been generous enough to make public what they learned.</p>
+		 <p><em>Here is a brief overview of the LMAX architecture:</em></p>
+		 <p>The Business Logic Processor is where all of the sequential transactions and order matching is processed. It is a single thread that is able to process millions of orders per second. This architecture is readily ported to the realm of cryptocurrencies and blockchain designs.</p>
+		 <p>The role of the Input Disruptor is to gather orders from users from many different sources and assign them in a deterministic order. After assigning them an order they become replicated, logged, and broadcast to many redundant business logic processors. The tasks of the Input Disruptor are parallel and farmed out to a cluster of computers.</p>
+		 <p>After the Business Logic Processor has processed the inputs, an Output Disruptor takes care of notifying anyone who cares about the results. This is also a highly parallel task.</p>
+         <p>Ultimately, LMAX was able to process 6 million transactions per second through the Business Logic Processor using a single core of a commodity CPU and Java virtual machine. Proof there's no need for cryptocurrency and smart contract platforms to reach for clustered solutions, when they are not even processing 10 transactions per second.</p>
+
+		<br />
+	<h4 id="high-performance-blockchains">High Performance and Scalability on Blockchains</h4>
+		<p>To put in place high performance and scalability on the blockchain, BitShares must adopt the same techniques used by LMAX. Fundamental requirements are:</p>
+			<ul class="ml-50">
+			<li>Keep everything in memory.</li>
+			<li>Avoid synchronization primitives (locks, atomic operations).</li>
+			<li>Minimize unnecessary computation in the business logic processor.</li>
+			</ul>
+		 <p>Memory is becoming cheaper every day because it is extremely parallel in its design. The amount of information required to track the account balance and permissions of every person on the Internet is less than 1 Terabyte of RAM, which can cost less than $15,000 and be installed on commodity (high-end) server motherboards. Long before 3 billion people adopt the system, this kind of hardware will be in the average desktop.</p>
+		 <p>Memory isn't the real bottleneck, but bandwidth is critical to performance and scalability. At 1 million transactions per second and 256 bytes per transaction, the network would need 256 megabytes per second (1 Gbit/sec). This kind of bandwidth is not available to the average desktop; but it is a fraction of the 100 Gbit/s that <a href="http://www.internet2.edu/vision-initiatives/initiatives/innovation-platform/" target="_blank">Internet 2</a> furnishes to more than 210 U.S. educational institutions, 70 corporations, and 45 non-profit and government agencies.</p>
+		 <p>For the scalability and performance to handle millions of transactions per second, a blockchain must simply be designed to keep everything in RAM.</p>
+
+			<br />
+	<h4 id="avoid-hashes-assign-ids-instead">Avoid Hashes, Assign IDs Instead</h4>
+		 <p>In a single threaded system, CPU cycles are a scarce resource that need conserving. Traditional blockchain designs use cryptographic hashes to generate globally unique IDs that are statistically guaranteed to never have a collision. The problem with these hashes is that they need much more memory and more CPU cycles to manipulate. It takes a lot more CPU time to look up an account record by hash than with a direct array index. For example, 64-bit integers are easier to compare and manipulate than 160+bit IDs. Larger hash IDs means there is less room in the CPU cache and that requires more memory. On modern operating systems, seldom accessed RAM gets compressed, yet hash identifiers are random un-compressible data.</p>
+		 <p>Fortunately, blockchains give us a means to globally assign unique IDs where no pair can ever be the same. This makes it is possible to completely remove the need for hash-based identifiers (Bitcoin addresses). In order to refer to an account, balance, or permission, BitShares simply uses the account name.</p>
+
+			<br />
+	<h4 id="remove-signature-verification-from-business-logic-processor">Remove Signature Verification from Business Logic Processor</h4>
+		 <p>All transactions on cryptocurrency networks depend upon cryptographic signatures to validate permissions. In the general case, the permissions required can change as a result of other transactions. This means that permissions need defining in terms that need no cryptographic calculations within the Business Logic Processor.</p>
+		 <p>To do this, every public key needs to be assigned a unique and immutable ID. After an ID has been assigned, the Input Disruptor(s) can verify that the signature matches the ID specified. By the time the transaction makes it to the Business Logic Processor, the only remaining step is to check the IDs.</p>
+         <p>This same technique can be used to remove pre-condition checking on any immutable object with a static ID.</p>
+
+		 <br />
+	<h4 id="design-transactions-for-static-validation">Design Transactions for Static Validation</h4>
+		 <p>Many transaction properties can be checked statically, without the need to reference the current global state. <br/>These checks include range checking of parameters, de-duplication of inputs, sort order of arrays, etc. Generally speaking, many checks get performed if the transaction includes the data it “assumes” about the global state. After these checks are performed, all that is left for the Business Logic Processor to do is make sure the “assumptions” are still true, which usually boils down to checking a modification timestamp on objects referenced, relative to the time the transaction got signed.</p>
+         <br />
+	<h4 id="smart-contracts">Smart Contracts</h4>
+		 <p>Many blockchains are adopting a general-purpose scripting language to define all operations. These designs end up defining the “Business Logic Processor” as a virtual machine, and all transactions get defined as scripts to be run by the virtual machine. This approach takes the single-threaded limitations of a real CPU and compounds them by forcing everything through a virtual CPU. A virtual CPU, even with Just-In-Time compilation, will always be slower than a real CPU, but pure speed of calculation isn’t the only issue with the “everything is a script” approach.</p>
+		 <p>When transactions get defined at such a low level, it means that most of the static checks and cryptographic operations get sucked back into the Business Logic Processing and the overall throughput falls. A scripting engine should never require a cryptographic signature check to be performed even if it is done through a native call.</p>
+		 <p>Based upon the lessons we learn from LMAX, we know that a virtual machine for a blockchain should be designed with single-threaded performance in mind. This means it should get optimized for Just-In-Time compilation from the beginning, and that the most frequently used smart contracts should be supported natively by the blockchain, leaving only the rarely-used custom contracts to run in a virtual machine. These custom contracts should be designed around performance, which means the Virtual Machine should limit the addressable memory to something that will fit within the CPU cache.</p>
+
+		<br />
+	<h4 id="object-oriented-data-model">Object-Oriented Data Model</h4>
+		 <p>One of the benefits of keeping everything in memory is that the software can be designed to mimic the real-world relationships of data. This means that the Business Logic Processor can quickly follow in-memory pointers to the data it needs, rather than being forced to perform expensive database queries. It also means that data can be accessed without copying it, and that the data can be modified in-place. This single optimization offers an order-of-magnitude performance gain over using a database-based approach.</p>
+
+		<br />
+	<h4 id="transaction-sizes">Transaction Sizes</h4>
+		 <p>A blockchain that processes 100,000 transactions every second generates a lot of data. The average size of a transaction on competing networks, such as Ripple and Bitcoin, is about 250 bytes. A similar transaction on BitShares averages just 100 bytes. In other words, competing systems require 2.5 times the bandwidth to propagate the same number of transactions. Assuming a gigabit connection to the internet, it would take about 0.1 seconds just to transfer a block containing 100,000 transactions. Competing networks would need 0.25 seconds. After latency and multiple hops on a peer-to-peer network are factored in, it becomes clear that transaction size directly impacts the block interval, and therefore the confirmation latency.</p>
+		 <p>Transaction sizes indicate the amount of data the CPU must process in its critical path. Therefore, they serve as a signal of how soon the single threaded performance of a CPU will be hit.</p>
+		 <p>Some optimizations are possible in all protocols if they assume that all nodes have prior knowledge of all broadcast transactions and only need the ordered list of transaction IDs to broadcast every block. This would be an implementation detail.</p>
+
+		<br />
+	<h2 id="conclusion">Conclusion</h2>
+		 <p>Designing a high performance blockchain with scalability isn’t rocket-science. It doesn’t need complex, hard-to-understand protocols. Nor must it be processing among all the nodes on the network. All that is necessary to build a high-performance blockchain is to remove all calculations that are not part of the critical, order-dependent, evaluation from the core business logic. Also, to design a protocol that facilitates these kinds of optimizations. This is what BitShares has done.</p>
+       <!-- <p><a href="https://bitshares.org/blog/2015/06/08/measuring-performance/" target="_blank">Measuring Performance &amp; Scalability</a> (link to be updated)</p>
+       -->    	
+        </div>
+      </section>
+    </main>
+    <!-- END Main container -->
+
+<!-- Footer -->
+<!-- Footer -->
+      
+      <style type="text/css">
+        #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+        #mc_embed_signup form {display:block; position:relative; text-align:left; padding:10px 0 10px 3%}
+        #mc_embed_signup input[type=checkbox]{-webkit-appearance:checkbox; width:auto;}
+        #mc_embed_signup input[type=radio]{-webkit-appearance:radio;}
+        #mc_embed_signup .button {clear:both; background-color: #35baeb; border: 0 none; border-radius:4px; transition: all 0.23s ease-in-out 0s; color: #FFFFFF; cursor: pointer; display: inline-block; font-size:15px; font-weight: normal; height: 32px; line-height: 32px; margin: 0 5px 10px 0; padding: 0 22px; text-align: center; text-decoration: none; vertical-align: top; white-space: nowrap; width: auto;}
+        #mc_embed_signup .button:hover {background-color:#777;}
+        #mc_embed_signup .small-meta {font-size: 11px;}
+        #mc_embed_signup .nowrap {white-space:nowrap;}
+
+        #mc_embed_signup .mc-field-group {clear:left; position:relative; width:96%; padding-bottom:3%; min-height:50px;}
+        #mc_embed_signup .size1of2 {clear:none; float:left; display:inline-block; width:46%; margin-right:4%;}
+
+        #mc_embed_signup .datefield, #mc_embed_signup .phonefield-us{padding:5px 0;}
+        #mc_embed_signup .datefield input, #mc_embed_signup .phonefield-us input{display:inline; width:60px; margin:0 2px; letter-spacing:1px; text-align:center; padding:5px 0 2px 0;}
+        #mc_embed_signup .phonefield-us .phonearea input, #mc_embed_signup .phonefield-us .phonedetail1 input{width:40px;}
+
+        #mc_embed_signup .indicates-required {text-align:right; font-size:11px; margin-right:4%;}
+        #mc_embed_signup .asterisk {color:#e85c41; font-size:150%; font-weight:normal; position:relative; top:5px;}     
+        #mc_embed_signup .clear {clear:both;}
+
+        #mc_embed_signup .mc-field-group.input-group ul {margin:0; padding:5px 0; list-style:none;}
+
+        #mc_embed_signup div#mce-responses {float:left; top:-1.4em; padding:0em .5em 0em .5em; overflow:hidden; width:90%; margin: 0 5%; clear: both;}
+        #mc_embed_signup div.response {margin:1em 0; padding:1em .5em .5em 0; font-weight:bold; float:left; top:-1.5em; z-index:1; width:80%;}
+        #mc_embed_signup #mce-error-response {display:none;}
+        #mc_embed_signup #mce-success-response {color:#529214; display:none;}
+        #mc_embed_signup label.error {display:block; float:none; width:auto; margin-left:1.05em; text-align:left; padding:.5em 0;}
+
+        #mc-embedded-subscribe {clear:both; width:auto; display:block; margin:1em 0 1em 5%;}
+        #mc_embed_signup #num-subscribers {font-size:1.1em;}
+        #mc_embed_signup #num-subscribers span {padding:.5em; border:1px solid #ccc; margin-right:.5em; font-weight:bold;}
+
+        #mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error {display:inline-block; margin:2px 0 1em 0; padding:5px 10px; background-color:rgba(255,255,255,0.85); -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size:14px; font-weight:normal; z-index:1; color:#e85c41;}
+
+        .flexify {
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-self:flex-start;
+          white-space: nowrap;
+          margin-top: 8px;
+        }
+
+        .space-break{
+          margin: 5px 0px 20px 0px;
+        }
+        label {
+            display:block;
+            width:auto;
+            margin-left:8px;
+            font-weight:bold;
+            font-family: Helvetica;
+            color: #5d5d5d;
+        }
+
+        .mergeRow {
+            padding:0 0 6px 0 !important;
+            clear:both;
+        }
+        .field-group {
+            position:relative;
+            margin:3px 0 12px 0;
+            overflow:hidden;
+            background:transparent !important;
+        }
+        .mergeRow-radio .field-group, .mergeRow-interests-checkboxes .field-group {margin-bottom:6px;}
+
+        input, textarea, select {
+            display:block;
+            margin:0;
+            padding:10px;
+            background:#fff;
+            width:100%;
+            border:2px solid #d0d0d0 ;
+            border-radius:3px;
+            -webkit-appearance: none;
+        }
+        select {
+          background:#fff url(https://bitshares.us19.list-manage.com/images/icons/signup-sprite.png) no-repeat right -295px;
+        }
+        .field-group input, select, textarea, .dijitInputField {
+            font-size: 14px;
+        }
+
+        textarea {
+            font:14px/18px 'Helvetica', Arial, sans-serif;
+            width:100%;
+            height:150px;
+            overflow:auto;
+        }
+      </style>
+      <footer class="site-footer py-45">
+        <div class="container containerf">
+          <div class="row gap-y">
+            <div class="col-6 col-md-4 col-lg-2 hideit">
+              <h6 class="heading-alt text-uppercase fs-14 mb-3 untext">Learn</h6>
+              <div class="nav flex-column">
+                <a class="nav-link" target="_blank" href="http://bitshares-explorer.io/">Block Explorer</a>
+                <a class="nav-link" target="_blank" href="https://dev.bitshares.works">Dev Integration Guide</a>
+                <a class="nav-link" target="_blank" href="https://how.bitshares.works">Documentation</a>
+                <a class="nav-link" target="_blank" href="https://bitshares.org/doxygen/">Doxygen</a>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2 hideit">
+              <h6 class="heading-alt text-uppercase fs-14 mb-3 untext">Access</h6>
+              <div class="nav flex-column">
+				<a class="nav-link" target="_blank" href="https://wallet.bitshares.org">BitShares UI</a>
+				<a class="nav-link" href="create-account">Create Basic Account</a>
+				<a class="nav-link" href="assets/bitshares-media-kit.zip">Media Kit</a>
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2 hideit">
+              <h6 class="heading-alt text-uppercase fs-14 mb-3 untext">Community</h6>
+              <div class="nav flex-column">
+				<a class="nav-link" target="_blank" href="https://github.com/bitshares">GitHub</a>
+				<a class="nav-link" target="_blank" href="https://www.bitsharestalk.org/">Forums</a>
+			  </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2 hideit">
+              <h6 class="heading-alt text-uppercase fs-14 mb-3 untext">BitShares.org</h6>
+              <div class="nav flex-column">
+                <a class="nav-link" href="contact">Contact</a> 
+               <!-- <a class="nav-link" href="#">Terms of Use</a>
+		            <a class="nav-link" href="#">Privacy Policy</a> -->
+              </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-2 lg-x hideit">
+              <div class="nav flex-column">
+
+              </div>
+            </div>
+			
+              <div class="col-12 col-lg-2 lg-y">
+                <h6 class="heading-alt text-uppercase fs-14 mb-3 untext">OUR&nbsp;NEWSLETTER</h6>
+                <a class="btn btn2 btn-round btn-xs btn-primary w-200 shadow-5 low-res" id="subscribeBtn">Subscribe</a>
+                <div id="myModal" class="modal">
+
+                  <!-- Modal content -->
+                  <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <!-- Begin Mailchimp Signup Form -->
+                    <div id="mc_embed_signup">
+                    <h2 class="mail-chimp-h2"><img alt="bitshares powered logo" class="left mail-chimp-img" data-file-id="357671" src="https://gallery.mailchimp.com/bd722493f0fc05df682c6b82f/images/a279a629-c45c-4b78-8953-5e99809b82d0.png">&nbsp;<code class="mail-chimp-code"><span class="nowrap mail-chimp-span">BitShares.org Newsletter</span></code></h2>
+                    <form action="https://bitshares.us19.list-manage.com/subscribe/post?u=bd722493f0fc05df682c6b82f&amp;id=1228ad58e8" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                        <div id="mc_embed_signup_scroll">
+                    <div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+                    <div class="mc-field-group">
+                      <label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+                    </label>
+                      <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+                    </div>
+                    <div class="mc-field-group">
+                      <label for="mce-FNAME">Name  <span class="asterisk">*</span>
+                    </label>
+                      <input type="text" value="" name="FNAME" class="required" id="mce-FNAME">
+                    </div>
+                    <div class="mc-field-group">
+                      <label for="mce-MMERGE2">BitShares account name </label>
+                      <input type="text" value="" name="MMERGE2" class="" id="mce-MMERGE2">
+                    </div>
+                    <div class="mc-field-group">
+                      <label for="mce-COUNTRY">Country </label>
+                      <select name="COUNTRY" class="select" id="mce-COUNTRY">
+                        <option value=""></option>
+                        <option value="United States of America">United States of America</option>
+                        <option value="Aaland Islands">Aaland Islands</option>
+                        <option value="Afghanistan">Afghanistan</option>
+                        <option value="Albania">Albania</option>
+                        <option value="Algeria">Algeria</option>
+                        <option value="American Samoa">American Samoa</option>
+                        <option value="Andorra">Andorra</option>
+                        <option value="Angola">Angola</option>
+                        <option value="Anguilla">Anguilla</option>
+                        <option value="Antarctica">Antarctica</option>
+                        <option value="Antigua And Barbuda">Antigua And Barbuda</option>
+                        <option value="Argentina">Argentina</option>
+                        <option value="Armenia">Armenia</option>
+                        <option value="Aruba">Aruba</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Austria">Austria</option>
+                        <option value="Azerbaijan">Azerbaijan</option>
+                        <option value="Bahamas">Bahamas</option>
+                        <option value="Bahrain">Bahrain</option>
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="Barbados">Barbados</option>
+                        <option value="Belarus">Belarus</option>
+                        <option value="Belgium">Belgium</option>
+                        <option value="Belize">Belize</option>
+                        <option value="Benin">Benin</option>
+                        <option value="Bermuda">Bermuda</option>
+                        <option value="Bhutan">Bhutan</option>
+                        <option value="Bolivia">Bolivia</option>
+                        <option value="Bonaire, Saint Eustatius and Saba">Bonaire, Saint Eustatius and Saba</option>
+                        <option value="Bosnia and Herzegovina">Bosnia and Herzegovina</option>
+                        <option value="Botswana">Botswana</option>
+                        <option value="Bouvet Island">Bouvet Island</option>
+                        <option value="Brazil">Brazil</option>
+                        <option value="British Indian Ocean Territory">British Indian Ocean Territory</option>
+                        <option value="Brunei Darussalam">Brunei Darussalam</option>
+                        <option value="Bulgaria">Bulgaria</option>
+                        <option value="Burkina Faso">Burkina Faso</option>
+                        <option value="Burundi">Burundi</option>
+                        <option value="Cambodia">Cambodia</option>
+                        <option value="Cameroon">Cameroon</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Cape Verde">Cape Verde</option>
+                        <option value="Cayman Islands">Cayman Islands</option>
+                        <option value="Central African Republic">Central African Republic</option>
+                        <option value="Chad">Chad</option>
+                        <option value="Chile">Chile</option>
+                        <option value="China">China</option>
+                        <option value="Christmas Island">Christmas Island</option>
+                        <option value="Cocos (Keeling) Islands">Cocos (Keeling) Islands</option>
+                        <option value="Colombia">Colombia</option>
+                        <option value="Comoros">Comoros</option>
+                        <option value="Congo">Congo</option>
+                        <option value="Cook Islands">Cook Islands</option>
+                        <option value="Costa Rica">Costa Rica</option>
+                        <option value="Cote D'Ivoire">Cote D'Ivoire</option>
+                        <option value="Croatia">Croatia</option>
+                        <option value="Cuba">Cuba</option>
+                        <option value="Curacao">Curacao</option>
+                        <option value="Cyprus">Cyprus</option>
+                        <option value="Czech Republic">Czech Republic</option>
+                        <option value="Democratic Republic of the Congo">Democratic Republic of the Congo</option>
+                        <option value="Denmark">Denmark</option>
+                        <option value="Djibouti">Djibouti</option>
+                        <option value="Dominica">Dominica</option>
+                        <option value="Dominican Republic">Dominican Republic</option>
+                        <option value="Ecuador">Ecuador</option>
+                        <option value="Egypt">Egypt</option>
+                        <option value="El Salvador">El Salvador</option>
+                        <option value="Equatorial Guinea">Equatorial Guinea</option>
+                        <option value="Eritrea">Eritrea</option>
+                        <option value="Estonia">Estonia</option>
+                        <option value="Ethiopia">Ethiopia</option>
+                        <option value="Falkland Islands">Falkland Islands</option>
+                        <option value="Faroe Islands">Faroe Islands</option>
+                        <option value="Fiji">Fiji</option>
+                        <option value="Finland">Finland</option>
+                        <option value="France">France</option>
+                        <option value="French Guiana">French Guiana</option>
+                        <option value="French Polynesia">French Polynesia</option>
+                        <option value="French Southern Territories">French Southern Territories</option>
+                        <option value="Gabon">Gabon</option>
+                        <option value="Gambia">Gambia</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Germany">Germany</option>
+                        <option value="Ghana">Ghana</option>
+                        <option value="Gibraltar">Gibraltar</option>
+                        <option value="Greece">Greece</option>
+                        <option value="Greenland">Greenland</option>
+                        <option value="Grenada">Grenada</option>
+                        <option value="Guadeloupe">Guadeloupe</option>
+                        <option value="Guam">Guam</option>
+                        <option value="Guatemala">Guatemala</option>
+                        <option value="Guernsey">Guernsey</option>
+                        <option value="Guinea">Guinea</option>
+                        <option value="Guinea-Bissau">Guinea-Bissau</option>
+                        <option value="Guyana">Guyana</option>
+                        <option value="Haiti">Haiti</option>
+                        <option value="Heard and Mc Donald Islands">Heard and Mc Donald Islands</option>
+                        <option value="Honduras">Honduras</option>
+                        <option value="Hong Kong">Hong Kong</option>
+                        <option value="Hungary">Hungary</option>
+                        <option value="Iceland">Iceland</option>
+                        <option value="India">India</option>
+                        <option value="Indonesia">Indonesia</option>
+                        <option value="Iran">Iran</option>
+                        <option value="Iraq">Iraq</option>
+                        <option value="Ireland">Ireland</option>
+                        <option value="Isle of Man">Isle of Man</option>
+                        <option value="Israel">Israel</option>
+                        <option value="Italy">Italy</option>
+                        <option value="Jamaica">Jamaica</option>
+                        <option value="Japan">Japan</option>
+                        <option value="Jersey  (Channel Islands)">Jersey  (Channel Islands)</option>
+                        <option value="Jordan">Jordan</option>
+                        <option value="Kazakhstan">Kazakhstan</option>
+                        <option value="Kenya">Kenya</option>
+                        <option value="Kiribati">Kiribati</option>
+                        <option value="Kuwait">Kuwait</option>
+                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                        <option value="Lao People's Democratic Republic">Lao People's Democratic Republic</option>
+                        <option value="Latvia">Latvia</option>
+                        <option value="Lebanon">Lebanon</option>
+                        <option value="Lesotho">Lesotho</option>
+                        <option value="Liberia">Liberia</option>
+                        <option value="Libya">Libya</option>
+                        <option value="Liechtenstein">Liechtenstein</option>
+                        <option value="Lithuania">Lithuania</option>
+                        <option value="Luxembourg">Luxembourg</option>
+                        <option value="Macau">Macau</option>
+                        <option value="Macedonia">Macedonia</option>
+                        <option value="Madagascar">Madagascar</option>
+                        <option value="Malawi">Malawi</option>
+                        <option value="Malaysia">Malaysia</option>
+                        <option value="Maldives">Maldives</option>
+                        <option value="Mali">Mali</option>
+                        <option value="Malta">Malta</option>
+                        <option value="Marshall Islands">Marshall Islands</option>
+                        <option value="Martinique">Martinique</option>
+                        <option value="Mauritania">Mauritania</option>
+                        <option value="Mauritius">Mauritius</option>
+                        <option value="Mayotte">Mayotte</option>
+                        <option value="Mexico">Mexico</option>
+                        <option value="Micronesia, Federated States of">Micronesia, Federated States of</option>
+                        <option value="Moldova, Republic of">Moldova, Republic of</option>
+                        <option value="Monaco">Monaco</option>
+                        <option value="Mongolia">Mongolia</option>
+                        <option value="Montenegro">Montenegro</option>
+                        <option value="Montserrat">Montserrat</option>
+                        <option value="Morocco">Morocco</option>
+                        <option value="Mozambique">Mozambique</option>
+                        <option value="Myanmar">Myanmar</option>
+                        <option value="Namibia">Namibia</option>
+                        <option value="Nauru">Nauru</option>
+                        <option value="Nepal">Nepal</option>
+                        <option value="Netherlands">Netherlands</option>
+                        <option value="Netherlands Antilles">Netherlands Antilles</option>
+                        <option value="New Caledonia">New Caledonia</option>
+                        <option value="New Zealand">New Zealand</option>
+                        <option value="Nicaragua">Nicaragua</option>
+                        <option value="Niger">Niger</option>
+                        <option value="Nigeria">Nigeria</option>
+                        <option value="Niue">Niue</option>
+                        <option value="Norfolk Island">Norfolk Island</option>
+                        <option value="North Korea">North Korea</option>
+                        <option value="Northern Mariana Islands">Northern Mariana Islands</option>
+                        <option value="Norway">Norway</option>
+                        <option value="Oman">Oman</option>
+                        <option value="Pakistan">Pakistan</option>
+                        <option value="Palau">Palau</option>
+                        <option value="Palestine">Palestine</option>
+                        <option value="Panama">Panama</option>
+                        <option value="Papua New Guinea">Papua New Guinea</option>
+                        <option value="Paraguay">Paraguay</option>
+                        <option value="Peru">Peru</option>
+                        <option value="Philippines">Philippines</option>
+                        <option value="Pitcairn">Pitcairn</option>
+                        <option value="Poland">Poland</option>
+                        <option value="Portugal">Portugal</option>
+                        <option value="Puerto Rico">Puerto Rico</option>
+                        <option value="Qatar">Qatar</option>
+                        <option value="Republic of Kosovo">Republic of Kosovo</option>
+                        <option value="Reunion">Reunion</option>
+                        <option value="Romania">Romania</option>
+                        <option value="Russia">Russia</option>
+                        <option value="Rwanda">Rwanda</option>
+                        <option value="Saint Kitts and Nevis">Saint Kitts and Nevis</option>
+                        <option value="Saint Lucia">Saint Lucia</option>
+                        <option value="Saint Martin">Saint Martin</option>
+                        <option value="Saint Vincent and the Grenadines">Saint Vincent and the Grenadines</option>
+                        <option value="Samoa (Independent)">Samoa (Independent)</option>
+                        <option value="San Marino">San Marino</option>
+                        <option value="Sao Tome and Principe">Sao Tome and Principe</option>
+                        <option value="Saudi Arabia">Saudi Arabia</option>
+                        <option value="Senegal">Senegal</option>
+                        <option value="Serbia">Serbia</option>
+                        <option value="Seychelles">Seychelles</option>
+                        <option value="Sierra Leone">Sierra Leone</option>
+                        <option value="Singapore">Singapore</option>
+                        <option value="Sint Maarten">Sint Maarten</option>
+                        <option value="Slovakia">Slovakia</option>
+                        <option value="Slovenia">Slovenia</option>
+                        <option value="Solomon Islands">Solomon Islands</option>
+                        <option value="Somalia">Somalia</option>
+                        <option value="South Africa">South Africa</option>
+                        <option value="South Georgia and the South Sandwich Islands">South Georgia and the South Sandwich Islands</option>
+                        <option value="South Korea">South Korea</option>
+                        <option value="South Sudan">South Sudan</option>
+                        <option value="Spain">Spain</option>
+                        <option value="Sri Lanka">Sri Lanka</option>
+                        <option value="St. Helena">St. Helena</option>
+                        <option value="St. Pierre and Miquelon">St. Pierre and Miquelon</option>
+                        <option value="Sudan">Sudan</option>
+                        <option value="Suriname">Suriname</option>
+                        <option value="Svalbard and Jan Mayen Islands">Svalbard and Jan Mayen Islands</option>
+                        <option value="Swaziland">Swaziland</option>
+                        <option value="Sweden">Sweden</option>
+                        <option value="Switzerland">Switzerland</option>
+                        <option value="Syria">Syria</option>
+                        <option value="Taiwan">Taiwan</option>
+                        <option value="Tajikistan">Tajikistan</option>
+                        <option value="Tanzania">Tanzania</option>
+                        <option value="Thailand">Thailand</option>
+                        <option value="Timor-Leste">Timor-Leste</option>
+                        <option value="Togo">Togo</option>
+                        <option value="Tokelau">Tokelau</option>
+                        <option value="Tonga">Tonga</option>
+                        <option value="Trinidad and Tobago">Trinidad and Tobago</option>
+                        <option value="Tunisia">Tunisia</option>
+                        <option value="Turkey">Turkey</option>
+                        <option value="Turkmenistan">Turkmenistan</option>
+                        <option value="Turks &amp; Caicos Islands">Turks &amp; Caicos Islands</option>
+                        <option value="Turks and Caicos Islands">Turks and Caicos Islands</option>
+                        <option value="Tuvalu">Tuvalu</option>
+                        <option value="Uganda">Uganda</option>
+                        <option value="Ukraine">Ukraine</option>
+                        <option value="United Arab Emirates">United Arab Emirates</option>
+                        <option value="United Kingdom">United Kingdom</option>
+                        <option value="Uruguay">Uruguay</option>
+                        <option value="USA Minor Outlying Islands">USA Minor Outlying Islands</option>
+                        <option value="Uzbekistan">Uzbekistan</option>
+                        <option value="Vanuatu">Vanuatu</option>
+                        <option value="Vatican City State (Holy See)">Vatican City State (Holy See)</option>
+                        <option value="Venezuela">Venezuela</option>
+                        <option value="Vietnam">Vietnam</option>
+                        <option value="Virgin Islands (British)">Virgin Islands (British)</option>
+                        <option value="Virgin Islands (U.S.)">Virgin Islands (U.S.)</option>
+                        <option value="Wallis and Futuna Islands">Wallis and Futuna Islands</option>
+                        <option value="Western Sahara">Western Sahara</option>
+                        <option value="Yemen">Yemen</option>
+                        <option value="Zambia">Zambia</option>
+                        <option value="Zimbabwe">Zimbabwe</option>
+                      </select>
+                    </div>
+                    <div class="mc-field-group">
+                        <div class="space-break"><strong>I would like to receive the following </strong></div>
+                        <ul>
+                          <li class="flexify"><input type="checkbox" value="1" name="group[2403][1]" id="mce-group[2403]-2403-0"><label for="mce-group[2403]-2403-0">BitShares Informer monthly newsletter</label></li>
+                          <li class="flexify"><input type="checkbox" value="2" name="group[2403][2]" id="mce-group[2403]-2403-1"><label for="mce-group[2403]-2403-1">Development updates</label></li>
+                          <li class="flexify"><input type="checkbox" value="4" name="group[2403][4]" id="mce-group[2403]-2403-2"><label for="mce-group[2403]-2403-2">Inform me on latest stable software releases</label></li>
+                        </ul>
+                    </div>
+                      <div class="clear"><button type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">Submit</button></div>
+                    </div>
+                  </form>
+                  </div>
+                  <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[5]='BIRTHDAY';ftypes[5]='birthday';fnames[2]='MMERGE2';ftypes[2]='text';fnames[3]='COUNTRY';ftypes[3]='dropdown';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+                </div>
+              </div>
+              <hr>
+              <div class="social text-center">
+              <a class="social-twitter" target="_blank" href="https://github.com/bitshares"><img class="social-btns" src="../assets/img/github.svg" /></a>
+			  <a class="social-reddit" target="_blank" href="https://reddit.com/r/bitshares"><img class="social-btns" src="../assets/img/reddit.svg" /></a>
+			  <a class="social-reddit" target="_blank" href="https://steemit.com/trending/bitshares"><img class="social-btns" src="../assets/img/steemit.svg" /></a>
+			  <a class="social-twitter" target="_blank" href="https://twitter.com/search?q=bitshares"><img class="social-btns" src="../assets/img/twitter.svg" /></a>		  
+			  <a class="social-reddit" target="_blank" href="https://whaleshares.io/trending/bitshares"><img class="social-btns" src="../assets/img/whaleshares.svg" /></a>
+			  
+              </div>
+              <br>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <script>
+        // Get the modal
+        var modal = document.getElementById('myModal');
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("subscribeBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        
+      </script>
+<!-- END Footer --><!-- END Footer -->
+
+</div>
+
+<!-- Slide Mobile Menu --->
+<div class="button_container" id="toggle"><span class="top"></span><span class="middle"></span><span class="bottom"></span></div>
+<div class="overlay" id="overlay">
+	<div class="scrollbar2" id="style-2">
+		<a href="/"><img class="logo-default mt5 ml-23" src="assets/img/logo.svg" alt="Bitshares" width="135"></a>
+		<nav class="overlay-menu h-full mt-25">
+			<div class="containerz">
+				<div class="main">
+					<nav id="cbp-hrmenu" class="cbp-hrmenu">
+						<ul>
+							<li><a href="/">HOME</a></li>
+							<li>
+								<a class="dropdown" href="#">ABOUT</a>
+								<div class="cbp-hrsub">
+									<div class="cbp-hrsub-inner">
+										<div class="menu-part">
+										<a class="fw-600" href="#">DEVELOPMENT</a>
+											<ul>
+												<li class="ml-20"><a target="_blank" href="https://dev.bitshares.works">Dev Integration Guide</a></li>
+												<li class="ml-20"><a target="_blank" href="https://bitshares.org/doxygen/">Doxygen</a></li>
+												<li class="ml-20"><a target="_blank" href="https://github.com/bitshares">GitHub</a></li>
+											</ul>
+										</div>
+									</div>
+									
+									<div class="cbp-hrsub-inner mt-20">
+										<div class="menu-part">
+										<a class="fw-600" href="#">NATIVE dAPPS</a>
+											<ul>
+												<li class="ml-20"><a target="_blank" href="https://bitshares.org/wallet">BitShares DEX</a></li>
+											</ul>
+										</div>
+									</div>
+									
+									<div class="cbp-hrsub-inner mt-20">
+										<div class="menu-part">
+											<ul>
+												<li class="ml-20"></li><a class="nav-link" target="_blank" href="http://how.bitshares.works">Documentation</a></li>
+											</ul>
+										</div>
+									</div>
+								</div><!-- /cbp-hrsub -->
+							</li>
+												
+							<li>
+								<a class="dropdown" href="#">TECHNOLOGY</a>
+								<div class="cbp-hrsub">
+									<div class="cbp-hrsub-inner">
+										<div class="menu-comm">
+											<ul>
+												<li class="ml-20"></li><a href="technology/decentralized-asset-exchange">Decentralized&nbsp;Asset&nbsp;Exchange</a></li>
+												<li class="ml-20"></li><a href="technology/delegated-proof-of-stake-consensus">DPoS&nbsp;Consensus</a></li>
+												<li class="ml-20"></li><a href="technology/dynamic-account-permissions">Dynamic&nbsp;Account&nbsp;Permissions</a></li>
+												<li class="ml-20"></li><a href="technology/named-accounts">Named&nbsp;Accounts</a></li>
+												<li class="ml-20"></li><a href="technology/industrial-performance-scalability">Performance&nbsp;and&nbsp;Scalability</a></li>
+												<li class="ml-20"></li><a href="technology/price-stable-cryptocurrencies">Price&#8209;Stable&nbsp;Cryptocurrencies</a></li>
+												<li class="ml-20"></li><a href="technology/recurring-scheduled-payments">Recurring&nbsp;&&nbsp;Scheduled&nbsp;Payments</a></li>
+												<li class="ml-20"></li><a href="technology/referral-rewards-program">Referral&nbsp;Rewards&nbsp;Program</a></li>
+												<li class="ml-20"></li><a href="technology/stakeholder-approved-funding">Stakeholder&nbsp;Approved&nbsp;Funding</a></li>
+												<li class="ml-20"></li><a href="technology/user-issued-assets">User-Issued&nbsp;Assets</a></li>
+											</ul>
+										</div>
+									</div><!-- /cbp-hrsub-inner -->
+								</div><!-- /cbp-hrsub -->
+							</li>
+							<li><a target="_blank" href="https://www.bitshares.foundation/papers/BitSharesBlockchain.pdf">WHITEPAPER</a></li>
+							<li><a href="download">DOWNLOAD</a></li>
+							<li><a href="contact">CONTACT</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</nav>
+	</div>
+</div><!-- End Slide Mobile Menu --->
+
+    <!-- Scripts -->
+    <script src="../assets/js/core.min.js"></script>
+    <script src="../assets/js/thesaas.js"></script>
+    <script src="../assets/js/script.js"></script>
+	<script type="text/javascript" src="../assets/js/marketcap.js"></script>
+	<!-- End Scripts -->
+	<!-- Go to Top Button -->
+	  <div id="stop" class="scrollTop bttt-border bttt-round bttt-positionRight bttt-slideFromBottom">
+		<i class='fa fa-chevron-up'></i>
+	  </div>
+	<!-- End Go to Top Button -->
+	  	<script>
+			$(function() {
+				cbpHorizontalMenu.init();
+			});
+		</script>
+	</body>
+</html>

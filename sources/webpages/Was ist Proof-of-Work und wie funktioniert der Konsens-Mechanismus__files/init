@@ -1,0 +1,12 @@
+(function() {
+setTimeout(function() {
+window.nativendo_588f2a9f5289f_conf={"endpoints":{"c":"https:\/\/c.finative.eu","d":"https:\/\/d.finative.eu","t":"https:\/\/t.finative.eu","s":"https:\/\/s.finative.eu"},"identifier":"finative","uniqueId":"588f2a9f5289f","dmp":[],"p":{"v":"22170164"},"env":"","options":{"tracking":{"inventory":true},"acs":0}};
+var s=document.createElement('script');
+s.type='text/javascript';
+s.async=true;
+s.src=window.nativendo_588f2a9f5289f_conf.endpoints.c+'/assets/js/loader.js?v=22170164';
+s.setAttribute('data-nativendo-id','588f2a9f5289f');
+var sc=document.getElementsByTagName('script')[0];
+sc.parentNode.insertBefore(s, sc);
+},0);
+})();

@@ -1,0 +1,50 @@
+/**
+ * Generic tracking abstraction layer
+ */
+var cnTrackingClass = function () {
+
+    var _providers = [];
+
+    /**
+     * Set tracking provider to use
+     * @param provider
+     */
+    this.addProvider = function (provider) {
+        _providers.push(provider);
+    };
+
+    // --- Normal Tracking -----------------------------------------
+
+    /**
+     * set data of page
+     * @param data
+     */
+    this.trackPage = function (data) {
+        for (var idx in _providers)
+            if ( typeof _providers[idx] === "object" && this.can.apply(_providers[idx], ["trackPage"]) )
+                _providers[idx].trackPage(data)
+    };
+
+    /**
+     * add data for teaser
+     * @param event
+     * @param data
+     * @param context
+     */
+    this.trackEvent = function (event, parameters) {
+        for (var idx in _providers)
+            if ( typeof _providers[idx] === "object" && this.can.apply(_providers[idx], ["trackEvent"]) )
+                _providers[idx].trackEvent(event, parameters)
+    };
+
+    /**
+      * Check if function is available
+      * @param {String} methodName
+      * @return {boolean}
+      */
+    this.can = function( methodName ) {
+        return ( this.hasOwnProperty( methodName ) && typeof this[methodName] === "function" );
+    }
+
+};
+var cnTracking = new cnTrackingClass();

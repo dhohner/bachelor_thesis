@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<!-- saved from url=(0079)https://www.sitepoint.com/smart-contract-safety-best-practices-design-patterns/ -->
+<html class="sp🚧  js no-ie8compat svg csspositionsticky inlinesvg svgclippaths" lang="en"><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="manifest" href="https://www.sitepoint.com/sp-push-manifest.json"><script type="text/javascript" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/cmpui-banner.js.Download" integrity="sha256-MgbO89Ld/VgacwDCVqQ7k5btZKxKd1gsN1hJm630ST4=" crossorigin="anonymous"></script>
+    <link rel="manifest" href="https://www.sitepoint.com/manifest.json">
+    <link href="https://dab1nmslvvntp.cloudfront.net/" ref="dns-prefetch">
+    <link href="https://d2sis3lil8ndrq.cloudfront.net/" ref="dns-prefetch">
+    <link href="https://sitepoint.com/" ref="dns-prefetch">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:image" content="https://www.sitepoint.com/wp-content/themes/sitepoint/assets/images/icon.blockchain.png">
+        
+    <link rel="shortcut icon" href="https://www.sitepoint.com/favicon.ico">
+
+    <link rel="apple-touch-icon-precomposed" href="https://www.sitepoint.com/wp-content/themes/sitepoint/assets/images/apple-touch-icon-57x57-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="https://www.sitepoint.com/wp-content/themes/sitepoint/assets/images/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="https://www.sitepoint.com/wp-content/themes/sitepoint/assets/images/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="https://www.sitepoint.com/wp-content/themes/sitepoint/assets/images/apple-touch-icon-144x144-precomposed.png">
+
+    <!-- Sitepoint's new font from Google Fonts -->
+    <link href="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/css" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/all.css">
+
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for SitePoint.com" href="https://www.sitepoint.com/feed/">
+
+        <link href="https://plus.google.com/+sitepoint" rel="publisher">
+        <meta property="twitter:account_id" content="15743570">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <meta name="google-site-verification" content="hcQq0cWX73AYby8aMMzNHx8bZrTDI75GWeljGdPmNf8">
+<meta name="google-site-verification" content="I0jyQlTvZaveab8RtDOjUxSPZXbdSgFrcKdAwaCCfvA">
+
+
+<!-- Google Tag Manager -->
+<script src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/cmp.js.Download" async="" type="text/javascript"></script><script async="" type="text/javascript" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/gpt.js.Download"></script><script async="" type="text/javascript" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/sitepoint.min.js.Download"></script><script async="" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/gtm.js.Download"></script><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KL8PMMW');</script>
+
+    <script class="SP_stripMobile" type="text/javascript">
+      var propertag = propertag || {};
+      propertag.cmd = propertag.cmd || [];
+      (function() {
+      var pm = document.createElement('script');
+      pm.async = true; pm.type = 'text/javascript';
+      var is_ssl = 'https:' == document.location.protocol;
+      pm.src = (is_ssl ? 'https:' : 'http:') + '//global.proper.io/sitepoint.min.js';
+      var node = document.getElementsByTagName('script')[0];
+      node.parentNode.insertBefore(pm, node);
+      })();
+    </script>
+    <script class="SP_stripMobile" type="text/javascript">
+      var googletag = googletag || {};
+      googletag.cmd = googletag.cmd || [];
+      (function() {
+      var gads = document.createElement('script');
+      gads.async = true;
+      gads.type = 'text/javascript';
+      var useSSL = 'https:' == document.location.protocol;
+      gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+      var node = document.getElementsByTagName('script')[0];
+      node.parentNode.insertBefore(gads, node);
+      })();
+    </script>
+    <script charset="UTF-8" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/ee9a890c7a9d2a9236648c25e40bd03e_1.js.Download" async=""></script>
+
+    <!-- Script to stop bad ads -->
+    <script type="text/javascript" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/script.js.Download" data-uuid="d6bf16d0-bb4d-71d7-5889-22eed2e9c51d"></script>
+    
+    
+<!-- This site is optimized with the Yoast SEO plugin v8.4 - https://yoast.com/wordpress/plugins/seo/ -->
+<title>Smart Contract Safety: Best Practices &amp; Design Patterns — SitePoint</title>
+<meta name="description" content="Developing with a security mindset is extremely important as the cost of failure can be high and change can be difficult. It’s recommended to use secure design patterns like rate limiters, exit strategies or circuit breakers to protect your contract against unexpected events.">
+<link rel="canonical" href="https://www.sitepoint.com/smart-contract-safety-best-practices-design-patterns/">
+<link rel="publisher" href="https://plus.google.com/+sitepoint/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Smart Contract Safety: Best Practices &amp; Design Patterns — SitePoint">
+<meta property="og:description" content="Developing with a security mindset is extremely important as the cost of failure can be high and change can be difficult. It’s recommended to use secure design patterns like rate limiters, exit strategies or circuit breakers to protect your contract against unexpected events.">
+<meta property="og:url" content="https://www.sitepoint.com/smart-contract-safety-best-practices-design-patterns/">
+<meta property="og:site_name" content="SitePoint">
+<meta property="article:publisher" content="https://www.facebook.com/sitepoint">
+<meta property="article:tag" content="blockchain">
+<meta property="article:tag" content="ethereum">
+<meta property="article:tag" content="iolite">
+<meta property="article:tag" content="joelf">
+<meta property="article:tag" content="learn-ethereum">
+<meta property="article:tag" content="smart contracts">
+<meta property="article:tag" content="solidity">
+<meta property="article:section" content="Blockchain">
+<meta property="article:published_time" content="2018-08-23T12:30:48+00:00">
+<meta property="article:modified_time" content="2018-08-24T00:31:09+00:00">
+<meta property="og:updated_time" content="2018-08-24T00:31:09+00:00">
+<meta property="og:image" content="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2018/08/1534749904rawpixel-586687-unsplash.jpg">
+<meta property="og:image:secure_url" content="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2018/08/1534749904rawpixel-586687-unsplash.jpg">
+<meta property="og:image:width" content="1000">
+<meta property="og:image:height" content="667">
+<meta property="og:image:alt" content="Smart Contracts">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:description" content="Developing with a security mindset is extremely important as the cost of failure can be high and change can be difficult. It’s recommended to use secure design patterns like rate limiters, exit strategies or circuit breakers to protect your contract against unexpected events.">
+<meta name="twitter:title" content="Smart Contract Safety: Best Practices &amp; Design Patterns — SitePoint">
+<meta name="twitter:site" content="@sitepointdotcom">
+<meta name="twitter:image" content="https://dab1nmslvvntp.cloudfront.net/wp-content/uploads/2018/08/1534749904rawpixel-586687-unsplash.jpg">
+<meta name="twitter:creator" content="@sitepointdotcom">
+<!-- / Yoast SEO plugin. -->
+
+<link rel="dns-prefetch" href="https://s.w.org/">
+<link rel="alternate" type="application/rss+xml" title="SitePoint » Smart Contract Safety: Best Practices &amp; Design Patterns Comments Feed" href="https://www.sitepoint.com/smart-contract-safety-best-practices-design-patterns/feed/">
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.sitepoint.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.8"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script><script src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/wp-emoji-release.min.js.Download" type="text/javascript" defer=""></script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel="stylesheet" id="wp-parsely-style-css" href="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/wp-parsely.css" type="text/css" media="all">
+<link rel="stylesheet" id="wp-postratings-css" href="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/postratings-css.css" type="text/css" media="all">
+<link rel="stylesheet" id="sitepoint-styles-css" href="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/styles-63620ced6374adfdc078b1a126c2f666.css" type="text/css" media="all">
+<link rel="stylesheet" id="sitepoint-styles-janus-css" href="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/compiled.f94d8ea52ec1e377c89f.css" type="text/css" media="all"><link rel="stylesheet" id="sitepoint-styles-janus-article-css" href="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/compiledArticle.f94d8ea52ec1e377c89f.css" type="text/css" media="all">
+<script type="text/javascript" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/scripts-head-302ae967a92241deb24be6e2a54eeefd.js.Download"></script>
+<link rel="https://api.w.org/" href="https://www.sitepoint.com/wp-json/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.sitepoint.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.sitepoint.com/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 4.9.8">
+<link rel="shortlink" href="https://www.sitepoint.com/?p=167721">
+<link rel="alternate" type="application/json+oembed" href="https://www.sitepoint.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.sitepoint.com%2Fsmart-contract-safety-best-practices-design-patterns%2F">
+<link rel="alternate" type="text/xml+oembed" href="https://www.sitepoint.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.sitepoint.com%2Fsmart-contract-safety-best-practices-design-patterns%2F&amp;format=xml">
+
+<!-- BEGIN wp-parsely Plugin Version 1.13.0 -->
+<meta name="wp-parsely_version" id="wp-parsely_version" content="1.13.0">
+	<script type="application/ld+json">
+	{"@context":"http:\/\/schema.org","@type":"NewsArticle","mainEntityOfPage":{"@type":"WebPage","@id":"http:\/\/www.sitepoint.com\/smart-contract-safety-best-practices-design-patterns\/"},"headline":"Smart Contract Safety: Best Practices &#038; Design Patterns","url":"http:\/\/www.sitepoint.com\/smart-contract-safety-best-practices-design-patterns\/","thumbnailUrl":"https:\/\/dab1nmslvvntp.cloudfront.net\/wp-content\/uploads\/2018\/08\/1534749904rawpixel-586687-unsplash-150x150.jpg","image":{"@type":"ImageObject","url":"https:\/\/dab1nmslvvntp.cloudfront.net\/wp-content\/uploads\/2018\/08\/1534749904rawpixel-586687-unsplash-150x150.jpg"},"dateCreated":"2018-08-23T12:30:48Z","datePublished":"2018-08-23T12:30:48Z","dateModified":"2018-08-23T12:30:48Z","articleSection":"Blockchain","author":[{"@type":"Person","name":"Michiel Mulders"}],"creator":["Michiel Mulders"],"keywords":["blockchain","ethereum","iolite","joelf","learn-ethereum","smart contracts","solidity"],"publisher":{"@type":"Organization","name":"SitePoint","logo":{"@type":"ImageObject","url":""}}}
+	</script>
+
+	<!-- END wp-parsely Plugin Version 1.13.0 -->
+    <script type="text/javascript">
+      googletag.cmd.push(function() {
+        purchs2s.cmd.push(function() {
+          		googletag.pubads().setTargeting("channel", "blockchain");
+		googletag.pubads().setTargeting("post_id", "167721");
+		googletag.pubads().setTargeting("AOL",["true", "false"]);
+		googletag.pubads().setTargeting("OpenX",["true", "false"]);
+		googletag.pubads().setTargeting("Tribal",["true", "false"]);
+		googletag.pubads().enableSingleRequest();
+                    googletag.pubads().collapseEmptyDivs();
+          googletag.pubads().disableInitialLoad();
+          googletag.enableServices();
+          purchs2s.setup();
+        });
+      });
+      SP_GPT_Slots = [];
+    </script>
+    <!--[if lt IE 9]>
+      <script src="/wp-content/themes/sitepoint/assets/javascripts/vendor/respond.custom.min.js"></script>
+    <![endif]-->
+    <style>
+  .t-color { color: #075858 }
+  a.t-color:hover,
+  button.t-color:hover { color: #108787 }
+
+  .t-bg { background-color: #075858 }
+  a.t-bg:hover,
+  button.t-bg:hover { background-color: #108787}
+
+  .t-border { border-color: #075858 }
+  a.t-border:hover,
+  button.t-border:hover { border-color: #108787 }
+
+  .t-bg-dark { background-color: #108787 }
+
+  .t-list li:before { background-color: #075858; }
+
+</style>
+  <style type="text/css"></style><script type="text/javascript" charset="utf-8" async="" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/Prism.eed12bcd30944f3e6122.js.Download"></script><script async="" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/s"></script><style type="text/css">.qc-cmp-ui-container{background:rgba(33,41,52,.85)!important;bottom:0!important;display:flex!important;left:0!important;position:fixed!important;right:0!important;top:0!important;transition:opacity .15s ease;z-index:2147483647!important}.qc-cmp-ui,.qc-cmp-ui-container{opacity:0;overflow-y:scroll;visibility:hidden;will-change:visibility,opacity}.qc-cmp-ui{background-color:#368bd6;bottom:0;box-sizing:border-box;color:#fff;font-family:Arial,Verdana,sans-serif;justify-content:space-between;left:0;max-height:100vh;min-height:300px!important;overflow-x:hidden;position:fixed;right:0;-webkit-font-smoothing:antialiased}.qc-cmp-ui-content{display:flex;padding:60px;overflow-y:scroll}.qc-cmp-publisher-logo{display:block;margin:0 0 24px;max-height:90px;max-width:170px}.qc-cmp-title{color:#fff;font-size:34px;font-weight:700;line-height:41px;margin:0 0 24px}.qc-cmp-main-messaging,.qc-cmp-messaging{font-size:14px;font-weight:400;line-height:21px;margin:0;-webkit-font-smoothing:antialiased}.qc-cmp-messaging{margin-bottom:20px}.qc-cmp-buttons{display:flex!important;align-content:center;flex-direction:column;justify-content:center;padding-left:60px}.qc-cmp-button{background-color:#fff;border:2px solid #fff;border-radius:3px;box-shadow:0 1px 1px 0 rgba(0,0,0,.2);box-sizing:border-box;color:#368bd6;cursor:pointer!important;font-family:Arial,sans-serif;font-size:14px;font-weight:600;height:55px!important;letter-spacing:2px;line-height:34px;margin:0 0 15px;padding:0 13px;text-align:center;text-decoration:none;text-transform:uppercase;transition:all .2s ease-in-out;white-space:nowrap;-webkit-font-smoothing:antialiased}.qc-cmp-button:hover{background-color:#1e4b73;color:#fff}.qc-cmp-button.qc-cmp-secondary-button{background-color:transparent;color:#fff}.qc-cmp-button.qc-cmp-secondary-button:hover{background-color:#fff;color:#368bd6}.qc-cmp-buttons .qc-cmp-button{min-width:315px!important}.qc-cmp-alt-action{color:#fff;cursor:pointer;text-align:center;text-decoration:underline;font-size:14px;line-height:21px;margin:0 15px}.qc-cmp-alt-action:hover{opacity:.6}.qc-cmp-alt-buttons{align-self:center;margin:30px 0 0}.qc-cmp-alt-buttons .qc-cmp-alt-action{margin:0}.qc-cmp-alt-buttons .qc-cmp-alt-action+.qc-cmp-alt-action{padding-left:20px;margin-left:20px;border-left:1px solid #fff}.qc-cmp-consent-content{padding:60px 60px 0}.qc-cmp-qc-link-container{position:absolute;bottom:0;right:0;font-size:10px!important;display:flex;align-items:center;padding:0 30px 30px 0}.qc-cmp-qc-link{margin-left:5px}.qc-cmp-back{font-weight:600;left:65px;position:absolute;text-align:left;text-decoration:none;top:25px}.qc-cmp-back:before{content:"";display:inline-block;position:relative;top:1px;right:6px;width:12px;height:12px;background:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 5l6 6 6-6'/%3E%3C/svg%3E") 50% no-repeat;transform:rotate(90deg)}.qc-cmp-purposes-header{display:flex;justify-content:space-between}.qc-cmp-bold-messaging{margin:10px 0 20px}.qc-cmp-button-small{flex:0 1 auto;height:40px!important;font-size:12px}.qc-cmp-vendors-purposes-table{border-bottom:1px solid #fff}.qc-cmp-purpose-row{border:1px solid #fff;border-bottom:none;padding:10px 20px;position:relative}.qc-cmp-purpose-info{position:relative}.qc-cmp-purpose-description{margin:10px 0;width:calc(100% - 200px)}.qc-cmp-purpose-actions{align-items:center;bottom:20px;display:flex;position:absolute;right:0;top:20px}.qc-cmp-show-vendors-link{font-size:12px}.qc-cmp-toggler{display:inline-block;margin:0 0 0 20px;width:60px}.qc-cmp-toggle{background-color:#1e4b73;border:1px solid #1e4b73;border-radius:11px;cursor:pointer;display:block;height:16px;margin:0 auto;position:relative;width:34px}.qc-cmp-toggle-off{background-color:#368bd6}.qc-cmp-toggle-switch{background-color:#fff;border-radius:50%;display:inline-block;height:16px;position:absolute;right:18px;top:0;transition:all .1s ease-in-out 0ms;width:16px}.qc-cmp-toggle-on .qc-cmp-toggle-switch{right:0}.qc-cmp-toggle-status{color:#fff;font-family:Arial,Verdana,sans-serif;font-size:12px;font-weight:700;opacity:.8;margin:0;padding:6px 0 0;text-align:center}.qc-cmp-scrolling-section{border-bottom:1px solid hsla(0,0%,100%,.3);border-top:1px solid hsla(0,0%,100%,.3);height:calc(100vh - 400px);max-height:1000px;min-height:200px!important;overflow-y:scroll}.qc-cmp-scrolling-section table:first-child{border-top:none}.qc-cmp-scrolling-section table:last-child{border-bottom:none}.qc-cmp-nav-bar{display:flex;width:100%;justify-content:flex-end}.qc-cmp-table{border:1px solid hsla(0,0%,100%,.3);border-collapse:collapse;color:#fff;font-family:Arial,Verdana,sans-serif;font-size:14px;width:100%}.qc-cmp-table-header{color:hsla(0,0%,100%,.8);font-size:14px;font-weight:700;line-height:30px;letter-spacing:1px;margin:0;padding:0 20px;text-align:left;text-transform:uppercase}.qc-cmp-table-row{border-top:1px solid hsla(0,0%,100%,.3);padding:10px 20px}.qc-cmp-table-row:last-child{border-bottom:1px solid hsla(0,0%,100%,.3)}.qc-cmp-publisher-purposes-table{margin-bottom:20px}.qc-cmp-purposes-vendor-list{margin:20px 0 10px}.qc-cmp-company-cell{font-weight:700;line-height:45px;padding:0 20px}.qc-cmp-enabled-cell{text-align:right;padding:0 20px}.qc-cmp-nav-bar.qc-cmp-bottom{flex-wrap:wrap}.qc-cmp-left-nav-link{flex:1 1 auto;line-height:75px;position:relative;text-align:left;white-space:nowrap}.qc-cmp-cancel{flex:0 1 100px;line-height:75px}.qc-cmp-save-and-exit{flex:1 1 200px;margin:10px 0;max-width:265px}.qc-cmp-sub-title-container{display:flex;flex:0 0 auto}.qc-cmp-sub-title{flex:1 1 auto;font-family:Arial,Verdana,sans-serif;font-size:24px;font-weight:600;line-height:24px;margin:10px 20px 20px 0}.qc-cmp-horizontal-buttons{align-content:center;display:flex!important;flex:0 1 auto!important;flex-wrap:wrap!important;justify-content:center!important;margin:-7px 0 7px!important}.qc-cmp-horizontal-buttons .qc-cmp-button{flex:1 0 auto!important;max-width:300px!important;margin:7px 7px 0!important}.qc-cmp-vendor-row{height:45px!important}.qc-cmp-on-off-column{width:50px}.qc-cmp-on-off-column .qc-cmp-table-header{padding:0}.qc-cmp-dropdown-column{width:50px}.qc-cmp-arrow-down{width:16px;height:16px;margin:auto;background:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23FFF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2 5l6 6 6-6'/%3E%3C/svg%3E") 50% no-repeat}.qc-cmp-flip-up{transform:rotate(180deg)}.qc-cmp-vendor-info-content{padding:0 20px 15px;line-height:16px}.qc-cmp-bold{font-weight:700}.qc-cmp-vendor-info-list-title{font-weight:700;line-height:1.5;margin:12px 0 0}.qc-cmp-vendor-info-list{line-height:1.5;list-style-type:none;margin:0;padding:0}@media screen and (max-width:850px){.qc-cmp-qc-link-container{padding:0 5px 5px 0}.qc-cmp-ui-content{flex-wrap:wrap}.qc-cmp-initial-info{width:100%}.qc-cmp-buttons{width:100%;padding:60px 0 0}.qc-cmp-buttons .qc-cmp-button{width:100%}.qc-cmp-consent-content{padding:60px 30px 0}.qc-cmp-back{left:35px}}.qc-cmp-ui-showing{overflow:hidden}.qc-cmp-showing{opacity:1;visibility:visible}.qc-cmp-hidden{display:none}.qc-cmp-close-icon{background:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M.5.5l23 23m0-23l-23 23' fill='none' stroke='%23000' stroke-linecap='round' stroke-linejoin='round' stroke-miterlimit='10'/%3E%3Cpath fill='none' d='M0 0h24v24H0z'/%3E%3C/svg%3E") 50% no-repeat;border:none;height:38px;outline:none;position:absolute;top:17px;right:24px;width:38px}.qc-cmp-close-icon-first-view{right:20px;position:absolute;top:20px}.qc-cmp-close-icon:hover{cursor:pointer}</style><link rel="stylesheet" type="text/css" href="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/sendpulse-prompt.min.css" media="all"><script async="true" type="text/javascript" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/roundtrip.js.Download"></script></head>
+  <body style="" class="">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KL8PMMW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+        <header class="main-header u-isSingle" role="banner">
+      <nav id="navigation-bar" class="l-p-fix l-d-f l-w-100 t-bg-grey-500 navigation-bar">
+        <div class="l-d-f l-w-100 l-w-3col--3col l-w-4col--4col l-jc-sb l-mh-auto l-ph2">
+          <section class="l-d-f l-ai-str l-jc-sta">
+            <a tabindex="0" class="l-d-f l-ai-cen l-pa3 f-c-white t-t NavBar_item" onclick="sitepoint.SidebarNav_toggle(event)" onkeyup="sitepoint.SidebarNav_toggle(event)">
+              <i class="f-minor l-mb0 fas f-medium fa-bars"></i>
+            </a>
+            
+<div id="SidebarNav" class="SidebarNav" onkeyup="sitepoint.SidebarNav_toggle(event)">
+  <header class="m-border-b SidebarNav_header">
+    <a href="https://www.sitepoint.com/smart-contract-safety-best-practices-design-patterns/#" onclick="sitepoint.SidebarNav_toggle(event)" class="l-pt0 f-light">
+      <span class="SidebarNav_icon">×</span>
+    </a>
+    <div class="l-d-n l-d-b--3col SidebarNav_search">
+      <form method="get" action="https://www.sitepoint.com/">
+        <input aria-label="search" autocomplete="off" id="sidebar-search-box" name="s" placeholder="Search" type="text">
+        <button><i class="fas fa-search"></i></button>
+      </form>
+    </div>
+  </header>
+
+  <section class="m-border-b">
+    <ul>
+      <li class="SidebarNav_link f-minor l-mb0 u-premium/l/join ">
+            <i class="SidebarNav_icon fas fa-user u-premium/l/join"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/premium/l/join?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Sign Up</a>
+          </li>      <li class="SidebarNav_link f-minor l-mb0 u-premium/sign-in ">
+            <i class="SidebarNav_icon fas fa-sign-in u-premium/sign-in"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/premium/sign-in/?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Login</a>
+          </li>                </ul>
+  </section>
+
+  <section class="m-border-b">
+    <ul>
+        <li class="SidebarNav_link f-minor l-mb0 u-# no-link">
+            <i class="SidebarNav_icon fab fa-html5 u-#"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/smart-contract-safety-best-practices-design-patterns/#" onclick="return false;">HTML and CSS</a>
+          </li>        <li class="SidebarNav_link f-minor l-mb0 u-learn/bootstrap l-pl5">
+            <i class="SidebarNav_icon fas fa-bold u-learn/bootstrap"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/learn/bootstrap/?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Learn Bootstrap</a>
+          </li>        <li class="SidebarNav_link f-minor l-mb0 u-# no-link">
+            <i class="SidebarNav_icon fab fa-js u-#"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/smart-contract-safety-best-practices-design-patterns/#" onclick="return false;">Javascript</a>
+          </li>        <li class="SidebarNav_link f-minor l-mb0 u-learn/javascript l-pl5">
+            <i class="SidebarNav_icon fab fa-js u-learn/javascript"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/learn/javascript/?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Learn Javascript</a>
+          </li>        <li class="SidebarNav_link f-minor l-mb0 u-learn/react l-pl5">
+            <i class="SidebarNav_icon fab fa-react u-learn/react"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/learn/react/?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Learn React</a>
+          </li>        <li class="SidebarNav_link f-minor l-mb0 u-learn/angular l-pl5">
+            <i class="SidebarNav_icon fab fa-angular u-learn/angular"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/learn/angular/?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Learn Angular</a>
+          </li>        <li class="SidebarNav_link f-minor l-mb0 u-learn/nodejs l-pl5">
+            <i class="SidebarNav_icon fab fa-node-js u-learn/nodejs"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/learn/nodejs/?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Learn Node.js</a>
+          </li>        <li class="SidebarNav_link f-minor l-mb0 u-# no-link">
+            <i class="SidebarNav_icon fab fa-bitcoin u-#"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/smart-contract-safety-best-practices-design-patterns/#" onclick="return false;">Blockchain</a>
+          </li>        <li class="SidebarNav_link f-minor l-mb0 u-learn/blockchain l-pl5">
+            <i class="SidebarNav_icon fab fa-ethereum u-learn/blockchain"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/learn/blockchain/?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Learn Blockchain</a>
+          </li>        <li class="SidebarNav_link f-minor l-mb0 u-# no-link">
+            <i class="SidebarNav_icon fas fa-microscope u-#"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/smart-contract-safety-best-practices-design-patterns/#" onclick="return false;">UX</a>
+          </li>        <li class="SidebarNav_link f-minor l-mb0 u-learn/ux-analytics l-pl5">
+            <i class="SidebarNav_icon fal fa-hand-pointer u-learn/ux-analytics"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/learn/ux-analytics/?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Learn UX Analytics</a>
+          </li>    </ul>
+  </section>
+
+  <section class="m-border-b SidebarNav_products">
+    <ul>
+      <li class="SidebarNav_link f-minor l-mb0 u-premium/deals/?ref_source=sitepoint&amp;ref_medium=drawer ">
+            <i class="SidebarNav_icon far fa-gem u-premium/deals/?ref_source=sitepoint&amp;ref_medium=drawer"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/premium/deals/?ref_source=sitepoint&amp;ref_medium=drawer?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Deals</a>
+          </li>      <li class="SidebarNav_link f-minor l-mb0 u-premium/books ">
+            <i class="SidebarNav_icon fas fa-book u-premium/books"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/premium/books/?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Books</a>
+          </li>      <li class="SidebarNav_link f-minor l-mb0 u-premium/courses ">
+            <i class="SidebarNav_icon fas fa-play-circle u-premium/courses"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/premium/courses/?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Courses</a>
+          </li>    </ul>
+  </section>
+
+  <section class="m-border-b SidebarNav_topics">
+    <ul>
+      <li class="SidebarNav_link SidebarNav_channelLink f-minor l-mb0 u-html-css">
+            <i class="SidebarNav_icon fas fa-circle fa-xs u-html-css"></i>
+            <a class="f-light" href="https://www.sitepoint.com/html-css/?ref_source=sitepoint&amp;ref_medium=drawer" data-channel="html-css">HTML &amp; CSS</a>
+          </li>      <li class="SidebarNav_link SidebarNav_channelLink f-minor l-mb0 u-javascript">
+            <i class="SidebarNav_icon fas fa-circle fa-xs u-javascript"></i>
+            <a class="f-light" href="https://www.sitepoint.com/javascript/?ref_source=sitepoint&amp;ref_medium=drawer" data-channel="javascript">JavaScript</a>
+          </li>      <li class="SidebarNav_link SidebarNav_channelLink f-minor l-mb0 u-php">
+            <i class="SidebarNav_icon fas fa-circle fa-xs u-php"></i>
+            <a class="f-light" href="https://www.sitepoint.com/php/?ref_source=sitepoint&amp;ref_medium=drawer" data-channel="php">PHP</a>
+          </li>      <li class="SidebarNav_link SidebarNav_channelLink f-minor l-mb0 u-design-ux">
+            <i class="SidebarNav_icon fas fa-circle fa-xs u-design-ux"></i>
+            <a class="f-light" href="https://www.sitepoint.com/design-ux/?ref_source=sitepoint&amp;ref_medium=drawer" data-channel="design-ux">Design &amp; UX</a>
+          </li>      <li class="SidebarNav_link SidebarNav_channelLink f-minor l-mb0 u-web">
+            <i class="SidebarNav_icon fas fa-circle fa-xs u-web"></i>
+            <a class="f-light" href="https://www.sitepoint.com/web/?ref_source=sitepoint&amp;ref_medium=drawer" data-channel="web">Web</a>
+          </li>      <li class="SidebarNav_link SidebarNav_channelLink f-minor l-mb0 u-wordpress">
+            <i class="SidebarNav_icon fas fa-circle fa-xs u-wordpress"></i>
+            <a class="f-light" href="https://www.sitepoint.com/wordpress/?ref_source=sitepoint&amp;ref_medium=drawer" data-channel="wordpress">WordPress</a>
+          </li>      <li class="SidebarNav_link SidebarNav_channelLink f-minor l-mb0 u-developer-center">
+            <i class="SidebarNav_icon fas fa-circle fa-xs u-developer-center"></i>
+            <a class="f-light" href="https://www.sitepoint.com/developer-center/?ref_source=sitepoint&amp;ref_medium=drawer" data-channel="developer-center">Microsoft Tech</a>
+          </li>    </ul>
+  </section>
+
+  <section class="m-border-b">
+    <ul>
+      <li class="SidebarNav_link f-minor l-mb0 u-community ">
+            <i class="SidebarNav_icon fas fa-comments u-community"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/community/?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Community</a>
+          </li>      <li class="SidebarNav_link f-minor l-mb0 u-versioning ">
+            
+            <i class="SidebarNav_icon"><!--?xml version="1.0" encoding="UTF-8" standalone="no"?-->
+<svg viewBox="0 0 463 533">
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Misc-Icons" transform="translate(-224.000000, -209.000000)" fill="#A2A2A2">
+            <g id="Adam" transform="translate(224.000000, 209.000000)">
+                <path d="M205.23914,223.989305 C205.23914,239.058221 193.018305,251.270053 177.938282,251.270053 C162.858259,251.270053 150.637425,239.064975 150.637425,223.989305 C150.637425,208.927144 162.858259,196.708557 177.938282,196.708557 C193.018305,196.708557 205.23914,208.927144 205.23914,223.989305" id="Shape"></path>
+                <path d="M319.240023,223.989305 C319.240023,239.058221 307.019188,251.270053 291.939165,251.270053 C276.859142,251.270053 264.638308,239.064975 264.638308,223.989305 C264.638308,208.927144 276.859142,196.708557 291.939165,196.708557 C307.019188,196.708557 319.240023,208.927144 319.240023,223.989305" id="Shape-Copy"></path>
+                <path d="M45.9192714,105.68948 C47.1603233,105.013767 48.4156135,104.338834 49.6814591,103.66477 C49.285517,101.268011 49.079511,98.8067359 49.079511,96.2970985 C49.079511,71.6393315 68.9663337,51.6502619 93.4979726,51.6502619 C104.828598,51.6502619 115.168338,55.9145566 123.11028,62.1553999 C123.11028,37.497633 142.997103,17.5085634 167.528742,17.5085634 C177.872808,17.5085634 187.39103,21.0626011 194.940698,27.0220906 C201.994758,11.1002236 217.874616,0 236.33381,0 C255.201408,0 271.374274,11.5968357 278.182101,28.0859033 C285.813075,16.4403992 298.937725,8.75428168 313.84838,8.75428168 C335.217866,8.75428168 352.918943,24.5413571 356.037389,45.1451696 C359.093922,44.2508863 362.326213,43.7714084 365.669919,43.7714084 C384.669913,43.7714084 400.072453,59.2531388 400.072453,78.3508211 C400.072453,84.451539 398.500668,90.1832596 395.741931,95.1591734 C420.545,106.093308 441.166028,118.313655 447.484806,130.438797 C462.05792,158.40324 448.921531,194.216875 441.795446,209.76377 C445.786047,226.227441 447.901492,243.429264 447.901492,261.127716 C447.901492,277.569319 446.075834,293.582324 442.617163,308.973095 C454.31826,313.102542 462.707645,324.30529 462.707645,337.477559 C462.707645,352.446546 451.87352,364.872078 437.657056,367.264056 C442.403415,372.604775 445.288641,379.652197 445.288641,387.376964 C445.288641,404.057219 431.83579,417.579236 415.240858,417.579236 C414.739425,417.579236 414.24086,417.56689 413.745449,417.542485 C416.086983,421.841984 417.418234,426.776628 417.418234,432.023801 C417.418234,448.704055 403.965383,462.226073 387.370451,462.226073 C385.766225,462.226073 384.191363,462.099709 382.655177,461.856345 C383.175775,464.083267 383.451175,466.405199 383.451175,468.791784 C383.451175,485.472038 369.998324,498.994056 353.403392,498.994056 C348.884389,498.994056 344.598385,497.991345 340.753583,496.195199 C340.156973,512.346957 326.941829,525.256901 310.726831,525.256901 C300.435078,525.256901 291.351821,520.056112 285.93648,512.126599 C281.811241,523.856499 270.681444,532.260326 257.598867,532.260326 C247.286985,532.260326 238.188331,527.039174 232.776786,519.083469 C227.365238,527.039175 218.266585,532.260326 207.954704,532.260326 C194.872127,532.260326 183.74233,523.856499 179.617091,512.126599 C174.20175,520.056112 165.118493,525.256901 154.82674,525.256901 C138.611742,525.256901 125.396598,512.346957 124.799988,496.195199 C120.955186,497.991345 116.669182,498.994056 112.150179,498.994056 C95.5552468,498.994056 82.1023962,485.472038 82.1023962,468.791784 C82.1023962,466.405199 82.3777956,464.083267 82.8983938,461.856345 C81.3622084,462.099709 79.7873457,462.226073 78.1831202,462.226073 C61.588188,462.226073 48.1353374,448.704055 48.1353374,432.023801 C48.1353374,426.776628 49.4665878,421.841984 51.8081225,417.542485 C51.312711,417.56689 50.8141464,417.579236 50.312713,417.579236 C33.7177807,417.579236 20.2649301,404.057219 20.2649301,387.376964 C20.2649301,379.652197 23.1501561,372.604775 27.8965152,367.264056 C13.6800506,364.872078 2.84592558,352.446546 2.84592558,337.477559 C2.84592558,324.30529 11.2353108,313.102542 22.9364075,308.973095 C19.4777374,293.582324 17.6520794,277.569319 17.6520794,261.127716 C17.6520794,244.483155 19.5230884,228.277837 23.0652378,212.71266 C23.0461555,212.67345 23.0269954,212.633634 23.0077587,212.593218 C8.40744355,199.915919 -22.2912349,139.477462 27.9975916,114.351569 C34.9803921,110.862741 40.9027514,108.009708 45.9192714,105.68948 L45.9192714,105.68948 Z M321.182928,338.855264 C312.257241,380.392075 275.494697,411.515802 231.5,411.515802 C187.505303,411.515802 150.742759,380.392075 141.817072,338.855264 L321.182928,338.855264 L321.182928,338.855264 L321.182928,338.855264 Z M323.401809,93.513343 C382.119911,125.539939 421.986958,188.049902 421.986958,259.919187 C421.986958,269.181179 421.324839,278.287729 420.045582,287.193626 L420.045582,287.193626 C414.531038,280.687855 406.320283,276.561781 397.150761,276.561781 C382.005642,276.561781 369.476084,287.817909 367.390774,302.461227 C361.921787,296.754612 354.241111,293.204376 345.735474,293.204376 C336.696537,293.204376 328.589254,297.213765 323.07789,303.559722 L323.07789,303.559722 C317.566526,297.213765 309.459243,293.204376 300.420306,293.204376 C291.140116,293.204376 282.841976,297.430646 277.326999,304.072813 C271.812023,297.430646 263.513882,293.204376 254.233693,293.204376 C245.884947,293.204376 238.331009,296.624848 232.883277,302.147652 L232.883277,302.147652 C227.435545,296.624848 219.881607,293.204376 211.532861,293.204376 C202.252672,293.204376 193.954531,297.430646 188.439555,304.072813 C182.924578,297.430646 174.626438,293.204376 165.346248,293.204376 C156.307311,293.204376 148.200028,297.213765 142.688664,303.559722 L142.688664,303.559722 C137.1773,297.213765 129.070017,293.204376 120.03108,293.204376 C111.525443,293.204376 103.844767,296.754612 98.3757799,302.461227 C96.2904699,287.817909 83.7609125,276.561781 68.6157934,276.561781 C60.2507056,276.561781 52.6835401,279.995657 47.2334107,285.537513 C46.105173,277.159748 45.5224867,268.607864 45.5224867,259.919187 C45.5224867,222.269089 56.4635528,187.187552 75.3242153,157.711582 C101.872077,155.792935 136.061257,148.07484 172.032022,134.915239 C218.909805,117.765397 257.559595,95.4909208 277.539381,75.8645287 C278.024685,75.9807367 278.50926,76.0988336 278.993099,76.2188112 C286.713596,87.3063559 299.514894,94.5568665 314.000977,94.5568665 C317.230893,94.5568665 320.377051,94.1964131 323.401809,93.513343 L323.401809,93.513343 L323.401809,93.513343 Z" id="Path"></path>
+            </g>
+        </g>
+    </g>
+</svg>
+</i>
+            <a class="f-light" href="https://www.sitepoint.com/versioning/?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Versioning</a>
+          </li>      <li class="SidebarNav_link f-minor l-mb0 u-newsletter ">
+            <i class="SidebarNav_icon fas fa-envelope u-newsletter"></i>
+            
+            <a class="f-light" href="https://www.sitepoint.com/newsletter/?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Newsletters</a>
+          </li>    </ul>
+  </section>
+
+  <section class="m-border-b SidebarNav_admin">
+    <ul>
+      <li class="SidebarNav_link f-minor l-mb0 u-advertise ">
+            
+            
+            <a class="f-light" href="https://www.sitepoint.com/advertise/?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Advertise</a>
+          </li>      <li class="SidebarNav_link f-minor l-mb0 u-contact-us ">
+            
+            
+            <a class="f-light" href="https://www.sitepoint.com/contact-us/?ref_source=sitepoint&amp;ref_medium=drawer" onclick="">Contact Us</a>
+          </li>      <zendesk><li class="SidebarNav_link f-minor l-mb0"><a class="f-light" href="https://www.sitepoint.com/smart-contract-safety-best-practices-design-patterns/#">Support</a></li></zendesk></ul>
+  </section>
+
+  
+  <section class="SidebarNav_social">
+    <ul>
+      <li class="SidebarNav_socialLink">
+        <a class="f-light" href="https://www.sitepoint.com/newsletter/">
+          <i class="fas fa-envelope SidebarNav_socialIcon u-newsletter"></i>
+          <span class="SidebarNav_socialCount">1.2M<br>Subscribers</span>
+        </a>
+      </li>
+      <li class="SidebarNav_socialLink">
+        <a class="f-light" href="https://twitter.com/sitepointdotcom" rel="noopener" target="_blank">
+          <i class="fab fa-twitter SidebarNav_socialIcon u-twitter"></i>
+          <span class="SidebarNav_socialCount">136k<br>Followers</span>
+        </a>
+      </li>
+      <li class="SidebarNav_socialLink">
+        <a class="f-light" href="https://facebook.com/sitepoint" rel="noopener" target="_blank">
+          <i class="fab fa-facebook SidebarNav_socialIcon u-facebook"></i>
+          <span class="SidebarNav_socialCount">100k<br>Followers</span>
+        </a>
+      </li>
+    </ul>
+  </section>
+</div>
+
+<div class="SidebarNav_lightbox" onclick="sitepoint.SidebarNav_toggle(event)"></div>
+            <a class="l-d-f" href="https://www.sitepoint.com/">
+              <div class="l-d-n l-d-f--3col l-as-cen">
+                <svg class="sp-logo" viewBox="0 0 123 27">
+  <g fill-rule="evenodd">
+    <path d="M31.36,16.75 C31.56,17.07 31.82,17.31 32.14,17.50 C32.46,17.68 32.82,17.82 33.23,17.89 C33.63,17.97 34.05,18.01 34.48,18.01 C34.81,18.01 35.16,17.99 35.52,17.94 C35.89,17.89 36.22,17.81 36.53,17.68 C36.83,17.55 37.08,17.36 37.28,17.11 C37.48,16.87 37.58,16.55 37.58,16.17 C37.58,15.64 37.37,15.24 36.96,14.97 C36.55,14.69 36.03,14.47 35.41,14.31 C34.79,14.14 34.12,13.99 33.39,13.85 C32.66,13.71 31.99,13.52 31.37,13.27 C30.75,13.03 30.23,12.68 29.82,12.23 C29.41,11.78 29.20,11.16 29.20,10.36 C29.20,9.73 29.34,9.20 29.63,8.75 C29.92,8.30 30.30,7.94 30.75,7.66 C31.20,7.38 31.72,7.17 32.29,7.03 C32.86,6.90 33.42,6.83 33.99,6.83 C34.71,6.83 35.38,6.89 35.99,7.01 C36.61,7.13 37.15,7.34 37.62,7.63 C38.09,7.93 38.46,8.33 38.75,8.83 C39.03,9.34 39.19,9.96 39.24,10.72 L37.13,10.72 C37.10,10.32 36.99,9.98 36.81,9.72 C36.63,9.46 36.40,9.25 36.12,9.08 C35.84,8.92 35.53,8.81 35.19,8.74 C34.85,8.66 34.51,8.63 34.16,8.63 C33.84,8.63 33.53,8.65 33.20,8.70 C32.88,8.75 32.59,8.83 32.32,8.95 C32.06,9.07 31.84,9.23 31.68,9.43 C31.51,9.63 31.43,9.89 31.43,10.21 C31.43,10.56 31.56,10.86 31.82,11.09 C32.07,11.32 32.40,11.51 32.80,11.66 C33.19,11.82 33.64,11.95 34.13,12.05 C34.63,12.15 35.13,12.26 35.62,12.37 C36.15,12.49 36.67,12.62 37.17,12.78 C37.67,12.94 38.12,13.15 38.51,13.42 C38.90,13.68 39.21,14.01 39.45,14.41 C39.69,14.81 39.81,15.31 39.81,15.90 C39.81,16.66 39.65,17.28 39.33,17.77 C39.01,18.27 38.58,18.67 38.06,18.98 C37.54,19.28 36.96,19.49 36.30,19.61 C35.65,19.73 35.00,19.79 34.36,19.79 C33.65,19.79 32.97,19.72 32.32,19.58 C31.68,19.43 31.11,19.20 30.61,18.87 C30.12,18.54 29.72,18.11 29.42,17.57 C29.13,17.03 28.96,16.38 28.93,15.61 L31.03,15.61 C31.05,16.06 31.16,16.44 31.36,16.75" id="Fill-1"></path>
+    <path d="M42.27,7.12 L44.37,7.12 L44.37,19.53 L42.27,19.53 L42.27,7.12 Z" id="Fill-2"></path>
+    <path d="M53.13,7.12 L53.13,8.92 L50.57,8.92 L50.57,16.62 C50.57,16.86 50.59,17.05 50.63,17.20 C50.67,17.34 50.75,17.46 50.87,17.54 C50.99,17.62 51.15,17.67 51.35,17.69 C51.56,17.71 51.83,17.73 52.16,17.73 L53.13,17.73 L53.13,19.53 L51.51,19.53 C50.97,19.53 50.50,19.49 50.11,19.42 C49.72,19.35 49.41,19.22 49.17,19.02 C48.93,18.83 48.75,18.56 48.64,18.21 C48.52,17.86 48.46,17.39 48.46,16.81 L48.46,8.92 L46.28,8.92 L46.28,7.12 L48.46,7.12 L48.46,3.39 L50.57,3.39 L50.57,7.12 L53.13,7.12" id="Fill-3"></path>
+    <path d="M64.53,18.73 C63.57,19.44 62.36,19.79 60.91,19.79 C59.89,19.79 59.00,19.63 58.25,19.31 C57.49,18.99 56.86,18.54 56.35,17.97 C55.84,17.39 55.45,16.70 55.20,15.90 C54.94,15.10 54.80,14.23 54.76,13.29 C54.76,12.34 54.91,11.48 55.21,10.69 C55.51,9.91 55.92,9.23 56.46,8.65 C57.00,8.08 57.63,7.63 58.37,7.31 C59.11,6.99 59.91,6.83 60.79,6.83 C61.93,6.83 62.87,7.05 63.63,7.51 C64.38,7.97 64.98,8.55 65.44,9.25 C65.89,9.96 66.20,10.73 66.38,11.56 C66.55,12.39 66.62,13.18 66.59,13.93 L56.99,13.93 C56.98,14.48 57.04,14.99 57.19,15.48 C57.34,15.97 57.58,16.40 57.91,16.78 C58.24,17.16 58.66,17.46 59.18,17.68 C59.69,17.90 60.29,18.01 60.98,18.01 C61.88,18.01 62.61,17.82 63.18,17.41 C63.75,17.02 64.13,16.41 64.31,15.59 L66.39,15.59 C66.11,16.98 65.49,18.03 64.53,18.73 L64.53,18.73 Z M64.02,10.76 C63.83,10.33 63.58,9.96 63.25,9.65 C62.93,9.34 62.55,9.09 62.11,8.90 C61.68,8.72 61.19,8.63 60.66,8.63 C60.12,8.63 59.62,8.72 59.19,8.90 C58.75,9.09 58.37,9.34 58.06,9.66 C57.75,9.98 57.50,10.35 57.32,10.78 C57.13,11.20 57.03,11.65 56.99,12.13 L64.36,12.13 C64.32,11.65 64.21,11.20 64.02,10.76 L64.02,10.76 Z" id="Fill-4"></path>
+    <path d="M70.95,7.12 L70.95,8.80 L71.00,8.80 C71.35,8.11 71.89,7.61 72.64,7.30 C73.38,6.98 74.20,6.83 75.09,6.83 C76.09,6.83 76.95,7.00 77.68,7.36 C78.42,7.71 79.03,8.18 79.52,8.78 C80.01,9.38 80.37,10.08 80.62,10.86 C80.87,11.65 80.99,12.48 80.99,13.36 C80.99,14.24 80.87,15.07 80.63,15.85 C80.39,16.64 80.03,17.32 79.54,17.91 C79.06,18.49 78.44,18.95 77.71,19.29 C76.97,19.62 76.12,19.79 75.14,19.79 C74.83,19.79 74.48,19.76 74.09,19.70 C73.70,19.63 73.32,19.53 72.94,19.38 C72.56,19.24 72.20,19.04 71.86,18.79 C71.52,18.55 71.23,18.24 71.00,17.87 L70.95,17.87 L70.95,24.26 L68.84,24.26 L68.84,7.12 L70.95,7.12 L70.95,7.12 Z M78.53,11.52 C78.37,10.97 78.13,10.48 77.81,10.04 C77.49,9.61 77.07,9.27 76.57,9.01 C76.06,8.76 75.47,8.63 74.79,8.63 C74.08,8.63 73.48,8.76 72.98,9.04 C72.49,9.31 72.08,9.67 71.77,10.10 C71.46,10.55 71.23,11.05 71.09,11.60 C70.95,12.17 70.88,12.73 70.88,13.31 C70.88,13.92 70.95,14.51 71.10,15.07 C71.25,15.64 71.48,16.14 71.81,16.57 C72.13,17.01 72.55,17.35 73.06,17.62 C73.57,17.88 74.19,18.01 74.92,18.01 C75.65,18.01 76.25,17.88 76.74,17.61 C77.23,17.34 77.62,16.98 77.92,16.53 C78.22,16.08 78.43,15.57 78.56,14.99 C78.70,14.41 78.76,13.82 78.76,13.21 C78.76,12.64 78.68,12.07 78.53,11.52 L78.53,11.52 Z" id="Fill-5"></path>
+    <path d="M83.17,10.78 C83.44,9.98 83.84,9.30 84.36,8.71 C84.89,8.13 85.55,7.67 86.33,7.33 C87.10,7.00 87.99,6.83 89.00,6.83 C90.03,6.83 90.92,7.00 91.69,7.33 C92.46,7.67 93.11,8.13 93.64,8.71 C94.17,9.30 94.56,9.98 94.83,10.78 C95.09,11.57 95.23,12.42 95.23,13.33 C95.23,14.25 95.09,15.09 94.83,15.88 C94.56,16.66 94.17,17.35 93.64,17.93 C93.11,18.52 92.46,18.97 91.69,19.30 C90.92,19.63 90.03,19.79 89.00,19.79 C87.99,19.79 87.10,19.63 86.33,19.30 C85.55,18.97 84.89,18.52 84.36,17.93 C83.84,17.35 83.44,16.66 83.17,15.88 C82.91,15.09 82.78,14.25 82.78,13.33 C82.78,12.42 82.91,11.57 83.17,10.78 L83.17,10.78 Z M85.32,15.34 C85.53,15.92 85.81,16.41 86.18,16.80 C86.54,17.19 86.96,17.49 87.45,17.70 C87.94,17.91 88.46,18.01 89.00,18.01 C89.55,18.01 90.06,17.91 90.55,17.70 C91.04,17.49 91.46,17.19 91.83,16.80 C92.19,16.41 92.48,15.92 92.68,15.34 C92.89,14.75 92.99,14.09 92.99,13.33 C92.99,12.58 92.89,11.91 92.68,11.33 C92.48,10.75 92.19,10.25 91.83,9.85 C91.46,9.45 91.04,9.15 90.55,8.94 C90.06,8.73 89.55,8.63 89.00,8.63 C88.46,8.63 87.94,8.73 87.45,8.94 C86.96,9.15 86.54,9.45 86.18,9.85 C85.81,10.25 85.53,10.75 85.32,11.33 C85.11,11.91 85.01,12.58 85.01,13.33 C85.01,14.09 85.11,14.75 85.32,15.34 L85.32,15.34 Z" id="Fill-6"></path>
+    <path d="M97.83,7.12 L99.94,7.12 L99.94,19.53 L97.83,19.53 L97.83,7.12 Z" id="Fill-7"></path>
+    <path d="M105.19,7.12 L105.19,9.08 L105.24,9.08 C106.12,7.58 107.51,6.83 109.41,6.83 C110.25,6.83 110.95,6.94 111.51,7.16 C112.08,7.39 112.53,7.70 112.88,8.10 C113.23,8.50 113.47,8.98 113.61,9.53 C113.75,10.08 113.82,10.69 113.82,11.36 L113.82,19.53 L111.71,19.53 L111.71,11.12 C111.71,10.36 111.48,9.75 111.02,9.30 C110.56,8.85 109.92,8.63 109.11,8.63 C108.46,8.63 107.91,8.72 107.43,8.92 C106.96,9.11 106.57,9.38 106.26,9.73 C105.94,10.08 105.71,10.50 105.55,10.97 C105.39,11.44 105.32,11.96 105.32,12.52 L105.32,19.53 L103.21,19.53 L103.21,7.12 L105.19,7.12" id="Fill-8"></path>
+    <path d="M122.47,7.12 L122.47,8.92 L119.92,8.92 L119.92,16.62 C119.92,16.86 119.94,17.05 119.98,17.20 C120.02,17.34 120.10,17.46 120.22,17.54 C120.33,17.62 120.49,17.67 120.70,17.69 C120.91,17.71 121.18,17.73 121.50,17.73 L122.47,17.73 L122.47,19.53 L120.86,19.53 C120.32,19.53 119.85,19.49 119.46,19.42 C119.07,19.35 118.76,19.22 118.52,19.02 C118.28,18.83 118.10,18.56 117.99,18.21 C117.87,17.86 117.81,17.39 117.81,16.81 L117.81,8.92 L115.63,8.92 L115.63,7.12 L117.81,7.12 L117.81,3.39 L119.92,3.39 L119.92,7.12 L122.47,7.12" id="Fill-9"></path>
+    <path d="M0.67,11.87 L2.62,13.76 L8.76,19.50 L11.41,16.94 C11.65,16.61 11.64,16.16 11.36,15.84 L8.94,13.72 L8.95,13.72 L6.34,11.19 C6.04,10.84 6.04,10.32 6.37,9.99 L13.38,3.21 L10.20,0.12 L0.68,9.31 C-0.05,10.02 -0.05,11.17 0.67,11.87" id="Fill-10"></path>
+    <path d="M21.60,15.15 L19.66,13.27 L13.51,7.53 L10.86,10.08 C10.62,10.42 10.64,10.87 10.91,11.19 L13.33,13.31 L13.33,13.31 L15.93,15.84 C16.24,16.19 16.23,16.70 15.91,17.04 L8.89,23.82 L12.08,26.91 L19.65,19.60 L21.60,17.71 C22.33,17.01 22.33,15.86 21.60,15.15" id="Fill-11"></path>
+    <path d="M44.55,4.58 C44.55,5.24 44.00,5.77 43.32,5.77 C42.64,5.77 42.09,5.24 42.09,4.58 C42.09,3.93 42.64,3.39 43.32,3.39 C44.00,3.39 44.55,3.93 44.55,4.58" id="Fill-12"></path>
+    <path d="M100.11,4.58 C100.11,5.24 99.56,5.77 98.88,5.77 C98.20,5.77 97.65,5.24 97.65,4.58 C97.65,3.93 98.20,3.39 98.88,3.39 C99.56,3.39 100.11,3.93 100.11,4.58" id="Fill-13"></path>
+  </g>
+</svg>
+              </div>
+              <div class="l-d-f l-d-n--3col l-as-cen">
+                <svg width="22px" height="27px" viewBox="0 0 22 27">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g transform="translate(-52.00, -407.00)" fill="#FFFFFF">
+            <g transform="translate(52.00, 407.00)">
+                <path d="M0.54,11.75 L2.49,13.64 L8.63,19.38 L11.28,16.82 C11.52,16.49 11.51,16.04 11.23,15.72 L8.81,13.60 L8.82,13.60 L6.21,11.07 C5.91,10.72 5.91,10.20 6.24,9.87 L13.25,3.09 L10.06,0 L0.54,9.19 C-0.18,9.90 -0.18,11.05 0.54,11.75"></path>
+                <path d="M20.71,14.62 L18.76,12.74 L12.62,7 L9.97,9.55 C9.73,9.89 9.74,10.34 10.02,10.65 L12.44,12.78 L12.43,12.78 L15.04,15.31 C15.34,15.66 15.33,16.17 15.01,16.51 L8,23.29 L11.18,26.38 L18.75,19.06 L20.70,17.18 C21.43,16.48 21.44,15.33 20.71,14.62"></path>
+            </g>
+        </g>
+    </g>
+</svg>
+              </div>
+            </a>
+          </section>
+
+          <section class="l-d-f l-w-100 l-ai-str l-jc-fe">
+            <a class="navigation-bar-dropdown l-d-n l-d-f--3col l-ai-cen l-pa2 f-minor l-gs-mb0 f-light f-c-white" href="https://www.sitepoint.com/learning-hubs">
+              <i class="l-mr2 f-minor l-mb0 fas f-medium fa-map-marker-alt"></i>
+              Learning Hubs
+            </a>
+            <a class="navigation-bar-dropdown l-d-n l-d-f--3col l-ai-cen l-ml3 l-pa2 f-minor l-mb0 f-light f-c-white" href="https://www.sitepoint.com/premium/topics/all?q=&amp;limit=400&amp;offset=0&amp;page1&amp;content_types[]=Book&amp;ref_source=sitepoint&amp;ref_medium=topnav">
+                <i class="l-mr2 f-minor l-mb0 fas f-medium fa-book"></i>
+                Books
+            </a>
+            <a class="navigation-bar-dropdown l-d-n l-d-f--3col l-ai-cen l-ml3 l-pa2 f-minor l-mb0 f-light f-c-white" href="https://www.sitepoint.com/premium/topics/all?q=&amp;limit=400&amp;offset=0&amp;page1&amp;content_types[]=Course&amp;ref_source=sitepoint&amp;ref_medium=topnav">
+                <i class="l-mr2 f-minor l-mb0 fas f-medium fa-video"></i>
+                Videos
+            </a>
+            <a class="navigation-bar-dropdown l-d-n l-d-f--3col l-ai-cen l-ml3 l-pa2 f-minor l-gs-mb0 f-light f-c-white" href="https://www.sitepoint.com/email-courses">
+              <i class="l-mr2 f-minor l-mb0 fas f-medium fa-envelope"></i>
+              Email Courses
+            </a>
+                          <div class="l-d-f"><a href="https://www.sitepoint.com/premium/sign-in" class="Button u-small u-outline u-white l-as-cen l-ml3 l-d-n l-d-b--2col" style="border-width: 1px;">Login</a><a href="https://www.sitepoint.com/premium/l/join?ref_source=sitepoint&amp;ref_medium=topnav&amp;ref_campaign=smart-contract-safety-best-practices-design-patterns&amp;ref_content=blockchain" class="Button u-small l-as-cen l-ml3 l-d-n l-d-b--2col">Sign Up</a></div>
+                      </section>
+        </div>
+      </nav>
+
+      <div class="NavBar_offsetSpacer"></div>
+      <script>
+                var current_category = ['blockchain'];
+          if (localStorage.getItem('SP_categories') !== null) {
+            if (localStorage.getItem('SP_categories').includes(current_category) === false ) {
+              var sp_categories = JSON.parse(localStorage.getItem('SP_categories') || "[]");
+              var temp = current_category.concat(sp_categories);
+              var filtered_categories = Array.from(new Set(temp));
+              localStorage.setItem('SP_categories', JSON.stringify(filtered_categories));
+            }
+          }else {
+            localStorage.setItem('SP_categories', JSON.stringify('blockchain'));
+          }
+            // campaign
+            localStorage.setItem('SP_slug', 'smart-contract-safety-best-practices-design-patterns');
+
+              </script>
+      <div class="widget maestro maestro-content-type-html " id="maestro-754"><sp-fixed-countdown-bar button_text="All Our Books &amp; Courses for $9!" button_url="https://www.sitepoint.com/premium/l/join?ref_source=sitepoint&amp;ref_medium=noticebar&amp;ref_campaign=sitewide" buttonclass="u-red u-white" end="2018-05-14 22:45:00 +1000" end_message="Join 35,000 Members Learning Web Development" landingpageclass="v3 l-ph3" ga_event_label="754" countdown_message="Offer Ends In" server-rendered="1"><div class="FixedCountdownBar_trigger t-t u-fixed false"><div id="fixed-countdown-bar" class="FixedCountdownBar l-w-100 l-d-f l-jc-cen l-ai-cen l-pv3 l-ph3 f-c-white f-uppercase f-bold v3 l-ph3 l-p-fix" style=""><div class="fixed-countdown-bar__content-wrapper l-d-f l-ph0--4col l-fw-w l-ai-cen l-w-100 l-w-4col--4col l-mh-auto--4col l-ph4--3col l-jc-cen l-fd-col l-fd-row--3col l-jc-sb--3col"><div class="l-mb2 l-mb0--3col l-d-f"><div class="timer__text-wrapper l-w-100 f-center f-left--2col l-mb3 l-mb0--2col l-d-n l-d-b--2col"><span class="f-large">Offer Ends In</span></div><div class="timer__countdown"><div class="l-d-f l-mt0--2col l-mr2 f-medium l-mt0"><div class="l-d-f l-ml2 f-large"><span class="f-bold">08</span><span class="f-light">hrs</span></div><div class="l-d-f l-ml2 f-large"><span class="f-bold">14</span><span class="f-light">mins</span></div><div class="l-d-f l-ml2 f-large"><span class="f-bold">16</span><span class="f-light">secs</span></div></div></div></div><div class=""><a data-ga-on="click" data-ga-event-category="maestro" data-ga-event-label="FixedCountdownBar_754" data-ga-event-action="click" id="fixed-countdown-bar-button" href="https://www.sitepoint.com/premium/l/join?ref_source=sitepoint&amp;ref_medium=noticebar&amp;ref_campaign=sitewide" class="Button l-ph4 l-pv2 f-small f-medium--3col u-red u-white">All Our Books &amp; Courses for $9!</a></div></div><a class="f-c-white l-d-f l-ai-cen l-as-fs l-as-cen--3col l-pa2 t-t"><i class="fas fa-times"></i></a></div></div></sp-fixed-countdown-bar></div>    </header>
+<div class="l-p-rel t-bg-white" role="main">
+      <div class="l-p-rel l-w-100 l-mh-auto Article_overflow">
+          <div class="l-w-100 t-bg">
+      <div class="l-w-4col--4col l-mh3 l-mh-auto--3col">
+        <div class="f-medium f-c-grey-200 l-pt3">
+                    <ol itemscope="" itemtype="https://schema.org/BreadcrumbList" class="Article_breadcrumb l-ml0 f-minor l-mb0">
+            <li class="breadcrumb__item f-capitalize l-d-ib t-ls-n" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+              <a itemprop="item" itemscope="" itemtype="https://schema.org/Thing" class="f-c-white f-bold" href="https://www.sitepoint.com/learn/blockchain/">
+                <span itemprop="name">
+                  Learn Blockchain and Ethereum                </span>
+              </a>
+            </li>
+            <li class="breadcrumb__item f-c-grey-200 l-d-ib t-ls-n" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                            <a itemprop="item" itemscope="" itemtype="https://schema.org/Thing" class="f-c-white f-bold" href="https://www.sitepoint.com/learn/blockchain-for-beginners/">
+                              <span itemprop="name">
+                  Understanding Blockchain and Ethereum Technology                </span>
+                            </a>
+                          </li>
+            <li class="breadcrumb__item l-d-ib t-ls-n" itemprop="itemListElement" itemscope="" itemtype="https://schema.org/ListItem">
+                              <span itemprop="name">
+                  Smart Contract Safety: Best Practices &amp; Design Patterns                </span>
+                          </li>
+          </ol>
+        </div>
+        <div class="l-d-f l-fd-col l-fd-row--3col l-jc-sb">
+          <div>
+            <h1 class="l-mt0 f-bold f-icon-bold l-mb0 f-c-white">
+              <span class="f-c-white l-mr3">Smart Contract Safety: Best Practices &amp; Design Patterns</span>
+            </h1>
+                        <div class="l-mb4 f-medium f-c-grey200 f-c-white">
+              <ul class="Article_subheader l-ml0">
+                <li class="subheader__authors l-d-ib t-ls-n">August 23, 2018,</li>
+                <li class="subheader__authors l-d-ib t-ls-n">
+                  By
+                                    <span class="author">
+                    <a href="https://www.sitepoint.com/author/mmulders/" class="f-c-white f-bold">
+                      Michiel Mulders                    </a>
+                  </span>
+                                  </li>
+              </ul>
+            </div>
+                      </div>
+        </div>
+      </div>
+    </div>
+                <div class="l-d-f l-jc-sb l-mt3 l-w-4col--4col l-mh-auto" data-hellobar="content">
+        <div class="l-w-100 l-w-2col-i--2col l-fg1 l-mh3--2col l-mh0--4col">
+                        <div class="l-mb4 l-pa3 l-pt0">
+    
+      <div class="l-d-f l-jc-cen f-center l-mh-auto l-o-h l-mt3">
+              </div>
+
+        <div class="ArticleCopy language-">
+      <div class="l-mt3 l-mh5--2col">
+      <p>Blockchain technology is still a highly experimental technology. Things move fast and you should expect constant changes in the security landscape, as new bugs and security risks are discovered and new best practices are developed. Following the security practices described in this article will help you better understand how to design flawless Ethereum smart contracts.</p>
+<p>Developing with a security mindset is extremely important as the cost of failure can be high and change can be difficult. A basic defence mechanism against known vulnerabilities is therefore not enough. It’s recommended to use secure design patterns like rate limiters, exit strategies or circuit breakers to protect your contract against unexpected events.</p>
+<h2 id="prepareforfailure">Prepare For Failure</h2>
+<p>Any non-trivial contract will have errors in it. Your code must, therefore, be able to respond to bugs and vulnerabilities gracefully. When writing code, bear in mind the following security design patterns.</p>
+<h3 id="checkseffectsinteractionpattern">Checks-Effects-Interaction Pattern</h3>
+<div class="widget maestro maestro-content-type-html hide-for-tablet-SP hide-for-mobile-SP" id="maestro-636"><div class="SP_stripMobile" style="width:100%;margin: 0 auto; max-width: 640px;"><span id="adBox" class="f-small f-light f-center">--ADVERTISEMENT--</span></div>
+
+
+<script id="aniviewJS" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/SitepointPMP.js.Download"></script><script>
+var el = document.getElementById('aniBox');
+var adBox = document.getElementById('adBox');
+// create an observer instance
+var observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+    if(mutation.attributeName == 'style'){
+      var s = el.getAttribute('style');
+      if(s.search('height: 360px') !=  -1) {
+        adBox.style = 'display: block';
+      }
+      else {
+        adBox.style = 'display: none';
+      }
+}
+  });    
+});
+
+// configuration of the observer:
+var config = { attributes: true, attributeFilter: ['style']};
+ 
+// pass in the target node, as well as the observer options
+observer.observe(el, config);
+</script></div><p>This is the general guideline when coding any smart contract as it describes how to build up a function. You start with validating all the arguments and throwing appropriate errors when the args do not apply with the expected input. Next, you can make changes to the smart contract’s state and finally interact with other smart contracts. </p>
+<p>Interacting with other contracts should always be the last step in your function as this mostly includes handing over the control to another contract. So, when we are handing over the control, it’s crucial that the current contract has finished its functionality and does not depend on the execution of the other contract. Here’s an example that comes from an Auction contract to set the end of the auction using a boolean.</p>
+<p><script src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/579df26262ac710e6ac3be4e15a82c5d.js.Download"></script><link rel="stylesheet" href="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/gist-embed-63fc2ca24394c22bceba3d657c0df880.css"></p><div id="gist91159469" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-checks_effects_interaction-sol" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-text ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-checks_effects_interaction-sol-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-checks_effects_interaction-sol-LC1" class="blob-code blob-code-inner js-file-line">function auctionEnd() public {</td>
+      </tr>
+      <tr>
+        <td id="file-checks_effects_interaction-sol-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-checks_effects_interaction-sol-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-checks_effects_interaction-sol-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-checks_effects_interaction-sol-LC3" class="blob-code blob-code-inner js-file-line">  // 1. Checks</td>
+      </tr>
+      <tr>
+        <td id="file-checks_effects_interaction-sol-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-checks_effects_interaction-sol-LC4" class="blob-code blob-code-inner js-file-line">  require(now &gt;= auctionEnd);</td>
+      </tr>
+      <tr>
+        <td id="file-checks_effects_interaction-sol-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-checks_effects_interaction-sol-LC5" class="blob-code blob-code-inner js-file-line">  require(!ended);</td>
+      </tr>
+      <tr>
+        <td id="file-checks_effects_interaction-sol-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-checks_effects_interaction-sol-LC6" class="blob-code blob-code-inner js-file-line">  </td>
+      </tr>
+      <tr>
+        <td id="file-checks_effects_interaction-sol-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-checks_effects_interaction-sol-LC7" class="blob-code blob-code-inner js-file-line">  // 2. Effects</td>
+      </tr>
+      <tr>
+        <td id="file-checks_effects_interaction-sol-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-checks_effects_interaction-sol-LC8" class="blob-code blob-code-inner js-file-line">  ended = true;</td>
+      </tr>
+      <tr>
+        <td id="file-checks_effects_interaction-sol-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-checks_effects_interaction-sol-LC9" class="blob-code blob-code-inner js-file-line">  </td>
+      </tr>
+      <tr>
+        <td id="file-checks_effects_interaction-sol-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-checks_effects_interaction-sol-LC10" class="blob-code blob-code-inner js-file-line">  // 3. Interaction</td>
+      </tr>
+      <tr>
+        <td id="file-checks_effects_interaction-sol-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-checks_effects_interaction-sol-LC11" class="blob-code blob-code-inner js-file-line">  beneficiary.transfer(highestBid);</td>
+      </tr>
+      <tr>
+        <td id="file-checks_effects_interaction-sol-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-checks_effects_interaction-sol-LC12" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/michielmulders/579df26262ac710e6ac3be4e15a82c5d/raw/192045a21ea9594c13d45e9a842929ddde8e7a72/checks_effects_interaction.sol" style="float:right">view raw</a>
+        <a href="https://gist.github.com/michielmulders/579df26262ac710e6ac3be4e15a82c5d#file-checks_effects_interaction-sol">checks_effects_interaction.sol</a>
+        hosted with <img draggable="false" class="emoji" alt="❤" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/2764.svg"> by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+<h3 id="circuitbreaker">Circuit Breaker</h3>
+<p>A circuit breaker, also referred to as an emergency stop, is capable of stopping the execution of functions inside the smart contract. A circuit breaker can be triggered manually by trusted parties included in the contract like the contract admin or by using programmatic rules that automatically trigger the circuit breaker when the defined conditions are met. The most common usage of a circuit breaker is when a bug is discovered.</p>
+<p><script src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/11d1e7cf40774c6237bd278415f1f54b.js.Download"></script><link rel="stylesheet" href="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/gist-embed-63fc2ca24394c22bceba3d657c0df880.css"></p><div id="gist91158115" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-circuit-breaker-solidity-sol" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-text ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-circuit-breaker-solidity-sol-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC1" class="blob-code blob-code-inner js-file-line">bool private stopped = false;</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC2" class="blob-code blob-code-inner js-file-line">address private owner;</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC3" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC4" class="blob-code blob-code-inner js-file-line">modifier isAdmin() {</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC5" class="blob-code blob-code-inner js-file-line">    if(msg.sender != owner) {</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC6" class="blob-code blob-code-inner js-file-line">        throw;</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC7" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC8" class="blob-code blob-code-inner js-file-line">    _</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC9" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC10" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC11" class="blob-code blob-code-inner js-file-line">function toggleContractActive() isAdmin public</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC12" class="blob-code blob-code-inner js-file-line">{</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC13" class="blob-code blob-code-inner js-file-line">    // You can add an additional modifier that restricts stopping a contract to be based on another action, such as a vote of users</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC14" class="blob-code blob-code-inner js-file-line">    stopped = !stopped;</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC15" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC16" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC17" class="blob-code blob-code-inner js-file-line">modifier stopInEmergency { if (!stopped) _ }</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC18" class="blob-code blob-code-inner js-file-line">modifier onlyInEmergency { if (stopped) _ }</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC19" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC20" class="blob-code blob-code-inner js-file-line">function deposit() stopInEmergency public</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC21" class="blob-code blob-code-inner js-file-line">{</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC22" class="blob-code blob-code-inner js-file-line">    // some code</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC23" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC24" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L25" class="blob-num js-line-number" data-line-number="25"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC25" class="blob-code blob-code-inner js-file-line">function withdraw() onlyInEmergency public</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L26" class="blob-num js-line-number" data-line-number="26"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC26" class="blob-code blob-code-inner js-file-line">{</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L27" class="blob-num js-line-number" data-line-number="27"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC27" class="blob-code blob-code-inner js-file-line">    // some code</td>
+      </tr>
+      <tr>
+        <td id="file-circuit-breaker-solidity-sol-L28" class="blob-num js-line-number" data-line-number="28"></td>
+        <td id="file-circuit-breaker-solidity-sol-LC28" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/michielmulders/11d1e7cf40774c6237bd278415f1f54b/raw/2e62395f4a1fed7ff099b61eec6097c0355269aa/circuit-breaker-solidity.sol" style="float:right">view raw</a>
+        <a href="https://gist.github.com/michielmulders/11d1e7cf40774c6237bd278415f1f54b#file-circuit-breaker-solidity-sol">circuit-breaker-solidity.sol</a>
+        hosted with <img draggable="false" class="emoji" alt="❤" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/2764.svg"> by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+<p>The above code example defines two modifiers. The first modifier makes sure that all actions in the contract are suspended when a bug is discovered – only the admin is able to toggle this boolean. However, we want to be able to withdraw funds in case of a severe bug; therefore, the second modifier is meant to allow you to withdraw funds.</p>
+<h3 id="ratelimit">Rate Limit</h3>
+<p>The problem we are trying to solve is a request rush on a certain function that can hinder the correct operational performance of a smart contract. The solution is quite simple: we regulate how often a task can be executed within a period of time. We can also limit the amount of Ether an owner can withdraw from a contract to prevent a rapid drainage of funds. Or another example is limiting the number of issued tokens over time at the contract level – every month the contract will distribute 10,000 tokens.</p>
+<p><script src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/2b55e939e009465a7f0f309283e299bf.js.Download"></script><link rel="stylesheet" href="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/gist-embed-63fc2ca24394c22bceba3d657c0df880.css"></p><div id="gist91158530" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-ratelimitsimple-sol" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-text ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-ratelimitsimple-sol-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-ratelimitsimple-sol-LC1" class="blob-code blob-code-inner js-file-line">contract RateLimit {</td>
+      </tr>
+      <tr>
+        <td id="file-ratelimitsimple-sol-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-ratelimitsimple-sol-LC2" class="blob-code blob-code-inner js-file-line">  uint enabledAt = now;</td>
+      </tr>
+      <tr>
+        <td id="file-ratelimitsimple-sol-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-ratelimitsimple-sol-LC3" class="blob-code blob-code-inner js-file-line">  </td>
+      </tr>
+      <tr>
+        <td id="file-ratelimitsimple-sol-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-ratelimitsimple-sol-LC4" class="blob-code blob-code-inner js-file-line">  modifier enabledEvery(uint t) {</td>
+      </tr>
+      <tr>
+        <td id="file-ratelimitsimple-sol-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-ratelimitsimple-sol-LC5" class="blob-code blob-code-inner js-file-line">    require(now &gt;= enabledAt, "Access is denied. Rate limit exceeded.");</td>
+      </tr>
+      <tr>
+        <td id="file-ratelimitsimple-sol-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-ratelimitsimple-sol-LC6" class="blob-code blob-code-inner js-file-line">    enabledAt = now + t;</td>
+      </tr>
+      <tr>
+        <td id="file-ratelimitsimple-sol-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-ratelimitsimple-sol-LC7" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-ratelimitsimple-sol-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-ratelimitsimple-sol-LC8" class="blob-code blob-code-inner js-file-line">    _;</td>
+      </tr>
+      <tr>
+        <td id="file-ratelimitsimple-sol-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-ratelimitsimple-sol-LC9" class="blob-code blob-code-inner js-file-line">  }</td>
+      </tr>
+      <tr>
+        <td id="file-ratelimitsimple-sol-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-ratelimitsimple-sol-LC10" class="blob-code blob-code-inner js-file-line">  </td>
+      </tr>
+      <tr>
+        <td id="file-ratelimitsimple-sol-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-ratelimitsimple-sol-LC11" class="blob-code blob-code-inner js-file-line">  function f() public enabledEvery(1 minutes) {</td>
+      </tr>
+      <tr>
+        <td id="file-ratelimitsimple-sol-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-ratelimitsimple-sol-LC12" class="blob-code blob-code-inner js-file-line">    // some code</td>
+      </tr>
+      <tr>
+        <td id="file-ratelimitsimple-sol-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-ratelimitsimple-sol-LC13" class="blob-code blob-code-inner js-file-line">  }</td>
+      </tr>
+      <tr>
+        <td id="file-ratelimitsimple-sol-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-ratelimitsimple-sol-LC14" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/michielmulders/2b55e939e009465a7f0f309283e299bf/raw/4755558732443435dfb240a627fb56d344100ced/rateLimitSimple.sol" style="float:right">view raw</a>
+        <a href="https://gist.github.com/michielmulders/2b55e939e009465a7f0f309283e299bf#file-ratelimitsimple-sol">rateLimitSimple.sol</a>
+        hosted with <img draggable="false" class="emoji" alt="❤" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/2764.svg"> by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+<p>This piece of code shows a very basic rate limit modifier that accepts an amount of time to stop the contract from executing the function until the actual time is greater than the rate limit timer.</p>
+<h3 id="speedbumpsdelaycontractactions">Speed Bumps – Delay Contract Actions</h3>
+<p>Speed bumps are extremely useful when malicious events occur as it gives a smart contract owner time to act accordingly. For example, The DAO had a 27 days delay installed in which no functions could be executed, leaving the funds in the contract, increasing the likelihood of recovery. However, the speed bump was pretty useless for The DAO case as no recovery actions were present. <em>Therefore, a speed bump pattern should be used in combination with a circuit breaker that blocks the contract except the withdraw function.</em> This ensures users are able to withdraw funds before the malicious action is fulfilled.</p>
+<p><script src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/104f719c4236e355a4c3d3004833ccb7.js.Download"></script><link rel="stylesheet" href="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/gist-embed-63fc2ca24394c22bceba3d657c0df880.css"></p><div id="gist91158841" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-speed_bump_advanced-sol" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-text ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-speed_bump_advanced-sol-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-speed_bump_advanced-sol-LC1" class="blob-code blob-code-inner js-file-line">struct RequestedWithdrawal {</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-speed_bump_advanced-sol-LC2" class="blob-code blob-code-inner js-file-line">    uint amount;</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-speed_bump_advanced-sol-LC3" class="blob-code blob-code-inner js-file-line">    uint time;</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-speed_bump_advanced-sol-LC4" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-speed_bump_advanced-sol-LC5" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-speed_bump_advanced-sol-LC6" class="blob-code blob-code-inner js-file-line">mapping (address =&gt; uint) private balances;</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-speed_bump_advanced-sol-LC7" class="blob-code blob-code-inner js-file-line">mapping (address =&gt; RequestedWithdrawal) private requestedWithdrawals;</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-speed_bump_advanced-sol-LC8" class="blob-code blob-code-inner js-file-line">uint constant withdrawalWaitPeriod = 28 days; // 4 weeks</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-speed_bump_advanced-sol-LC9" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-speed_bump_advanced-sol-LC10" class="blob-code blob-code-inner js-file-line">function requestWithdrawal() public {</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-speed_bump_advanced-sol-LC11" class="blob-code blob-code-inner js-file-line">    if (balances[msg.sender] &gt; 0) {</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-speed_bump_advanced-sol-LC12" class="blob-code blob-code-inner js-file-line">        uint amountToWithdraw = balances[msg.sender];</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-speed_bump_advanced-sol-LC13" class="blob-code blob-code-inner js-file-line">        balances[msg.sender] = 0; // for simplicity, we withdraw everything;</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-speed_bump_advanced-sol-LC14" class="blob-code blob-code-inner js-file-line">        // presumably, the deposit function prevents new deposits when withdrawals are in progress</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-speed_bump_advanced-sol-LC15" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-speed_bump_advanced-sol-LC16" class="blob-code blob-code-inner js-file-line">        requestedWithdrawals[msg.sender] = RequestedWithdrawal({</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-speed_bump_advanced-sol-LC17" class="blob-code blob-code-inner js-file-line">            amount: amountToWithdraw,</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-speed_bump_advanced-sol-LC18" class="blob-code blob-code-inner js-file-line">            time: now</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-speed_bump_advanced-sol-LC19" class="blob-code blob-code-inner js-file-line">        });</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-speed_bump_advanced-sol-LC20" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-speed_bump_advanced-sol-LC21" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-speed_bump_advanced-sol-LC22" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="file-speed_bump_advanced-sol-LC23" class="blob-code blob-code-inner js-file-line">function withdraw() public {</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="file-speed_bump_advanced-sol-LC24" class="blob-code blob-code-inner js-file-line">    if(requestedWithdrawals[msg.sender].amount &gt; 0 &amp;&amp; now &gt; requestedWithdrawals[msg.sender].time + withdrawalWaitPeriod) {</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L25" class="blob-num js-line-number" data-line-number="25"></td>
+        <td id="file-speed_bump_advanced-sol-LC25" class="blob-code blob-code-inner js-file-line">        uint amountToWithdraw = requestedWithdrawals[msg.sender].amount;</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L26" class="blob-num js-line-number" data-line-number="26"></td>
+        <td id="file-speed_bump_advanced-sol-LC26" class="blob-code blob-code-inner js-file-line">        requestedWithdrawals[msg.sender].amount = 0;</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L27" class="blob-num js-line-number" data-line-number="27"></td>
+        <td id="file-speed_bump_advanced-sol-LC27" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L28" class="blob-num js-line-number" data-line-number="28"></td>
+        <td id="file-speed_bump_advanced-sol-LC28" class="blob-code blob-code-inner js-file-line">        if(!msg.sender.send(amountToWithdraw)) {</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L29" class="blob-num js-line-number" data-line-number="29"></td>
+        <td id="file-speed_bump_advanced-sol-LC29" class="blob-code blob-code-inner js-file-line">            throw;</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L30" class="blob-num js-line-number" data-line-number="30"></td>
+        <td id="file-speed_bump_advanced-sol-LC30" class="blob-code blob-code-inner js-file-line">        }</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L31" class="blob-num js-line-number" data-line-number="31"></td>
+        <td id="file-speed_bump_advanced-sol-LC31" class="blob-code blob-code-inner js-file-line">    }</td>
+      </tr>
+      <tr>
+        <td id="file-speed_bump_advanced-sol-L32" class="blob-num js-line-number" data-line-number="32"></td>
+        <td id="file-speed_bump_advanced-sol-LC32" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/michielmulders/104f719c4236e355a4c3d3004833ccb7/raw/4d4ecf39a161225e1534939361035ecf5d7aa804/speed_bump_advanced.sol" style="float:right">view raw</a>
+        <a href="https://gist.github.com/michielmulders/104f719c4236e355a4c3d3004833ccb7#file-speed_bump_advanced-sol">speed_bump_advanced.sol</a>
+        hosted with <img draggable="false" class="emoji" alt="❤" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/2764.svg"> by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+<p>This speed bump Solidity contract delays a withdrawal request for 4 weeks.</p>
+<h3 id="balancelimitpattern">Balance Limit Pattern</h3>
+<p>It is generally a good idea to manage the amount of money at risk when coding smart contracts. A balance limit pattern is a fairly easy pattern to implement, yet so strong. The pattern will monitor the amount of Ether in your contract and reject payments when it the balance exceeds the predefined maximum.</p>
+<p><script src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/e5fb9f99ad9a7aaa5719d522355724df.js.Download"></script><link rel="stylesheet" href="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/gist-embed-63fc2ca24394c22bceba3d657c0df880.css"></p><div id="gist91159330" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-balance_limit-sol" class="file">
+    
+
+  <div itemprop="text" class="blob-wrapper data type-text ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8">
+      <tbody><tr>
+        <td id="file-balance_limit-sol-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-balance_limit-sol-LC1" class="blob-code blob-code-inner js-file-line">contract LimitBalance {</td>
+      </tr>
+      <tr>
+        <td id="file-balance_limit-sol-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-balance_limit-sol-LC2" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-balance_limit-sol-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-balance_limit-sol-LC3" class="blob-code blob-code-inner js-file-line">  uint256 public limit;</td>
+      </tr>
+      <tr>
+        <td id="file-balance_limit-sol-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-balance_limit-sol-LC4" class="blob-code blob-code-inner js-file-line">  </td>
+      </tr>
+      <tr>
+        <td id="file-balance_limit-sol-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-balance_limit-sol-LC5" class="blob-code blob-code-inner js-file-line">  function LimitBalance(uint256 value) public {</td>
+      </tr>
+      <tr>
+        <td id="file-balance_limit-sol-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-balance_limit-sol-LC6" class="blob-code blob-code-inner js-file-line">    limit = value;</td>
+      </tr>
+      <tr>
+        <td id="file-balance_limit-sol-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-balance_limit-sol-LC7" class="blob-code blob-code-inner js-file-line">  }</td>
+      </tr>
+      <tr>
+        <td id="file-balance_limit-sol-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-balance_limit-sol-LC8" class="blob-code blob-code-inner js-file-line">  </td>
+      </tr>
+      <tr>
+        <td id="file-balance_limit-sol-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-balance_limit-sol-LC9" class="blob-code blob-code-inner js-file-line">  modifier limitedPayable() {</td>
+      </tr>
+      <tr>
+        <td id="file-balance_limit-sol-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-balance_limit-sol-LC10" class="blob-code blob-code-inner js-file-line">    require(this.balance &lt;= limit);</td>
+      </tr>
+      <tr>
+        <td id="file-balance_limit-sol-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-balance_limit-sol-LC11" class="blob-code blob-code-inner js-file-line">    _;</td>
+      </tr>
+      <tr>
+        <td id="file-balance_limit-sol-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-balance_limit-sol-LC12" class="blob-code blob-code-inner js-file-line">  }</td>
+      </tr>
+      <tr>
+        <td id="file-balance_limit-sol-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-balance_limit-sol-LC13" class="blob-code blob-code-inner js-file-line">  </td>
+      </tr>
+      <tr>
+        <td id="file-balance_limit-sol-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-balance_limit-sol-LC14" class="blob-code blob-code-inner js-file-line">  function deposit() public payable limitedPayable {</td>
+      </tr>
+      <tr>
+        <td id="file-balance_limit-sol-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-balance_limit-sol-LC15" class="blob-code blob-code-inner js-file-line">    // some code</td>
+      </tr>
+      <tr>
+        <td id="file-balance_limit-sol-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-balance_limit-sol-LC16" class="blob-code blob-code-inner js-file-line">  }</td>
+      </tr>
+      <tr>
+        <td id="file-balance_limit-sol-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-balance_limit-sol-LC17" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/michielmulders/e5fb9f99ad9a7aaa5719d522355724df/raw/6654864df90b040358afb34d3e6f8a36ab24091a/balance_limit.sol" style="float:right">view raw</a>
+        <a href="https://gist.github.com/michielmulders/e5fb9f99ad9a7aaa5719d522355724df#file-balance_limit-sol">balance_limit.sol</a>
+        hosted with <img draggable="false" class="emoji" alt="❤" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/2764.svg"> by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<p></p>
+<p>This piece of code uses a modifier to limit the balance inside the contract. The modifier is applied to the ‘deposit’ function as that’s where the money is being accepted.</p>
+<h2 id="iolitepluginfordesigningsecurecontracts">iOlite Plugin for Designing Secure Contracts</h2>
+<p>The <a href="https://iolite.io/">iOlite</a> project is a crowd intelligence platform for allowing non-programmers to write secure smart contracts with natural language that they can use to build blockchain applications.</p>
+<p>In addition, the iOlite team has developed a plugin for developers that turns any programming language into Solidity code (first among different blockchain languages) using structs attached to snippets of code defined by Solidity experts.</p>
+<p>The plugin for Visual Studio Code can be found on the <a href="http://bit.ly/iOliteVisualStudio">marketplace</a>. The full documentation can be viewed on <a href="https://github.com/iolitelabs">Github</a>.</p>
+<h2 id="thebottomline">The Bottom Line</h2>
+<p>Ethereum allows Solidity smart contracts to run autonomously on the blockchain. However, this requires highly secure code which implements all of the above design patterns.</p>
+<p>Actually, the main problem that these patterns solve is the lack of execution control once a contract has been deployed. It’s both a drawback and an advantage for smart contracts. If you are a developer, be careful when deploying a smart contract and test each smart contract thoroughly — a single mistake can cost you millions.</p>
+      <div class="Article_authorBio l-mv4 t-bg-white m-border l-pa3">
+        <div class="l-d-f l-pt3">
+          <a class="l-s5 l-pa0 l-mr3 l-round l-o-h" href="https://www.sitepoint.com/author/mmulders/">
+            <img src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/d834b5731cf17e5d7be98b5e795576cc.jpeg" width="96" height="96" alt="" class="avatar avatar-96 wp-user-avatar wp-user-avatar-96 photo avatar-default">          </a>
+          <div class="f-lh-title">
+            <div class="f-c-grey-300">Meet the author</div>
+            <div class="f-large">
+              <a class="f-bold f-c-grey-500" href="https://www.sitepoint.com/author/mmulders/">
+                Michiel Mulders              </a>
+              <a class="f-c-grey-500 l-mh1" target="_blank" href="https://www.linkedin.com/in/michiel-mulders-013771151/"><i class="fab fa-linkedin-in"></i></a><a class="f-c-grey-500 l-mh1" target="_blank" href="https://github.com/michielmulders"><i class="fab fa-github"></i></a><a class="f-c-grey-500 l-mh1" target="_blank" href="https://medium.com/@michielmulders"><i class="fab fa-medium"></i></a>            </div>
+          </div>
+        </div>
+        <div class="f-light f-lh-copy l-mt3">Fullstack Blockchain Developer at <a href="http://theledger.be/">TheLedger.be</a> with a passion for the crypto atmosphere.</div>
+      </div>
+      
+      </div>
+    </div>
+        </div>
+            </div>
+            <div class="l-w-aside-i l-mt3 l-mh3 l-d-n l-d-f--3col l-fd-col l-fs0">
+      <div class="l-mb3">
+            <div class="l-as-fs l-mv0 l-pv1 l-ph3 f-light f-larger f-uppercase f-c-white t-bg-grey-500">Sponsors</div>
+    <div class="l-w-100 l-mv3 t-bg-white m-border"><div class="widget maestro maestro-content-type-bsa hide-for-mobile-SP" id="maestro-448"><div class="l-pa3" style="border-bottom: 1px solid #e5e5e5" id="maestro-448-bsa-182653">
+<a href="https://srv.buysellads.com/ads/click/x/GTND42QWFTBDL537CEALYKQMCEADP2QJCVYDKZ3JCWBDE2JWF6YIV5QKC6BIV53MCTBDTK3EHJNCLSIZ" class="l-d-f l-ai-sta" data-ga-on="click" data-ga-event-category="maestro" data-ga-event-label="maestro-448-bsa-182653" data-ga-event-action="click">
+<img class="l-s5" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/1547164868-HeloSign_icon_Blue.png" hidden="" style="display: none !important;">
+<div class="f-small l-d-f l-fd-col l-ml3 f-lh-title f-c-grey-700">
+<span class="f-bold">The Most Powerful Platform for Business Agreements</span>
+<span>HelloSign is the #1 rated eSignature tool.  It's the easiest way to sign docs, forms or agreements online.</span>
+</div>
+</a>
+</div></div></div>
+            <div class="widget maestro maestro-content-type-html " id="maestro-728"><div class="proper-ad-unit">
+    <div id="proper-ad-sitepoint_side_2"> <script> propertag.cmd.push(function() { proper_display('sitepoint_side_2'); }); </script> </div>
+</div></div>      </div>
+      <div class="ArticleBox u-premium-preview"></div>
+      <div class="ArticleAside_row"><div class="widget maestro maestro-content-type-html " id="maestro-730" style="min-width: 300px;"><div class="proper-ad-unit Sticky u-fixed" style="top: 115px;">
+
+    <div id="proper-ad-sitepoint_side_3"> <script> propertag.cmd.push(function() { proper_display('sitepoint_side_3'); }); </script> </div>
+
+</div></div>        <ads-weighted widget="21" data="{&quot;NL&quot;:[{&quot;id&quot;:&quot;584&quot;,&quot;weight&quot;:&quot;50&quot;,&quot;randMax&quot;:50},{&quot;id&quot;:&quot;585&quot;,&quot;weight&quot;:&quot;50&quot;,&quot;randMax&quot;:100}]}" fallback="" url="smart-contract-safety-best-practices-design-patterns" channelslug="blockchain"></ads-weighted></div>
+      <div class="ArticleAside_row ArticleAside_newboxads"></div>
+    </div>
+          </div>
+
+      <div class="u-accordion-end"></div>
+      <div class="l-d-f l-jc-sb l-w-3col--3col l-mh-auto">
+        <div class="u-showseriesx l-w-100 l-w-2col-i--2col l-fg1 l-mh3--2col l-mh0--4col">
+
+          <div class="widget maestro maestro-content-type-html hide-for-tablet-SP hide-for-mobile-SP" id="maestro-649"><span data-sumome-listbuilder-embed-id="6cbb401075afaa88f82a6ddc686573be3368d07928cf833fe1a56254d6ff9849"></span></div>
+                    <div id="commentsSection" class="l-pa3 t-bg-white">
+                      </div>
+        </div>
+      </div>
+
+    
+    <script>
+      oSpP && oSpP.push('channel', 'blockchain');
+    </script>
+      </div>
+    </div>
+        <footer role="contentinfo">
+  <div class="l-w-100 l-d-f Footer-bg">
+    <div class="l-d-f l-fw-w l-mh-auto">
+      <div class="l-d-f l-fw-w l-mt4 l-w-100 l-pa3 l-w-3col--4col l-jc-sb l-jc-sa--4col">
+        <ul>
+          <li class="t-ls-n">
+            <div class="f-c-white f-large f-bold l-mb2">Stuff We Do</div>
+          </li>
+          <li class="l-ml3 f-c-grey-300 l-mb2">
+            <a class="Footer-link f-small" href="https://www.sitepoint.com/premium/">Premium</a>
+          </li>
+          <li class="l-ml3 f-c-grey-300 l-mb2">
+            <a class="Footer-link f-small" href="https://www.sitepoint.com/versioning/">Versioning</a>
+          </li>
+          <li class="l-ml3 f-c-grey-300 l-mb2">
+            <a class="Footer-link f-small" href="https://www.sitepoint.com/community/">Forums</a>
+          </li>
+          <li class="l-ml3 f-c-grey-300 l-mb2">
+            <a class="Footer-link f-small" href="https://www.sitepoint.com/html-css/css/">References</a>
+          </li>
+        </ul>
+
+        <ul>
+          <li class="t-ls-n">
+            <div class="f-c-white f-large f-bold l-mb2">About</div>
+          </li>
+          <li class="l-ml3 f-c-grey-300 l-mb2">
+            <a class="Footer-link f-small" href="https://www.sitepoint.com/about-us/">Our Story</a>
+          </li>
+          <li class="l-ml3 f-c-grey-300 l-mb2">
+            <a class="Footer-link f-small" href="https://www.sitepoint.com/press/">Press Room</a>
+          </li>
+        </ul>
+
+        <ul>
+          <li class="t-ls-n">
+            <div class="f-c-white f-large f-bold l-mb2">Contact</div>
+          </li>
+          <li class="l-ml3 f-c-grey-300 l-mb2">
+            <a class="Footer-link f-small" href="https://www.sitepoint.com/contact-us/">Contact Us</a>
+          </li>
+          <li class="l-ml3 f-c-grey-300 l-mb2">
+            <a class="Footer-link f-small" href="https://sitepoint.zendesk.com/hc/en-us">FAQ</a>
+          </li>
+          <li class="l-ml3 f-c-grey-300 l-mb2">
+            <a class="Footer-link f-small" href="https://www.sitepoint.com/write-for-us/">Write for Us</a>
+          </li>
+          <li class="l-ml3 f-c-grey-300 l-mb2">
+            <a class="Footer-link f-small" href="https://www.sitepoint.com/advertise/">Advertise</a>
+          </li>
+        </ul>
+
+        <ul>
+          <li class="t-ls-n">
+            <div class="f-c-white f-large f-bold l-mb2">Legals</div>
+          </li>
+          <li class="l-ml3 f-c-grey-300 l-mb2">
+            <a class="Footer-link f-small" href="https://www.sitepoint.com/legals/">Terms of Use</a>
+          </li>
+          <li class="l-ml3 f-c-grey-300 l-mb2">
+            <a class="Footer-link f-small" href="https://www.sitepoint.com/privacy-policy/">Privacy Policy</a>
+          </li>
+        </ul>
+      </div>
+      <div class="l-d-n l-d-b--4col l-as-cen Footer-hr">
+      </div>
+      <div class="l-mt4 l-pa3 l-w-1col--4col">
+        <ul class="t-ls-n l-d-f l-fw-w l-d-b--3col">
+          <li>
+            <div class="f-c-white f-large f-bold l-mb2 l-mr3">Connect</div>
+          </li>
+          <li class="f-center">
+            <a class="f-c-grey-300" href="https://www.facebook.com/sitepoint" rel="noopener" target="_blank">
+              <i class="fab fa-facebook-square l-i4"></i>
+            </a>
+            <a class="l-pl3 f-c-grey-300" href="http://twitter.com/sitepointdotcom" rel="noopener" target="_blank">
+              <i class="fab fa-twitter-square l-i4"></i>
+            </a>
+            <a class="l-pl3 f-c-grey-300" href="https://www.sitepoint.com/versioning/">
+              <i class="fas fa-envelope-square l-i4"></i>
+            </a>
+            <a class="l-pl3 f-c-grey-300" href="https://www.sitepoint.com/feed/">
+              <i class="fas fa-rss-square l-i4"></i>
+            </a>
+            <a class="l-pl3 f-c-grey-300" href="https://plus.google.com/+sitepoint" rel="noopener" target="_blank">
+              <i class="fab fa-google-plus-square l-i4"></i>
+            </a>
+          </li>
+          <p class="f-c-grey-300 l-mh-auto l-ml3--2col l-ml0--3col l-mv3--4col f-small f-center">
+            © 2000 – 2019 SitePoint Pty. Ltd.
+          </p>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+    <script type="text/javascript">
+  adroll_adv_id = "DJI3I3WGJBGL7PDJEDAYHV";
+  adroll_pix_id = "4RKMV6N56FGA7ANPGL4FQW";
+  (function () {
+    var adblocked = false;
+    var onAdblock = function() {
+      if(adblocked) return;
+
+      adblocked = true;
+
+      gaEventQueue && gaEventQueue.track('CanSeeAds', 'adrollBlocked', {'nonInteraction': true});
+
+      Array.prototype.slice.call(document.getElementsByClassName('CantSeeAds'))
+        .forEach(function(el) {
+          el.className = el.className.replace('CantSeeAds', '');
+        });
+
+    };
+    var _onload = function(){
+      if (document.readyState && !/loaded|complete/.test(document.readyState)){setTimeout(_onload, 10);return}
+      if (!window.__adroll_loaded){__adroll_loaded=true;setTimeout(_onload, 50);return}
+      var scr = document.createElement("script");
+      var host = (("https:" == document.location.protocol) ? "https://s.adroll.com" : "http://a.adroll.com");
+      scr.setAttribute('async', 'true');
+      scr.type = "text/javascript";
+      scr.src = host + "/j/roundtrip.js";
+      scr.onerror = onAdblock;
+      ((document.getElementsByTagName('head') || [null])[0] ||
+          document.getElementsByTagName('script')[0].parentNode).appendChild(scr);
+    };
+    if (window.addEventListener) {window.addEventListener('load', _onload, false);}
+    else {window.attachEvent('onload', _onload)}
+  }());
+</script>
+    <sp-cookie-warning></sp-cookie-warning>
+    
+
+<!-- START Parse.ly Include: Standard -->
+
+<div id="parsely-root" style="display: none">
+	<div id="parsely-cfg" data-parsely-site="sitepoint.com"></div>
+<script id="parsely-script" async="" data-cfasync="false" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/p.js.Download"></script></div>
+<script data-cfasync="false">
+	(function (s, p, d) {
+		var h = d.location.protocol, i = p + "-" + s,
+			e = d.getElementById(i), r = d.getElementById(p + "-root"),
+			u = h === "https:" ? "d1z2jf7jlzjs58.cloudfront.net"
+				: "static." + p + ".com";
+		if (e) return;
+		e = d.createElement(s);
+		e.id = i;
+		e.async = true;
+		e.setAttribute('data-cfasync', 'false');
+		e.src = h + "//" + u + "/p.js";
+		r.appendChild(e);
+	})("script", "parsely", document);
+</script>
+
+<!-- END Parse.ly Include: Standard -->
+    <script type="text/javascript">
+    (function(googletag, SP_GPT_Slots) {
+      if(!SP_GPT_Slots.length) return;
+
+      var SP_GPT_First_Slot_Rendered = false;
+      googletag.cmd.push(function(){
+        googletag.pubads().addEventListener("slotRenderEnded", function(e){
+          if (!SP_GPT_First_Slot_Rendered) {
+            gaEventQueue.track("CanSeeAds", "dfpFirstRendered", {"nonInteraction": true});
+            SP_GPT_First_Slot_Rendered = true;
+          }
+        });
+      });
+
+    })(googletag, SP_GPT_Slots);
+    </script>
+        <ads-weighted widget="57" data="{&quot;fallback&quot;:[{&quot;id&quot;:&quot;758&quot;,&quot;weight&quot;:&quot;100&quot;,&quot;randMax&quot;:100}]}" fallback="746" url="smart-contract-safety-best-practices-design-patterns" channelslug="blockchain"><div class="widget maestro maestro-content-type-html " id="maestro-758"><script id="spout-tag-7c887d1e-c4ea-4682-bad8-216a89ce74e5">
+  (function() {
+    var r = encodeURIComponent(top.document.referrer.substring(0,250)),
+        p = encodeURIComponent(top.document.location.href.substring(0,250)),
+        t = Date.now(),
+        u = '7c887d1e-c4ea-4682-bad8-216a89ce74e5',
+        e = document.createElement('script'),
+        s = sessionStorage.getItem('spoutable-' + u);
+    if (!s) {
+      var m = Math.random.bind(Math);
+      s = JSON.stringify({ sessionId: [ t, m(), m(), m(), m(), m(), m(), m(), m(), m(), m(), m(), m() ]});
+      sessionStorage.setItem('spoutable-' + u, s);
+    }
+    e.async = true;
+    e.src='//s.spoutable.com/s?u='+u+'&s='+encodeURIComponent(s)+'&t='+t+'&r='+r+'&p='+p;
+    document.head.appendChild(e);
+  })();
+</script></div></ads-weighted><script type="text/javascript">
+/* <![CDATA[ */
+var ratingsL10n = {"plugin_url":"https:\/\/www.sitepoint.com\/wp-content\/plugins\/wp-postratings","ajax_url":"https:\/\/www.sitepoint.com\/wp-admin\/admin-ajax.php","text_wait":"Please rate only 1 item at a time.","image":"thumbs","image_ext":"gif","max":"2","show_loading":"1","show_fading":"1","custom":"1"};
+var ratings_1_mouseover_image=new Image();ratings_1_mouseover_image.src="https://dab1nmslvvntp.cloudfront.net/wp-content/plugins/wp-postratings/images/thumbs/rating_1_over.gif";var ratings_2_mouseover_image=new Image();ratings_2_mouseover_image.src="https://dab1nmslvvntp.cloudfront.net/wp-content/plugins/wp-postratings/images/thumbs/rating_2_over.gif";;
+/* ]]> */
+</script>
+<script type="text/javascript" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/postratings-js.js.Download"></script>
+<script type="text/javascript" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/scripts-foot-77d7df963c349e8aaeb6f2c765ce9a6e.js.Download"></script>
+<script type="text/javascript" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/compiled.f94d8ea52ec1e377c89f.js.Download"></script><iframe name="__cmpLocator" style="display: none;" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/saved_resource.html"></iframe>
+<script type="text/javascript" src="./Smart Contract Safety_ Best Practices &amp; Design Patterns — SitePoint_files/wp-embed.min.js.Download"></script>
+
+  
+
+
+<!--
+Performance optimized by W3 Total Cache. Learn more: https://www.w3-edge.com/products/
+
+Object Caching 41/116 objects using memcached
+Page Caching using memcached 
+Content Delivery Network via Amazon Web Services: CloudFront: dab1nmslvvntp.cloudfront.net
+
+Served from: www.sitepoint.com @ 2019-01-26 04:20:13 by W3 Total Cache
+--><a class="qc-cmp-persistent-link" style="cursor: pointer; position: fixed; background-color: rgb(54, 139, 214); padding: 5px 15px; color: rgb(255, 255, 255); display: flex; align-items: center; max-height: 30px; z-index: 2147483640; bottom: 0px; right: 0px; border-top-left-radius: 3px; border-top-right-radius: 3px;"><svg width="16px" height="17px" viewBox="0 0 16 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="margin-right: 5px; height: 17px;"><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="cog" fill="#FFFFFF" fill-rule="nonzero"><path d="M15.596917,9.98326938 L14.5041079,9.33798816 C14.5728064,8.7815386 14.5728064,8.2184614 14.5041079,7.66201184 L15.596917,7.01673062 C15.9178229,6.82726259 16.0726124,6.43742732 15.9670848,6.0741546 C15.5912871,4.78033611 14.9223646,3.61573153 14.0390021,2.66061113 C13.7831755,2.38401797 13.3749053,2.32348965 13.0525249,2.51384881 L11.9613243,3.15813608 C11.5248519,2.81840117 11.0481221,2.53648663 10.542482,2.31910255 L10.542482,1.02991108 C10.542482,0.648438733 10.2860522,0.316869683 9.92305592,0.229024792 C8.66155,-0.07632446 7.33871809,-0.0763587342 6.07694408,0.229024792 C5.71398131,0.316869683 5.457518,0.648404458 5.457518,1.02991108 L5.457518,2.31910255 C4.95187406,2.53647872 4.47514334,2.81839382 4.03867572,3.15813608 L2.94747511,2.51384881 C2.62506122,2.32348965 2.21679094,2.38401797 1.96099786,2.66061113 C1.07763542,3.61573153 0.40871289,4.78037038 0.0329152236,6.0741546 C-0.072612407,6.43742732 0.0821770899,6.82722832 0.403082962,7.01673062 L1.49589212,7.66201184 C1.42719356,8.2184614 1.42719356,8.7815386 1.49589212,9.33798816 L0.403082962,9.98326938 C0.0821770899,10.1727374 -0.072612407,10.5625727 0.0329152236,10.9258454 C0.40871289,12.2196296 1.07763542,13.3842685 1.96099786,14.3393889 C2.21682445,14.615982 2.62509474,14.6765103 2.94747511,14.4861855 L4.03867572,13.8418982 C4.47514096,14.1816349 4.95187243,14.4635389 5.457518,14.6808975 L5.457518,15.9700889 C5.457518,16.3515613 5.7139478,16.6831303 6.07694408,16.7709752 C7.33848351,17.0763245 8.66128191,17.0763587 9.92305592,16.7709752 C10.2860187,16.6831303 10.542482,16.3515955 10.542482,15.9700889 L10.542482,14.6808975 C11.0481183,14.4635198 11.5248475,14.1816171 11.9613243,13.8418982 L13.0525249,14.4861855 C13.3749053,14.6765446 13.7831755,14.6160163 14.0390021,14.3393889 C14.9223646,13.3842685 15.5912871,12.2196296 15.9670848,10.9258454 C16.0726124,10.5625727 15.9178229,10.1727717 15.596917,9.98326938 Z M13.4026193,13.4264943 L11.8507364,12.510001 C10.9463288,13.3007421 10.6255905,13.4997041 9.47011484,13.9172673 L9.47011484,15.7502196 C8.50024808,15.9548373 7.49975192,15.9548373 6.52988516,15.7502196 L6.52988516,13.9172673 C5.4031959,13.5101235 5.07699522,13.3210668 4.14926358,12.510001 L2.59738075,13.4264943 C1.9368696,12.6693763 1.43490124,11.7817076 1.12525522,10.8230912 L2.67780828,9.90659789 C2.4588108,8.69270694 2.45871027,8.30790999 2.67780828,7.09340211 L1.12525522,6.17690879 C1.43490124,5.21829242 1.93690311,4.33058946 2.59738075,3.57312864 L4.14926358,4.49030745 C5.0667072,3.68712478 5.39129933,3.4941265 6.52988516,3.08269846 L6.52988516,1.24978037 C7.49971774,1.04482059 8.50028226,1.04482059 9.47011484,1.24978037 L9.47011484,3.08273274 C10.6087677,3.49419505 10.9333933,3.6872276 11.8507364,4.49034172 L13.4026193,3.57316291 C14.0630969,4.33058946 14.5650988,5.21829242 14.8747448,6.17694306 L13.3221917,7.09343638 C13.5412227,8.3076358 13.5412897,8.69212428 13.3221917,9.90663217 L14.8747448,10.8231255 C14.5650988,11.7817076 14.0631304,12.6694105 13.4026193,13.4264943 Z M8,5.20968958 C6.22607014,5.20968958 4.78289853,6.68570996 4.78289853,8.50001714 C4.78289853,10.3143243 6.22607014,11.7903447 8,11.7903447 C9.77392986,11.7903447 11.2171015,10.3143243 11.2171015,8.50001714 C11.2171015,6.68570996 9.77392986,5.20968958 8,5.20968958 Z M8,10.6935688 C6.81738009,10.6935688 5.85526568,9.70955526 5.85526568,8.50001714 C5.85526568,7.29047902 6.81738009,6.30646543 8,6.30646543 C9.18261991,6.30646543 10.1447343,7.29047902 10.1447343,8.50001714 C10.1447343,9.70955526 9.18261991,10.6935688 8,10.6935688 Z" id="Shape"></path></g></g></svg>Privacy settings</a></body></html>

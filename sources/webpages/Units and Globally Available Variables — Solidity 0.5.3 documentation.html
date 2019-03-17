@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<!-- saved from url=(0109)https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#address-related -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths" lang="en" style=""><!--<![endif]--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Units and Globally Available Variables — Solidity 0.5.3 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="./Units and Globally Available Variables — Solidity 0.5.3 documentation_files/theme.css" type="text/css">
+  <link rel="stylesheet" href="./Units and Globally Available Variables — Solidity 0.5.3 documentation_files/pygments.css" type="text/css">
+  <link rel="stylesheet" href="./Units and Globally Available Variables — Solidity 0.5.3 documentation_files/custom.css" type="text/css">
+    <link rel="index" title="Index" href="https://solidity.readthedocs.io/en/develop/genindex.html">
+    <link rel="search" title="Search" href="https://solidity.readthedocs.io/en/develop/search.html">
+    <link rel="next" title="Expressions and Control Structures" href="https://solidity.readthedocs.io/en/develop/control-structures.html">
+    <link rel="prev" title="Types" href="https://solidity.readthedocs.io/en/develop/types.html"> 
+
+  
+  <script src="./Units and Globally Available Variables — Solidity 0.5.3 documentation_files/modernizr.min.js.Download"></script>
+
+
+<!-- RTD Extra Head -->
+
+<!-- 
+Always link to the latest version, as canonical.
+http://docs.readthedocs.org/en/latest/canonical.html
+-->
+<link rel="canonical" href="https://solidity.readthedocs.io/en/v0.5.2/units-and-global-variables.html">
+
+<link rel="stylesheet" href="./Units and Globally Available Variables — Solidity 0.5.3 documentation_files/readthedocs-doc-embed.css" type="text/css">
+
+<script type="text/javascript" src="./Units and Globally Available Variables — Solidity 0.5.3 documentation_files/readthedocs-data.js.Download"></script>
+
+<!-- Add page-specific data, which must exist in the page js, not global -->
+<script type="text/javascript">
+READTHEDOCS_DATA['page'] = 'units-and-global-variables'
+READTHEDOCS_DATA['source_suffix'] = '.rst'
+</script>
+
+<script type="text/javascript" src="./Units and Globally Available Variables — Solidity 0.5.3 documentation_files/readthedocs-analytics.js.Download"></script>
+
+<!-- end RTD <extrahead> -->
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="https://solidity.readthedocs.io/en/develop/index.html" class="icon icon-home"> Solidity
+          
+
+          
+          </a>
+
+          
+            
+            
+            
+              <div class="version">
+                develop
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="https://solidity.readthedocs.io/en/develop/search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs">
+    <input type="hidden" name="check_keywords" value="yes">
+    <input type="hidden" name="area" value="default">
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/introduction-to-smart-contracts.html">Introduction to Smart Contracts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/installing-solidity.html">Installing the Solidity Compiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/solidity-by-example.html">Solidity by Example</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/solidity-in-depth.html"><span class="toctree-expand"></span>Solidity in Depth</a><ul class="">
+<li class="toctree-l2"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/layout-of-source-files.html">Layout of a Solidity Source File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/structure-of-a-contract.html">Structure of a Contract</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/types.html">Types</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#"><span class="toctree-expand"></span>Units and Globally Available Variables</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#ether-units">Ether Units</a></li>
+<li class="toctree-l3"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#time-units">Time Units</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#special-variables-and-functions"><span class="toctree-expand"></span>Special Variables and Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#block-and-transaction-properties">Block and Transaction Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#abi-encoding-and-decoding-functions">ABI Encoding and Decoding Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#error-handling">Error Handling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#mathematical-and-cryptographic-functions">Mathematical and Cryptographic Functions</a></li>
+<li class="toctree-l4 current"><a class="reference internal current" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#members-of-address-types">Members of Address Types</a></li>
+<li class="toctree-l4"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#contract-related">Contract Related</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/control-structures.html">Expressions and Control Structures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/contracts.html">Contracts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/assembly.html">Solidity Assembly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/miscellaneous.html">Miscellaneous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/050-breaking-changes.html">Solidity v0.5.0 Breaking Changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/security-considerations.html">Security Considerations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/using-the-compiler.html">Using the compiler</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/metadata.html">Contract Metadata</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/abi-spec.html">Contract ABI Specification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/yul.html">Yul</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/style-guide.html">Style Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/common-patterns.html">Common Patterns</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/bugs.html">List of Known Bugs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/frequently-asked-questions.html">Frequently Asked Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="https://solidity.readthedocs.io/en/develop/lll.html">LLL</a></li>
+</ul>
+
+            
+          
+    <a href="https://solidity.readthedocs.io/en/develop/genindex.html"><span class="toctree-expand"></span>Keyword Index</a>
+  
+        </div>
+      <div id="rtd-ebgmde16" class="ethical-rtd ethical-dark-theme"></div><div id="rtd-351t17rf" class="keep-us-sustainable"><p>Support Read the Docs!</p><p>Please help keep us sustainable by <a href="https://docs.readthedocs.io/en/latest/advertising/ad-blocking.html#allowing-ethical-ads">allowing our Ethical Ads in your ad blocker</a> or <a href="https://readthedocs.org/sustainability/">go ad-free</a> by subscribing.</p><p>Thank you! ❤️</p></div></div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="https://solidity.readthedocs.io/en/develop/index.html">Solidity</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="https://solidity.readthedocs.io/en/develop/index.html">Docs</a> »</li>
+        
+          <li><a href="https://solidity.readthedocs.io/en/develop/solidity-in-depth.html">Solidity in Depth</a> »</li>
+        
+      <li>Units and Globally Available Variables</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            
+              <a href="https://github.com/ethereum/solidity/blob/develop/docs/units-and-global-variables.rst" class="fa fa-github"> Edit on GitHub</a>
+            
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="units-and-globally-available-variables">
+<h1>Units and Globally Available Variables<a class="headerlink" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#units-and-globally-available-variables" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="ether-units">
+<span id="index-0"></span><h2>Ether Units<a class="headerlink" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#ether-units" title="Permalink to this headline">¶</a></h2>
+<p>A literal number can take a suffix of <code class="docutils literal notranslate"><span class="pre">wei</span></code>, <code class="docutils literal notranslate"><span class="pre">finney</span></code>, <code class="docutils literal notranslate"><span class="pre">szabo</span></code> or <code class="docutils literal notranslate"><span class="pre">ether</span></code> to specify a subdenomination of Ether, where Ether numbers without a postfix are assumed to be Wei.</p>
+<div class="highlight-Solidity notranslate"><div class="highlight"><pre><span></span><span class="nf">assert</span><span class="p">(</span><span class="mi">1</span> <span class="kc">wei</span> <span class="o">==</span> <span class="mi">1</span><span class="p">);</span>
+<span class="nf">assert</span><span class="p">(</span><span class="mi">1</span> <span class="kc">szabo</span> <span class="o">==</span> <span class="mi">1e12</span><span class="p">);</span>
+<span class="nf">assert</span><span class="p">(</span><span class="mi">1</span> <span class="kc">finney</span> <span class="o">==</span> <span class="mi">1e15</span><span class="p">);</span>
+<span class="nf">assert</span><span class="p">(</span><span class="mi">1</span> <span class="kc">ether</span> <span class="o">==</span> <span class="mi">1e18</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The only effect of the subdenomination suffix is a multiplication by a power of ten.</p>
+</div>
+<div class="section" id="time-units">
+<span id="index-1"></span><h2>Time Units<a class="headerlink" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#time-units" title="Permalink to this headline">¶</a></h2>
+<p>Suffixes like <code class="docutils literal notranslate"><span class="pre">seconds</span></code>, <code class="docutils literal notranslate"><span class="pre">minutes</span></code>, <code class="docutils literal notranslate"><span class="pre">hours</span></code>, <code class="docutils literal notranslate"><span class="pre">days</span></code> and <code class="docutils literal notranslate"><span class="pre">weeks</span></code>
+after literal numbers can be used to specify units of time where seconds are the base
+unit and units are considered naively in the following way:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">==</span> <span class="pre">1</span> <span class="pre">seconds</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">minutes</span> <span class="pre">==</span> <span class="pre">60</span> <span class="pre">seconds</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">hours</span> <span class="pre">==</span> <span class="pre">60</span> <span class="pre">minutes</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">days</span> <span class="pre">==</span> <span class="pre">24</span> <span class="pre">hours</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">weeks</span> <span class="pre">==</span> <span class="pre">7</span> <span class="pre">days</span></code></li>
+</ul>
+</div></blockquote>
+<p>Take care if you perform calendar calculations using these units, because
+not every year equals 365 days and not even every day has 24 hours
+because of <a class="reference external" href="https://en.wikipedia.org/wiki/Leap_second">leap seconds</a>.
+Due to the fact that leap seconds cannot be predicted, an exact calendar
+library has to be updated by an external oracle.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The suffix <code class="docutils literal notranslate"><span class="pre">years</span></code> has been removed in version 0.5.0 due to the reasons above.</p>
+</div>
+<p>These suffixes cannot be applied to variables. For example, if you want to
+interpret a function parameter in days, you can in the following way:</p>
+<div class="highlight-Solidity notranslate"><div class="highlight"><pre><span></span><span class="kd">function</span> <span class="n">f</span><span class="p">(</span><span class="kt">uint</span> <span class="n">start</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">daysAfter</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nb">now</span> <span class="o">&gt;=</span> <span class="n">start</span> <span class="o">+</span> <span class="n">daysAfter</span> <span class="o">*</span> <span class="mi">1</span> <span class="kc">days</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// ...</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="special-variables-and-functions">
+<h2>Special Variables and Functions<a class="headerlink" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#special-variables-and-functions" title="Permalink to this headline">¶</a></h2>
+<p>There are special variables and functions which always exist in the global
+namespace and are mainly used to provide information about the blockchain
+or are general-use utility functions.</p>
+<div class="section" id="block-and-transaction-properties">
+<span id="index-2"></span><h3>Block and Transaction Properties<a class="headerlink" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#block-and-transaction-properties" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">blockhash(uint</span> <span class="pre">blockNumber)</span> <span class="pre">returns</span> <span class="pre">(bytes32)</span></code>: hash of the given block - only works for 256 most recent, excluding current, blocks</li>
+<li><code class="docutils literal notranslate"><span class="pre">block.coinbase</span></code> (<code class="docutils literal notranslate"><span class="pre">address</span> <span class="pre">payable</span></code>): current block miner’s address</li>
+<li><code class="docutils literal notranslate"><span class="pre">block.difficulty</span></code> (<code class="docutils literal notranslate"><span class="pre">uint</span></code>): current block difficulty</li>
+<li><code class="docutils literal notranslate"><span class="pre">block.gaslimit</span></code> (<code class="docutils literal notranslate"><span class="pre">uint</span></code>): current block gaslimit</li>
+<li><code class="docutils literal notranslate"><span class="pre">block.number</span></code> (<code class="docutils literal notranslate"><span class="pre">uint</span></code>): current block number</li>
+<li><code class="docutils literal notranslate"><span class="pre">block.timestamp</span></code> (<code class="docutils literal notranslate"><span class="pre">uint</span></code>): current block timestamp as seconds since unix epoch</li>
+<li><code class="docutils literal notranslate"><span class="pre">gasleft()</span> <span class="pre">returns</span> <span class="pre">(uint256)</span></code>: remaining gas</li>
+<li><code class="docutils literal notranslate"><span class="pre">msg.data</span></code> (<code class="docutils literal notranslate"><span class="pre">bytes</span> <span class="pre">calldata</span></code>): complete calldata</li>
+<li><code class="docutils literal notranslate"><span class="pre">msg.sender</span></code> (<code class="docutils literal notranslate"><span class="pre">address</span> <span class="pre">payable</span></code>): sender of the message (current call)</li>
+<li><code class="docutils literal notranslate"><span class="pre">msg.sig</span></code> (<code class="docutils literal notranslate"><span class="pre">bytes4</span></code>): first four bytes of the calldata (i.e. function identifier)</li>
+<li><code class="docutils literal notranslate"><span class="pre">msg.value</span></code> (<code class="docutils literal notranslate"><span class="pre">uint</span></code>): number of wei sent with the message</li>
+<li><code class="docutils literal notranslate"><span class="pre">now</span></code> (<code class="docutils literal notranslate"><span class="pre">uint</span></code>): current block timestamp (alias for <code class="docutils literal notranslate"><span class="pre">block.timestamp</span></code>)</li>
+<li><code class="docutils literal notranslate"><span class="pre">tx.gasprice</span></code> (<code class="docutils literal notranslate"><span class="pre">uint</span></code>): gas price of the transaction</li>
+<li><code class="docutils literal notranslate"><span class="pre">tx.origin</span></code> (<code class="docutils literal notranslate"><span class="pre">address</span> <span class="pre">payable</span></code>): sender of the transaction (full call chain)</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The values of all members of <code class="docutils literal notranslate"><span class="pre">msg</span></code>, including <code class="docutils literal notranslate"><span class="pre">msg.sender</span></code> and
+<code class="docutils literal notranslate"><span class="pre">msg.value</span></code> can change for every <strong>external</strong> function call.
+This includes calls to library functions.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>Do not rely on <code class="docutils literal notranslate"><span class="pre">block.timestamp</span></code>, <code class="docutils literal notranslate"><span class="pre">now</span></code> and <code class="docutils literal notranslate"><span class="pre">blockhash</span></code> as a source of randomness,
+unless you know what you are doing.</p>
+<p>Both the timestamp and the block hash can be influenced by miners to some degree.
+Bad actors in the mining community can for example run a casino payout function on a chosen hash
+and just retry a different hash if they did not receive any money.</p>
+<p class="last">The current block timestamp must be strictly larger than the timestamp of the last block,
+but the only guarantee is that it will be somewhere between the timestamps of two
+consecutive blocks in the canonical chain.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The block hashes are not available for all blocks for scalability reasons.
+You can only access the hashes of the most recent 256 blocks, all other
+values will be zero.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The function <code class="docutils literal notranslate"><span class="pre">blockhash</span></code> was previously known as <code class="docutils literal notranslate"><span class="pre">block.blockhash</span></code>. It was deprecated in
+version 0.4.22 and removed in version 0.5.0.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The function <code class="docutils literal notranslate"><span class="pre">gasleft</span></code> was previously known as <code class="docutils literal notranslate"><span class="pre">msg.gas</span></code>. It was deprecated in
+version 0.4.21 and removed in version 0.5.0.</p>
+</div>
+</div>
+<div class="section" id="abi-encoding-and-decoding-functions">
+<span id="index-3"></span><h3>ABI Encoding and Decoding Functions<a class="headerlink" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#abi-encoding-and-decoding-functions" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">abi.decode(bytes</span> <span class="pre">memory</span> <span class="pre">encodedData,</span> <span class="pre">(...))</span> <span class="pre">returns</span> <span class="pre">(...)</span></code>: ABI-decodes the given data, while the types are given in parentheses as second argument. Example: <code class="docutils literal notranslate"><span class="pre">(uint</span> <span class="pre">a,</span> <span class="pre">uint[2]</span> <span class="pre">memory</span> <span class="pre">b,</span> <span class="pre">bytes</span> <span class="pre">memory</span> <span class="pre">c)</span> <span class="pre">=</span> <span class="pre">abi.decode(data,</span> <span class="pre">(uint,</span> <span class="pre">uint[2],</span> <span class="pre">bytes))</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">abi.encode(...)</span> <span class="pre">returns</span> <span class="pre">(bytes</span> <span class="pre">memory)</span></code>: ABI-encodes the given arguments</li>
+<li><code class="docutils literal notranslate"><span class="pre">abi.encodePacked(...)</span> <span class="pre">returns</span> <span class="pre">(bytes</span> <span class="pre">memory)</span></code>: Performs <a class="reference internal" href="https://solidity.readthedocs.io/en/develop/abi-spec.html#abi-packed-mode"><span class="std std-ref">packed encoding</span></a> of the given arguments</li>
+<li><code class="docutils literal notranslate"><span class="pre">abi.encodeWithSelector(bytes4</span> <span class="pre">selector,</span> <span class="pre">...)</span> <span class="pre">returns</span> <span class="pre">(bytes</span> <span class="pre">memory)</span></code>: ABI-encodes the given arguments starting from the second and prepends the given four-byte selector</li>
+<li><code class="docutils literal notranslate"><span class="pre">abi.encodeWithSignature(string</span> <span class="pre">memory</span> <span class="pre">signature,</span> <span class="pre">...)</span> <span class="pre">returns</span> <span class="pre">(bytes</span> <span class="pre">memory)</span></code>: Equivalent to <code class="docutils literal notranslate"><span class="pre">abi.encodeWithSelector(bytes4(keccak256(bytes(signature))),</span> <span class="pre">...)`</span></code></li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">These encoding functions can be used to craft data for external function calls without actually
+calling an external function. Furthermore, <code class="docutils literal notranslate"><span class="pre">keccak256(abi.encodePacked(a,</span> <span class="pre">b))</span></code> is a way
+to compute the hash of structured data (although be aware that it is possible to
+craft a “hash collision” using different function parameter types).</p>
+</div>
+<p>See the documentation about the <a class="reference internal" href="https://solidity.readthedocs.io/en/develop/abi-spec.html#abi"><span class="std std-ref">ABI</span></a> and the
+<a class="reference internal" href="https://solidity.readthedocs.io/en/develop/abi-spec.html#abi-packed-mode"><span class="std std-ref">tightly packed encoding</span></a> for details about the encoding.</p>
+</div>
+<div class="section" id="error-handling">
+<span id="index-4"></span><h3>Error Handling<a class="headerlink" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#error-handling" title="Permalink to this headline">¶</a></h3>
+<p>See the dedicated section on <a class="reference internal" href="https://solidity.readthedocs.io/en/develop/control-structures.html#assert-and-require"><span class="std std-ref">assert and require</span></a> for
+more details on error handling and when to use which function.</p>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">assert(bool</span> <span class="pre">condition)</span></code>:</dt>
+<dd>causes an invalid opcode and thus state change reversion if the condition is not met - to be used for internal errors.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">require(bool</span> <span class="pre">condition)</span></code>:</dt>
+<dd>reverts if the condition is not met - to be used for errors in inputs or external components.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">require(bool</span> <span class="pre">condition,</span> <span class="pre">string</span> <span class="pre">memory</span> <span class="pre">message)</span></code>:</dt>
+<dd>reverts if the condition is not met - to be used for errors in inputs or external components. Also provides an error message.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">revert()</span></code>:</dt>
+<dd>abort execution and revert state changes</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">revert(string</span> <span class="pre">memory</span> <span class="pre">reason)</span></code>:</dt>
+<dd>abort execution and revert state changes, providing an explanatory string</dd>
+</dl>
+</div>
+<div class="section" id="mathematical-and-cryptographic-functions">
+<span id="index-5"></span><h3>Mathematical and Cryptographic Functions<a class="headerlink" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#mathematical-and-cryptographic-functions" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">addmod(uint</span> <span class="pre">x,</span> <span class="pre">uint</span> <span class="pre">y,</span> <span class="pre">uint</span> <span class="pre">k)</span> <span class="pre">returns</span> <span class="pre">(uint)</span></code>:</dt>
+<dd>compute <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">+</span> <span class="pre">y)</span> <span class="pre">%</span> <span class="pre">k</span></code> where the addition is performed with arbitrary precision and does not wrap around at <code class="docutils literal notranslate"><span class="pre">2**256</span></code>. Assert that <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">!=</span> <span class="pre">0</span></code> starting from version 0.5.0.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">mulmod(uint</span> <span class="pre">x,</span> <span class="pre">uint</span> <span class="pre">y,</span> <span class="pre">uint</span> <span class="pre">k)</span> <span class="pre">returns</span> <span class="pre">(uint)</span></code>:</dt>
+<dd>compute <code class="docutils literal notranslate"><span class="pre">(x</span> <span class="pre">*</span> <span class="pre">y)</span> <span class="pre">%</span> <span class="pre">k</span></code> where the multiplication is performed with arbitrary precision and does not wrap around at <code class="docutils literal notranslate"><span class="pre">2**256</span></code>. Assert that <code class="docutils literal notranslate"><span class="pre">k</span> <span class="pre">!=</span> <span class="pre">0</span></code> starting from version 0.5.0.</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">keccak256(bytes</span> <span class="pre">memory)</span> <span class="pre">returns</span> <span class="pre">(bytes32)</span></code>:</dt>
+<dd>compute the Keccak-256 hash of the input</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">sha256(bytes</span> <span class="pre">memory)</span> <span class="pre">returns</span> <span class="pre">(bytes32)</span></code>:</dt>
+<dd>compute the SHA-256 hash of the input</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ripemd160(bytes</span> <span class="pre">memory)</span> <span class="pre">returns</span> <span class="pre">(bytes20)</span></code>:</dt>
+<dd>compute RIPEMD-160 hash of the input</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">ecrecover(bytes32</span> <span class="pre">hash,</span> <span class="pre">uint8</span> <span class="pre">v,</span> <span class="pre">bytes32</span> <span class="pre">r,</span> <span class="pre">bytes32</span> <span class="pre">s)</span> <span class="pre">returns</span> <span class="pre">(address)</span></code>:</dt>
+<dd>recover the address associated with the public key from elliptic curve signature or return zero on error
+(<a class="reference external" href="https://ethereum.stackexchange.com/q/1777/222">example usage</a>)</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Function <code class="docutils literal notranslate"><span class="pre">ecrecover</span></code> returns an <code class="docutils literal notranslate"><span class="pre">address</span></code>, and not an <code class="docutils literal notranslate"><span class="pre">address</span>
+<span class="pre">payable</span></code>. See <a class="reference internal" href="https://solidity.readthedocs.io/en/develop/types.html#address"><span class="std std-ref">address payable</span></a> for conversion, in case you need
+to <span class="highlighted">transfer</span> funds to the recovered address.</p>
+</div>
+<p>It might be that you run into Out-of-Gas for <code class="docutils literal notranslate"><span class="pre">sha256</span></code>, <code class="docutils literal notranslate"><span class="pre">ripemd160</span></code> or <code class="docutils literal notranslate"><span class="pre">ecrecover</span></code> on a <em>private blockchain</em>. The reason for this is that those are implemented as so-called precompiled contracts and these contracts only really exist after they received the first message (although their contract code is hardcoded). Messages to non-existing contracts are more expensive and thus the execution runs into an Out-of-Gas error. A workaround for this problem is to first send e.g. 1 Wei to each of the contracts before you use them in your actual contracts. This is not an issue on the official or test net.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">There used to be an alias for <code class="docutils literal notranslate"><span class="pre">keccak256</span></code> called <code class="docutils literal notranslate"><span class="pre">sha3</span></code>, which was removed in version 0.5.0.</p>
+</div>
+</div>
+<div class="section" id="members-of-address-types">
+<span id="address-related"></span><span id="index-6"></span><h3>Members of Address Types<a class="headerlink" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#members-of-address-types" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;address&gt;.balance</span></code> (<code class="docutils literal notranslate"><span class="pre">uint256</span></code>):</dt>
+<dd>balance of the <a class="reference internal" href="https://solidity.readthedocs.io/en/develop/types.html#address"><span class="std std-ref">Address</span></a> in Wei</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;address</span> <span class="pre">payable&gt;.<span class="highlighted">transfer</span>(uint256</span> <span class="pre">amount)</span></code>:</dt>
+<dd>send given amount of Wei to <a class="reference internal" href="https://solidity.readthedocs.io/en/develop/types.html#address"><span class="std std-ref">Address</span></a>, reverts on failure, forwards 2300 gas stipend, not adjustable</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;address</span> <span class="pre">payable&gt;.send(uint256</span> <span class="pre">amount)</span> <span class="pre">returns</span> <span class="pre">(bool)</span></code>:</dt>
+<dd>send given amount of Wei to <a class="reference internal" href="https://solidity.readthedocs.io/en/develop/types.html#address"><span class="std std-ref">Address</span></a>, returns <code class="docutils literal notranslate"><span class="pre">false</span></code> on failure, forwards 2300 gas stipend, not adjustable</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;address&gt;.call(bytes</span> <span class="pre">memory)</span> <span class="pre">returns</span> <span class="pre">(bool,</span> <span class="pre">bytes</span> <span class="pre">memory)</span></code>:</dt>
+<dd>issue low-level <code class="docutils literal notranslate"><span class="pre">CALL</span></code> with the given payload, returns success condition and return data, forwards all available gas, adjustable</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;address&gt;.delegatecall(bytes</span> <span class="pre">memory)</span> <span class="pre">returns</span> <span class="pre">(bool,</span> <span class="pre">bytes</span> <span class="pre">memory)</span></code>:</dt>
+<dd>issue low-level <code class="docutils literal notranslate"><span class="pre">DELEGATECALL</span></code> with the given payload, returns success condition and return data, forwards all available gas, adjustable</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">&lt;address&gt;.staticcall(bytes</span> <span class="pre">memory)</span> <span class="pre">returns</span> <span class="pre">(bool,</span> <span class="pre">bytes</span> <span class="pre">memory)</span></code>:</dt>
+<dd>issue low-level <code class="docutils literal notranslate"><span class="pre">STATICCALL</span></code> with the given payload, returns success condition and return data, forwards all available gas, adjustable</dd>
+</dl>
+<p>For more information, see the section on <a class="reference internal" href="https://solidity.readthedocs.io/en/develop/types.html#address"><span class="std std-ref">Address</span></a>.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">There are some dangers in using <code class="docutils literal notranslate"><span class="pre">send</span></code>: The <span class="highlighted">transfer</span> fails if the call stack depth is at 1024
+(this can always be forced by the caller) and it also fails if the recipient runs out of gas. So in order
+to make safe Ether <span class="highlighted">transfer</span>s, always check the return value of <code class="docutils literal notranslate"><span class="pre">send</span></code>, use <code class="docutils literal notranslate"><span class="pre">transfer</span></code> or even better:
+Use a pattern where the recipient withdraws the money.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Prior to version 0.5.0, Solidity allowed address members to be accessed by a contract instance, for example <code class="docutils literal notranslate"><span class="pre">this.balance</span></code>.
+This is now forbidden and an explicit conversion to address must be done: <code class="docutils literal notranslate"><span class="pre">address(this).balance</span></code>.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If state variables are accessed via a low-level delegatecall, the storage layout of the two contracts
+must align in order for the called contract to correctly access the storage variables of the calling contract by name.
+This is of course not the case if storage pointers are passed as function arguments as in the case for
+the high-level libraries.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Prior to version 0.5.0, <code class="docutils literal notranslate"><span class="pre">.call</span></code>, <code class="docutils literal notranslate"><span class="pre">.delegatecall</span></code> and <code class="docutils literal notranslate"><span class="pre">.staticcall</span></code> only returned the
+success condition and not the return data.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Prior to version 0.5.0, there was a member called <code class="docutils literal notranslate"><span class="pre">callcode</span></code> with similar but slightly different
+semantics than <code class="docutils literal notranslate"><span class="pre">delegatecall</span></code>.</p>
+</div>
+</div>
+<div class="section" id="contract-related">
+<span id="index-7"></span><h3>Contract Related<a class="headerlink" href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html?highlight=transfer#contract-related" title="Permalink to this headline">¶</a></h3>
+<dl class="docutils">
+<dt><code class="docutils literal notranslate"><span class="pre">this</span></code> (current contract’s type):</dt>
+<dd>the current contract, explicitly convertible to <a class="reference internal" href="https://solidity.readthedocs.io/en/develop/types.html#address"><span class="std std-ref">Address</span></a></dd>
+<dt><code class="docutils literal notranslate"><span class="pre">selfdestruct(address</span> <span class="pre">payable</span> <span class="pre">recipient)</span></code>:</dt>
+<dd>destroy the current contract, sending its funds to the given <a class="reference internal" href="https://solidity.readthedocs.io/en/develop/types.html#address"><span class="std std-ref">Address</span></a></dd>
+</dl>
+<p>Furthermore, all functions of the current contract are callable directly including the current function.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Prior to version 0.5.0, there was a function called <code class="docutils literal notranslate"><span class="pre">suicide</span></code> with the same
+semantics as <code class="docutils literal notranslate"><span class="pre">selfdestruct</span></code>.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="https://solidity.readthedocs.io/en/develop/control-structures.html" class="btn btn-neutral float-right" title="Expressions and Control Structures" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="https://solidity.readthedocs.io/en/develop/types.html" class="btn btn-neutral" title="Types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr><div><div id="rtd-r78xc0l4k" class="ethical-rtd"></div></div>
+
+  <div role="contentinfo">
+    <p>
+        © Copyright 2016-2018, Ethereum
+      
+        <span class="commit">
+          Revision <code>8a9e0127</code>.
+        </span>
+      
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org/">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      <span class="fa fa-book"> Read the Docs</span>
+      v: develop
+      <span class="fa fa-caret-down"></span>
+    </span>
+    <div class="rst-other-versions"><!-- Inserted RTD Footer -->
+<div class="injected">
+
+  
+
+      
+      
+      <dl>
+        <dt>Languages</dt>
+
+        
+         <strong> 
+        <dd><a href="https://solidity.readthedocs.io/en/v0.5.2/units-and-global-variables.html">en</a></dd>
+         </strong> 
+
+        
+        
+        
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/zh/latest/units-and-global-variables.html">zh</a></dd>
+        
+        
+        
+        
+
+      </dl>
+      
+      
+      <dl>
+        <dt>Versions</dt>
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/latest/units-and-global-variables.html">latest</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.5.2/units-and-global-variables.html">v0.5.2</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.5.1/units-and-global-variables.html">v0.5.1</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.5.0/units-and-global-variables.html">v0.5.0</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.25/units-and-global-variables.html">v0.4.25</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.24/units-and-global-variables.html">v0.4.24</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.23/units-and-global-variables.html">v0.4.23</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.22/units-and-global-variables.html">v0.4.22</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.21/units-and-global-variables.html">v0.4.21</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.20/units-and-global-variables.html">v0.4.20</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.19/units-and-global-variables.html">v0.4.19</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.18/units-and-global-variables.html">v0.4.18</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.17/units-and-global-variables.html">v0.4.17</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.16/units-and-global-variables.html">v0.4.16</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.15/units-and-global-variables.html">v0.4.15</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.14/units-and-global-variables.html">v0.4.14</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.13/units-and-global-variables.html">v0.4.13</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.12/units-and-global-variables.html">v0.4.12</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.11/units-and-global-variables.html">v0.4.11</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.10/units-and-global-variables.html">v0.4.10</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.9/units-and-global-variables.html">v0.4.9</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.8/units-and-global-variables.html">v0.4.8</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.7/units-and-global-variables.html">v0.4.7</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.6/units-and-global-variables.html">v0.4.6</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.5/units-and-global-variables.html">v0.4.5</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.4/units-and-global-variables.html">v0.4.4</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.3/units-and-global-variables.html">v0.4.3</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.2/units-and-global-variables.html">v0.4.2</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.1/units-and-global-variables.html">v0.4.1</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.4.0/units-and-global-variables.html">v0.4.0</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.3.6/units-and-global-variables.html">v0.3.6</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.3.5/units-and-global-variables.html">v0.3.5</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.3.4/units-and-global-variables.html">v0.3.4</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.3.3/units-and-global-variables.html">v0.3.3</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.3.2/units-and-global-variables.html">v0.3.2</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.3.1/units-and-global-variables.html">v0.3.1</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.3.0/units-and-global-variables.html">v0.3.0</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.2.2/units-and-global-variables.html">v0.2.2</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.2.1/units-and-global-variables.html">v0.2.1</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.2.0/units-and-global-variables.html">v0.2.0</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.1.7/units-and-global-variables.html">v0.1.7</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.1.6/units-and-global-variables.html">v0.1.6</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.1.5/units-and-global-variables.html">v0.1.5</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.1.4/units-and-global-variables.html">v0.1.4</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.1.3/units-and-global-variables.html">v0.1.3</a></dd>
+        
+        
+        
+        <dd><a href="https://solidity.readthedocs.io/en/v0.1.2/units-and-global-variables.html">v0.1.2</a></dd>
+        
+        
+         <strong> 
+        <dd><a href="https://solidity.readthedocs.io/en/develop/units-and-global-variables.html">develop</a></dd>
+         </strong> 
+        
+      </dl>
+      
+      
+
+      
+      
+      <dl>
+        <dt>Downloads</dt>
+        
+        <dd><a href="https://readthedocs.org/projects/solidity/downloads/pdf/develop/">PDF</a></dd>
+        
+        <dd><a href="https://readthedocs.org/projects/solidity/downloads/htmlzip/develop/">HTML</a></dd>
+        
+        <dd><a href="https://readthedocs.org/projects/solidity/downloads/epub/develop/">Epub</a></dd>
+        
+      </dl>
+      
+      
+
+      
+      <dl>
+        <!-- These are kept as relative links for internal installs that are http -->
+        <dt>On Read the Docs</dt>
+        <dd>
+          <a href="https://readthedocs.org/projects/solidity/">Project Home</a>
+        </dd>
+        <dd>
+          <a href="https://readthedocs.org/projects/solidity/builds/">Builds</a>
+        </dd>
+        <dd>
+          <a href="https://readthedocs.org/projects/solidity/downloads/">Downloads</a>
+        </dd>
+      </dl>
+      
+
+      
+
+      
+      <dl>
+        <dt>On GitHub</dt>
+        <dd>
+          <a href="https://github.com/ethereum/solidity/blob/develop/docs/units-and-global-variables.rst">View</a>
+        </dd>
+        
+        <dd>
+          <a href="https://github.com/ethereum/solidity/edit/develop/docs/units-and-global-variables.rst">Edit</a>
+        </dd>
+        
+      </dl>
+      
+      
+
+      
+      <dl>
+        <dt>Search</dt>
+        <dd>
+          <div style="padding: 6px;">
+            <form id="flyout-search-form" class="wy-form" target="_blank" action="https://readthedocs.org/projects/solidity/search/" method="get">
+              <input type="text" name="q" placeholder="Search docs">
+              </form>
+          </div>
+        </dd>
+      </dl>
+      
+
+
+
+      <hr>
+      
+        <small>
+          <span>Hosted by <a href="https://readthedocs.org/">Read the Docs</a></span>
+          <span> · </span>
+          <a href="https://docs.readthedocs.io/en/latest/privacy-policy.html">Privacy Policy</a>
+        </small>
+      
+
+      
+
+</div>
+</div>
+  </div>
+
+
+
+  
+
+    
+    
+      <script type="text/javascript">
+          var DOCUMENTATION_OPTIONS = {
+              URL_ROOT:'./',
+              VERSION:'0.5.3',
+              LANGUAGE:'en',
+              COLLAPSE_INDEX:false,
+              FILE_SUFFIX:'.html',
+              HAS_SOURCE:  true,
+              SOURCELINK_SUFFIX: '.txt'
+          };
+      </script>
+        <script type="text/javascript" src="./Units and Globally Available Variables — Solidity 0.5.3 documentation_files/jquery.js.Download"></script>
+        <script type="text/javascript" src="./Units and Globally Available Variables — Solidity 0.5.3 documentation_files/underscore.js.Download"></script>
+        <script type="text/javascript" src="./Units and Globally Available Variables — Solidity 0.5.3 documentation_files/doctools.js.Download"></script>
+        <script type="text/javascript" src="./Units and Globally Available Variables — Solidity 0.5.3 documentation_files/readthedocs-doc-embed.js.Download"></script>
+    
+
+  
+
+  <script type="text/javascript" src="./Units and Globally Available Variables — Solidity 0.5.3 documentation_files/theme.js.Download"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+
+</body></html>

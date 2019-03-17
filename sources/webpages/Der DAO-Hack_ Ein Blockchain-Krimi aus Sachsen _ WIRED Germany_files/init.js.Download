@@ -1,0 +1,1912 @@
+atf_dfp_special = {};
+
+/**
+ * The timestamp when Javascript was generated.
+ * 
+ * @type {string}
+ */
+atf_current = '20181213105049';
+
+/**
+ * The page entries.
+ * 
+ * @type {Object}
+ */
+var atf_page_entries = {
+'1': {
+		'full_page_key': 'decn_wired',
+		'url': 'wired.de',
+		'search_mode': 'substr',
+		'search_pattern': 'url',
+		'varvalue': 'not_available',
+		'search_term': 'default',
+		'default_entry': '1',
+		'adunit': 'decn_wired/*[device]*//default/empty/empty',
+		'formats': {
+            'rectangle': [
+                [300,250],
+            ],
+            'skyscraper': [
+                [200,600],
+                [160,600],
+                [120,600],
+                [300,600],
+                [300,250],
+            ],
+            'leaderboard': [
+                [728,90],
+                [800,250],
+                [970,250],
+                [1000,250],
+                [850,250],
+            ],
+            'special': [
+                [0,0],
+            ],
+        },
+		'mobile_formats': {
+            'rectangle': [
+                [300,250],
+                [300,600],
+                [320,160],
+                [320,150],
+                [300,150],
+                [300,100],
+                [320,50],
+                [336,280],
+            ],
+            'skyscraper': [
+                [300,250],
+                [300,600],
+                [320,160],
+                [320,150],
+                [300,150],
+                [300,100],
+                [320,50],
+                [336,280],
+            ],
+            'leaderboard': [
+                [300,250],
+                [320,160],
+                [320,150],
+                [300,150],
+                [300,100],
+                [320,50],
+                [336,280],
+            ],
+            'special': [
+                [1,1],
+                [2,2],
+            ],
+        }
+    },
+   
+};
+
+/**
+ * The default format map.
+ * 
+ * @type {Object}
+ */
+var atf_defaultFormatMap = {
+    'rectangle': [
+        [300,250],
+    ],
+    'skyscraper': [
+        [200,600],
+        [160,600],
+        [120,600],
+        [300,600],
+        [300,250],
+    ],
+    'leaderboard': [
+        [728,90],
+        [800,250],
+        [970,250],
+        [1000,250],
+        [850,250],
+    ],
+    'special': [
+        [0,0],
+    ]
+};
+
+/**
+ * The default mobile format map.
+ * 
+ * @type {Object}
+ */
+var atf_defaultMobileFormatMap = {
+    'rectangle': [
+        [300,250],
+        [300,600],
+        [320,160],
+        [320,150],
+        [300,150],
+        [300,100],
+        [320,50],
+        [336,280],
+    ],
+    'skyscraper': [
+        [300,250],
+        [300,600],
+        [320,160],
+        [320,150],
+        [300,150],
+        [300,100],
+        [320,50],
+        [336,280],
+    ],
+    'leaderboard': [
+        [300,250],
+        [320,160],
+        [320,150],
+        [300,150],
+        [300,100],
+        [320,50],
+        [336,280],
+    ],
+    'special': [
+        [1,1],
+        [2,2],
+    ]
+};
+
+/**
+ * The AdX Block URL List.
+ * 
+ * @type {Array}
+ */
+var atf_adXBlockUrlList = [
+
+];
+
+/**
+ * The format map of current page.
+ * 
+ * @type {Array}
+ */
+var atf_format_map;
+
+/**
+ * Array of all ATF adSlot Objects
+ *
+ * @type {Array}
+*/
+var atf_adslot_objects = [];
+
+
+/** This class represents the AdTech Factory library */
+atf_lib = {
+    
+    /**
+     * Saves the mandant id.
+     * 
+     * @type {string}
+     */
+    mid: 'decn',
+    
+    /**
+     * Saves the adunit mandant key.
+     * 
+     * @type {string}
+     */
+    aum_key: 'decn',
+    
+    /**
+     * Saves the page id.
+     * 
+     * @type {string}
+     */
+    pid: 'wired',
+    
+    /**
+     * Saves tags.
+     * 
+     * @type {Array}
+     */
+    atf_tags: [],
+    
+    /**
+     * Saves the status of header bitting.
+     * 
+     * @type {boolean}
+     */
+    header_bidding_enabled: false,
+    
+    /**
+     * Saves the type of consent given.
+     * 
+     * @type {string}
+     */
+    consent_given_by: 'button',
+  
+    /**
+     * Saves the state of mobile detecting.
+     * 
+     * Values could be width, var and user_agent.
+     * 
+     * @type {string}
+     */
+    mobile_detection: 'width',
+    
+    /**
+     * The page targeting.
+     * 
+     * @type {Object}
+     */
+    page_targeting: {
+    },
+    
+    /**
+     * Saves all creates adSlots via load_tag
+     *
+     * @type {Object}
+     */
+    atf_push_adslot: function (adslot_object){
+        atf_adslot_objects.push(adslot_object);
+    },
+    
+    /**
+     * Kills all created adSlots via load_tag. Important for Infinte Scroll Pages
+     *
+     * @type {Object}
+     */
+    atf_kill_adslots: function(){
+       for(i = 0; i < atf_adslot_objects.length; i++){
+           googletag.destroySlots([atf_adslot_objects[i]]);
+           atf_lib.log_color_info('|SLOT UPDATE| destrorySlot['+i+']', 'background: #222; color: #bada55');
+       }
+       atf_adslot_objects = [];
+    },
+    
+    /** 
+     * Outputs the given value to console as log, if console output is enabled by URL param.
+     * 
+     * @param {Object|string} output The output for print to the console.
+     */
+    log_info: function (output) {
+        try {
+            if (top.location.search !== '' && (top.location.search.indexOf('atf_enable_console=1') > -1 || top.location.search.indexOf('atf_test') > -1)) {
+                if (window.console && window.console.log) {
+                    console.log(output);
+                }
+            }
+        } catch (err) {}
+    },
+    
+    /** 
+     * Outputs the given value to console as with special Color for time tracking messurement, if timemessure output is enabled by URL param.
+     * 
+     * @param {Object|string} output The output for print to the console.
+     */
+    log_time_messure: function (output, time, event) {
+        try {
+            if (atf_lib.report_time === true) {
+                var img = new Image();
+                img.src = 'https://report.tag.tagtool.de/time_messure.png?domain=' + window.location.hostname + '&site=' + encodeURIComponent(window.location.href) + '&mandant_key=' + atf_lib.mid + '&page_key=' + atf_lib.pid + '&mobile=' + (atf_lib.is_mobile() ? '1' : '0') + '&request_id=' + atf_lib.request_id + '&milliseconds=' + time + '&event=' + encodeURIComponent(event);
+            }
+            if (top.location.search !== '' && top.location.search.indexOf('atf_enable_timers=1') > -1) {
+                if (window.console && window.console.log) {
+                    console.log('\x1b[43m>>> Timing: ' + output);
+                }
+            }
+        } catch (err) {}
+    },
+    
+    /** 
+     * Outputs the given value to console as colored log, if console output is enabled by URL param.
+     * 
+     * @param {Object|string} output The output for print to the console.
+     */
+    log_color_info: function (output,css_style) {
+        try {
+            if (top.location.search !== '' && (top.location.search.indexOf('atf_enable_console=1') > -1 || top.location.search.indexOf('atf_test') > -1)) {
+                if (window.console && window.console.log) {
+                    console.log('%c '+output+'', css_style);
+                }
+            }
+        } catch (err) {}
+    },
+    
+    /** 
+     * Outputs the given value to console as error, if console output is enabled by URL param. 
+     * 
+     * @param {Object|string} output The output for print to the console.
+     */
+    log_error: function (output) {
+        try {
+            if (top.location.search !== '' && (top.location.search.indexOf('atf_enable_console=1') > -1 || top.location.search.indexOf('atf_test') > -1)) {
+                if (window.console && window.console.error) {
+                    console.error(output);
+                }
+            }
+        } catch (err) {}
+    },
+    
+    /**
+     * Sets the cookie targeting. 
+     * 
+     * @param {string} key The key of the cookie targeting.
+     * @param {string} value The value of the cookie targeting.
+     * @param {int} expire The sum of hours after which the cookie will expire.
+     */
+    set_targeting_cookie: function (key, value, expire) {
+        var date = new Date();
+        date.setTime(date.getTime() + (expire * 60 * 60 * 1000));
+        var expires = 'expires='+ date.toUTCString();
+        document.cookie = 'atf_targeting_' + key + '=' + value + ';' + expires + ';path=/';
+    },
+    
+    /**
+     * Gets targetings from cookies. 
+     * 
+     * @returns {Object} The targeting in object.key = value format.
+     */
+    get_targeting_cookies: function () {
+        var targetings = {};
+        var cookies = document.cookie.split(';');
+        for(var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i];
+            cookie = cookie.trim();
+            if (cookie.indexOf('atf_targeting_') === 0) {
+                cookie = cookie.substring('atf_targeting_'.length, cookie.length);
+                targetings[cookie.substring(0, cookie.indexOf('='))] = cookie.substring(cookie.indexOf('=') + 1, cookie.length);
+            }
+        }
+        return targetings;
+    },
+    
+    /** 
+     * Adds page targeting by given key value to the page targeting array. 
+     * The setted page targeting will be setted on adserver call for the adserver.
+     * 
+     * @param {string} key The page targeting key.
+     * @param {string} value The page targeting value.
+     */
+    add_page_targeting: function (key, value) {
+        if (typeof this.page_targeting[key] !== 'undefined') {
+            if (Array.isArray(this.page_targeting[key])) {
+                if (this.page_targeting[key].indexOf(value) < 0) {
+                    this.page_targeting[key].push(value);
+                }
+            } else {
+                if (this.page_targeting[key] !== value) {
+                    this.page_targeting[key] = [
+                        this.page_targeting[key],
+                        value
+                    ];
+                }
+            }
+        } else {
+            this.page_targeting[key] = value;
+        }
+    },
+    
+    /** 
+     * Adds page targeting by given key value to the page targeting array. If the 
+     * Targeting already exists, the value will overridden. 
+     * The setted page targeting will be setted on adserver call for the adserver.
+     * 
+     * @param {string} key The page targeting key.
+     * @param {string} value The page targeting value.
+     */
+    add_or_overwrite_page_targeting: function (key, value) {
+        this.page_targeting[key] = value;
+    },
+    
+    /** 
+     * Fire event trigged by third party.
+     * 
+     * @param {Object} element The element for which is rendered.
+     * @param {Object} data The data for debug output.
+     */
+    third_party_rendered: function (element, data) {
+        var event = document.createEvent('Event');
+        event.initEvent('atf_ad_rendered', true, true);
+        event.element_id = element.id;
+        window.dispatchEvent(event);
+        atf_lib.log_info(event);
+        atf_lib.log_info('#### Third party rendered. Event fired. ####');
+    },
+  
+    /** 
+     * Collaps the tag with data-atf attribute.
+     * 
+     * @param {Object} element The element for which to search atf-data attribute and collapse.
+     * @param {Object} data The data for debug output.
+     */
+    passback: function (element, data) {
+        atf_lib.log_info('Passbacking after ' + (data.hasOwnProperty('offerer') ? data.offerer : 'undefined'));
+        current_element = element;
+        while (current_element.parentNode !== null) {
+            if (current_element.getAttribute('data-atf')) {
+                break;
+            }
+            current_element = current_element.parentNode;
+        }
+      
+
+        if (current_element !== null) {
+            current_element.style.display = 'none';
+            var event = document.createEvent('Event');
+            event.initEvent('atf_no_ad_rendered', true, true);
+            event.element_id = current_element.id;
+            window.dispatchEvent(event);
+            atf_lib[current_element.id + '_passback_fired'] = true;
+            atf_lib.log_info('PASSBACK Event Fired');
+            // atf_lib.log_info(event);
+            atf_lib.log_info('Collapsed empty DIV with ID ' + current_element.id + ' in passback after ' + (data.hasOwnProperty('offerer') ? data.offerer : 'undefined'));
+        }
+    },
+    
+    /** 
+     * Returns if the current device is a mobile device.
+     * 
+     * @returns {boolean} If the current device is a mobile device.
+     */
+    is_mobile: function () {
+        if (this.mobile_detection === 'user_agent') {
+            if (navigator.userAgent.match(/iPad|Mobile|Windows Phone|Lumia|Android|webOS|iPhone|iPod|Blackberry|PlayBook|BB10|Opera Mini|\bCrMo\/|Opera Mobi|Tablet/i)) {
+                return true;
+            } else {
+                return false;
+            }
+        } else if (this.mobile_detection === 'var') {
+            if (typeof this.mobile_detected !== 'undefined') {
+                return this.mobile_detected;
+            }
+        } else {
+            vpw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+            if (vpw > 767) {
+                return false;
+            }
+            return true;
+        }
+    },
+    
+    /** 
+     * Returns the form factor. Decides between tablet, phone and desktop
+     * 
+     * @returns {string} The format form factor.
+     */
+    get_form_factor: function () {
+        if (this.mobile_detection === 'user_agent') {
+            if (navigator.userAgent.match(/Tablet|iPad/i)) {
+                return 'tablet';
+            } else if(navigator.userAgent.match(/Mobile|Windows Phone|Lumia|Android|webOS|iPhone|iPod|Blackberry|PlayBook|BB10|Opera Mini|\bCrMo\/|Opera Mobi/i)) {
+                return 'phone';
+            } else {
+                return 'desktop';
+            }            
+        } else {
+            vpw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+            if (vpw > 1024) {
+                return 'desktop';
+            }
+            if (vpw > 767) {
+                return 'tablet';
+            }
+            return 'phone';
+        }
+    },
+    
+    /** 
+     * Returns the targeting setted by URL. 
+     * 
+     * @returns {Object} The targeting from URL.
+     */
+    get_url_targeting: function () {
+        var vars = {};
+		var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+            vars[key] = value;
+        });
+        
+		targetings = [];
+        for (var var_key in vars) {
+            if (var_key.indexOf('atf_tgt') === 0) {
+                targeting = vars[var_key].split('+');
+                if (targeting.length > 0) {
+                    for (var param in targeting) {
+                        params = targeting[param].split(',');
+                        if (params.length === 2 || params.length === 3) {
+                            if (params[1].indexOf(';') > -1) {
+                                params[1] = params[1].split(';');
+                            }
+                            targetings.push(params);
+                        }
+                    }
+                }
+            }
+        }
+
+        jsonTargeting = {};
+        for (var i in targetings) {
+            if (typeof targetings[i][2] !== 'undefined') {
+                if (typeof jsonTargeting[targetings[i][2]] === 'undefined') {
+                    jsonTargeting[targetings[i][2]] = {};
+                }
+                if (typeof jsonTargeting[targetings[i][2]].targeting === 'undefined') {
+                    jsonTargeting[targetings[i][2]].targeting = {};
+                }
+                jsonTargeting[targetings[i][2]].targeting[targetings[i][0]] = targetings[i][1];
+            } else {
+                atf_lib.add_page_targeting(targetings[i][0], targetings[i][1]);
+            }
+        }
+        return jsonTargeting;
+    },
+    
+    /** 
+     * Loads header bitting scripts in current pages header. 
+     */
+    load_header_bidding_lib: function () {
+        var headTag = document.getElementsByTagName('head');
+        if (headTag.length > 0) {
+            script = document.createElement('script');
+            script.type = 'text/javascript';
+            hbjsScript = document.createTextNode('var domain = "wired.de", timeout = 1000; !function(e,t,s){function n(){r.adserverRequestSent||(r.adserverRequestSent=!0,r.setConfig?a.cmd.push(function(){r.que.push(function(){r.setTargetingForGPTAsync(),a.pubads().refresh()})}):a.cmd.push(function(){a.pubads().refresh()}))}e.hbjs=e.hbjs||{},e.googletag=e.googletag||{};var o=document,u=o.getElementsByTagName("script")[0],c=o.createElement("script"),r=e.hbjs,a=e.googletag;c.async=!0,c.type="text/javascript",c.src="//orbyd.hdbdr.com/hb/"+t+"/hb.js",u.parentNode.insertBefore(c,u),r.que=r.que||[],a.cmd=a.cmd||[],a.cmd.push(function(){a.pubads().disableInitialLoad()}),setTimeout(function(){n()},s)}(window,domain,timeout);');
+            script.appendChild(hbjsScript);
+            headTag[0].appendChild(script);
+        } else {
+            setTimeout(atf_lib.load_header_bidding_lib, 50);
+        }
+    },
+    
+    /** 
+     * Returns the current page entry.
+     * 
+     * @param {string} element The element for matching.
+     * 
+     * @returns {Array} The current page entry.
+     */
+    get_current_page_entry: function (element) {
+        var currentEntry;
+        var currentIsDefault;
+        for (var i in atf_page_entries) {
+            if (atf_page_entries[i].default_entry === '1') {
+                currentEntry = i;
+                currentIsDefault = true;
+            }
+            
+            if (atf_page_entries[i].search_mode === 'regex') {
+                // Use regex for matching the current page entry
+                if (atf_page_entries[i].search_pattern === 'url' && location.href.match(atf_page_entries[i].search_term)) {
+                    currentEntry = i;
+                    currentIsDefault = false;
+                    break;
+                } else if(atf_page_entries[i].search_pattern === 'title' && document.title.match(atf_page_entries[i].search_term)) {
+                    currentEntry = i;
+                    currentIsDefault = false;
+                    break;
+                } else if (atf_page_entries[i].search_pattern === 'var' && atf_page_entries[i].varvalue.match(atf_page_entries[i].search_term)) {
+                    currentEntry = i;
+                    currentIsDefault = false;
+                    break;
+                } else if (atf_page_entries[i].search_pattern === 'targeting' && element.hasOwnProperty('targeting') && element.targeting.hasOwnProperty('channel') && element.targeting.channel.match(atf_page_entries[i].search_term)) {
+                    atf_lib.log_info('TRYING TO GET CURRENT PAGE ENTRY BY TARGETING!!!');
+                    currentEntry = i;
+                    currentIsDefault = false;
+                    break;
+                }
+            } else {
+                // Use substr (indexOf) for matching the current page entry
+                if (atf_page_entries[i].search_pattern === 'url' && location.href.indexOf(atf_page_entries[i].search_term) > (-1)) {
+                    currentEntry = i;
+                    currentIsDefault = false;
+                    break;
+                } else if(atf_page_entries[i].search_pattern === 'title' && document.title.indexOf(atf_page_entries[i].search_term) > (-1)) {
+                    currentEntry = i;
+                    currentIsDefault = false;
+                    break;
+                } else if (atf_page_entries[i].search_pattern === 'var' && atf_page_entries[i].varvalue.indexOf(atf_page_entries[i].search_term) > (-1)) {
+                    currentEntry = i;
+                    currentIsDefault = false;
+                    break;
+                } else if (atf_page_entries[i].search_pattern === 'targeting' && element.hasOwnProperty('targeting') && element.targeting.hasOwnProperty('channel') && element.targeting.channel.indexOf(atf_page_entries[i].search_term) > (-1)) {
+                    atf_lib.log_info('TRYING TO GET CURRENT PAGE ENTRY BY TARGETING!!!');
+                    currentEntry = i;
+                    currentIsDefault = false;
+                    break;
+                }
+            }
+        }
+      
+        if (currentIsDefault === true) {
+            // Get Mandant_Page - Key
+            adUnit = atf_lib.aum_key + '_' + atf_lib.pid;
+            
+            // Get mobile detection
+            if (this.is_mobile() === true) {
+                adUnit += '_mobile';
+            } else {
+                adUnit += '_desktop';
+            }
+            
+            // Get main channel 
+            var channelExists = false;
+            var mainChannel = '';
+            var totalChannels = [];
+            if (element.hasOwnProperty('targeting') && element.targeting.hasOwnProperty('channel')) {
+                atf_lib.log_info('Trying to get main channel from element targeting!');
+                totalChannels = element.targeting.channel.split('/');
+                if (totalChannels.length > 1 && totalChannels[0] === 'homepage') {
+                    totalChannels.shift();
+                }
+                mainChannel = totalChannels[0];
+            }
+            if (mainChannel === '') {
+                if (atf_lib.page_targeting.hasOwnProperty('channel')) {
+                    atf_lib.log_info('Trying to get main channel from page targeting!');
+                    totalChannels = atf_lib.page_targeting.channel.split('/');
+                    if (totalChannels.length > 1 && totalChannels[0] === 'homepage') {
+                        totalChannels.shift();
+                    }
+                    mainChannel = totalChannels[0];
+                }
+            }
+            
+            if (mainChannel === '') {
+                if (element.hasOwnProperty('targeting') && element.targeting.hasOwnProperty('tags')) {
+                    atf_lib.log_info('Trying to get main channel from element targeting "tags"!');
+                    totalChannels = element.targeting.tags.split('/');
+                    if (totalChannels.length > 1 && totalChannels[0] === 'homepage') {
+                        totalChannels.shift();
+                    }
+                    mainChannel = totalChannels[0];
+                }
+                if (mainChannel === '') {
+                    if (atf_lib.page_targeting.hasOwnProperty('tags')) {
+                        atf_lib.log_info('Trying to get main channel from page targeting "tags"!');
+                        totalChannels = atf_lib.page_targeting.tags.split('/');
+                        if (totalChannels.length > 1 && totalChannels[0] === 'homepage') {
+                            totalChannels.shift();
+                        }
+                        mainChannel = totalChannels[0];
+                    }
+                }
+            }
+            
+            if (mainChannel !== '') {
+                atf_lib.log_info('Main channel exists!');
+                // Get subchannel
+                if (totalChannels.length >= 2) {
+                    subChannel = totalChannels[1];
+                    if (subChannel === '') {
+                        subChannel = 'empty';
+                    }
+                } else {
+                    if (atf_lib.mid === 'burdanews' && atf_lib.pid === 'foa') {
+                        if (element.hasOwnProperty('targeting') && element.targeting.hasOwnProperty('subchannel')) {
+                            atf_lib.log_info('Trying to get sub channel from page targeting subchannel!');
+                            subChannel = element.targeting.subchannel;
+                            if (subChannel === '' || subChannel === '(not set)') {
+                                subChannel = 'empty';
+                            }
+                        } else {
+                            subChannel = 'empty';
+                        }
+                    } else {
+                        if (atf_lib.page_targeting.hasOwnProperty('channel2')) {
+                            atf_lib.log_info('Trying to get sub channel from page targeting channel 2!');
+                            subChannel = atf_lib.page_targeting.channel2;
+                            if (subChannel === '' || subChannel === '(not set)') {
+                                subChannel = 'empty';
+                            }
+                        /*} else if (atf_lib.page_targeting.hasOwnProperty('subchannel')) {
+                            atf_lib.log_info('Trying to get sub channel from page targeting subchannel!');
+                            subChannel = atf_lib.page_targeting.subchannel;
+                            if (subChannel === '' || subChannel === '(not set)') {
+                                subChannel = 'empty';
+                            }*/
+                        } else {
+                            subChannel = 'empty';
+                        }
+                    }
+                }
+                
+                // Get content type
+                var contentType = '';
+                
+                if (element.hasOwnProperty('targeting') && element.targeting.hasOwnProperty('contenttype')) {
+                    atf_lib.log_info('Trying to get content type from element targeting content type!');
+                    contentType = element.targeting.contenttype;
+                }
+                if (contentType === '') {
+                    if (atf_lib.page_targeting.hasOwnProperty('contenttype')) {
+                        atf_lib.log_info('Trying to get content type from page targeting content type!');
+                        contentType = atf_lib.page_targeting.contenttype;
+                    }
+                }
+                
+                if (contentType === '') {
+                    var totalContentTypes;
+                    if (element.hasOwnProperty('targeting') && element.targeting.hasOwnProperty('entitytype')) {
+                        atf_lib.log_info('Trying to get content type from element targeting entity type!');
+                        totalContentTypes = element.targeting.entitytype.split('/');
+                        if (totalContentTypes.length >= 2) {
+                            contentType = totalContentTypes[1];
+                        }
+                    }
+                    if (contentType === '') {
+                        if (atf_lib.page_targeting.hasOwnProperty('contenttype')) {
+                            atf_lib.log_info('Trying to get content type from page targeting entity type!');
+                            totalContentTypes = atf_lib.page_targeting.entitytype.split('/');
+                            if (totalContentTypes.length >= 2) {
+                                contentType = totalContentTypes[1];
+                            }
+                        }
+                    }
+                }
+                
+                var possibleContentTypes = [
+                    'channel',
+                    'article',
+                    'special', 
+                    'home',
+                    'rezepte'
+                ];
+                
+                if (contentType === '' || possibleContentTypes.indexOf(contentType) < 0) {
+                    atf_lib.log_info('Content type does not exist.');
+                    contentType = 'empty';
+                }
+                
+                adUnit += '/' + mainChannel + '/' + subChannel + '/' + contentType;
+                atf_lib.log_info("adUnit "+adUnit);
+                
+                // Return "Fake page entry"
+                return {
+                    'full_page_key': 'tstmad_tagtool',
+                    'adunit': adUnit,
+                    'formats': atf_defaultFormatMap,
+                    'mobile_formats': atf_defaultMobileFormatMap
+                };
+            } else {
+                atf_lib.log_info('Main Channel does not exits. Fallback to default page entry!');
+            }
+        } else {
+            atf_lib.log_info('Found specific page entry!');
+        }
+
+        return atf_page_entries[currentEntry];
+    },
+    
+    /** 
+     * Loads a meetrix tracking script with given parameters to the container div. 
+     * 
+     * @param {Object} divElement The element to which the script should be attached.
+     * @param {string} site The site name (TLD).
+     * @param {string} adunit The adunit.
+     * @param {string} width The format width.
+     * @param {string} height The format height.
+     * @param {string} eadv The Advertiser ID for the line item being served.
+     * @param {string} ebuy The Order ID for the line item being served.
+     * @param {string} epid The ID of the ad unit where the line item is being served.
+     * @param {string} ecid The Creative ID.
+     * @param {string} eaid The Line item ID.
+     */
+    track_meetrics: function (divElement, site, adunit, width, height, eadv, ebuy, epid, ecid, eaid) {
+        if (typeof this.track_meetrics_enabled !== 'undefined' && this.track_meetrics_enabled === true) {
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.async = 'async';
+            script.src = 'https://s79.mxcdn.net/bb-mx/serve/mtrcs_242886.js#pjid=242886&adv=' + eadv + '&cpid=' + ebuy + '&site=' + site + '&place=' + epid + '&cid=' + ecid + '&adc=' + adunit + '&size=' + width + 'x' + height + '&apa=' + eaid + '&apb=' + width + 'x' + height + '&apc=' + epid + '_' + width + 'x' + height + '&apd=&ape=&cb=' + Math.floor(Date.now() / 1000);
+            divElement.appendChild(script);
+        }
+    },
+    
+    /** 
+     * Returns the format map. 
+     * 
+     * @param {string} targeting The targeting keyword for matching.
+     * 
+     * @returns {Array} The format mapping.
+     */
+    get_current_format_mapping: function (targeting) {
+        var found = false;
+        var currentEntry;
+        var defaultEntry;
+        for (var i in atf_page_entries) {
+            if (atf_page_entries[i].default_entry === '1') {
+                if (found === false) {
+                    currentEntry = i;
+                }
+                defaultEntry = i;
+            }
+            
+            if (found === false) {
+                if (atf_page_entries[i].search_mode === 'regex') {
+                    // Use regex for matching the current page entry
+                    if (atf_page_entries[i].search_pattern === 'url' && location.href.match(atf_page_entries[i].search_term)) {
+                        currentEntry = i;
+                        found = true;
+                    } else if(atf_page_entries[i].search_pattern === 'title' && document.title.match(atf_page_entries[i].search_term)) {
+                        currentEntry = i;
+                        found = true;
+                    } else if (atf_page_entries[i].search_pattern === 'var' && atf_page_entries[i].varvalue.match(atf_page_entries[i].search_term)) {
+                        currentEntry = i;
+                        found = true;
+                    } else if (atf_page_entries[i].search_pattern === 'targeting' && typeof targeting !== 'undefined' && targeting.match(atf_page_entries[i].search_term)) {
+                        currentEntry = i;
+                        found = true;
+                    }
+                } else {
+                    // Use substr (indexOf) for matching the current page entry
+                    if (atf_page_entries[i].search_pattern === 'url' && location.href.indexOf(atf_page_entries[i].search_term) > (-1)) {
+                        currentEntry = i;
+                        found = true;
+                    } else if(atf_page_entries[i].search_pattern === 'title' && document.title.indexOf(atf_page_entries[i].search_term) > (-1)) {
+                        currentEntry = i;
+                        found = true;
+                    } else if (atf_page_entries[i].search_pattern === 'var' && atf_page_entries[i].varvalue.indexOf(atf_page_entries[i].search_term) > (-1)) {
+                        currentEntry = i;
+                        found = true;
+                    } else if (atf_page_entries[i].search_pattern === 'targeting' && typeof targeting !== 'undefined' && targeting.indexOf(atf_page_entries[i].search_term) > (-1)) {
+                        currentEntry = i;
+                        found = true;
+                    }
+                }
+            }
+        }
+        
+        var mobileFormatUsed = false;
+        var formatMap;
+        if (atf_lib.is_mobile()) {
+            formatMap = atf_page_entries[currentEntry].mobile_formats ;
+            mobileFormatUsed = true;
+            if (formatMap.rectangle.length === 0 && formatMap.skyscraper.length === 0 && formatMap.leaderboard.length === 0) {
+                formatMap = atf_page_entries[defaultEntry].mobile_formats;
+            }
+        }
+        
+        if (typeof formatMap === 'undefined' || formatMap.rectangle.length === 0 && formatMap.skyscraper.length === 0 && formatMap.leaderboard.length === 0) {
+            formatMap = atf_page_entries[currentEntry].formats;
+            mobileFormatUsed = false;
+            if (formatMap.rectangle.length === 0 && formatMap.skyscraper.length === 0 && formatMap.leaderboard.length === 0) {
+                formatMap = atf_page_entries[defaultEntry].formats;
+            }
+        }
+        
+        if (mobileFormatUsed === true) {
+            atf_lib.log_info('Mobile format mapping is uesed');
+        } else {
+            atf_lib.log_info('Usual format mapping is used');
+        }
+      
+        atf_format_map = formatMap;
+    },
+    
+    /**
+     * Callback function for SOM ad delivery.
+     * 
+     * @function
+     * @name somtag_tag_in_tag_callback 
+     * 
+     * @param {string} error The error message if error happend. 
+     * @param {Object} result The result set in success case. 
+     */
+    somtag_tag_in_tag_callback: function (error, result) {
+        atf_lib.log_info('SOM callback called');
+        var iframe = this.frameElement;
+        var adConfig = result && result.data && result.data.adConfig;
+        var resultType = result && result.type || '';
+        if (adConfig && resultType.match(/adResponse|adUpdate/)) {
+            var img = new Image();
+            atf_lib.log_info('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>result.data.options.publisherData.adunit<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
+            atf_lib.log_info(result.data.options.publisherData.adunit);
+            atf_lib.log_info('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>result.data<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
+            atf_lib.log_info(result.data);
+            atf_lib.log_info('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>adConfig<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
+            atf_lib.log_info(adConfig);
+            atf_lib.log_info('>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<');
+            if(adConfig.height === 0){
+                // unfilled impression
+                img.src = 'https://report.tag.tagtool.de/som_impression.png?domain=' + window.location.hostname + '&site=' + encodeURIComponent(window.location.href) + '&mandant_key=' + atf_lib.mid + '&page_key=' + atf_lib.pid + '&ad_unit=' + encodeURIComponent((result.data.hasOwnProperty('options') && result.data.options.hasOwnProperty('publisherData') && result.data.options.publisherData.hasOwnProperty('adunit') ? result.data.options.publisherData.adunit : '')) + '&size=' + adConfig.width + 'x' + adConfig.height + '&mobile=' + (atf_lib.is_mobile() ? '1' : '0') + '&channel=&filled=0';
+            }else{
+                // filled impression
+                img.src = 'https://report.tag.tagtool.de/som_impression.png?domain=' + window.location.hostname + '&site=' + encodeURIComponent(window.location.href) + '&mandant_key=' + atf_lib.mid + '&page_key=' + atf_lib.pid + '&ad_unit=' + encodeURIComponent((result.data.hasOwnProperty('options') && result.data.options.hasOwnProperty('publisherData') && result.data.options.publisherData.hasOwnProperty('adunit') ? result.data.options.publisherData.adunit : '')) + '&size=' + adConfig.width + 'x' + adConfig.height + '&mobile=' + (atf_lib.is_mobile() ? '1' : '0') + '&channel=&filled=1';
+            }
+            iframe.style.width = adConfig.width + 'px';
+            iframe.style.height = adConfig.height + 'px';
+        }
+    },
+    
+    /** 
+     * Init a postmessage event including handler for communication between non friendly iframe and site. 
+     */
+    init_post_message_event: function () {
+        var eventMethod = window.addEventListener ? 'addEventListener' : 'attachEvent';
+        var eventer = window[eventMethod];
+        var messageEvent = eventMethod === 'attachEvent' ? 'onmessage' : 'message';
+        eventer(messageEvent, function (event) {
+            if(event.data.event_id === 'atf_native'){
+                atf_lib.log_info('Native Event');
+                if (typeof event.data.content !== 'undefined') {
+                    var content = event.data.content;                    
+                    if (typeof atf_dfp_special !== 'undefined' && typeof atf_dfp_special.handle_native === "function") {
+                        atf_dfp_special.handle_native(content);
+                    }
+                }
+            }
+        });
+    }, 
+    
+    get_browser_info: function () {
+        var ua = navigator.userAgent, tem, M = ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || []; 
+        if (/trident/i.test(M[1])) {
+            tem = /\brv[ :]+(\d+)/g.exec(ua) || []; 
+            return {
+                name: 'IE',
+                version:(tem[1] || '')
+            };
+        }   
+        if (M[1]==='Chrome') {
+            tem = ua.match(/\bOPR\/(\d+)/);
+            if (tem != null) {
+                return {
+                    name:'Opera', 
+                    version:tem[1]
+                };
+            }
+        }   
+        M = M[2]? [M[1], M[2]]: [
+            navigator.appName, 
+            navigator.appVersion, 
+            '-?'
+        ];
+        if ((tem=ua.match(/version\/(\d+)/i)) != null) {
+            M.splice(1, 1, tem[1]);
+        }
+        return {
+            name: M[0],
+            version: M[1]
+        };
+    }
+};
+atf_lib.op_method = 'call';
+
+atf_dfp_special = {
+    get_elements: function (elements) {
+        return elements;
+    },
+    conset_disabled: true,
+    track_metrics_enabled: true,
+    dfp_size_mapping: {
+       leaderboard:[
+           [1000,0],
+           [
+               [1000,250],
+               [970,250], 
+               [850,250], 
+               [800,250], 
+               [728,90]
+           ],
+           [700,0],
+           [
+               [640,320],
+               [300,250]
+           ],
+           [0,0],
+           [
+               [320, 160], 
+               [320, 150], 
+               [300, 100], 
+               [320, 50], 
+               [300, 50], 
+               [336, 280], 
+               [300, 250]
+           ]
+       ]
+    }
+};
+
+atf_dfp_special.yieldlab_format_targeting_deals = [
+];
+
+
+
+atf_dfp_special.consent_disabled = true;
+
+/** This class represents the functionality of DFP Adserver */
+atf_dfp = {
+    /**
+     * Saves the DFP Network ID.
+     * 
+     * @type {string}
+     */
+    dfp_nwid: "5574",
+
+    /** 
+     * Returns the format map for the given ad format. 
+     * 
+     * @param {string} adFormat The format for which to fetch the mapping.
+     * 
+     * @returns {Array|undefined} The format mapping.
+     */
+    get_formats_for_format: function (adFormat) {
+        if (adFormat in atf_format_map) {
+            return JSON.parse(JSON.stringify(atf_format_map[adFormat]));
+        }
+        return undefined;
+    },
+    
+    /**
+     * Saves the numbers of each format type.
+     * 
+     * @type {Object}
+     */
+    format_counters: {},
+    
+    /**
+     * Indicates if dfp script is loaded.
+     * 
+     * @type {Boolean}
+     */
+    dfp_script_loaded: false,
+
+    /** 
+     * Loads the ads for given HTML Elements by calling Google. 
+     * 
+     * @param {Array} elements The HTML Elements for which to load the ads.
+     */
+    load_tag: function (elements) {
+        var time;
+        time = (new Date()).getTime() - atf_lib.time_messure_start.getTime();
+        atf_lib.log_time_messure(time + 'ms till call of load_tag function.', time, 'load_tag called');
+        atf_lib.log_info('Elements given to load_tag:');
+        atf_lib.log_info(elements);
+        var adSlots = [];
+        var adsToLoad = [];
+        atf_lib.log_info('Processing AdTag.');
+
+        if (typeof elements !== 'undefined' && elements.length > 0) {
+            cookie_targetings = atf_lib.get_targeting_cookies();
+            for (var key in cookie_targetings) {
+                atf_lib.add_page_targeting(key, cookie_targetings[key]);
+            }
+            
+            // Check AdX Block URL list
+            for (var z in atf_adXBlockUrlList) {
+                if (top.window.location.href.indexOf(atf_adXBlockUrlList[z]) === 0) {
+                    atf_lib.add_page_targeting('allow_adx', 'false');
+                    break;
+                }
+            }
+           
+            //var som_hb_random = (new Date()).getTime() % 2;
+            if( (typeof atf_dfp_special !== 'undefined' && atf_dfp_special.hasOwnProperty('hb_som') && atf_dfp_special.hb_som === true)) {
+                atf_lib.log_info('SOM HB enabled');
+                atf_lib.log_color_info('|ATF|Header Bidder| SOM is active', 'background: #0080a6; color: #bada55');
+                atf_lib.add_page_targeting('hb', 'som');
+            }
+            
+            
+            if (typeof atf_get_site_targeting  === "function") { 
+                admetricsUrlTargetings = atf_get_site_targeting();
+                if (typeof admetricsUrlTargetings !== 'undefined') {
+                    atf_lib.add_page_targeting('admetrics', admetricsUrlTargetings);
+                }
+            }
+            atf_lib.add_page_targeting('is_mobile', atf_lib.is_mobile() + '');
+            atf_lib.add_page_targeting('form_factor', atf_lib.get_form_factor());
+            atf_lib.add_page_targeting('vpw', Math.max(document.documentElement.clientWidth, window.innerWidth || 0) + '');
+            atf_lib.add_page_targeting('vph', Math.max(document.documentElement.clientHeight, window.innerHeight || 0) + '');
+            atf_lib.add_page_targeting('page_key_id', atf_lib.mid + '_' + atf_lib.pid);
+            
+            /** variable auf Seitenebene für Haus.de und Bunte.de gesetzt
+            var fireplace = (Math.max(document.documentElement.clientWidth, window.innerWidth || 0) >= 1330) ? true : false;
+            atf_lib.add_page_targeting('fireplace', (fireplace === true) ? 'true' : 'false');**/
+            
+
+            // Yieldlab
+            // Soll nicht auf FIA laufen
+            if (typeof atf_dfp_special !== 'undefined' && (typeof atf_lib.page_targeting.platform === 'undefined' || atf_lib.page_targeting.platform !== "FIA") &&  (atf_dfp_special.hasOwnProperty('price_bucket') || atf_lib.is_mobile() && atf_dfp_special.hasOwnProperty('price_bucket_mobile')) && atf_dfp_special.hasOwnProperty('hb_yieldlab') && atf_dfp_special.hb_yieldlab === true ) {
+                atf_lib.log_color_info('|ATF|Header Bidder| YieldLab is active', 'background: #0080a6; color: #bada55');
+                console.log(); 
+                if (typeof yl !== 'undefined' && yl.hasOwnProperty('YpResult')) {
+                    for (var id in yl.YpResult.getAll()) {
+                        var ylAdSlot = yl.YpResult.get(id);
+                        
+                        // 05.12.2018 --> SocialCard
+                        if(ylAdSlot.id === 7505820){
+                           atf_lib.add_page_targeting('yl_deal', 'deal_7505820_7020255');
+                        }
+                        // 23.10.2018 Einzelne Deals bekommen ein eigenes Key/Value Targeting
+                        if(ylAdSlot.id === 7033478){
+                           atf_lib.add_page_targeting('yl_deal', 'deal_7033478_7034043');
+                        }else if(ylAdSlot.id === 7033272){
+                           atf_lib.add_page_targeting('yl_deal', 'deal_7033272_7034054');
+                        }
+                        else if(ylAdSlot.id === 7050488){
+                           atf_lib.add_page_targeting('yl_deal', 'deal_7050488_7050460');
+                        }
+                        else if(ylAdSlot.id === 7053943){
+                           atf_lib.add_page_targeting('yl_deal', 'deal_7053943_7050460');
+                        }
+                        else if(ylAdSlot.id === 7054144){
+                           atf_lib.add_page_targeting('yl_deal', 'deal_7054144_7050598');
+                        }
+                        else if(ylAdSlot.id === 7058594){
+                           atf_lib.add_page_targeting('yl_deal', 'deal_7058594_7056166');
+                        }
+                        else if(ylAdSlot.id === 7291957){
+                           atf_lib.add_page_targeting('yl_deal', 'deal_7291957_7071341');
+                        } 
+                        
+                        if (typeof atf_dfp_special !== 'undefined' && atf_dfp_special.hasOwnProperty('yieldlab_format_targeting_deals')) {
+                            for (var y in atf_dfp_special.yieldlab_format_targeting_deals) {
+                                if (ylAdSlot.id === atf_dfp_special.yieldlab_format_targeting_deals[y][0]) {
+                                    atf_lib.add_page_targeting('yl_deal', 'deal_' + atf_dfp_special.yieldlab_format_targeting_deals[y][0] + '_' + atf_dfp_special.yieldlab_format_targeting_deals[y][1]);
+                                    break;
+                                }
+                            }
+                        }
+                        
+                        atf_lib.log_info('===============================================');
+                        atf_lib.log_info('AdSlot ID: ' + ylAdSlot.id);
+                        atf_lib.log_info('Price: ' + ylAdSlot.price);
+                        atf_lib.log_info('Advertiser: ' + ylAdSlot.advertiser);
+                        atf_lib.log_info('URL: ' + ylAdSlot.curl);
+                        atf_lib.log_info('===============================================');
+                        price_targeting = '';
+                        
+                        if (atf_lib.is_mobile() === true) {
+                            for (var prop_mobile in atf_dfp_special.price_bucket_mobile) {
+                                if (ylAdSlot.price >= atf_dfp_special.price_bucket_mobile[prop_mobile].min && ylAdSlot.price <= atf_dfp_special.price_bucket_mobile[prop_mobile].max) {
+                                    price_targeting = 'yl_pb_' + prop_mobile.toLowerCase();
+                                    break;
+                                }
+                            }
+                        } else {
+                            for (var prop_desktop in atf_dfp_special.price_bucket) {
+                                if (ylAdSlot.price >= atf_dfp_special.price_bucket[prop_desktop].min && ylAdSlot.price <= atf_dfp_special.price_bucket[prop_desktop].max) {
+                                    price_targeting = 'yl_pb_' + prop_desktop.toLowerCase();
+                                    break;
+                                }
+                            }
+                        }
+                        format_targeting = '';
+                        adslot_targeting = '';
+                        for (var i in atf_dfp_special.yieldlab_format_targeting_desktop) {
+                            if (atf_dfp_special.yieldlab_format_targeting_desktop[i][0] === ylAdSlot.id && (typeof atf_dfp_special.yieldlab_format_targeting_desktop[i][2] === 'undefined' || atf_dfp_special.yieldlab_format_targeting_desktop[i][2] === true)) {
+                                format_targeting = atf_dfp_special.yieldlab_format_targeting_desktop[i][1].join('x');
+                                adslot_targeting = atf_dfp_special.yieldlab_format_targeting_desktop[i][0];
+                                break;
+                            }
+                        }
+                        if (format_targeting === '' || adslot_targeting === '') {
+                            for (var j in atf_dfp_special.yieldlab_format_targeting_mobile) {
+                                if (atf_dfp_special.yieldlab_format_targeting_mobile[j][0] === ylAdSlot.id && (typeof atf_dfp_special.yieldlab_format_targeting_mobile[i][2] === 'undefined' || atf_dfp_special.yieldlab_format_targeting_mobile[i][2] === true)) {
+                                    format_targeting = atf_dfp_special.yieldlab_format_targeting_mobile[j][1].join('x');
+                                    adslot_targeting = atf_dfp_special.yieldlab_format_targeting_mobile[j][0];
+                                    break;
+                                }
+                            }
+                        }
+                        if (price_targeting !== '') {
+                            atf_lib.add_page_targeting('yl_format_' + format_targeting, price_targeting);
+                            // Wir müssen ein Format anders mappen und zwar die Sitebar
+                            // das Format wird korrekt als yl_format_301x601 übergeben
+                            // der AdSlot jedoch ist im DFP als 301x600 hinterlegt
+                            // wir ändern daher die 301x601 in 301x600
+                            if(format_targeting === "301x601"){
+                                format_targeting = "301x600";
+                            }   
+                            atf_lib.add_page_targeting('yl_adslot_' + format_targeting, 'd/' + adslot_targeting);
+                        }
+                        var img = new Image();
+                        img.src = 'https://report.tag.tagtool.de/yl.png?domain=' + window.location.hostname + '&site=' + encodeURIComponent(window.location.href) + '&mandant_key=' + atf_lib.mid + '&page_key=' + atf_lib.pid + '&yl_ad_slot=' + ylAdSlot.id + '&yl_price=' + ylAdSlot.price + '&atf_price_bucket=' + price_targeting.replace('yl_pb_', '') + '&yl_format=' + format_targeting;
+                    }
+                }
+            }
+            
+            if (typeof atf_lib.wallpaper_min_width !== 'undefined' && Math.max(document.documentElement.clientWidth, window.innerWidth || 0) >= atf_lib.wallpaper_min_width) {
+                atf_lib.add_page_targeting('wallpaper', 'true');
+            } else {
+                atf_lib.add_page_targeting('wallpaper', 'false');
+            }
+          
+            random = Math.floor(Math.random() * Math.floor(9)) * 10 + 10;
+            atf_lib.add_or_overwrite_page_targeting('random', random + '');
+            
+            // Fetch URL targeting
+            urlTargetings = atf_lib.get_url_targeting();
+            
+            // Call DFP for add request
+            googletag.cmd.push(function () {
+                
+                if (top.location.search.indexOf("atf_slot_killer=1") > -1){
+                    atf_lib.log_color_info('|SLOT UPDATE| atf_kill_adslots() ', 'background: #222; color: #bada55');
+                    atf_lib.atf_kill_adslots();
+                }
+                /**
+                 * Wir rufen destroySlots() erst einmal nur auf den Style Seiten auf
+                 * bunte.de hat einen eigenen DFP, MSG ist auch eine infinite Scroll Seite mit MSO
+                 * Wir wissen nicht ob es Seiteneffekte gibt.
+                **/
+                else if(atf_lib.pid === "ins" || atf_lib.pid === "har" || atf_lib.pid === "ell"  || atf_lib.pid === "fre"){
+                   // Dies muss noch geändert werden. Aktuell werden alle Slots auf einer Seite zerstört.
+                   // Wir müssen aber nur die zerstören, welche schon existieren und nicht die neuen, die aktuell
+                   // erstellt wurden. https://developers.google.com/doubleclick-gpt/reference#googletag.destroySlots
+                    atf_lib.log_color_info('|SLOT UPDATE| atf_kill_adslots() ', 'background: #222; color: #bada55');
+                    atf_lib.atf_kill_adslots();
+                } 
+                for (var page_targeting_key in atf_lib.page_targeting) {
+                    atf_lib.log_info('Set page targeting to ' + page_targeting_key + '=' + atf_lib.page_targeting[page_targeting_key]);
+                    googletag.pubads().setTargeting(page_targeting_key, atf_lib.page_targeting[page_targeting_key]);
+                }
+                
+                if ((typeof atf_dfp_special === 'undefined' || !atf_dfp_special.hasOwnProperty('consent_disabled') && atf_dfp_special.consent_disabled === false)) {
+                    if (typeof atf_lib.consent_given !== 'undefined' && atf_lib.consent_given === true) {
+                        atf_lib.log_info('CONSENT TO DFP GIVEN');
+                        googletag.pubads().setRequestNonPersonalizedAds(0);
+                    } else {
+                        atf_lib.log_info('CONSENT TO DFP NOT GIVEN');
+                        googletag.pubads().setRequestNonPersonalizedAds(1);
+                    }
+                }
+                var formatDisabled;
+                for (var i in elements) {
+                    formatDisabled = false;
+                    if (elements[i].hasOwnProperty('element')) {
+                        if (typeof atf_dfp_special !== 'undefined' && typeof atf_dfp_special.formats_disabled_at_width !== 'undefined') {
+                            for (var p in atf_dfp_special.formats_disabled_at_width) {
+                                if (elements[i].element.getAttribute('data-atf-format') === atf_dfp_special.formats_disabled_at_width[p].format && atf_dfp_special.formats_disabled_at_width[p].min_width > Math.max(document.documentElement.clientWidth, window.innerWidth || 0)) {
+                                    formatDisabled = true;
+                                    atf_lib.log_info('Format ' + elements[i].element.getAttribute('data-atf-format') + 'disabled, because viewport with is smaller than ' + atf_dfp_special.formats_disabled_at_width[p].min_width);
+                                }
+                            }
+                        }
+                        
+                        if (formatDisabled === true) {
+                            continue;
+                        }
+                        
+                        pageEntry = atf_lib.get_current_page_entry(elements[0]);
+                      
+                        var adFormat;
+                        var formatForUse;
+                        
+                        if (typeof urlTargetings[elements[i].element.id] !== 'undefined') {
+                            if (elements[i].hasOwnProperty('targeting')) {
+                                for (var urlTargetingKey in urlTargeting[elements[i].element.id].targeting) {
+                                    elements[i].targeting[urlTargetingKey] = urlTargeting[elements[i].element.id].targeting[urlTargetingKey];
+                                }
+                            } else {
+                                elements[i].targeting = urlTargetings[elements[i].element.id].targeting;
+                            }
+                            atf_lib.log_info('Found URL targeting');
+                        }
+                      
+                        var attributeTargetingRaw = elements[i].element.getAttribute('data-atf-targeting');
+                        if (attributeTargetingRaw !== null) {
+                            var attributeTargetingSplitted = attributeTargetingRaw.split(';');
+                            for (var position in attributeTargetingSplitted) {
+                                var targetingSplits = attributeTargetingSplitted[position].split(',');
+                                var attributeTargetingKey = targetingSplits.shift();
+                                for (var valuePosition in targetingSplits) {
+                                    if (elements[i].hasOwnProperty('targeting')) {
+                                        if (elements[i].targeting.hasOwnProperty(attributeTargetingKey)) {
+                                            if (Array.isArray(elements[i].targeting[attributeTargetingKey])) {
+                                                elements[i].targeting[attributeTargetingKey].push(targetingSplits[valuePosition]);
+                                            } else {
+                                                var existingValue = elements[i].targeting[attributeTargetingKey];
+                                                elements[i].targeting[attributeTargetingKey] = [];
+                                                elements[i].targeting[attributeTargetingKey].push(existingValue);
+                                                elements[i].targeting[attributeTargetingKey].push(targetingSplits[valuePosition]);
+                                            }
+                                        } else {
+                                            elements[i].targeting[attributeTargetingKey] = targetingSplits[valuePosition];
+                                        }
+                                    } else {
+                                        elements[i].targeting = {};
+                                        elements[i].targeting[attributeTargetingKey] = targetingSplits[valuePosition];
+                                    }
+                                }
+                            }
+                            
+                            atf_lib.log_info('Current Element array with targeting attribute converted to targetings property:');
+                            atf_lib.log_info(elements[i]);
+                        }
+
+                        // Define the div id (Slotname)
+                        var divId = 'div-atf-ad-' + (new Date()).getTime() + '-' + Math.round(Math.random() * 1000000000000000);
+
+                        if (elements[i].hasOwnProperty('targeting')) {
+                            if (elements[i].element.id !== '') {
+                                elements[i].targeting.div_id = elements[i].element.id;
+                            } else {
+                                elements[i].targeting.div_id = undefined;
+                            }
+                        } else {
+                            if (elements[i].element.id !== '') {
+                                elements[i].targeting = {
+                                    'div_id': elements[i].element.id
+                                };
+                            } else {
+                                elements[i].targeting = {
+                                    'div_id': undefined
+                                };
+                            }
+                        }
+                        elements[i].element.id = divId;
+
+                        // Deside formats
+                        adFormat = elements[i].element.getAttribute('data-atf-format');
+                        
+                        if (atf_dfp.format_counters.hasOwnProperty(adFormat)) {
+                            if (atf_dfp.format_counters[adFormat] !== 'X') {
+                                atf_dfp.format_counters[adFormat]++;
+                            }
+                            if (atf_dfp.format_counters[adFormat] >= 10) {
+                                atf_dfp.format_counters[adFormat] = 'X';
+                            }
+                        } else {
+                            atf_dfp.format_counters[adFormat] = 1;
+                        }
+                        
+                        elements[i].targeting.atf_format = adFormat;
+                        if (atf_lib.is_mobile()) {
+                            directFormatMap = elements[i].element.getAttribute('data-atf-format-map-mobile');
+                        } else {
+                            directFormatMap = elements[i].element.getAttribute('data-atf-format-map');
+                        }
+                        if (directFormatMap !== null) {
+                            atf_lib.log_info('Direct format map for overwrite given:');
+                            atf_lib.log_info(directFormatMap);
+                            
+                            formatForUse = [];
+                            formats = directFormatMap.split(';');
+                            for (var j in formats) {
+                                formatForUse.push(formats[j].split(','));
+                            }
+                            
+                            if (formatForUse.length === 0) {
+                                atf_lib.log_error('Wrong format defined in div attribute: ' + adFormat);
+                                continue;
+                            }
+                        } else {
+                            if (atf_lib.is_mobile()) {
+                                formatForUse = JSON.parse(JSON.stringify(pageEntry.mobile_formats[adFormat]));
+                                directFormatMapAdd = elements[i].element.getAttribute('data-atf-format-map-add-mobile');
+                            } else {
+                                formatForUse = JSON.parse(JSON.stringify(pageEntry.formats[adFormat]));
+                                directFormatMapAdd = elements[i].element.getAttribute('data-atf-format-map-add');
+                            }
+                            if (directFormatMapAdd !== null) {
+                                atf_lib.log_info('Direct format map for add given:');
+                                atf_lib.log_info(directFormatMapAdd);
+                                formats = directFormatMapAdd.split(';');
+                                for (var k in formats) {
+                                    formatForUse.push(formats[k].split(','));
+                                }
+                            }
+                            if (typeof formatForUse === 'undefined' || formatForUse.length === 0) {
+                                atf_lib.log_error('Wrong format defined: ' + adFormat);
+                                continue;
+                            }
+                        }
+                        
+                        if (elements[i].hasOwnProperty('targeting') && typeof atf_dfp_special !== 'undefined' && typeof atf_dfp_special.special_format_targeting_map !== 'undefined') {
+                            atf_lib.log_info('Checking special formats for targeting');
+                            for (var l in atf_dfp_special.special_format_targeting_map) {
+                                var special_formats_enabled = true;
+                                if (atf_dfp_special.special_format_targeting_map[l].hasOwnProperty('targetings') && atf_dfp_special.special_format_targeting_map[l].hasOwnProperty('formats')) {
+                                    for (var m in atf_dfp_special.special_format_targeting_map[l].targetings) {
+                                        if (atf_dfp_special.special_format_targeting_map[l].targetings[m].hasOwnProperty('key') && atf_dfp_special.special_format_targeting_map[l].targetings[m].hasOwnProperty('value')) {
+                                            if (!elements[i].targeting.hasOwnProperty(atf_dfp_special.special_format_targeting_map[l].targetings[m].key) && !atf_lib.page_targeting.hasOwnProperty(atf_dfp_special.special_format_targeting_map[l].targetings[m].key)) {
+                                                atf_lib.log_info('Page and Element has not the targeting key ' + atf_dfp_special.special_format_targeting_map[l].targetings[m].key);
+                                                special_formats_enabled = false;
+                                                break;
+                                            }
+                                            if (special_formats_enabled === true && 
+                                                elements[i].targeting[atf_dfp_special.special_format_targeting_map[l].targetings[m].key] != atf_dfp_special.special_format_targeting_map[l].targetings[m].value && 
+                                                (!elements[i].targeting.hasOwnProperty(atf_dfp_special.special_format_targeting_map[l].targetings[m].key) ||
+                                                elements[i].targeting[atf_dfp_special.special_format_targeting_map[l].targetings[m].key] != atf_dfp_special.special_format_targeting_map[l].targetings[m].value) &&
+                                                atf_lib.page_targeting[atf_dfp_special.special_format_targeting_map[l].targetings[m].key] != atf_dfp_special.special_format_targeting_map[l].targetings[m].value && 
+                                                (!atf_lib.page_targeting.hasOwnProperty(atf_dfp_special.special_format_targeting_map[l].targetings[m].key) ||
+                                                atf_lib.page_targeting[atf_dfp_special.special_format_targeting_map[l].targetings[m].key] != atf_dfp_special.special_format_targeting_map[l].targetings[m].value)) {
+                                                atf_lib.log_info('Page and Element has not the targeting value ' + atf_dfp_special.special_format_targeting_map[l].targetings[m].value + ' of the key ' + atf_dfp_special.special_format_targeting_map[l].targetings[m].key);
+                                                special_formats_enabled = false;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    if (special_formats_enabled === true) {
+                                        atf_lib.log_info('Targeting found, setting sepcial formats: ' + atf_dfp_special.special_format_targeting_map[l].formats);
+                                        atf_lib.log_info('Targeting is: ' + JSON.stringify(atf_dfp_special.special_format_targeting_map[l].targetings));
+                                        for (var n in atf_dfp_special.special_format_targeting_map[l].formats) {
+                                            formatForUse.push(atf_dfp_special.special_format_targeting_map[l].formats[n]);
+                                        }
+                                        special_formats_enabled = false;
+                                    }
+                                }
+                            }
+                        } else {
+                            atf_lib.log_info('Special formats for targeting not enabled, because not set or element and page has no targeting');
+                        }
+                      
+                        if (top.location.search.indexOf('atf_disable_all=1') < 0) {
+                            if (typeof fireplace !== 'undefined' && fireplace === true && adFormat === 'leaderboard' && atf_dfp.format_counters[adFormat] === 1) {
+                                if (window.location.href.indexOf("https://develop.bunte.de/bunte-inside/") >= 0 || window.location.href.indexOf("https://www.bunte.de/bunte-inside/") >= 0 ) {
+                                    
+                                }else{
+                                   formatForUse.push([1000, 3]);
+                                }
+                            }
+                            
+                            // 26.10.2018 | Sluga
+                            // Für einfachbacken.de und slowlyveggie.de brauchen wir die Größe 1000x450 nur auf dem Leaderboard_1 und nur bei Desktop.
+                            // Daher dieses "mini" Size-Mapping
+                            if ((atf_lib.pid === "eba" || atf_lib.pid === "slo") && adFormat === 'leaderboard' && atf_dfp.format_counters[adFormat] === 1 && atf_lib.is_mobile() === false) {
+                                atf_lib.log_info("Sonderformat 1000x450");
+                                formatForUse.push([1000, 450]);
+                            }
+                            // 29.11.2018 | Sluga
+                            if(atf_lib.pid === "wired" && adFormat === "special" && atf_dfp.format_counters[adFormat] === 1){
+                                formatForUse = [];
+                                formatForUse.push([2, 2]);
+                            }
+                            if(atf_lib.pid === "wired" && adFormat === "special" && atf_dfp.format_counters[adFormat] === 2){
+                                formatForUse = [];
+                                formatForUse.push([1, 1]);
+                            }
+                            
+                            var adunit;
+                            if (atf_lib.is_mobile()) {
+                                adunit = pageEntry.adunit.replace('/*[device]*/', '_mobile');
+                            } else {
+                                adunit = pageEntry.adunit.replace('/*[device]*/', '_desktop');
+                            }
+                            
+                            adSlot = googletag.defineSlot('/' + atf_dfp.dfp_nwid + '/' + adunit + '/' + adFormat + '_' + atf_dfp.format_counters[adFormat], formatForUse, divId);
+                            adSlot.addService(googletag.pubads());
+                            
+                            if(atf_lib.pid === "ins" || atf_lib.pid === "har" || atf_lib.pid === "ell"  || atf_lib.pid === "fre"){
+                                atf_lib.log_color_info('|SLOT UPDATE| atf_push_adslot() ', 'background: #222; color: #bada55');
+                                atf_lib.atf_push_adslot(adSlot);
+                            }    
+                            
+                            if(typeof atf_dfp_special !== 'undefined' && atf_dfp_special.hasOwnProperty('dfp_size_mapping') && atf_dfp_special.dfp_size_mapping.hasOwnProperty(adFormat)) {
+                                var dfp_size_mapping = googletag.sizeMapping();
+                                var x;
+                                if (adFormat === 'leaderboard') {
+                                    if (atf_lib.is_mobile() === true) {
+                                        deviceType = 'mobile';
+                                    } else {
+                                        deviceType = 'desktop';
+                                    }
+                                    if (atf_dfp_special.dfp_size_mapping[adFormat].hasOwnProperty('active') && atf_dfp_special.dfp_size_mapping[adFormat].active === true && atf_dfp_special.dfp_size_mapping[adFormat].hasOwnProperty(deviceType) && atf_dfp_special.dfp_size_mapping[adFormat][deviceType] === true) {
+                                        var leaderboardPlace = false;
+                                        if (atf_dfp_special.dfp_size_mapping[adFormat].hasOwnProperty(atf_dfp.format_counters[adFormat])) {
+                                            leaderboardPlace = atf_dfp.format_counters[adFormat];
+                                        } else if (atf_dfp_special.dfp_size_mapping[adFormat].hasOwnProperty('default')) {
+                                            leaderboardPlace = 'default';
+                                        }
+                                        if (leaderboardPlace !== false) {
+                                            for (x = 0; x < atf_dfp_special.dfp_size_mapping[adFormat][leaderboardPlace].length; x += 2) {
+                                                dfp_size_mapping.addSize(atf_dfp_special.dfp_size_mapping[adFormat][leaderboardPlace][x], atf_dfp_special.dfp_size_mapping[adFormat][leaderboardPlace][x + 1]);
+                                                atf_lib.log_info('Added size mapping ' + atf_dfp_special.dfp_size_mapping[adFormat][leaderboardPlace][x + 1] + ' for resolution ' + atf_dfp_special.dfp_size_mapping[adFormat][leaderboardPlace][x] + ' to AdSlot of ' + adFormat + '_' + leaderboardPlace);
+                                            }
+                                        }
+                                    }
+                                } 
+                                else if (adFormat === 'special'){
+        if (atf_lib.is_mobile() === true) {
+                deviceType = 'mobile';
+            } else {
+                deviceType = 'desktop';
+            }
+            if (atf_dfp_special.dfp_size_mapping[adFormat].hasOwnProperty('active') && atf_dfp_special.dfp_size_mapping[adFormat].active === true && atf_dfp_special.dfp_size_mapping[adFormat].hasOwnProperty(deviceType) && atf_dfp_special.dfp_size_mapping[adFormat][deviceType] === true) {
+                var specialPlace = false;
+                if (atf_dfp_special.dfp_size_mapping[adFormat].hasOwnProperty(atf_dfp.format_counters[adFormat])) {
+                    specialPlace = atf_dfp.format_counters[adFormat];
+                } else if (atf_dfp_special.dfp_size_mapping[adFormat].hasOwnProperty('default')) {
+                    specialPlace = 'default';
+                }
+                if (specialPlace !== false) {
+                    for (x = 0; x < atf_dfp_special.dfp_size_mapping[adFormat][specialPlace].length; x += 2) {
+                        dfp_size_mapping.addSize(atf_dfp_special.dfp_size_mapping[adFormat][specialPlace][x], atf_dfp_special.dfp_size_mapping[adFormat][specialPlace][x + 1]);
+                        atf_lib.log_info('Added size mapping ' + atf_dfp_special.dfp_size_mapping[adFormat][specialPlace][x + 1] + ' for resolution ' + atf_dfp_special.dfp_size_mapping[adFormat][specialPlace][x] + ' to AdSlot of ' + adFormat + '_' + specialPlace);
+                    }
+                }
+            }
+                                }
+                                else {
+                                    for (x = 0; x < atf_dfp_special.dfp_size_mapping[adFormat].length; x += 2) {
+                                        dfp_size_mapping.addSize(atf_dfp_special.dfp_size_mapping[adFormat][x], atf_dfp_special.dfp_size_mapping[adFormat][x + 1]);
+                                        atf_lib.log_info('Added size mapping ' + atf_dfp_special.dfp_size_mapping[adFormat][x + 1] + ' for resolution ' + atf_dfp_special.dfp_size_mapping[adFormat][x] + ' to AdSlot of ' + adFormat);
+                                    }
+                                }
+                                adSlot.defineSizeMapping(dfp_size_mapping.build());
+                            }
+                            
+                            atf_lib.log_info('Set targeting for ' + divId + ' to ad_position=' + adFormat + '_' + atf_dfp.format_counters[adFormat]);
+                            adSlot.setTargeting('ad_position', adFormat + '_' + atf_dfp.format_counters[adFormat]);
+                            
+                            if (elements[i].hasOwnProperty('targeting')) {
+                                for (var adslot_targeting_key in elements[i].targeting) {
+                                    atf_lib.log_info('Set targeting for ' + divId + ' to ' + adslot_targeting_key + '=' + elements[i].targeting[adslot_targeting_key]);
+                                    adSlot.setTargeting(adslot_targeting_key, elements[i].targeting[adslot_targeting_key] + '');
+                                }
+                            } else {
+                                atf_lib.log_info('No targeting found for element');
+                            }
+                            atf_lib.log_info('Requesting for /' + atf_dfp.dfp_nwid + '/' + adunit + '/' + adFormat + '_' + atf_dfp.format_counters[adFormat] + ' in DIV ID ' + divId + ' for formats ' + formatForUse);
+                            
+                            var formatsString = '';
+                            for (var index in formatForUse) {
+                                formatsString += (formatForUse[index] + '').replace(',', 'x') + ',';
+                            }
+                            formatsString = formatsString.substring(0, formatsString.length - 1);
+                          
+                            var img = new Image();
+                            img.src = 'https://report.tag.tagtool.de/ar.png?domain=' + window.location.hostname + '&site=' + encodeURIComponent(window.location.href) + '&mandant_key=' + atf_lib.mid + '&page_key=' + atf_lib.pid + '&format=' + adFormat + '&formats=' + formatsString + '&adunit=' + adunit + '/' + adFormat + '_' + atf_dfp.format_counters[adFormat];
+                            
+                            adSlots.push(adSlot);
+                          
+                            sizes = [];
+                            for (var o in formatForUse) {
+                                sizes.push({
+                                    width: formatForUse[o][0],
+                                    height: formatForUse[o][1]
+                                });
+                            }
+                          
+                            adsToLoad.push({
+                                containerId: elements[i].element.id,
+                                sizes: sizes
+                            });
+                            googletag.display(divId);
+                        } else {
+                            var event = document.createEvent('Event');
+                            event.initEvent('atf_no_ad_rendered', true, true);
+                            event.element_id = divId;
+                            window.dispatchEvent(event);
+                            atf_lib.log_info('Ads disabled by URL param');
+                        }
+                    } else {
+                       atf_lib.log_error('No element given in JSON');
+                    }
+                }
+                
+                if (top.location.search.indexOf('atf_disable_all=1') < 0) {
+                    time = (new Date()).getTime() - atf_lib.time_messure_start.getTime();
+                    atf_lib.log_time_messure(time + 'ms till starting Ad request to DFP.', time, 'Ad request');
+                    if (typeof atf_lib.header_bidding_enabled !== 'undefined' && atf_lib.header_bidding_enabled === true) {
+                        atf_lib.log_info('Header bidding enabled');
+                        hbjs.que.push(function() {
+                            hbjs.loadDFPAds(adsToLoad);
+                        });
+                    } else {
+                        googletag.pubads().refresh(adSlots);
+                    }
+                }
+            });
+        }
+    },
+    
+    /** 
+     * Scans the dom for elements which contains [data-atf="tag"] in its parameter list.
+     */
+    find_tag: function () {
+        atf_lib.log_info('Looking for ATF AdTag.');
+
+        // Search for tags in document
+        var adTag = document.querySelector('[data-atf="tag"]');
+        
+        if (adTag !== null) {
+            atf_lib.log_info('AdTag found.');
+            adTag.setAttribute('data-atf', 'tag-processed');
+            setTimeout(function () {
+                atf_lib.load_tag([{
+                    element: adTag
+                }]);
+            }, 1);
+        }
+        
+        setTimeout(function () {
+            atf_dfp.find_tag();
+        }, 200);
+    },
+
+    /** 
+     * Scans the atf_lib.atf_tags array for given html elements for ad rendering.
+     */
+    scan_array: function () {
+        atf_lib.log_info('Looking for ATF AdTag in Array.');
+
+        // Search for tags in document
+        if (atf_lib.atf_tags.length > 0) {
+            elementsForProcess = [];
+            while (atf_lib.atf_tags.length > 0) {
+                elementsForProcess.push(atf_lib.atf_tags.pop());
+            }
+            atf_lib.load_tag(elementsForProcess);
+        }
+        setTimeout(atf_dfp.scan_array, 200);
+    },
+
+    /** 
+     * Initializes the DFP ad server by loading different scripts.
+     */
+    init_dfp: function () {
+        // Get head element
+        var headTag = document.getElementsByTagName('head');
+        if (headTag.length > 0) {
+            var time = (new Date()).getTime() - atf_lib.time_messure_start.getTime();
+            atf_lib.log_time_messure(time + 'ms till page head is available.', time, 'Head available');
+            var headJs = '';
+            var ylTargetingSet = false;
+            if (typeof atf_dfp_special !== 'undefined' && (typeof atf_lib.page_targeting.platform === 'undefined' || atf_lib.page_targeting.platform !== "FIA") &&   atf_dfp_special.hasOwnProperty('yieldlab_format_targeting_' + (atf_lib.is_mobile() ? 'mobile' : 'desktop'))  && atf_dfp_special.hasOwnProperty('hb_yieldlab') && atf_dfp_special.hb_yieldlab === true) {
+                var ylFormatIds = [];
+                for (var i in atf_dfp_special['yieldlab_format_targeting_' + (atf_lib.is_mobile() ? 'mobile' : 'desktop')]) {
+                    if (typeof atf_dfp_special['yieldlab_format_targeting_' + (atf_lib.is_mobile() ? 'mobile' : 'desktop')][i][0] !== 'undefined') {
+                        ylFormatIds.push(atf_dfp_special['yieldlab_format_targeting_' + (atf_lib.is_mobile() ? 'mobile' : 'desktop')][i][0]);
+                    }
+                }
+                var ylScript = document.createElement('script');
+                ylScript.type = 'text/javascript';
+                ylScript.src = 'https://ad.yieldlab.net/yp/' + ylFormatIds.join();
+                ylScript.async = 'async';
+                headTag[0].appendChild(ylScript);
+                atf_lib.add_page_targeting('hb', 'yieldlab');
+                ylTargetingSet = true;
+            }
+            
+            if (typeof atf_dfp_special !== 'undefined' && atf_dfp_special.hasOwnProperty('yieldlab_format_targeting_deals')  && atf_dfp_special.hasOwnProperty('hb_yieldlab') && atf_dfp_special.hb_yieldlab === true && (typeof atf_lib.page_targeting.platform === 'undefined' || atf_lib.page_targeting.platform !== "FIA")) {
+                var ylDealScript;
+                for (var j in atf_dfp_special.yieldlab_format_targeting_deals) {
+                    ylDealScript = document.createElement('script');
+                    ylDealScript.type = 'text/javascript';
+                    ylDealScript.src = 'https://ad.yieldlab.net/yp/' + atf_dfp_special.yieldlab_format_targeting_deals[j][0];
+                    ylDealScript.async = 'async';
+                    headTag[0].appendChild(ylDealScript);
+                }
+                
+                if (ylTargetingSet !== true) {
+                    atf_lib.add_page_targeting('hb', 'yieldlab');
+                }
+            }
+            
+            if (typeof atf_dfp_special !== 'undefined' && (atf_lib.page_targeting.platform !== "undefined" || atf_lib.page_targeting.platform !== "FIA") && (atf_dfp_special.hasOwnProperty('hb_index') && atf_dfp_special.hb_index === true && atf_dfp_special.hasOwnProperty('hb_ie_src'))){
+                atf_lib.log_color_info('|ATF|Header Bidder| IndexExchange is active', 'background: #0080a6; color: #bada55');
+                var indexExchangeScript = document.createElement('script');
+                indexExchangeScript.type = 'text/javascript';
+                indexExchangeScript.src = atf_dfp_special.hb_ie_src;
+                indexExchangeScript.async = 'async';
+                headTag[0].appendChild(indexExchangeScript);
+            }
+            
+            var emetriqScript = document.createElement('script');
+            emetriqScript.type = 'text/javascript';
+            emetriqScript.src = '//dyn.emetriq.de/loader/38753/default.js';
+            emetriqScript.async = 'async';
+            headTag[0].appendChild(emetriqScript);
+            
+            // Load DFP Script
+            var script = document.createElement('script');
+            script.type = 'text/javascript';
+            script.async = 'async';
+            script.src = 'https://www.googletagservices.com/tag/js/gpt.js';
+            headTag[0].appendChild(script);
+
+            // Initialize DFP
+            script = document.createElement('script');
+            script.type = 'text/javascript';
+            initDfpScript = document.createTextNode('var googletag = googletag || {}; googletag.cmd = googletag.cmd || [];');
+            script.appendChild(initDfpScript);
+            headTag[0].appendChild(script);
+          
+            headJs += 'googletag.cmd.push(function () { googletag.pubads().enableSingleRequest(true); ';
+            if (typeof collapsEmptyDivs !== 'undefined' && collapsEmptyDivs === false) {
+                headJs += 'googletag.pubads().collapseEmptyDivs(false); ';
+            } else {
+                headJs += 'googletag.pubads().collapseEmptyDivs(true); ';
+            }
+            headJs += 'googletag.pubads().disableInitialLoad(); googletag.enableServices(); googletag.pubads().addEventListener(\'slotRenderEnded\', function (event) { if (event.slot.getAdUnitPath().indexOf(\'/40748507/\') === 0) { if (event.isEmpty === true) { var fireEvent = document.createEvent(\'Event\'); fireEvent.initEvent(\'atf_no_ad_rendered\', true, true); fireEvent.element_id = event.slot.getSlotElementId(); window.dispatchEvent(fireEvent); } else { if (event.lineItemId != \'4362643834\' && event.lineItemId != \'4362645559\' && event.lineItemId != \'4370187806\' && event.lineItemId != \'4362775625\' && event.lineItemId != \'4362854583\' && event.lineItemId != \'4365485707\' && event.lineItemId != \'4362638833\' && event.lineItemId != \'4372484397\' && event.lineItemId != \'4373153252\' && event.lineItemId != \'4373147504\' && event.lineItemId != \'4380278604\' && event.lineItemId != \'4382651912\' && event.lineItemId != \'4382290468\' && event.lineItemId != \'4380335907\' && event.lineItemId != \'4382993511\' && event.lineItemId != \'4387542608\' && event.lineItemId != \'4387546532\' && event.lineItemId != \'4387536419\' && event.lineItemId != \'4387513377\' && event.lineItemId != \'4385382468\' && event.lineItemId != \'4385379267\' && event.lineItemId != \'4387458719\' && event.lineItemId != \'4387487460\' && event.lineItemId != \'4387478331\' && event.lineItemId != \'4387525800\' && (atf_lib.hasOwnProperty(event.slot.getSlotElementId() + \'_passback_fired\') === false || atf_lib[event.slot.getSlotElementId() + \'_passback_fired\'] === false)) { var fireEvent = document.createEvent(\'Event\'); fireEvent.initEvent(\'atf_ad_rendered\', true, true); fireEvent.element_id = event.slot.getSlotElementId(); window.dispatchEvent(fireEvent); atf_lib.log_info(event.slot.getAttributeKeys()); atf_lib.log_info(\'SLOT RENDER ENDED EVENT: Element \' + event.slot.getSlotElementId() + \' Creative ID \' + event.creativeId + \' from line item ID \' + event.lineItemId + \' has been rendered for the slot size \' + event.size[0] + \'x\' + event.size[1]); if ((window.location.href.indexOf(\'http://\') === 0 || window.location.href.indexOf(\'https://\') === 0) && event.slot.getAdUnitPath().indexOf(\'/40748507/\') === 0 && window.location.hostname !== \'127.0.0.1\') { var time = (new Date()).getTime() - atf_lib.time_messure_start.getTime(); atf_lib.log_time_messure(time + \'ms till rendering ad to the page.\', time, \'Ad rendered\'); var img = new Image(); img.src = \'https://report.tag.tagtool.de/ai.png?domain=\' + window.location.hostname + \'&site=\' + encodeURIComponent(window.location.href) + \'&mandant_key=\' + atf_lib.mid + \'&page_key=\' + atf_lib.pid + \'&line_item_id=\' + event.lineItemId + \'&creative_id=\' + event.creativeId + \'&ad_unit=\' + encodeURIComponent(event.slot.getAdUnitPath().replace(\'/40748507/\', \'\')) + \'&format=\' + event.size[0] + \'x\' + event.size[1]; } } else { if (atf_lib.hasOwnProperty(event.slot.getSlotElementId() + \'_passback_fired\') === true && atf_lib[event.slot.getSlotElementId() + \'_passback_fired\'] === true) { atf_lib[event.slot.getSlotElementId() + \'_passback_fired\'] = false; atf_lib.log_info(\'Nothing done, because Passback Event fired\'); } else { atf_lib.log_info(\'Nothing done, because of line item ID \' + event.lineItemId); } } } } else { var img = new Image(); img.src = \'https://report.tag.tagtool.de/not_our.png?domain=\' + window.location.hostname + \'&site=\' + encodeURIComponent(window.location.href) + \'&mandant_key=\' + atf_lib.mid + \'&page_key=\' + atf_lib.pid + \'&line_item_id=\' + event.lineItemId + \'&creative_id=\' + event.creativeId + \'&ad_unit=\' + encodeURIComponent(event.slot.getAdUnitPath()) + \'&format=\' + event.size[0] + \'x\' + event.size[1]; }}); });';
+            
+            var headJsScript = document.createElement('script');
+            headJsScript.type = 'text/javascript';
+            headJsScript.innerHTML = headJs;
+            headTag[0].appendChild(headJsScript);
+            
+            /*randValue = Math.floor(Math.random() * 100) + 1;
+            atf_lib.log_info('Checker rand value = ' + randValue);
+            if (randValue === 1) {
+                var testScript = document.createElement('script');
+                testScript.type = 'text/javascript';
+                testScript.async = 'async';
+                testScript.src = 'https://stat.fancy-delivery.net/static_files/scripte/ads.js?ad_unit=1&ad_slot=1';
+                headTag[0].appendChild(testScript);
+                setTimeout(function () {
+                    if (typeof atf_test_lib === 'undefined') {
+                        var img = new Image();
+                        img.src = 'https://r.tag.tagtool.de/blocked.png?domain=' + window.location.hostname + '&site=' + encodeURIComponent(window.location.href) + '&mandant_key=' + atf_lib.mid + '&page_key=' + atf_lib.pid;
+                    }
+                }, 1500);
+            }*/
+            
+            if (top.location.search !== '' && top.location.search.indexOf('atf_op_method=') > -1) {
+                if (top.location.search.indexOf('atf_op_method=find_tag') > -1) {
+                    atf_lib.op_method = 'find_tag';
+                    atf_lib.log_info('Op methood find Tag is activated by url!');
+                } else if (top.location.search.indexOf('atf_op_method=scan_array') > -1) {
+                    atf_lib.op_method = 'scan_array';
+                    atf_lib.log_info('Op methood scan array is activated by url!');
+                } else if (top.location.search.indexOf('atf_op_method=call') > -1) {
+                    atf_lib.op_method = 'call';
+                    atf_lib.log_info('Op methood call is activated by url!');                  
+                }
+            }
+            
+            if ((window.location.href.indexOf('http://') === 0 || window.location.href.indexOf('https://') === 0) && window.location.hostname !== '127.0.0.1') {
+                var img = new Image();
+                img.src = 'https://report.tag.tagtool.de/pi.png?domain=' + window.location.hostname + '&site=' + encodeURIComponent(window.location.href) + '&mandant_key=' + atf_lib.mid + '&page_key=' + atf_lib.pid;
+            }
+              
+            if (typeof atf_lib.op_method === 'undefined' || atf_lib.op_method === '') {
+                atf_lib.op_method = 'call';
+            }
+            
+            if (typeof atf_marketer !== 'undefined' && typeof atf_marketer.init_marketer === 'function') {
+                atf_marketer.init_marketer();
+            }
+            
+            // Start Ad delivery
+            if (atf_lib.op_method === 'find_tag') {
+                setTimeout(function () {
+                    atf_dfp.find_tag();
+                }, 5);
+                atf_lib.log_info('Find Tag is activated!');
+            } else if (atf_lib.op_method === 'call') {
+                atf_lib.log_info('Call for action is activated!');
+            } else if (atf_lib.op_method === 'scan_array') {
+                setTimeout(function () {
+                    atf_dfp.scan_array();
+                }, 5);
+                atf_lib.log_info('Scan Array is activated!');
+            }
+            time = (new Date()).getTime() - atf_lib.time_messure_start.getTime();
+            atf_lib.log_time_messure(time + 'ms till done loading all libraries in to the page head.', time, 'Libraries loaded');
+        } else {
+            setTimeout(function () {
+                atf_dfp.init_dfp();
+            }, 10);
+        }
+    },
+    
+    /**
+     * Initializes the consens tool by waiting for given consent by user.
+     */
+    init_consent_tool: function () {
+        if (typeof __cmp === 'function') {
+            __cmp('getVendorConsents', null, function (result) {
+                atf_lib.add_page_targeting('consent_given', 'true');
+                atf_lib.consent_given = true;
+                if (atf_lib.consent_given_by === 'button' || atf_lib.consent_given_by === '2nd_pi') {
+                    var oilElements = document.getElementsByClassName('as-oil');
+                    if (oilElements.length > 0) {
+                        oilElements[0].style.display = 'none';
+                    }
+                } else {
+                    
+                }
+            });
+        } else {
+            setTimeout(function () {
+                atf_dfp.init_consent_tool();
+            }, 10);
+        }
+        atf_dfp.check_pi_for_consent();
+    },
+    
+    /**
+     * Checks if the user already had an page impression and gives consent when
+     * the current PI is not the first page call. 
+     */
+    check_pi_for_consent: function () {
+        if (typeof AS_OIL !== 'undefined') {
+            if (typeof(Storage) !== 'undefined') {
+                if (sessionStorage.getItem('atf_has_pi') === 'true' && (typeof atf_dfp_special === 'undefined' || typeof atf_dfp_special.conset_disabled === 'undefined' || atf_dfp_special.conset_disabled !== true)) {
+                    atf_lib.consent_given_by = '2nd_pi';
+                    AS_OIL.triggerOptIn();
+                    sessionStorage.removeItem('atf_has_pi');
+                    atf_lib.log_info('Setted consent optin by 2nd PI');
+                }
+            }
+            
+            setTimeout(function () {
+                var headTag = document.getElementsByTagName('head');
+                var consentStartStyling = document.createElement('style');
+                consentStartStyling.type = 'text/css';
+                consentStartStyling.innerHTML = '.as-oil { display: block; }';
+                headTag[0].appendChild(consentStartStyling);
+            }, 500);
+            
+            setTimeout(function () {
+                if (typeof(Storage) !== 'undefined') {
+                    if (document.cookie.indexOf('oil_data=') < 0 && (typeof atf_dfp_special === 'undefined' || typeof atf_dfp_special.conset_disabled === 'undefined' || atf_dfp_special.conset_disabled !== true)) {
+                        sessionStorage.setItem('atf_has_pi', 'true');
+                    }
+                }
+            }, 500);
+        } else {
+            setTimeout(function () {
+                atf_dfp.check_pi_for_consent();
+            }, 10);
+        }
+    }
+};
+
+Number.isInteger = Number.isInteger || function(value) {
+    return typeof value === "number" && 
+           isFinite(value) && 
+           Math.floor(value) === value;
+};
+
+/**
+ * Overrides the load tag function of atf_lib with header bidding functionallity if enabled.
+ * 
+ * @function
+ * @name load_tag 
+ * 
+ * @param {Array} elements The elements for which to load ads. 
+ */
+atf_lib.load_tag = function (elements) {
+    if ((typeof atf_lib.hb_timeout_given === 'undefined' || atf_lib.hb_timeout_given === false) && typeof atf_dfp_special !== 'undefined' && atf_dfp_special.hasOwnProperty('hb_yieldlab') && atf_dfp_special.hb_yieldlab === true) {
+        atf_lib.hb_timeout_given = true;
+        var hb_timeout = 500;
+        if (atf_lib.is_mobile() === false) {
+            if (atf_dfp_special.hasOwnProperty('hb_timeout') && typeof atf_dfp_special.hb_timeout === 'number' && isFinite(atf_dfp_special.hb_timeout) && Math.floor(atf_dfp_special.hb_timeout) === atf_dfp_special.hb_timeout) {
+                hb_timeout = atf_dfp_special.hb_timeout;
+            }
+        } else {
+            if (atf_dfp_special.hasOwnProperty('hb_timeout_mobile') && typeof atf_dfp_special.hb_timeout_mobile === 'number' && isFinite(atf_dfp_special.hb_timeout_mobile) && Math.floor(atf_dfp_special.hb_timeout_mobile) === atf_dfp_special.hb_timeout_mobile) {
+                hb_timeout = atf_dfp_special.hb_timeout_mobile;
+            }
+        }
+        atf_lib.log_color_info('|ATF|Header Bidder| Running into HB timeout: ' + hb_timeout+'', 'background: #0080a6; color: #bada55');
+        setTimeout(function () {
+            atf_lib.load_tag(elements);
+        }, hb_timeout);
+        return;
+    }
+    if (typeof atf_lib.consent_given !== 'undefined' || (typeof atf_dfp_special !== 'undefined' && atf_dfp_special.hasOwnProperty('consent_disabled') && atf_dfp_special.consent_disabled === true)) {
+        if (typeof atf_dfp_special !== 'undefined' && typeof atf_dfp_special.get_elements === "function") {
+            atf_lib.log_info('Processing atf_dfp_special.getElements(element) for custom fetching of elements and targeting');
+            elements = atf_dfp_special.get_elements(elements);
+        }
+        if (typeof atf_lib.header_bidding_enabled !== 'undefined' && atf_lib.header_bidding_enabled === true) {
+            atf_lib.load_header_bidding_lib();
+        }
+    
+        atf_dfp.load_tag(elements);
+    } else {
+        if ((typeof atf_dfp_special === 'undefined' || !atf_dfp_special.hasOwnProperty('consent_disabled') && atf_dfp_special.consent_disabled !== false) && typeof atf_lib.consent_timeout_given === 'undefined' || atf_lib.consent_timeout_given === false) {
+            var timeout;
+            if (typeof atf_lib.consent_timeout !== 'undefined' && Number.isInteger(atf_lib.consent_timeout)) {
+                timeout = atf_lib.consent_timeout;
+            } else {
+                timeout = 10000;
+            }
+            atf_lib.consent_timeout_given = true;
+            setTimeout(function () {
+                if (typeof atf_lib.consent_given === 'undefined') {
+                    atf_lib.consent_given = true;
+                    atf_lib.consent_given_by = 'timeout';
+                    AS_OIL.triggerOptIn();
+                }
+            }, timeout);
+        }
+        setTimeout(function () {
+            atf_lib.load_tag(elements);
+        }, 10);
+    }
+};
+
+atf_lib.request_id = Date.now() + Math.random();
+atf_lib.report_time = ((new Date()).getTime() % 10 === 0? true : false);
+atf_lib.time_messure_start = new Date();
+atf_dfp.init_dfp();

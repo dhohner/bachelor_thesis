@@ -1,0 +1,5 @@
+var targetAudience=getTargetAudienceValue(),Ads_BA_ADIDsite=drupalSettings.adsSite,Ads_BA_ADIDsection=drupalSettings.adsSection,Ads_BA_keyword=targetAudience==="2"?'noProfessional':(targetAudience==="1"?'Professional':'')
+function getTargetAudienceValue(){var cookies=document.cookie?document.cookie.split('; '):[];for(var i=0;i<cookies.length;i++){var parts=cookies[i].split('=');if(parts[0]=='targetaudience')return parts[1]};return null}
+function Cond_Ads_BA_AD(ADP){if(Ads_BA_ADIDsite!=='disabled'&&(typeof drupalSettings.user.uid=='undefined'||drupalSettings.user.uid==0)){if(ADP=='CAD'||ADP=='CAD2'){var elem=document.getElementById('Ads_BA_'+ADP),div=document.createElement('div');if(ADP=='CAD2'){div.className='business clearfix'}else div.className='business';div.id='Business_'+ADP;elem.parentNode.insertBefore(div,elem)};Ads_BA_AD(ADP)}}
+function hideBusinessHint(ADP){document.getElementById('Business_'+ADP).style.display="none";document.getElementById('Ads_BA_'+ADP).style.border="none"}
+function showBusinessHint(ADP){document.getElementById('Business_'+ADP).style.display="block";document.getElementById('Ads_BA_'+ADP).style.border="2px solid #f2f2f2"};
