@@ -1,7 +1,9 @@
 pragma solidity ^0.5.0;
 
+import "./BountyFactory/BountyFactory.sol";
+
 contract Company {
-    address private bountyFactory;
+    BountyFactory bountyFactory;
 
     mapping(address => uint256) public memberId;
     mapping(address => bool) private validProposals;
@@ -18,7 +20,7 @@ contract Company {
         _;
     }
 
-    event BountyCreated(address bountyAddress);
+    event BountyCreated(address bountyAddress, uint256 reward, uint256 issue);
     event BountyProvided(address bountyAddress);
     event BountyClaimed(address bountyAddress);
     event BountyCanceled(address bountyAddress);
@@ -30,11 +32,11 @@ contract Company {
     event RewardTransfered(address bountyAddress);
     event MembershipChanged(address memberAddress, bool memberStatus);
 
-    constructor(address _bountyFactoryAddress) public {
+    constructor() public {
         members.push(address(0));
         memberId[msg.sender] = members.length;
         members.push(msg.sender);
-        bountyFactory = _bountyFactoryAddress;
+        bountyFactory = new BountyFactory();
     }
 
     /**
@@ -42,108 +44,30 @@ contract Company {
      * @param _amount the bounty to be paid to the freelancer who solves the issue
      * @param _issue the number of the issue to be solved
      */
-    function createBounty(uint256 _amount, uint256 _issue) public {
+    function createBounty(uint256 _amount, uint256 _issue) public payable {
         // validate input
         require(_amount != 0, "provide a bounty");
         require(_issue != 0, "provide a vaild issue");
         
-        /// create bounty for company issue
-        // prepare payload: bytes4 representation of the hashed function signature
-        bytes memory payload = abi.encodeWithSignature("create(uint256,uint256)", _amount, _issue);
-        // execute and get encoded return value of function call
-        (bool success, bytes memory encodedReturnValue) = bountyFactory.call(payload);
-        // check if bounty creation was successfull
-        require(success, "bounty creation failed");
-        // decode return value to get address of created bounty
-        address bounty = abi.decode(encodedReturnValue, (address));
-        // add bounty address to management structures
-        bounties.push(bounty);
-        validBounty[bounty] = true;
-        emit BountyCreated(bounty);
-    }
-
-    /**
-     * @notice provide bounty reward
-     * @param _bountyAddress the bounty address to send the reward to
-     * @dev only callable by company members
-     */
-    function depositReward(address _bountyAddress) public payable onlyMembers {
-        // validate input
-        require(validBounty[_bountyAddress], "invalid bounty address");
-
-        /// get required reward amount
-        // prepare payload: bytes4 representation of the hashed function signature
-        bytes memory payload = abi.encodeWithSignature("bountyAmount()");
-        // execute and get encoded return value of function call
-        (bool success, bytes memory encodedReturnValue) = _bountyAddress.call(payload);
-        // check if getter call was successfull
-        require(success, "could not get bountyAmount");
-        // decode return value to get bountyAmount for provided address
-        uint256 bountyAmount = abi.decode(encodedReturnValue, (uint256));
-
-        // validate if msg.value equals expected bounty reward
-        require(bountyAmount == msg.value, "invalid reward provided"); 
-
-        /// deposit msg.value to provided bounty address
-        // prepare payload: bytes4 representation of the hashed function signature
-        payload = abi.encodeWithSignature("deposit(address)", msg.sender);
-        // execute and get encoded return value of function call
-        (success, ) = _bountyAddress.call.value(msg.value)(payload);
-        // check if deposit was successfull
-        require(success, "deposit failed");
-
-        /// get current bounty state
-        // prepare payload: bytes4 representation of the hashed function signature
-        payload = abi.encodeWithSignature("state()");
-        // execute and get encoded return value of function call
-        (success, encodedReturnValue) = _bountyAddress.call(payload);
-        // check if getter call was successfull
-        require(success, "could not get bounty state");
-        // decode return value to get bounty state
-        uint256 state = abi.decode(encodedReturnValue, (uint256));
-
-        // emit event if state == 1 (RewardSupplied) else revert
-        if (state == 1) {
-            emit BountyProvided(_bountyAddress);
-        } else {
-            revert("something went wrong in deposit");
-        }
+        Bounty bounty = bountyFactory.createBounty(_amount, _issue);
+        bounty.deposit.value(msg.value)(msg.sender);
+        
+        bounties.push(address(bounty));
+        validBounty[address(bounty)] = true;
+        emit BountyCreated(address(bounty), _amount, _issue);
     }
 
     /**
      * @notice lets freelancer claim a bounty
      * @param _bountyAddress the address of the bounty to claim
      */
-    function claimBounty(address _bountyAddress) public {
+    function claimBounty(address payable _bountyAddress) public {
         // validate input
         require(validBounty[_bountyAddress], "invalid bounty address");
 
-        /// try to claim the bounty
-        // prepare payload: bytes4 representation of the hashed function signature
-        bytes memory payload = abi.encodeWithSignature("claimBounty(address)", msg.sender);
-        // execute and get encoded return value of function call
-        (bool success, bytes memory encodedReturnValue) = _bountyAddress.call(payload);
-        // check if getter call was successfull
-        require(success, "could not claim bounty");
-        // decode return value to get registered claimee
-        address claimee = abi.decode(encodedReturnValue, (address));
-        // check if msg.sender and claimee are equal
-        require(claimee == msg.sender, "wrong claimee registered");
-
-        /// get current bounty state
-        // prepare payload: bytes4 representation of the hashed function signature
-        payload = abi.encodeWithSignature("state()");
-        // execute and get encoded return value of function call
-        (success, encodedReturnValue) = _bountyAddress.call(payload);
-        // check if getter call was successfull
-        require(success, "could not get bounty state");
-        // decode return value to get bounty state
-        uint256 state = abi.decode(encodedReturnValue, (uint256));
-
-        // emit event if state == 2 (BountyClaimed) else revert
-        require(state == 2, "something went wrong while claiming bounty");
+        address claimee = Bounty(_bountyAddress).claimBounty(msg.sender);
+        require(claimee == msg.sender, "claiming failed");
         emit BountyClaimed(_bountyAddress);
-        
     }
 
     /**
@@ -151,31 +75,13 @@ contract Company {
      * @param _solution the commit id for the solution
      * @param _bountyAddress the address of the bounty the solution is for
      */
-    function provideSolution(string memory _solution, address _bountyAddress) public {
+    function provideSolution(string memory _solution, address payable _bountyAddress) public {
         // validate input
         require(validBounty[_bountyAddress], "invalid bounty address");
         require(bytes(_solution).length == 7, "invalid commit format for solution");
 
-        /// transmit the solution
-        // prepare payload: bytes4 representation of the hashed function signature
-        bytes memory payload = abi.encodeWithSignature("provideSolution(string,address)", _solution, msg.sender);
-        // execute and get encoded return value of function call
-        (bool success, bytes memory encodedReturnValue) = _bountyAddress.call(payload);
-        // check if submit was successfull
-        require(success, "could not submit solution");
-        emit SolutionProvided(_bountyAddress);
+        Bounty(_bountyAddress).provideSolution(_solution, msg.sender);
         
-        /// get current bounty state
-        // prepare payload: bytes4 representation of the hashed function signature
-        payload = abi.encodeWithSignature("state()");
-        // execute and get encoded return value of function call
-        (success, encodedReturnValue) = _bountyAddress.call(payload);
-        // check if getter call was successfull
-        require(success, "could not get bounty state");
-        // decode return value to get bounty state
-        uint256 state = abi.decode(encodedReturnValue, (uint256));
-
-        require(state == 3, "something went wrong while providing the solution");
         createBountyProposal(_bountyAddress);
     }
 
@@ -183,17 +89,11 @@ contract Company {
      * @notice transfers the reward of the bounty to the freelancer
      * @param _bountyAddress the address of the bounty to withdraw from
      */
-    function withdraw(address _bountyAddress) public {
+    function withdraw(address payable _bountyAddress) public {
         // validate input
         require(validBounty[_bountyAddress], "invalid bounty address");
 
-        /// withdraw the reward of the bounty
-        // prepare payload: bytes4 representation of the hashed function signature
-        bytes memory payload = abi.encodeWithSignature("transferReward()");
-        // execute and get encoded return value of function call
-        (bool success, ) = _bountyAddress.call(payload);
-        // check if transfer was successfull
-        require(success, "could not transfer the reward");
+        Bounty(_bountyAddress).transferReward();
         removeBounty(_bountyAddress);
         emit RewardTransfered(_bountyAddress);
     }
@@ -203,18 +103,12 @@ contract Company {
      * @param _bountyAddress the address of the bounty to cancel
      * @dev only callable by company members
      */
-    function cancelBounty(address _bountyAddress) public onlyMembers {
+    function cancelBounty(address payable _bountyAddress) public onlyMembers {
         // validate input
         require(validBounty[_bountyAddress], "invalid bounty address");
 
         /// try to cancel the bounty
-        // prepare payload: bytes4 representation of the hashed function signature
-        bytes memory payload = abi.encodeWithSignature("cancelBounty()");
-        // execute and get encoded return value of function call
-        (bool success, ) = _bountyAddress.call(payload);
-        // check if cancellation was successfull
-        require(success, "could not cancel bounty");
-
+        Bounty(_bountyAddress).cancelBounty();
         // remove bounty from management structures
         removeBounty(_bountyAddress);
         emit BountyCanceled(_bountyAddress);
@@ -226,21 +120,12 @@ contract Company {
      * @param _proposalAddress the address of the proposal you want to vote for
      * @dev only callable by registered members
      */
-    function vote(bool _stance, address _proposalAddress) public onlyMembers {
+    function vote(bool _stance, address payable _proposalAddress) public onlyMembers {
         // validate input
         require(validProposals[_proposalAddress], "invalid proposal input");
 
         /// vote for proposal at _proposalAddress
-        // prepare payload: bytes4 representation of the hashed function signature
-        bytes memory payload = abi.encodeWithSignature("vote(bool,address)", _stance, msg.sender);
-        // execute and get encoded return value of function call
-        (bool success, bytes memory encodedReturnValue) = _proposalAddress.call(payload);
-        // check if voting was successfull
-        require(success, "voting failed");
-        emit Voted(_proposalAddress, _stance, msg.sender);
-        // decode return values to check if proposal was executed and if proposal passed
-        (bool proposalPassed, bool proposalExecuted) = abi.decode(encodedReturnValue, (bool, bool));
-
+        (bool proposalPassed, bool proposalExecuted) = BountyProposal(_proposalAddress).vote(_stance, msg.sender);
         // handle return values of voting call
         if (proposalExecuted) {
             emit ProposalExecuted(_proposalAddress);
@@ -317,31 +202,27 @@ contract Company {
         return members.length;
     }
 
+    function getBountyParameters(address payable _bounty) public view returns (address bountyAddress, uint256 bounty, uint256 issue, address claimee, address creator) {
+        (bounty, issue, claimee, creator) = Bounty(_bounty).getParameters();
+        bountyAddress = _bounty;
+    }
+
+
     /**
      * @notice creates a proposal to validate the solution of a bounty
      * @param _bountyAddress the address of the solved bounty to validate
      * @dev only callable by registered members
      */
-    function createBountyProposal(address _bountyAddress) private {
+    function createBountyProposal(address payable _bountyAddress) private {
         // validate input
         require(validBounty[_bountyAddress], "invalid input");
 
-        // prepare payload: bytes4 representation of the hashed function signature - no spaces between parameters
-        bytes memory payload = abi.encodeWithSignature(
-            "create(address,uint256,uint256)",
-            _bountyAddress, minimumNumberOfVotes, majorityMargin
-        );
-        // execute and get encoded return value of function call
-        (bool success, bytes memory encodedReturnValue) = bountyFactory.call(payload);
-        // check if function call was successful
-        require(success, "creation of bounty proposal failed");
-        // decode return value to get the address of the created proposal
-        address proposal = abi.decode(encodedReturnValue, (address));
+        BountyProposal proposal = bountyFactory.createProposal(_bountyAddress, minimumNumberOfVotes, majorityMargin);
 
         // add created proposal to management structure and update proposal as valid
-        proposals.push(proposal);
-        validProposals[proposal] = true;
-        emit ProposalCreated(proposal);
+        proposals.push(address(proposal));
+        validProposals[address(proposal)] = true;
+        emit ProposalCreated(address(proposal));
     }
 
     /**
@@ -350,82 +231,25 @@ contract Company {
      * @param _proposalPassed true if the bounty soultion could be verified - false otherwise
      */
 
-    function handleVoteReturn(address _proposalAddress, bool _proposalPassed) private {
+    function handleVoteReturn(address payable _proposalAddress, bool _proposalPassed) private {
         // validate input
         require(validProposals[_proposalAddress], "invalid proposal input");
 
         /// get the address of the bounty the proposal was for
-        // prepare payload: bytes4 representation of the hashed function signature
-        bytes memory payload = abi.encodeWithSignature("bountyAddress()");
-        // execute and get encoded return value of function call
-        (bool success, bytes memory encodedReturn) = _proposalAddress.call(payload);
-        // validate if function call was successful
-        require(success, "get bounty address failed");
-
-        // decode return value of function call
-        address bountyAddress = abi.decode(encodedReturn, (address));
+        address payable bountyAddress = BountyProposal(_proposalAddress).bountyAddress();
 
         // trigger unlock of funds for freelancer
         if(_proposalPassed) {
             /// mark solution as valid and mark reward as available
-            // prepare payload: bytes4 representation of the hashed function signature
-            payload = abi.encodeWithSignature("markSolutionAsValid()");
-            // execute
-            (success, ) = bountyAddress.call(payload);
-            // validate if function call was successfull
-            require(success, "unlocking of reward failed");
-
-            /// get current bounty state
-            // prepare payload: bytes4 representation of the hashed function signature
-            payload = abi.encodeWithSignature("state()");
-            // execute and get encoded return value of function call
-            (success, encodedReturn) = bountyAddress.call(payload);
-            // check if getter call was successfull
-            require(success, "could not get bounty state");
-            // decode return value to get bounty state
-            uint256 state = abi.decode(encodedReturn, (uint256));
-            
-            // validate bounty state
-            if (state == 4) {
-                emit RewardAvailable(bountyAddress);
-            } else {
-                revert("unlocking of funds failed");
-            }
+            Bounty(bountyAddress).markSolutionAsValid();
+            emit RewardAvailable(bountyAddress);
         } else {
             /// mark solution as invalid and reset claimee
-            // prepare payload: bytes4 representation of the hashed function signature
-            payload = abi.encodeWithSignature("resetClaimee()");
-            // execute
-            (success, ) = bountyAddress.call(payload);
-            // validate if function call was successfull
-            require(success, "reset of claimee failed");
-
-            /// get current bounty state
-            // prepare payload: bytes4 representation of the hashed function signature
-            payload = abi.encodeWithSignature("state()");
-            // execute and get encoded return value of function call
-            (success, encodedReturn) = bountyAddress.call(payload);
-            // check if getter call was successfull
-            require(success, "could not get bounty state");
-            // decode return value to get bounty state
-            uint256 state = abi.decode(encodedReturn, (uint256));
-            
-            // validate bounty state
-            if (state == 1) {
-                emit BountyProvided(bountyAddress);
-            } else {
-                revert("reset of claimee failed");
-            }
+            Bounty(bountyAddress).resetClaimee();
+            emit BountyProvided(bountyAddress);
         }
-        
-
         /// call selfdestruct for proposal validating the bounty
-        // prepare payload: bytes4 representation of the hashed function signature
-        payload = abi.encodeWithSignature("kill()");
-        // execute function call and ignore return value
-        (success, ) = _proposalAddress.call(payload);
-        // validate if function call was successful
-        require(success, "deletion of proposal contract failed");
+        BountyProposal(_proposalAddress).kill();
         // remove proposal from management structures
         removeProposal(_proposalAddress);
     }

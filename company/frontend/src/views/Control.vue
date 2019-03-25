@@ -3,21 +3,30 @@
     <div class="bountyControl--title">dCompany Control</div>
     <hr class="separator" />
     <hr class="separator" />
-    <BountyProposals @openProposalForm="createProposal_active = true">
+    <CreateBounty @openBountyForm="createProposal_active = true">
       <transition>
-        <CreateBounty
+        <CreateBountyOverlay
           v-if="createProposal_active"
           @closeProposalForm="createProposal_active = false"
+          :contract="dCompanyInstance"
         />
       </transition>
-    </BountyProposals>
+    </CreateBounty>
+    <hr class="separator" />
+    <BountyProposals />
   </div>
 </template>
 
 <script>
 import CreateBounty from '@/components/Control/Inputs/CreateBounty'
 import BountyProposals from '@/components/Control/BountyProposals/BountyProposals'
+import CreateBountyOverlay from '@/components/Control/Inputs/createBountyOverlay'
+import { mapState } from 'vuex'
+
 export default {
+  computed: mapState({
+    dCompanyInstance: state => state.companyContract
+  }),
   data() {
     return {
       createProposal_active: false
@@ -25,7 +34,8 @@ export default {
   },
   components: {
     CreateBounty,
-    BountyProposals
+    BountyProposals,
+    CreateBountyOverlay
   }
 }
 </script>

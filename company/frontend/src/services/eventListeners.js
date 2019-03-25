@@ -1,0 +1,68 @@
+import router from '@/router'
+import store from '@/store/'
+
+import * as types from '@/util/constants/types'
+
+export const companyEventListeners = contract => {
+  pollWeb3()
+  BountyCreatedListener(contract)
+  BountyProvidedListener(contract)
+}
+
+export const pollHelper = async () => {
+  const web3 = store.state.web3.web3Instance()
+
+  let payload = {
+    networkID: null,
+    coinbase: null
+  }
+
+  payload.networkID = await web3.eth.net.getId()
+  payload.coinbase = await web3.eth.getCoinbase()
+
+  return payload
+}
+
+const pollWeb3 = contract => {
+  // eslint-disable-next-line no-undef
+  ethereum.on('accountsChanged', () => {
+    // force authentification if currently on p2pManagement
+    if (router.currentRoute.name === 'control') {
+      store.dispatch(types.LOGOUT)
+      router.push({ name: 'home' })
+    }
+    store.dispatch(types.POLL_WEB3, contract)
+  })
+  // eslint-disable-next-line no-undef
+  ethereum.on('networkChanged', () => {
+    // force authentification if currently on p2pManagement
+    if (router.currentRoute.name === 'control') {
+      store.dispatch(types.LOGOUT)
+      router.push({ name: 'home' })
+    }
+    store.dispatch(types.POLL_WEB3, contract)
+  })
+}
+
+const BountyCreatedListener = contract => {
+  let txHash = null
+  contract()
+    .events.BountyCreated()
+    .on('data', event => {
+      if (txHash !== event.transactionHash) {
+        txHash = event.transactionHash
+        store.dispatch(types.UPDATE_BOUNTIES, contract)
+      }
+    })
+}
+const BountyProvidedListener = contract => {
+  let txHash = null
+  contract()
+    .events.BountyProvided()
+    .on('data', event => {
+      if (txHash !== event.transactionHash) {
+        txHash = event.transactionHash
+        store.dispatch(types.UPDATE_BOUNTIES, contract)
+      }
+    })
+}

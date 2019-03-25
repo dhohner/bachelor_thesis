@@ -26,7 +26,7 @@ contract Bounty {
 
     constructor(uint256 _bountyAmount, uint256 _companyIssue, address payable _company) public {
         state = States.BountyCreated;
-        bountyAmount = _bountyAmount * 1000 finney;
+        bountyAmount = _bountyAmount;
         companyIssue = _companyIssue;
         company = _company;
     }
@@ -141,6 +141,10 @@ contract Bounty {
 
         // delete bounty
         selfdestruct(company);
+    }
+
+    function getParameters() public view returns (uint256 amount, uint256 bountyIssue, address bountyClaimee, address bountyCreator) {
+        return (bountyAmount, companyIssue, claimee, bountyOrigin);
     }
 
     /**

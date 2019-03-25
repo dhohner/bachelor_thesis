@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 
 contract BountyProposal {
-    address public bountyAddress = address(0);
+    address payable public bountyAddress = address(0);
     address private company;
     uint256 public minimumNumberOfVotes;
     uint256 public majorityMargin;
@@ -17,7 +17,7 @@ contract BountyProposal {
     }
 
     constructor(
-        address _bountyAddress,
+        address payable _bountyAddress,
         uint256 _minimumNumberOfVotes,
         uint256 _majorityMargin,
         address _company

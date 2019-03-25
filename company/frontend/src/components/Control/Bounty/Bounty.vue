@@ -1,19 +1,19 @@
 <template>
   <div class="bountyProposal">
     <div class="bountyProposal__management">
-      <div class="bountyProposal__title">Open Bounty Solutions</div>
-      <table class="table" v-if="proposals.length !== 0">
+      <div class="bountyProposal__title">Provide Reward</div>
+      <table class="table" v-if="bounties.length !== 0">
         <thead>
           <tr>
             <th class="table__head">Bounty Address</th>
-            <th class="table__head">Commit ID</th>
-            <th class="table__head">Vote</th>
+            <th class="table__head">Reward</th>
+            <th class="table__head">Deposit</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="table__row" v-for="p in proposals" :key="p.idx">
-            <td class="table__data">{{ p.author }}</td>
-            <td class="table__data">{{ p.description }}</td>
+          <tr class="table__row" v-for="b in bounties" :key="b.idx">
+            <td class="table__data">{{ b.address }}</td>
+            <td class="table__data">{{ p.reward }}</td>
             <td class="table__data table__data--vote">
               <div v-on:click="vote(p.id, true)" class="button button--table">
                 Valid

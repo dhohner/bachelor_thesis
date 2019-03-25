@@ -6,5 +6,6 @@ export const state = {
     web3Instance: null
   },
   authenticated: false,
-  companyContract: null
+  companyContract: null,
+  bounties: []
 }
