@@ -64,10 +64,10 @@ export default {
         .web3Instance()
         .utils.toWei(this.amount, 'ether')
       const issue = parseInt(this.issue, 10)
-      await this.contract()
-        .methods.createBounty(payment, issue)
-        .send({ value: payment, from: this.$store.state.web3.coinbase })
       this.$emit('closeProposalForm')
+      await this.contract()
+        .methods.createBounty(issue)
+        .send({ value: payment, from: this.$store.state.web3.coinbase })
     }
   }
 }

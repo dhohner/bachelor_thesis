@@ -1,10 +1,11 @@
 pragma solidity ^0.5.0;
 
-contract BountyProposal {
-    address payable public bountyAddress = address(0);
+contract Poll {
+    address public bountyAddress = address(0);
     address private company;
     uint256 public minimumNumberOfVotes;
     uint256 public majorityMargin;
+    string solution;
 
     mapping(address => bool) private voted;
     uint256 public numberOfVotes;
@@ -12,20 +13,18 @@ contract BountyProposal {
     bool public proposalPassed = false;
     bool public proposalExecuted = false;
 
-    function() external payable {
-        revert("proposals do not accept ether");
-    }
-
     constructor(
-        address payable _bountyAddress,
+        address _bountyAddress,
         uint256 _minimumNumberOfVotes,
         uint256 _majorityMargin,
-        address _company
+        address _company,
+        string memory _solution
     ) public {
         bountyAddress = _bountyAddress;
         minimumNumberOfVotes = _minimumNumberOfVotes;
         majorityMargin = _majorityMargin;
         company = _company;
+        solution =  _solution;
     }
 
     /**
@@ -68,6 +67,10 @@ contract BountyProposal {
         require(proposalExecuted, "cannot selfdestruct before finished");
         require(msg.sender == company, "can only be called by company");
         selfdestruct(msg.sender);
+    }
+
+    function getParameters() public view returns (address, string memory) {
+        return (bountyAddress, solution);
     }
 
     /**

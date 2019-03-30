@@ -1,3 +1,4 @@
+const BountyFactory = artifacts.require("BountyFactory");
 const Company = artifacts.require("Company");
 
 const fs = require("fs");
@@ -12,7 +13,8 @@ const configPath = path.join(
 module.exports = async deployer => {
   await generateContractDeploymentConfig();
 
-  await deployer.deploy(Company);
+  await deployer.deploy(BountyFactory);
+  await deployer.deploy(Company, BountyFactory.address);
 
   await writeContractInfo("company", Company.abi, Company.address);
 };

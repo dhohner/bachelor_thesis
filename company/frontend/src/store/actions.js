@@ -4,6 +4,7 @@ import { initializeContractHelper } from '../services/web3/initializeContract'
 import { authenticate } from '../services/authenticate'
 import { pollHelper } from '@/services/eventListeners'
 import { getBountiesHelper } from '../services/web3/getBounties'
+import { getPollsHelper } from '../services/web3/getPolls'
 
 export const actions = {
   async [types.INIT_CONNECTION]({ commit }) {
@@ -28,5 +29,9 @@ export const actions = {
   async [types.UPDATE_BOUNTIES]({ commit }, contract) {
     const payload = await getBountiesHelper(contract)
     commit(types.UPDATE_BOUNTIES, payload)
+  },
+  async [types.UPDATE_POLLS]({ commit }, contract) {
+    const payload = await getPollsHelper(contract)
+    commit(types.UPDATE_POLLS, payload)
   }
 }

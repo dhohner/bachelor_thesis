@@ -28,5 +28,8 @@ export const mutations = {
   },
   [types.UPDATE_BOUNTIES](state, payload) {
     state.bounties = payload
+  },
+  [types.UPDATE_POLLS](state, payload) {
+    state.polls = payload
   }
 }

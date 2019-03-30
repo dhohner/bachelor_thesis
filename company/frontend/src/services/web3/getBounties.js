@@ -13,8 +13,8 @@ export const getBountiesHelper = async contract => {
         const prop = await contract()
           .methods.getBountyParameters(element)
           .call()
-        console.log(prop)
-        prop.bounty = prop.bounty / 10 ** 18
+        prop.bounty = parseInt(prop.bounty, 10) / 10 ** 18
+        prop.withdrawAmount = parseInt(prop.withdrawAmount, 10) / 10 ** 18
         bountyParameters.push(prop)
       })
     )

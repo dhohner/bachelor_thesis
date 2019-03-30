@@ -13,7 +13,7 @@
       </transition>
     </CreateBounty>
     <hr class="separator" />
-    <BountyProposals />
+    <BountyProposals :contract="dCompanyInstance" />
   </div>
 </template>
 

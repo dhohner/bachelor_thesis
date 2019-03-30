@@ -1,24 +1,19 @@
 pragma solidity ^0.5.0;
 
-import "./BountyProposal.sol";
+import "./Poll.sol";
 import "./Bounty.sol";
 
 contract BountyFactory {
-    BountyProposal private proposalReturn;
+    Poll private proposalReturn;
     Bounty private bountyReturn;
-
-    function() external payable {
-        revert("ProposalFactory does not accept payments");
-    }
 
     /**
      * @notice creates a new bounty
-     * @param _amount reward for the freelancer that solves the issue
      * @param _issue projects issue id the bounty is for
      * @return address of the generated bounty
      */
-    function createBounty(uint256 _amount, uint256 _issue) external returns (Bounty) {
-        bountyReturn = new Bounty(_amount, _issue, msg.sender);
+    function createBounty(uint256 _issue) external returns (Bounty) {
+        bountyReturn = new Bounty(_issue, msg.sender);
         return bountyReturn;
     }
     /**
@@ -28,8 +23,8 @@ contract BountyFactory {
      * @param _majorityMargin the percentage of positive votes needed for proposal to pass
      * @return address of the generated proposal
      */
-    function createProposal(address payable _bountyAddress, uint256 _minimumNumberOfVotes, uint256 _majorityMargin) external returns (BountyProposal) {
-        proposalReturn = new BountyProposal(_bountyAddress, _minimumNumberOfVotes, _majorityMargin, msg.sender);
+    function createPoll(address _bountyAddress, uint256 _minimumNumberOfVotes, uint256 _majorityMargin, string calldata _solution) external returns (Poll) {
+        proposalReturn = new Poll(_bountyAddress, _minimumNumberOfVotes, _majorityMargin, msg.sender, _solution);
         return proposalReturn;
     }
 }

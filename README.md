@@ -136,31 +136,37 @@ These are the requisites you need, in order to use the software and instructions
    Ganache -> Settings -> Server -> Port Number -> 8545
    ```
 
-4. Compile & Migrate Smart Contracts
+4. Compile Smart Contracts
 
    ```sh
-   ./deploy.sh
+   truffle compile
    ```
 
-5. Switch to frontend folder
+5. Deploy Smart Contracts to local blockchain
+
+   ```sh
+   truffle migrate --reset --network development
+   ```
+
+6. Switch to frontend folder
 
    ```sh
    cd frontend
    ```
 
-6. Install frontend dependencies
+7. Install frontend dependencies
 
    ```sh
    yarn install
    ```
 
-7. Start frontend
+8. Start frontend
 
    ```sh
    yarn serve
    ```
 
-8. Open the DApp in your favorite browser
+9. Open the DApp in your favorite browser
 
    ```sh
    localhost:8080

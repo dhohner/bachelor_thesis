@@ -4,15 +4,39 @@
     <hr class="separator" />
     <hr class="separator" />
     <Bounties />
+    <hr class="separator" />
+    <UserBounties :contract="dCompanyInstance" />
   </div>
 </template>
 
 <script>
 import Bounties from '@/components/Home/Bounties/Bounties'
+import UserBounties from '@/components/Home/ClaimedBounties/ClaimedBounties'
+import { mapState } from 'vuex'
+import { UPDATE_BOUNTIES } from '@/util/constants/types'
+
 export default {
   name: 'home',
+  computed: mapState({
+    dCompanyInstance: state => state.companyContract
+  }),
   components: {
-    Bounties
+    Bounties,
+    UserBounties
+  },
+  watch: {
+    dCompanyInstance: {
+      handler: function(contract) {
+        if (contract) {
+          this.$store.dispatch(UPDATE_BOUNTIES, contract)
+        }
+      }
+    }
+  },
+  mounted() {
+    if (this.dCompanyInstance) {
+      this.$store.dispatch(UPDATE_BOUNTIES, this.dCompanyInstance)
+    }
   }
 }
 </script>

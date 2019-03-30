@@ -20,15 +20,10 @@ contract Bounty {
     string public solutionCommit;
     uint256 private withdrawalAmount;
 
-    function() external payable {
-        revert("use deposit instead");
-    }
-
-    constructor(uint256 _bountyAmount, uint256 _companyIssue, address payable _company) public {
-        state = States.BountyCreated;
-        bountyAmount = _bountyAmount;
+    constructor(uint256 _companyIssue, address payable _company) public {
         companyIssue = _companyIssue;
         company = _company;
+        state = States.BountyCreated;
     }
 
     /**
@@ -41,24 +36,11 @@ contract Bounty {
         require(msg.sender == company, "invalid caller");
         require(bountyOrigin == address(0), "bountyOrigin already known");
         require(msg.value <= maximumAmount, "storage is limited to 10 ETH");
-        require(msg.value == bountyAmount, "provide the whole bounty");
 
         // update internal state
         state = States.RewardSupplied;
         bountyOrigin = _origin;
-    }
-
-    /**
-     * @notice cancels bounty and transfers funds to bountyOrigin if set - if not set transfers to company
-     */
-    function cancelBounty() external {
-        // check inputs and internal state
-        require(msg.sender == company, "invalid caller");
-        require(!checkState(States.SolutionProvided), "cannot cancel (SolutionProvided)");
-        require(!checkState(States.SolutionReviewed), "cannot cancel (SolutionReviewed)");
-        
-        // destroy bounty contract
-        bountyOrigin != address(0) ? selfdestruct(bountyOrigin) : selfdestruct(company);
+        bountyAmount = msg.value;
     }
 
     /**
@@ -143,8 +125,8 @@ contract Bounty {
         selfdestruct(company);
     }
 
-    function getParameters() public view returns (uint256 amount, uint256 bountyIssue, address bountyClaimee, address bountyCreator) {
-        return (bountyAmount, companyIssue, claimee, bountyOrigin);
+    function getParameters() public view returns (uint256 amount, uint256 bountyIssue, address bountyClaimee, address bountyCreator, string memory commit, uint256 withdrawAmount) {
+        return (bountyAmount, companyIssue, claimee, bountyOrigin, solutionCommit, withdrawalAmount);
     }
 
     /**

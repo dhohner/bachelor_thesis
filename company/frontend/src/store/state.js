@@ -7,5 +7,6 @@ export const state = {
   },
   authenticated: false,
   companyContract: null,
-  bounties: []
+  bounties: [],
+  polls: []
 }

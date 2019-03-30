@@ -13,18 +13,11 @@
 export default {
   methods: {
     async test() {
-      const bounties = await this.$store.state
+      const polls = await this.$store.state
         .companyContract()
-        .methods.getBounties()
+        .methods.getPolls()
         .call()
-      await this.$store.state
-        .companyContract()
-        .methods.claimBounty(bounties[0])
-        .send({ from: this.$store.state.web3.coinbase })
-      await this.$store.state
-        .companyContract()
-        .methods.provideSolution('0xab34c', bounties[0])
-        .send({ from: this.$store.state.web3.coinbase })
+      console.log(polls)
     }
   }
 }

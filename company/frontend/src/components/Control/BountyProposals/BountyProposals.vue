@@ -2,37 +2,41 @@
   <div class="bountyProposal">
     <div class="bountyProposal__management">
       <div class="bountyProposal__title">Open Bounty Solutions</div>
-      <table class="table" v-if="proposals.length !== 0">
+      <table class="table" v-if="polls.length !== 0">
         <thead>
           <tr>
-            <th class="table__head">Bounty Address</th>
             <th class="table__head">Commit ID</th>
             <th class="table__head">Vote</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="table__row" v-for="p in proposals" :key="p.idx">
-            <td class="table__data">{{ p.author }}</td>
-            <td class="table__data">{{ p.description }}</td>
+          <tr class="table__row" v-for="p in polls" :key="p.idx">
+            <td class="table__data">{{ p.commit }}</td>
             <td class="table__data table__data--vote">
-              <div v-on:click="vote(p.id, true)" class="button button--table">
+              <div
+                v-on:click="vote(p.pollAddress, true)"
+                class="button button--table"
+              >
                 Valid
               </div>
-              <div v-on:click="vote(p.id, false)" class="button button--table">
+              <div
+                v-on:click="vote(p.pollAddress, false)"
+                class="button button--table"
+              >
                 Invalid
               </div>
             </td>
           </tr>
         </tbody>
       </table>
-      <table class="table" v-if="proposals.length === 0">
+      <table class="table" v-if="polls.length === 0">
         <thead>
-          <tr class="table__row">
-            <th>Proposals</th>
+          <tr>
+            <th class="table__head">Polls</th>
           </tr>
         </thead>
         <tbody>
-          <td class="table__data">No Proposals found</td>
+          <td class="table__data">No Polls found</td>
         </tbody>
       </table>
     </div>
@@ -40,43 +44,26 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+import { UPDATE_POLLS } from '@/util/constants/types'
+
 export default {
-  data() {
-    return {
-      address: null,
-      proposals: []
+  computed: mapState({
+    polls: state => state.polls
+  }),
+  props: ['contract'],
+  methods: {
+    async vote(address, agree) {
+      console.log('vote for id: ' + address)
+      console.log('vote with stance: ' + agree)
+      await this.contract()
+        .methods.vote(agree, address)
+        .send({ from: this.$store.state.web3.coinbase })
     }
   },
-  methods: {
-    vote(id, agree) {
-      console.log('vote for id: ' + id)
-      console.log('vote with stance: ' + agree)
-    },
-    async createProposal() {
-      if (this.address === null) {
-        console.log('provide an address')
-      }
-      await this.$store.state
-        .companyContract()
-        .methods.createBountyProposal(this.address)
-        .send({ from: this.$store.state.web3.coinbase })
-    },
-    async getProposals() {
-      console.log('getting proposals')
-      let proposals = await this.$store.state
-        .companyContract()
-        .methods.getProposals()
-        .call()
-
-      for (let i = 0; i < proposals.length; i++) {
-        let data = {
-          author: proposals[i],
-          description: 'd34db3a' + i,
-          id: i,
-          agrees: false
-        }
-        this.proposals.push(data)
-      }
+  mounted() {
+    if (this.contract) {
+      this.$store.dispatch(UPDATE_POLLS, this.contract)
     }
   }
 }

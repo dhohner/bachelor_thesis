@@ -1,0 +1,21 @@
+@import '../../../util/scss/variables';
+
+.bounties__title {
+  margin-top: 0.5em;
+  color: $link-text-color-darkened;
+  font-weight: 600;
+  font-size: 2rem;
+  text-decoration: underline;
+}
+
+.button--claim {
+  width: 100px;
+}
+
+.solution__input {
+  text-align: center;
+  width: 250px;
+  padding: 0;
+  margin: 0;
+  height: 30px;
+}
