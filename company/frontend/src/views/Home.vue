@@ -1,6 +1,6 @@
 <template>
   <div class="bounties">
-    <div class="bounties--title">dCompany Landing Page</div>
+    <div class="bounties--title">dCompany Bounties</div>
     <hr class="separator" />
     <hr class="separator" />
     <Bounties />

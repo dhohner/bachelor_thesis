@@ -54,8 +54,6 @@ export default {
   props: ['contract'],
   methods: {
     async vote(address, agree) {
-      console.log('vote for id: ' + address)
-      console.log('vote with stance: ' + agree)
       await this.contract()
         .methods.vote(agree, address)
         .send({ from: this.$store.state.web3.coinbase })
