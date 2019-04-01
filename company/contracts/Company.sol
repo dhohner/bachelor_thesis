@@ -141,13 +141,14 @@ contract Company {
     function addMember(address _memberAddress) public onlyMembers {
         // validate input
         require(_memberAddress != address(0), "invalid address");
-        require(memberId[_memberAddress] == 0, "already a member");
+        require(!validMember[_memberAddress], "already a member");
 
         memberId[_memberAddress] = members.length;
+        validMember[_memberAddress] = true;
         members.push(_memberAddress);
 
         // if necessary: update voting parameters
-        if (((members.length / 2) - 1) >= minimumNumberOfVotes) {
+        if ((members.length / 2) >= minimumNumberOfVotes) {
             minimumNumberOfVotes++;
         }
         emit MembershipChanged(_memberAddress, true);
@@ -171,9 +172,10 @@ contract Company {
         members.pop();
         // mark memberId as invalid
         memberId[_memberAddress] = 0;
+        validMember[_memberAddress] = false;
 
         // if necessary: update voting parameters
-        if (((members.length / 2) - 1) <= minimumNumberOfVotes) {
+        if ((members.length / 2) <= minimumNumberOfVotes) {
             minimumNumberOfVotes--;
         }
         emit MembershipChanged(_memberAddress, false);

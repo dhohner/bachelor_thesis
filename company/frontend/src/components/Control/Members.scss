@@ -1,0 +1,52 @@
+@import '../../util/scss/variables';
+
+.members__title {
+  margin-top: 0.5em;
+  color: $link-text-color-darkened;
+  font-weight: 600;
+  font-size: 2rem;
+  text-decoration: underline;
+}
+
+.member__input {
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: 15% 35% 35% 15%;
+  grid-template-rows: 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+
+.member__label {
+  grid-column: 2 / 4;
+  grid-row: 1;
+  color: $link-text-color;
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.member__inputfield {
+  grid-column: 2 / 4;
+  grid-row: 2;
+  margin: 0;
+  padding: 0;
+  height: 45px;
+  text-align: center;
+  width: 400px;
+}
+
+.button--addMember {
+  grid-column: 2;
+  grid-row: 3;
+  width: 200px;
+  justify-self: right;
+  margin-right: 1em;
+}
+
+.button--removeMember {
+  grid-column: 3;
+  grid-row: 3;
+  width: 200px;
+  justify-self: left;
+  margin-left: 1em;
+}

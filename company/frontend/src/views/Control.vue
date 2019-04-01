@@ -14,6 +14,8 @@
     </CreateBounty>
     <hr class="separator" />
     <BountyProposals :contract="dCompanyInstance" />
+    <hr class="separator" />
+    <Members :contract="dCompanyInstance" />
   </div>
 </template>
 
@@ -21,6 +23,7 @@
 import CreateBounty from '@/components/Control/Inputs/CreateBounty'
 import BountyProposals from '@/components/Control/BountyProposals/BountyProposals'
 import CreateBountyOverlay from '@/components/Control/Inputs/createBountyOverlay'
+import Members from '@/components/Control/Members'
 import { mapState } from 'vuex'
 
 export default {
@@ -35,7 +38,8 @@ export default {
   components: {
     CreateBounty,
     BountyProposals,
-    CreateBountyOverlay
+    CreateBountyOverlay,
+    Members
   }
 }
 </script>
