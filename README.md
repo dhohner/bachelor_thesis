@@ -118,7 +118,7 @@ These are the requisites you need, in order to use the software and instructions
 
 ### Installation
 
-1. Clone the repo
+1. Clone the repository
 
    ```sh
    git clone https://github.com/dhohner/bachelor_thesis.git
@@ -138,9 +138,25 @@ These are the requisites you need, in order to use the software and instructions
 
 4. Compile & Migrate Smart Contracts
 
-   ```sh
-   ./deploy.sh
-   ```
+    * via script
+      ```sh
+      ./deploy.sh
+      ```
+    
+    * manually:
+      1. Delete build artifacts
+          ```sh
+          rm -rf build/
+          ```
+      2. Compile contracts
+          ```sh
+          truffle compile
+          ```
+      3. Deploy contracts to local blockchain
+          ```sh
+          truffle migrate --reset --network development
+          ```
+    
 
 5. Switch to frontend folder
 
@@ -160,7 +176,7 @@ These are the requisites you need, in order to use the software and instructions
    yarn serve
    ```
 
-8. Open the DApp in your favorite browser
+8. Open the dApp in your favorite browser
 
    ```sh
    localhost:8080

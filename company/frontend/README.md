@@ -1,4 +1,4 @@
-# Frontend
+# dCompany Frontend
 
 ## Project setup
 ```sh

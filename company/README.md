@@ -1,9 +1,9 @@
-# Contracts
+# dCompany Contracts
 
 ## General Information
-See further details in Readme in main directory
+See further details in the readme located in the parent directory
 
-## Compiles and Migrates contracts to local blockchain
+## Compile and Migrate contracts to local blockchain
 
 ### Use Script
 ```sh
@@ -11,15 +11,18 @@ See further details in Readme in main directory
 ```
 
 ### Manually
-```sh
-rm -rf build/
-```
-```sh
-truffle compile
-```
-```sh
-truffle migrate --reset --network development
-```
+1. Delete build artifacts
+    ```sh
+    rm -rf build/
+    ```
+2. Compile contracts
+    ```sh
+    truffle compile
+    ```
+3. Deploy contracts to local blockchain
+    ```sh
+    truffle migrate --reset --network development
+    ```
 
 ### Run your tests
 ```
